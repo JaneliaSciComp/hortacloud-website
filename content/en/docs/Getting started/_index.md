@@ -3,6 +3,8 @@ categories: ["Examples", "Placeholders"]
 tags: ["test","docs"] 
 title: "Getting Started"
 linkTitle: "Getting Started"
+toc_hide: true
+hide_summary: true
 weight: 2
 description: >
   What does your user need to know to try your project?
@@ -32,6 +34,6 @@ Where can your user find your project code? How can they install it (binaries, i
 
 Is there any initial setup users need to do after installation to try your project?
 
-## Try it out!
+## Try it out
 
 Can your users test their installation, for example by running a command or deploying a Hello World example?

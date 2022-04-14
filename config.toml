@@ -41,10 +41,6 @@ pygmentsUseClassic = false
 # See https://help.farbox.com/pygments.html
 pygmentsStyle = "tango"
 
-# Configure how URLs look like per section.
-[permalinks]
-blog = "/:section/:year/:month/:day/:slug/"
-
 ## Configuration for BlackFriday markdown parser: https://github.com/russross/blackfriday
 [blackfriday]
 plainIDAnchors = true
@@ -80,8 +76,8 @@ id = "UA-00000000-0"
 section = ["HTML", "print", "RSS"]
 
 [params]
-copyright = "The Docsy Authors"
-privacy_policy = "https://policies.google.com/privacy"
+copyright = "Howard Hughes Medical Institute"
+privacy_policy = "https://www.hhmi.org/privacy-policys"
 
 # First one is picked as the Twitter card image if not set on page.
 # images = ["images/project-illustration.png"]
@@ -105,9 +101,9 @@ version = "0.0"
 url_latest_version = "https://example.com"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
-github_repo = "https://github.com/google/docsy-example"
+github_repo = "https://github.com/JaneliaSciComp/hortacloud-website"
 # An optional link to a related project repo. For example, the sibling repository where your product code lives.
-github_project_repo = "https://github.com/google/docsy"
+github_project_repo = "https://github.com/JaneliaSciComp/hortacloud"
 
 # Specify a value here if your content directory is not in your repo's root directory
 # github_subdir = ""
@@ -133,9 +129,9 @@ prism_syntax_highlighting = false
 #  Set to true to disable breadcrumb navigation.
 breadcrumb_disable = false
 # Set to true to disable the About link in the site footer
-footer_about_disable = false
+footer_about_disable = true
 # Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top navbar
-navbar_logo = true
+navbar_logo = false
 # Set to true if you don't want the top navbar to be translucent when over a `block/cover`, like on the homepage.
 navbar_translucent_over_cover_disable = false
 # Enable to show the side bar menu in its compact state.
@@ -161,37 +157,44 @@ enable = false
 
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
-[[params.links.user]]
-  name = "User mailing list"
-  url = "https://example.org/mail"
-  icon = "fa fa-envelope"
-  desc = "Discussion and help from your fellow users"
-[[params.links.user]]
-  name ="Twitter"
-  url = "https://example.org/twitter"
-  icon = "fab fa-twitter"
-  desc = "Follow us on Twitter to get the latest news!"
-[[params.links.user]]
-  name = "Stack Overflow"
-  url = "https://example.org/stack"
-  icon = "fab fa-stack-overflow"
-  desc = "Practical questions and curated answers"
+
+#[[params.links.user]]
+#  name = "User mailing list"
+#  url = "https://example.org/mail"
+#  icon = "fa fa-envelope"
+#  desc = "Discussion and help from your fellow users"
+
+#[[params.links.user]]
+#  name ="Twitter"
+#  url = "https://example.org/twitter"
+#  icon = "fab fa-twitter"
+#  desc = "Follow us on Twitter to get the latest news!"
+
+#[[params.links.user]]
+#  name = "Stack Overflow"
+#  url = "https://example.org/stack"
+#  icon = "fab fa-stack-overflow"
+#  desc = "Practical questions and curated answers"
+
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
+
 [[params.links.developer]]
   name = "GitHub"
-  url = "https://github.com/google/docsy"
+  url = "https://github.com/JaneliaSciComp/hortacloud"
   icon = "fab fa-github"
-  desc = "Development takes place here!"
+  desc = "GitHub code repository"
+
 [[params.links.developer]]
   name = "Slack"
-  url = "https://example.org/slack"
+  url = "https://scicomp-software.slack.com/archives/C03BZ177717"
   icon = "fab fa-slack"
-  desc = "Chat with other project developers"
+  desc = "Chat with the software developers"
+
 [[params.links.developer]]
-  name = "Developer mailing list"
-  url = "https://example.org/mail"
+  name = "Email us"
+  url = "mailto:rokickik@janelia.hhmi.org"
   icon = "fa fa-envelope"
-  desc = "Discuss development issues around the project"
+  desc = "Email the project team"
 
 # hugo module configuration
 

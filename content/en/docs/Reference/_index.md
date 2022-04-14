@@ -2,6 +2,8 @@
 title: "Reference"
 linkTitle: "Reference"
 weight: 9
+toc_hide: true
+hide_summary: true
 description: >
   Low level reference docs for your project.
 ---

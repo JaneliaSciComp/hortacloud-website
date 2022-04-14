@@ -1,82 +1,80 @@
 +++
 title = "HortaCloud"
 linkTitle = "HortaCloud"
-
 +++
 
-{{< blocks/cover title="HortaCloud Workstation" image_anchor="top" height="full" color="orange" >}}
+{{< blocks/cover title="HORTACLOUD" image_anchor="top" height="full" color="orange" >}}
 <div class="mx-auto">
+	<p class="lead display-4 mb-5">Collaborative neuron annotation in the cloud</p>
 	<a class="btn btn-lg btn-primary mr-3 mb-4" href="{{< relref "/docs" >}}">
-		Learn More <i class="fas fa-arrow-alt-circle-right ml-2"></i>
+		Documentation
 	</a>
-	<a class="btn btn-lg btn-secondary mr-3 mb-4" href="https://github.com/google/docsy-example">
-		Login <i class="fab fa-github ml-2 "></i>
+	<a class="btn btn-lg btn-secondary mr-3 mb-4" href="https://hortacloud-portal.janelia.org">
+		Login to HortaCloud-Janelia <i class="fas fa-sign-in-alt ml-1"></i>
 	</a>
-	<p class="lead mt-5 font-weight-bold">Collaborative neuron annotation in the cloud</p>
-	{{< blocks/link-down color="info" >}}
+	<p></p>
+	{{< blocks/link-down color="white" >}}
 </div>
 {{< /blocks/cover >}}
 
-
 {{% blocks/lead color="primary" %}}
-HortaCloud provides a production environment for efficient and accurate reconstructions of long range projection neurons in light microscopy data.
-
-This software, based on the Janelia Workstation and developed for the MouseLight Team Project, has allowed annotators to efficiently reconstruct entire axonal arbors of individual neurons from whole-brain light microscopy data. 
+HortaCloud software provides an efficient production environment for collaborative and accurate reconstruction of long range projection neurons in light microscopy data. This software, originally developed for Janelia's MouseLight Team Project, has allowed annotators to efficiently reconstruct entire axonal arbors of individual neurons from whole-brain light microscopy data. 
 {{% /blocks/lead %}}
 
 {{< blocks/section color="dark" >}}
-{{% blocks/feature icon="fa-lightbulb" title="New chair metrics!" %}}
-The Goldydocs UI now shows chair size metrics by default.
-
-Please follow this space for updates!
+{{% blocks/feature icon="fas fa-cloud-upload-alt" title="Automated deployment" url1="/docs/deployment" %}}
+Using the AWS CDK, you or your system administrator can easily deploy the entire software stack to an AWS Account with a single installation script.
 {{% /blocks/feature %}}
 
-
-{{% blocks/feature icon="fab fa-github" title="Contributions welcome!" url="https://github.com/google/docsy-example" %}}
-We do a [Pull Request](https://github.com/google/docsy-example/pulls) contributions workflow on **GitHub**. New users are always welcome!
+{{% blocks/feature icon="fab fa-chrome" title="Browser-based access" url1="https://github.com/JaneliaSciComp/hortacloud" %}}
+We use a virtual desktop environment (VDI) called AWS AppStream to run the 3D rendering in the cloud, so you users don't need to install any software or have access to a powerful workstation.
 {{% /blocks/feature %}}
 
-
-{{% blocks/feature icon="fab fa-twitter" title="Follow us on Twitter!" url="https://twitter.com/docsydocs" %}}
-For announcement of latest features etc.
+{{% blocks/feature icon="fas fa-brain" title="Big brains, big data" url1="https://twitter.com/docsydocs" %}}
+Mouse brain data as large as 30 TB has been successfully traced by our annotators. You can run a distributed data import tool to bring your data to HortaCloud. 
 {{% /blocks/feature %}}
-
 
 {{< /blocks/section >}}
 
-
-{{< blocks/section >}}
-<div class="col">
-<h1 class="text-center">This is the second Section</h1>
-</div>
-
-{{< /blocks/section >}}
-	
 {{< blocks/section >}}
 
-{{% blocks/feature icon="fab fa-app-store-ios" title="Download **from AppStore**" %}}
-Get the Goldydocs app!
+{{% blocks/feature icon="fas fa-microscope" title="Open Science" %}}
+In support of Open Science, Janelia's MouseLight project has shared all of their code and data with the scientific community. We have started the HortaCloud community as a way to share this software platform and allow others to leverage and extend it. 
 {{% /blocks/feature %}}
 
-{{% blocks/feature icon="fab fa-github" title="Contributions welcome!" url="https://github.com/google/docsy-example" %}}
-We do a [Pull Request](https://github.com/google/docsy-example/pulls) contributions workflow on **GitHub**. New users are always welcome!
+{{% blocks/feature icon="fab fa-github" title="Contributions welcome" url="https://github.com/JaneliaSciComp/hortacloud" %}}
+As an open source community project, we greatly welcome contributions and Pull Requests. Let us know if you would like to collaborate!
 {{% /blocks/feature %}}
 
 {{% blocks/feature icon="fab fa-twitter" title="Follow us on Twitter!" url="https://twitter.com/GoHugoIO" %}}
-For announcement of latest features etc.
+For announcement of latest features and other developments.
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
 
+<!--
 {{< blocks/section >}}
+<div class="col">
+<h1 class="text-center">This is the second Section</h1>
 
+
+
+
+
+
+
+</div>
+{{< /blocks/section >}}
+-->
+
+<!--
+{{< blocks/section >}}
 <div class="col-12">
 <h1 class="text-center">This is another Section</h1>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
 </div>
-
 {{< /blocks/section >}}
+-->
