@@ -110,7 +110,7 @@ github_project_repo = "https://github.com/JaneliaSciComp/hortacloud"
 
 # Uncomment this if your GitHub repo does not have "main" as the default branch,
 # or specify a new value if you want to reference another branch in your GitHub links
-github_branch= "master"
+github_branch= "main"
 
 # Google Custom Search Engine ID. Remove or comment out to disable search.
 #gcs_engine_id = "d72aa9b2712488cc3"
@@ -146,8 +146,8 @@ sidebar_search_disable = false
 [params.ui.feedback]
 enable = true
 # The responses that the user sees after clicking "yes" (the page was helpful) or "no" (the page was not helpful).
-yes = 'Glad to hear it! Please <a href="https://github.com/USERNAME/REPOSITORY/issues/new">tell us how we can improve</a>.'
-no = 'Sorry to hear that. Please <a href="https://github.com/USERNAME/REPOSITORY/issues/new">tell us how we can improve</a>.'
+yes = 'Glad to hear it! Please <a href="https://github.com/JaneliaSciComp/hortacloud-website/issues/new">tell us how we can improve</a>.'
+no = 'Sorry to hear that. Please <a href="https://github.com/JaneliaSciComp/hortacloud-website/issues/new">tell us how we can improve</a>.'
 
 # Adds a reading time to the top of each doc.
 # If you want this feature, but occasionally need to remove the Reading time from a single page, 
@@ -158,43 +158,31 @@ enable = false
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
 
-#[[params.links.user]]
-#  name = "User mailing list"
-#  url = "https://example.org/mail"
-#  icon = "fa fa-envelope"
-#  desc = "Discussion and help from your fellow users"
+[[params.links.user]]
+  name = "User mailing list"
+  url = "https://groups.google.com/g/hortacloud-support"
+  icon = "fa fa-envelope"
+  desc = "Discussion and help from your fellow users"
 
-#[[params.links.user]]
-#  name ="Twitter"
-#  url = "https://example.org/twitter"
-#  icon = "fab fa-twitter"
-#  desc = "Follow us on Twitter to get the latest news!"
-
-#[[params.links.user]]
-#  name = "Stack Overflow"
-#  url = "https://example.org/stack"
-#  icon = "fab fa-stack-overflow"
-#  desc = "Practical questions and curated answers"
+[[params.links.user]]
+  name ="Twitter"
+  url = "https://twitter.com/HortaCloud"
+  icon = "fab fa-twitter"
+  desc = "Follow us on Twitter to get the latest news!"
 
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
 
 [[params.links.developer]]
   name = "GitHub"
-  url = "https://github.com/JaneliaSciComp/hortacloud"
+  url = "https://github.com/JaneliaSciComp/hortacloud-website"
   icon = "fab fa-github"
-  desc = "GitHub code repository"
+  desc = "GitHub code repository for this website"
 
 [[params.links.developer]]
   name = "Slack"
   url = "https://scicomp-software.slack.com/archives/C03BZ177717"
   icon = "fab fa-slack"
   desc = "Chat with the software developers"
-
-[[params.links.developer]]
-  name = "Email us"
-  url = "mailto:rokickik@janelia.hhmi.org"
-  icon = "fa fa-envelope"
-  desc = "Email the project team"
 
 # hugo module configuration
 

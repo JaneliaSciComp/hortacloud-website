@@ -18,12 +18,20 @@ linkTitle = "HortaCloud"
 {{< /blocks/cover >}}
 
 {{% blocks/lead color="primary" %}}
+
+<div class="mx-auto">
+<video autoplay="true" loop="true" class="embed-responsive" style="padding: 0pt 20pt 10pt 0pt;">
+	<source src="vnc-movie.mp4" type="video/mp4">
+	Your browser does not support the video tag.
+</video> 
+</div>
+
 HortaCloud software provides an efficient production environment for collaborative and accurate reconstruction of long range projection neurons in light microscopy data. This software, originally developed for Janelia's MouseLight Team Project, has allowed annotators to efficiently reconstruct entire axonal arbors of individual neurons from whole-brain light microscopy data. 
 {{% /blocks/lead %}}
 
 {{< blocks/section color="dark" >}}
 {{% blocks/feature icon="fas fa-cloud-upload-alt" title="Automated deployment" url1="/docs/deployment" %}}
-Using the AWS CDK, you or your system administrator can easily deploy the entire software stack to an AWS Account with a single installation script.
+Using the AWS CDK, you or your system administrator can <a href="docs/administration/deployment/aws_cloud/">easily deploy</a> the entire software stack to an AWS Account with a single installation script.
 {{% /blocks/feature %}}
 
 {{% blocks/feature icon="fab fa-chrome" title="Browser-based access" url1="https://github.com/JaneliaSciComp/hortacloud" %}}
@@ -36,10 +44,66 @@ Mouse brain data as large as 30 TB has been successfully traced by our annotator
 
 {{< /blocks/section >}}
 
+
+
+{{< blocks/section >}}
+<div class="col">
+<h1 class="text-center pb-4">The Next-Generation Platform for Neuron Tracing</h1>
+
+
+<p style="clear: both; padding-top: 20pt">
+	<a href="screenshot-horta.png"><img src="screenshot-horta.png" class="img-fluid" style="float: left; width: 800px; padding: 0pt 20pt 20pt 0pt;"></a>
+	
+</p>
+
+<p>
+HortaCloud combines state-of-the-art volumetric visualization, advanced features for 3D neuronal annotation, and real-time multi-user collaboration with a set of enterprise-grade backend microservices for moving and processing large amounts of data rapidly and securely. 
+
+Users can load multi-terabyte image volumes with up to three signal channels, and visualize them in 3D with multiscale volume rendering.
+
+An optimized workflow allows annotators to efficiently trace long range projection neurons in light microscopy data, including easy merging/splitting of skeletal reconstructions. 
+
+Collaboration features allow a team of annotators to work together to annotate different neurons in a single volume, or build consensus by annotating the same neurons. 
+</p>
+
+<p>
+Horta also provides other useful features, including:
+<div  style="display: inline-block">
+<ul class="padding-left: 20pt;">
+	<li class="">Movie scripting and rendering</li>
+	<li class="">Import/export in SWC format</li>
+	<li class="">Text annotations</li>
+	<li class="">Color adjustments</li>
+	<li class="">Shared workspaces</li>
+</ul>
+</div>
+</p>
+
+<p style="clear: both; padding-top: 20pt">
+	<a href="cloud_deployment.png"><img src="cloud_deployment.png" class="img-fluid" style="float: right; width: 800px; padding: 0pt 0pt 20pt 20pt;"></a>
+</p>
+
+<h2>Software architecture</h2>
+<p>
+	This software is built on the Janelia Workstation platform, leveraging Java NetBeans to provide modularity and extensibility. 
+	The backend consists of Java-based microservices that scale to handle large volumes of data. 
+	Metadata is stored in MongoDB and real-time event handling is implemented using RabbitMQ. 
+	
+	We deploy both the client and backend services to the AWS Cloud, leveraging AWS AppStream to process the 3D rendering and virtualize the desktop infrastructure. 
+</p>
+
+<p>
+	Image data is stored on AWS S3, and we provide many open data sets on AWS Open Data registry that are immediately accessible in the application.
+</p>
+
+</div>
+{{< /blocks/section >}}
+
+
 {{< blocks/section >}}
 
 {{% blocks/feature icon="fas fa-microscope" title="Open Science" %}}
-In support of Open Science, Janelia's MouseLight project has shared all of their code and data with the scientific community. We have started the HortaCloud community as a way to share this software platform and allow others to leverage and extend it. 
+In support of Open Science, Janelia's MouseLight project has shared all of their code and data with the scientific community. We have started the <a href="/community/">HortaCloud community</a> as a way to share this software platform and allow others to leverage and extend it. 
 {{% /blocks/feature %}}
 
 {{% blocks/feature icon="fab fa-github" title="Contributions welcome" url="https://github.com/JaneliaSciComp/hortacloud" %}}
@@ -51,21 +115,6 @@ For announcement of latest features and other developments.
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
-
-<!--
-{{< blocks/section >}}
-<div class="col">
-<h1 class="text-center">This is the second Section</h1>
-
-
-
-
-
-
-
-</div>
-{{< /blocks/section >}}
--->
 
 <!--
 {{< blocks/section >}}

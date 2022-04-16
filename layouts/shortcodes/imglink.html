@@ -1,0 +1,10 @@
+
+
+<a {{ with .Get "link" }}href="{{.}}"{{ end }}>
+    <img 
+        {{ with .Get "src" }}src="{{.}}"{{ end }}
+        class="rounded mx-auto d-block"
+        {{ with .Get "width" }}style="max-width: {{.}};" {{ end }}
+        
+        {{ with .Get "alt" }}alt="{{.}}"{{ end }}/>
+</a>
