@@ -30,9 +30,7 @@ When you push to the main branch, the code will automatically be built and deplo
 
 ## Troubleshooting
 
-If you see this error:
+Try [this fix](https://wowchemy.com/docs/hugo-tutorials/troubleshooting/#error-failed-to-resolve-output-format), if you see this error:
 
     Error: from config: failed to resolve output format "print" from site config
-
-Try [this fix](https://wowchemy.com/docs/hugo-tutorials/troubleshooting/#error-failed-to-resolve-output-format).
 
