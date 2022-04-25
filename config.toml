@@ -78,6 +78,7 @@ section = ["HTML", "print", "RSS"]
 [params]
 copyright = "Howard Hughes Medical Institute"
 privacy_policy = "https://www.hhmi.org/privacy-policy"
+description = "HortaCloud: collaborative neuron annotation in the cloud"
 
 # First one is picked as the Twitter card image if not set on page.
 # images = ["images/project-illustration.png"]
