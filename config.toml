@@ -2,7 +2,7 @@ baseURL = "https://hortacloud.janelia.org"
 title = "HortaCloud"
 
 # Language settings
-contentDir = "content/en"
+contentDir = "content"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 # Useful when translating.
