@@ -1,9 +1,9 @@
 ---
-title: "Developer's guide"
-linkTitle: "Developer's guide"
-weight: 30
+title: "Operations"
+linkTitle: "Operations"
+weight: 100
 description: >
-  Guide for developing HortaCloud code
+  Day-to-day operation of the system
 ---
 
 {{% pageinfo %}}

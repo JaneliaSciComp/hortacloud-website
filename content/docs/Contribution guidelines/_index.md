@@ -1,7 +1,7 @@
 ---
-title: "Contribution Guidelines"
-linkTitle: "Contribution Guidelines"
-weight: 10
+title: "Editing the documentation"
+linkTitle: "Editing the documentation"
+weight: 100
 description: >
   How to contribute to the docs
 ---

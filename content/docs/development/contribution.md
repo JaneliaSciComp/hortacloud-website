@@ -1,7 +1,7 @@
 ---
 title: "Contribution guidelines"
 linkTitle: "Contribution guidelines"
-weight: 10
+weight: 100
 description: >
   How to contribute to the software
 ---

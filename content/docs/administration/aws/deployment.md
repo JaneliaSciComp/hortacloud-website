@@ -1,7 +1,7 @@
 ---
-title: "AWS Cloud"
-linkTitle: "AWS Cloud"
-weight: 1
+title: "Deployment"
+linkTitle: "Deployment"
+weight: 10
 description: >
   How to deploy HortaCloud to your own AWS account
 ---
