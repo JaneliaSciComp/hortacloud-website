@@ -130,8 +130,8 @@ The full deployment of the application is done in 3 steps run automatically one 
 
 For client installation start and connect to the AppStream builder instance then copy the following scripts from this repo to the AppStream instance:
 
-* [installcmd.ps1](https://github.com/JaneliaSciComp/hortacloud/vpc_stack/src/asbuilder/installcmd.ps1) - installs JDK and the workstation
-* [createappimage.ps1](https://github.com/JaneliaSciComp/hortacloud/vpc_stack/src/asbuilder/createappimage.ps1) - creates the AppStream image
+* [installcmd.ps1](https://github.com/JaneliaSciComp/hortacloud/blob/main/vpc_stack/src/asbuilder/installcmd.ps1) - installs JDK and the workstation
+* [createappimage.ps1](https://github.com/JaneliaSciComp/hortacloud/blob/main/vpc_stack/src/asbuilder/createappimage.ps1) - creates the AppStream image
 
 After you copied or created the scripts:
 
@@ -176,11 +176,8 @@ createappimage.ps1
   Keep in mind that once you start this step the builder instance begins the snap shotting process and it will not be usable until it completes. After this is completed the AppStream image should be available and the builder will be in a stop state. To use it again you need to start it and then you can connect.
 
 * You can now safely close the AppStream session and return to the AppStream console. There you will see a new image in the image registry with a status of `Pending`.
-
 * Once the image status has changed to a status of `Available` you can start the fleet by going to the `Fleets` page on the AppStream site.
-
   * Select your fleet from the list of fleets and then select 'Start' from the `Action` menu.
-
 * At this point the installation script you started on your host machine, should continue to completion.
 
 ## Customizing the portal URL
@@ -191,11 +188,9 @@ By default the application will have a very long url that is not easy to remembe
 * Register a domain with Route53 or your domain provider.
   * The Route53 page in the AWS console has a "Register domain" form.
   * Alternative providers can also be used, but it requires a little more work.
-
 * Purchase an SSL certificate for your domain.
   * This can be done with [AWS Certificate Manager](https://aws.amazon.com/certificate-manager/)
   * or an external certificate provider, often it can be done with the same company that provided your domain registration. Use the "Import a certificate" button to register your certificate with AWS.
-
 * Use the "Create distribution" button on the CloudFront console to attach your registered domain to the s3 bucket that hosts the admin portal.
   * the only things that need to be changed from the defaults are
     * "Origin domain" - this should be the domain that was originally generated for your admin portal.
