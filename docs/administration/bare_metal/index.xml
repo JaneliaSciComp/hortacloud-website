@@ -47,37 +47,31 @@ alt="two-server deployment diagram"/>
 &lt;p>To install Docker and Docker Compose on Oracle Linux 8, follow &lt;a href="../installingdocker">these instructions&lt;/a>.&lt;/p>
 &lt;h2 id="setup-docker-swarm">Setup Docker Swarm&lt;/h2>
 &lt;p>On &lt;strong>HOST1&lt;/strong>, bring up swarm as a manager node:&lt;/p>
-&lt;pre>&lt;code>docker swarm init
-&lt;/code>&lt;/pre>
-&lt;p>On &lt;strong>HOST2&lt;/strong>, copy and paste the output of the previous command to join the swarm as a worker.&lt;/p>
-&lt;pre>&lt;code>docker swarm join --token ...
-&lt;/code>&lt;/pre>
-&lt;p>All further commands should be executed on &lt;strong>HOST1&lt;/strong>, i.e. the master node. One final step is to label the nodes. Each node needs the &amp;ldquo;jacs=true&amp;rdquo; label, as well as &amp;ldquo;jacs_name=nodeX&amp;rdquo;.&lt;/p>
-&lt;pre>&lt;code>docker node update --label-add jacs_name=node1 $(docker node ls -f &amp;quot;role=manager&amp;quot; --format &amp;quot;{{.ID}}&amp;quot;)
-docker node update --label-add jacs_name=node2 $(docker node ls -f &amp;quot;role=worker&amp;quot; --format &amp;quot;{{.ID}}&amp;quot;)
-docker node update --label-add jacs=true $(docker node ls -f &amp;quot;role=manager&amp;quot; --format &amp;quot;{{.ID}}&amp;quot;)
-docker node update --label-add jacs=true $(docker node ls -f &amp;quot;role=worker&amp;quot; --format &amp;quot;{{.ID}}&amp;quot;)
-&lt;/code>&lt;/pre>
-&lt;p>Finally, you can run this command to ensure that both nodes are up and in Ready status:&lt;/p>
-&lt;pre>&lt;code>docker node ls
-&lt;/code>&lt;/pre>
-&lt;h2 id="download-the-installer">Download the installer&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>docker swarm init
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>On &lt;strong>HOST2&lt;/strong>, copy and paste the output of the previous command to join the swarm as a worker.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>docker swarm join --token ...
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>All further commands should be executed on &lt;strong>HOST1&lt;/strong>, i.e. the master node. One final step is to label the nodes. Each node needs the &amp;ldquo;jacs=true&amp;rdquo; label, as well as &amp;ldquo;jacs_name=nodeX&amp;rdquo;.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>docker node update --label-add &lt;span style="color:#000">jacs_name&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>node1 &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>docker node ls -f &lt;span style="color:#4e9a06">&amp;#34;role=manager&amp;#34;&lt;/span> --format &lt;span style="color:#4e9a06">&amp;#34;{{.ID}}&amp;#34;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker node update --label-add &lt;span style="color:#000">jacs_name&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>node2 &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>docker node ls -f &lt;span style="color:#4e9a06">&amp;#34;role=worker&amp;#34;&lt;/span> --format &lt;span style="color:#4e9a06">&amp;#34;{{.ID}}&amp;#34;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker node update --label-add &lt;span style="color:#000">jacs&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87">true&lt;/span> &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>docker node ls -f &lt;span style="color:#4e9a06">&amp;#34;role=manager&amp;#34;&lt;/span> --format &lt;span style="color:#4e9a06">&amp;#34;{{.ID}}&amp;#34;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker node update --label-add &lt;span style="color:#000">jacs&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87">true&lt;/span> &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>docker node ls -f &lt;span style="color:#4e9a06">&amp;#34;role=worker&amp;#34;&lt;/span> --format &lt;span style="color:#4e9a06">&amp;#34;{{.ID}}&amp;#34;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Finally, you can run this command to ensure that both nodes are up and in Ready status:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>docker node ls
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="download-the-installer">Download the installer&lt;/h2>
 &lt;p>Download the installer and extract it onto the master node, as follows. &lt;code>VERSION&lt;/code> should be set to the &lt;a href="https://github.com/JaneliaSciComp/jacs-cm/releases">latest stable version&lt;/a> available on the releases page.&lt;/p>
-&lt;pre>&lt;code>export VERSION=&amp;lt;version_number_here&amp;gt;
-cd /opt
-sudo mkdir deploy
-sudo chown $USER deploy
-cd deploy
-curl https://codeload.github.com/JaneliaSciComp/jacs-cm/tar.gz/$VERSION | tar xvz
-ln -s jacs-cm-$VERSION jacs-cm
-cd jacs-cm
-&lt;/code>&lt;/pre>
-&lt;h2 id="configure-the-system">Configure The System&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">VERSION&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;version_number_here&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">cd&lt;/span> /opt
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo mkdir deploy
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo chown &lt;span style="color:#000">$USER&lt;/span> deploy
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">cd&lt;/span> deploy
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>curl https://codeload.github.com/JaneliaSciComp/jacs-cm/tar.gz/&lt;span style="color:#000">$VERSION&lt;/span> &lt;span style="color:#000;font-weight:bold">|&lt;/span> tar xvz
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ln -s jacs-cm-&lt;span style="color:#000">$VERSION&lt;/span> jacs-cm
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">cd&lt;/span> jacs-cm
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="configure-the-system">Configure The System&lt;/h2>
 &lt;p>Next, create a &lt;code>.env.config&lt;/code> file inside the intaller directory. This file defines the environment (usernames, passwords, etc.) You can copy the template to get started:&lt;/p>
-&lt;pre>&lt;code>cp .env.template .env.config
-vi .env.config
-&lt;/code>&lt;/pre>
-&lt;p>At minimum, you must customize the following:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>cp .env.template .env.config
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>vi .env.config
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>At minimum, you must customize the following:&lt;/p>
 &lt;ol>
 &lt;li>Set &lt;code>DEPLOYMENT&lt;/code> to &lt;strong>mouselight&lt;/strong>.&lt;/li>
 &lt;li>Ensure that &lt;code>REDUNDANT_STORAGE&lt;/code> and &lt;code>NON_REDUNDANT_STORAGE&lt;/code> point to the disk mounts you used during the operating system installation. Alternatively, you can make symbolic links so that the default paths point to your mounted disks.&lt;/li>
@@ -223,12 +217,12 @@ alt="three-server deployment diagram"/>
 &lt;h3 id="external-authentication">External Authentication&lt;/h3>
 &lt;p>The JACS system has its own self-contained authentication system, and can manage users and passwords internally.&lt;/p>
 &lt;p>If you&amp;rsquo;d prefer that users authenticate against your existing LDAP or ActiveDirectory server, edit &lt;code>$CONFIG_DIR/jacs-sync/jacs.properties&lt;/code> and add these properties:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>LDAP.URL&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>LDAP.SearchBase&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>LDAP.SearchFilter&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>LDAP.BindDN&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>LDAP.BindCredentials&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The URL should point to your authentication server. The SearchBase is part of a distinguished name to search, something like &amp;ldquo;ou=People,dc=yourorg,dc=org&amp;rdquo;. The SearchFilter is the attribute to search on, something like &amp;ldquo;(cn={{username}})&amp;rdquo;. BindDN and BindCredentials defines the distinguished name and password for a service user that can access user information like full names and emails.&lt;/p>
+&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">LDAP.URL=
+LDAP.SearchBase=
+LDAP.SearchFilter=
+LDAP.BindDN=
+LDAP.BindCredentials=
+&lt;/code>&lt;/pre>&lt;p>The URL should point to your authentication server. The SearchBase is part of a distinguished name to search, something like &amp;ldquo;ou=People,dc=yourorg,dc=org&amp;rdquo;. The SearchFilter is the attribute to search on, something like &amp;ldquo;(cn={{username}})&amp;rdquo;. BindDN and BindCredentials defines the distinguished name and password for a service user that can access user information like full names and emails.&lt;/p>
 &lt;h2 id="start-all-containers">Start All Containers&lt;/h2>
 &lt;p>Next, start up all of the service containers. The parameter to the start command specifies the environment to use. The &lt;strong>dev&lt;/strong> environment uses containers tagged as &lt;em>latest&lt;/em> and updates them automatically when they change. The &lt;strong>prod&lt;/strong> deployment uses a frozen set of production versions. When in doubt, use the &lt;strong>prod&lt;/strong> deployment:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>./manage.sh start
@@ -288,14 +282,14 @@ alt="three-server deployment diagram"/>
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">volumes&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">/path/to/your/nfs:/path/to/your/nfs:ro,shared&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will expose the path to both JADE agent containers. Now you need to configure the JADE agents to serve this data. On both hosts, edit /opt/jacs/config/jade/config.properties and add the following:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>StorageVolume.mouseLightNFS.RootDir&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>/path/to/your/nfs
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>StorageVolume.mouseLightNFS.VirtualPath&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>/path/to/your/nfs
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>StorageVolume.mouseLightNFS.Shared&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87">true&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>StorageVolume.mouseLightNFS.Tags&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>mousebrain,light
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>StorageVolume.mouseLightNFS.VolumePermissions&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>READ
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can use any name you want instead of mouseLightNFS. Then you should add this name to StorageAgent.BootstrappedVolumes:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>StorageAgent.BootstrappedVolumes&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>jade1,mouseLightNFS
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You will need to bounce the service stack to pick up these changes.&lt;/p></description></item><item><title>Docs: Deploying ELK</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/elkdeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/elkdeployment/</guid><description>
+&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">StorageVolume.mouseLightNFS.RootDir=/path/to/your/nfs
+StorageVolume.mouseLightNFS.VirtualPath=/path/to/your/nfs
+StorageVolume.mouseLightNFS.Shared=true
+StorageVolume.mouseLightNFS.Tags=mousebrain,light
+StorageVolume.mouseLightNFS.VolumePermissions=READ
+&lt;/code>&lt;/pre>&lt;p>You can use any name you want instead of mouseLightNFS. Then you should add this name to StorageAgent.BootstrappedVolumes:&lt;/p>
+&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">StorageAgent.BootstrappedVolumes=jade1,mouseLightNFS
+&lt;/code>&lt;/pre>&lt;p>You will need to bounce the service stack to pick up these changes.&lt;/p></description></item><item><title>Docs: Deploying ELK</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/elkdeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/elkdeployment/</guid><description>
 &lt;p>Currently ELK is only available in a swarm deployment because of how the ELK stack is configured.&lt;/p>
 &lt;p>Most of the set up necessary for ELK - configuration files and/or data directories - is already done as part of filesystem initialization performed while executing:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>./manage.sh init-filesystems

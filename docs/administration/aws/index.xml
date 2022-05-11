@@ -1,11 +1,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>HortaCloud – AWS</title><link>https://hortacloud.janelia.org/docs/administration/aws/</link><description>Recent content in AWS on HortaCloud</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://hortacloud.janelia.org/docs/administration/aws/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Deployment</title><link>https://hortacloud.janelia.org/docs/administration/aws/deployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/aws/deployment/</guid><description>
 &lt;p>The deployment uses AWS CDK to create AWS resources on your AWS account as shown in the diagram below. All services run in a secured Virtual Private Cloud (VPC).&lt;/p>
-&lt;a href="../cloud_deployment.png">
+&lt;a href="../cloud_architecture.png">
 &lt;img
-src="../cloud_deployment.png"
+src="../cloud_architecture.png"
 class="rounded mx-auto"
-style="max-width: 700px;"
-alt="cloud deployment diagram"/>
+style="max-width: 800px;"
+alt="cloud architecture diagram"/>
 &lt;/a>
 &lt;h2 id="install-prerequisites">Install prerequisites&lt;/h2>
 &lt;p>You should have &lt;strong>node v14&lt;/strong> installed on your local machine. We recommend using &lt;a href="https://github.com/nvm-sh/nvm">nvm&lt;/a> to install and activate this version of node.&lt;/p>
@@ -21,32 +21,30 @@ alt="cloud deployment diagram"/>
 &lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm install
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This command will install CDK in a development environment so you can access its help as below (notice the &amp;lsquo;&amp;ndash;&amp;rsquo; separator between cdk and cdk options - this is specific to npm not to cdk so all CDK flags must be after the double hyphen separator):&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This command will install CDK in your development environment so you can access its help as below (notice the &amp;lsquo;&amp;ndash;&amp;rsquo; separator between cdk and cdk options - this is specific to npm not to cdk so all CDK flags must be after the double hyphen separator):&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm run cdk -- --help
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="get-the-deployment-scripts">Get the deployment scripts&lt;/h2>
-&lt;p>Clone the repository containing the deployment scripts:&lt;/p>
+&lt;p>Clone the &lt;a href="https://github.com/JaneliaSciComp/hortacloud">HortaCloud GitHib repository&lt;/a> containing the deployment scripts:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>git clone https://github.com/JaneliaSciComp/hortacloud/
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">cd&lt;/span> hortacloud
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Install the dependencies:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm run setup
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="configure-environment">Configure environment&lt;/h2>
 &lt;p>The following values must be set in the &lt;code>.env&lt;/code> file:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-env" data-lang="env">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">AWS_REGION&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;your aws region&amp;gt;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">AWS_ACCOUNT&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;your aws account&amp;gt;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">HORTA_ORG&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;app qualifier name&amp;gt;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">ADMIN_USER_EMAIL&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;admin email&amp;gt;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">JACS_JWT_KEY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;a &lt;span style="color:#0000cf;font-weight:bold">32&lt;/span> byte jwt secret&amp;gt;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">JACS_MONGO_KEY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;a &lt;span style="color:#0000cf;font-weight:bold">32&lt;/span> byte mongo secret&amp;gt;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">JACS_APP_PASSWD&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;app password&amp;gt;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">RABBITMQ_PASSWD&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;rabbitmq password&amp;gt;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">JACS_API_KEY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;jacs api key&amp;gt;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">JADE_API_KEY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;jade api key&amp;gt;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">HORTA_DATA_BUCKETS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;s3 buckets that hold MouseLight data&amp;gt;
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The api keys and secrets have been randomly generated during the setup step, but you can generate new ones with the following command:&lt;/p>
-&lt;pre tabindex="0">&lt;code>openssl rand -hex 32
-&lt;/code>&lt;/pre>&lt;p>We prefer this procedure because these values will be handled during the installation using the &lt;code>sed&lt;/code> command and it is preferable that they not contain any characters that require escaping in a sed command.&lt;/p>
+&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">AWS_REGION=&amp;lt;your aws region&amp;gt;
+AWS_ACCOUNT=&amp;lt;your aws account&amp;gt;
+HORTA_ORG=&amp;lt;app qualifier name&amp;gt;
+ADMIN_USER_EMAIL=&amp;lt;admin email&amp;gt;
+JACS_JWT_KEY=&amp;lt;a 32 byte jwt secret&amp;gt;
+JACS_MONGO_KEY=&amp;lt;a 32 byte mongo secret&amp;gt;
+JACS_APP_PASSWD=&amp;lt;app password&amp;gt;
+RABBITMQ_PASSWD=&amp;lt;rabbitmq password&amp;gt;
+JACS_API_KEY=&amp;lt;jacs api key&amp;gt;
+JADE_API_KEY=&amp;lt;jade api key&amp;gt;
+HORTA_DATA_BUCKETS=&amp;lt;s3 buckets that hold MouseLight data&amp;gt;
+&lt;/code>&lt;/pre>&lt;p>The api keys and secrets have been randomly generated during the setup step, but you can generate new ones with the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>openssl rand -hex &lt;span style="color:#0000cf;font-weight:bold">32&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>We prefer this procedure because these values will be handled during the installation using the &lt;code>sed&lt;/code> command and it is preferable that they not contain any characters that require escaping in a sed command.&lt;/p>
 &lt;p>If you already have data on some S3 buckets you can add them to &lt;code>HORTA_DATA_BUCKETS&lt;/code> as a comma separated list. For example, if you want to use Janelia&amp;rsquo;s Open Data bucket but in addition you also have your data on a private bucket (&amp;lsquo;janelia-mouseligh-demo&amp;rsquo; in this example) you need to set &lt;code>HORTA_DATA_BUCKETS=&amp;quot;janelia-mouselight-imagery,janelia-mouselight-demo&amp;quot;&lt;/code>. Currently it is set to Janelia&amp;rsquo;s open data MouseLight bucket only. Every bucket specified in the &amp;lsquo;HORTA_DATA_BUCKETS&amp;rsquo; list will be available in the workstation as &lt;code>/&amp;lt;s3BucketName&amp;gt;&lt;/code> directory.&lt;/p>
 &lt;p>If you want to change the setting for &lt;code>HORTA_WS_INSTANCE_TYPE&lt;/code>, keep in mind that you may have to change &lt;code>HORTA_WS_IMAGE_NAME&lt;/code>
 For &lt;code>HORTA_WS_INSTANCE_TYPE&lt;/code> set to any &lt;code>stream.graphics.g4dn.*&lt;/code> instances:&lt;/p>
@@ -95,8 +93,8 @@ For &lt;code>HORTA_WS_INSTANCE_TYPE&lt;/code> set to any &lt;code>stream.graphic
 &lt;h3 id="workstation-app-installation">Workstation app installation&lt;/h3>
 &lt;p>For client installation start and connect to the AppStream builder instance then copy the following scripts from this repo to the AppStream instance:&lt;/p>
 &lt;ul>
-&lt;li>&lt;a href="vpc_stack/src/asbuilder/installcmd.ps1">installcmd.ps1&lt;/a> - installs JDK and the workstation&lt;/li>
-&lt;li>&lt;a href="vpc_stack/src/asbuilder/createappimage.ps1">createappimage.ps1&lt;/a> - creates the AppStream image&lt;/li>
+&lt;li>&lt;a href="https://github.com/JaneliaSciComp/hortacloud/vpc_stack/src/asbuilder/installcmd.ps1">installcmd.ps1&lt;/a> - installs JDK and the workstation&lt;/li>
+&lt;li>&lt;a href="https://github.com/JaneliaSciComp/hortacloud/vpc_stack/src/asbuilder/createappimage.ps1">createappimage.ps1&lt;/a> - creates the AppStream image&lt;/li>
 &lt;/ul>
 &lt;p>After you copied or created the scripts:&lt;/p>
 &lt;ul>
@@ -113,17 +111,17 @@ For &lt;code>HORTA_WS_INSTANCE_TYPE&lt;/code> set to any &lt;code>stream.graphic
 &lt;li>Open the powershell by typing &amp;ldquo;`Power shell&amp;rdquo; in the search found at the bottom left of the window. This step used to require an &amp;ldquo;Administrator Power Shell&amp;rdquo; but now it needs only a regular user power shell and it may actually fail the install if you run it in an Administrator Power Shell.&lt;/li>
 &lt;li>Change to the directory where you uploaded the installation scripts, eg:&lt;/li>
 &lt;/ul>
-&lt;pre tabindex="0">&lt;code class="language-windows" data-lang="windows">cd &amp;#39;C:\Users\ImagebuilderAdmin\My Files\Temporary Files&amp;#39;
-&lt;/code>&lt;/pre>&lt;ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">cd &lt;/span>&lt;span style="color:#4e9a06">&amp;#39;C:\Users\ImagebuilderAdmin\My Files\Temporary Files&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>Run the installcmd script to install the workstation. &amp;lt;serverName&amp;gt; is the name of the backend EC2 instance, typically it looks like &lt;code>ip-&amp;lt;ip4 with dashes instead of dots&amp;gt;.ec2.internal&lt;/code>. Instructions for locating this are provided as output from the installer script.&lt;/li>
 &lt;/ul>
-&lt;pre tabindex="0">&lt;code class="language-windows" data-lang="windows">installcmd.ps1 &amp;lt;serverName&amp;gt;
-&lt;/code>&lt;/pre>&lt;p>This will install the JDK and the workstation. The installer will run silently and it will install the workstation under the &lt;code>C:\apps&lt;/code> folder. If it prompts you for the install directory, select &lt;code>C:\apps&lt;/code> as the JaneliaWorkstation location.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">installcmd&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">ps1&lt;/span> &lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#000">serverName&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will install the JDK and the workstation. The installer will run silently and it will install the workstation under the &lt;code>C:\apps&lt;/code> folder. If it prompts you for the install directory, select &lt;code>C:\apps&lt;/code> as the JaneliaWorkstation location.&lt;/p>
 &lt;ul>
 &lt;li>&lt;em>Optional&lt;/em> - To start the workstation for testing, run:&lt;/li>
 &lt;/ul>
-&lt;pre tabindex="0">&lt;code class="language-windows" data-lang="windows">c:\apps\runJaneliaWorkstation.ps1
-&lt;/code>&lt;/pre>&lt;ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">c:&lt;/span>&lt;span style="color:#000;font-weight:bold">\&lt;/span>&lt;span style="color:#000">apps&lt;/span>&lt;span style="color:#000;font-weight:bold">\&lt;/span>&lt;span style="color:#000">runJaneliaWorkstation&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">ps1&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>
 &lt;p>when prompted, login as the admin user you set in ADMIN_USER_EMAIL (leave the password empty)&lt;/p>
 &lt;/li>
@@ -137,8 +135,8 @@ For &lt;code>HORTA_WS_INSTANCE_TYPE&lt;/code> set to any &lt;code>stream.graphic
 &lt;p>Finalize the creation of the AppStream image, run:&lt;/p>
 &lt;/li>
 &lt;/ul>
-&lt;pre tabindex="0">&lt;code class="language-windows" data-lang="windows">createappimage.ps1
-&lt;/code>&lt;/pre>&lt;p>Keep in mind that once you start this step the builder instance begins the snap shotting process and it will not be usable until it completes. After this is completed the AppStream image should be available and the builder will be in a stop state. To use it again you need to start it and then you can connect.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">createappimage&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">ps1&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Keep in mind that once you start this step the builder instance begins the snap shotting process and it will not be usable until it completes. After this is completed the AppStream image should be available and the builder will be in a stop state. To use it again you need to start it and then you can connect.&lt;/p>
 &lt;ul>
 &lt;li>
 &lt;p>You can now safely close the AppStream session and return to the AppStream console. There you will see a new image in the image registry with a status of &lt;code>Pending&lt;/code>.&lt;/p>
@@ -152,7 +150,53 @@ For &lt;code>HORTA_WS_INSTANCE_TYPE&lt;/code> set to any &lt;code>stream.graphic
 &lt;li>
 &lt;p>At this point the installation script you started on your host machine, should continue to completion.&lt;/p>
 &lt;/li>
-&lt;/ul></description></item><item><title>Docs: Operations</title><link>https://hortacloud.janelia.org/docs/administration/aws/operations/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/aws/operations/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-&lt;p>We are in the process of writing this documentation.&lt;/p>
-&lt;/div></description></item></channel></rss>
+&lt;/ul>
+&lt;h2 id="customizing-the-portal-url">Customizing the portal URL&lt;/h2>
+&lt;p>By default the application will have a very long url that is not easy to remember, something like:
+&lt;a href="http://janelia-hortacloudwebapp-janeliahortacloudwebadmi-yefcny29t8n6.s3-website-us-east-1.amazonaws.com/">http://janelia-hortacloudwebapp-janeliahortacloudwebadmi-yefcny29t8n6.s3-website-us-east-1.amazonaws.com/&lt;/a>. Follow these instructions to create a shorter domain for use with your installation.&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Register a domain with Route53 or your domain provider.&lt;/p>
+&lt;ul>
+&lt;li>The Route53 page in the AWS console has a &amp;ldquo;Register domain&amp;rdquo; form.&lt;/li>
+&lt;li>Alternative providers can also be used, but it requires a little more work.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>Purchase an SSL certificate for your domain.&lt;/p>
+&lt;ul>
+&lt;li>This can be done with &lt;a href="https://aws.amazon.com/certificate-manager/">AWS Certificate Manager&lt;/a>&lt;/li>
+&lt;li>or an external certificate provider, often it can be done with the same company that provided your domain registration. Use the &amp;ldquo;Import a certificate&amp;rdquo; button to register your certificate with AWS.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>Use the &amp;ldquo;Create distribution&amp;rdquo; button on the CloudFront console to attach your registered domain to the s3 bucket that hosts the admin portal.&lt;/p>
+&lt;ul>
+&lt;li>the only things that need to be changed from the defaults are
+&lt;ul>
+&lt;li>&amp;ldquo;Origin domain&amp;rdquo; - this should be the domain that was originally generated for your admin portal.
+eg: &lt;em>janelia-hortacloudwebapp-janeliahortacloudwebadmi-yefcny29t8n6.s3-website-us-east-1.amazonaws.com&lt;/em>&lt;/li>
+&lt;li>&amp;ldquo;Viewer protocol policy&amp;rdquo; - Change this to &amp;ldquo;Redirect HTTP to HTTPS&amp;rdquo;&lt;/li>
+&lt;li>&amp;ldquo;Custom SSL certificate&amp;rdquo; - Select the certificate that you registered with AWS Certificate Manager&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Finally, click the &amp;ldquo;Create distribution&amp;rdquo; button.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="troubleshooting">Troubleshooting&lt;/h2>
+&lt;h3 id="troubleshooting-client-app-installation">Troubleshooting client app installation&lt;/h3>
+&lt;p>If the client app installation fails for any reason, before you attempt the install again you must remove everything that was installed by the install script. Uninstall all applications installed with scoop and remove the &amp;lsquo;C:\apps&amp;rsquo; folder. To do that run:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">scoop&lt;/span> &lt;span style="color:#000">uninstall&lt;/span> &lt;span style="color:#000">scoop&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">del &lt;/span>&lt;span style="color:#000">c:&lt;/span>&lt;span style="color:#000;font-weight:bold">\&lt;/span>&lt;span style="color:#000">apps&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>When prompted whether you really want to uninstall everything, select &amp;ldquo;yes&amp;rdquo; or &amp;ldquo;all&amp;rdquo;.&lt;/p></description></item><item><title>Docs: Operation</title><link>https://hortacloud.janelia.org/docs/administration/aws/operation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/aws/operation/</guid><description>
+&lt;h2 id="importing-imagery">Importing imagery&lt;/h2>
+&lt;h3 id="single-sample-import">Single Sample Import&lt;/h3>
+&lt;p>If you already have the data on the S3 buckets in the Workstation, select &lt;strong>File&lt;/strong> → &lt;strong>New&lt;/strong> → &lt;strong>Tiled Microscope Sample&lt;/strong>, and then set &amp;ldquo;Sample Name&amp;rdquo; to &lt;code>&amp;lt;sampleDirectoryName&amp;gt;&lt;/code> and &amp;ldquo;Path to Render Folder&amp;rdquo; as &lt;code>/&amp;lt;bucketName&amp;gt;/&amp;lt;sampleDirectoryName&amp;gt;&lt;/code>.&lt;/p>
+&lt;p>Open the Data Explorer (&lt;strong>Window&lt;/strong> → &lt;strong>Core&lt;/strong> → &lt;strong>Data Explorer&lt;/strong>) and navigate to Home, then &amp;ldquo;3D RawTile Microscope Samples&amp;rdquo;, and your sample name. Right-click the sample and choose &amp;ldquo;Open in Horta&amp;rdquo;. This will open the Horta Panel and then from the Horta Panel you have options to create a workspace or to open the 2D or the 3D volume viewer.&lt;/p>
+&lt;h3 id="batch-sample-import">Batch Sample Import&lt;/h3>
+&lt;p>The workstation offers an option to import all your samples from an S3 Bucket mapped on the backend into the workstation. This can be done from the Workstation, select &lt;strong>Services&lt;/strong> → &lt;strong>Load Horta Data&lt;/strong>. This opens a &lt;a href="docs/images/horta_data_import.png">dialog box&lt;/a> that allows you to enter the location of your samples and the data owner. The location of your data can be entered like &lt;code>&amp;lt;s3_bucket_name&amp;gt;/&amp;lt;full_moouselight_data_prefix&amp;gt;&lt;/code>, e.g. &lt;code>janelia-mouselight-imagery/images&lt;/code>. For sample owner typically select &lt;code>Mouselight Users (mouselight)&lt;/code> from the drop down selection. Once you click OK the system will start a background task that will try to create new samples from all folders at the specified location and you will start seeing new samples under &lt;code>Home (mouselight)/3D Tile Microscope Samples&lt;/code> as they are imported.&lt;/p>
+&lt;h2 id="system-backup">System backup&lt;/h2>
+&lt;p>The system can be configured to run nightly backups. All it is needed is to specify a writeable bucket (HORTA_BACKUP_BUCKET) and a prefix (HORTA_BACKUP_FOLDER) that will hold the backups. Currently we only backup the Mongo database that contains samples info and tracing data and each backup will be stored in a timestamp (&amp;lsquo;yyyyMMddHHmmss&amp;rsquo;) folder under the base backup prefix.&lt;/p>
+&lt;h2 id="system-restore">System restore&lt;/h2>
+&lt;p>If system backups are available the sample and tracing data can be restored from a specified backup bucket (HORTA_RESTORE_BUCKET) and prefix (HORTA_RESTORE_FOLDER) which typically was created by the nightly backup job.&lt;/p></description></item></channel></rss>
