@@ -6,6 +6,12 @@ description: >
   What is HortaCloud?
 ---
 
+HortaCloud is a streaming 3D annotation platform for large microscopy data that runs entirely in the cloud. It is based on the Janelia Workstation software and was originally developed in support of the MouseLight Team Project.
+
+It combines state-of-the-art volumetric visualization, advanced features for 3D neuronal annotation, and real-time multi-user collaboration with a set of enterprise-grade backend microservices for moving and processing large amounts of data rapidly and securely. HortaCloud takes advantage of cloud-based Virtual Desktop Infrastructure (VDI) to perform all 3D rendering in cloud-leased GPUs which are data-adjacent, and only transfer a high-fidelity interactive video stream to each annotator’s local compute platform through a web browser.
+
+{{< imglink src="system_architecture.png" link="system_architecture.png" alt="system architecture diagram" width="700px" >}}
+
 The Overview is where your users find out about your project. Depending on the size of your docset, you can have a separate overview page (like this one) or put your overview contents in the Documentation landing page (like in the Docsy User Guide).
 
 Try answering these questions for your user in this page:

@@ -8,7 +8,7 @@ description: >
 
 The deployment uses AWS CDK to create AWS resources on your AWS account as shown in the diagram below. All services run in a secured Virtual Private Cloud (VPC).
 
-{{< imglink src="../cloud_deployment.png" link="../cloud_deployment.png" alt="cloud deployment diagram" width="700px" >}}
+{{< imglink src="../cloud_architecture.png" link="../cloud_architecture.png" alt="cloud architecture diagram" width="800px" >}}
 
 ## Install prerequisites
 
@@ -23,7 +23,7 @@ You should have **node v14** installed on your local machine. We recommend using
 npm install
 ```
 
-This command will install CDK in a development environment so you can access its help as below (notice the '--' separator between cdk and cdk options - this is specific to npm not to cdk so all CDK flags must be after the double hyphen separator):
+This command will install CDK in your development environment so you can access its help as below (notice the '--' separator between cdk and cdk options - this is specific to npm not to cdk so all CDK flags must be after the double hyphen separator):
 
 ```bash
 npm run cdk -- --help
@@ -31,7 +31,7 @@ npm run cdk -- --help
 
 ## Get the deployment scripts
 
-Clone the repository containing the deployment scripts:
+Clone the [HortaCloud GitHib repository](https://github.com/JaneliaSciComp/hortacloud) containing the deployment scripts:
 
 ```bash
 git clone https://github.com/JaneliaSciComp/hortacloud/
@@ -48,7 +48,7 @@ npm run setup
 
 The following values must be set in the `.env` file:
 
-```env
+```properties
 AWS_REGION=<your aws region>
 AWS_ACCOUNT=<your aws account>
 
@@ -66,7 +66,7 @@ HORTA_DATA_BUCKETS=<s3 buckets that hold MouseLight data>
 
 The api keys and secrets have been randomly generated during the setup step, but you can generate new ones with the following command:
 
-```
+```bash
 openssl rand -hex 32
 ```
 
@@ -130,8 +130,8 @@ The full deployment of the application is done in 3 steps run automatically one 
 
 For client installation start and connect to the AppStream builder instance then copy the following scripts from this repo to the AppStream instance:
 
-* [installcmd.ps1](vpc_stack/src/asbuilder/installcmd.ps1) - installs JDK and the workstation
-* [createappimage.ps1](vpc_stack/src/asbuilder/createappimage.ps1) - creates the AppStream image
+* [installcmd.ps1](https://github.com/JaneliaSciComp/hortacloud/vpc_stack/src/asbuilder/installcmd.ps1) - installs JDK and the workstation
+* [createappimage.ps1](https://github.com/JaneliaSciComp/hortacloud/vpc_stack/src/asbuilder/createappimage.ps1) - creates the AppStream image
 
 After you copied or created the scripts:
 
@@ -145,13 +145,13 @@ After you copied or created the scripts:
 * Open the powershell by typing "`Power shell" in the search found at the bottom left of the window. This step used to require an "Administrator Power Shell" but now it needs only a regular user power shell and it may actually fail the install if you run it in an Administrator Power Shell.
 * Change to the directory where you uploaded the installation scripts, eg:
 
-```windows
+```powershell
 cd 'C:\Users\ImagebuilderAdmin\My Files\Temporary Files'
 ```
 
 * Run the installcmd script to install the workstation. &lt;serverName&gt; is the name of the backend EC2 instance, typically it looks like `ip-<ip4 with dashes instead of dots>.ec2.internal`. Instructions for locating this are provided as output from the installer script.
 
-```windows
+```powershell
 installcmd.ps1 <serverName>
 ```
 
@@ -159,7 +159,7 @@ installcmd.ps1 <serverName>
 
 * *Optional* - To start the workstation for testing, run:
 
-```windows
+```powershell
 c:\apps\runJaneliaWorkstation.ps1
 ```
 
@@ -169,7 +169,7 @@ c:\apps\runJaneliaWorkstation.ps1
 
 * Finalize the creation of the AppStream image, run:
 
-```windows
+```powershell
 createappimage.ps1
 ```
 
@@ -182,3 +182,24 @@ createappimage.ps1
   * Select your fleet from the list of fleets and then select 'Start' from the `Action` menu.
 
 * At this point the installation script you started on your host machine, should continue to completion.
+
+## Customizing the portal URL
+
+By default the application will have a very long url that is not easy to remember, something like:
+<http://janelia-hortacloudwebapp-janeliahortacloudwebadmi-yefcny29t8n6.s3-website-us-east-1.amazonaws.com/>. Follow these instructions to create a shorter domain for use with your installation.
+
+* Register a domain with Route53 or your domain provider.
+  * The Route53 page in the AWS console has a "Register domain" form.
+  * Alternative providers can also be used, but it requires a little more work.
+
+* Purchase an SSL certificate for your domain.
+  * This can be done with [AWS Certificate Manager](https://aws.amazon.com/certificate-manager/)
+  * or an external certificate provider, often it can be done with the same company that provided your domain registration. Use the "Import a certificate" button to register your certificate with AWS.
+
+* Use the "Create distribution" button on the CloudFront console to attach your registered domain to the s3 bucket that hosts the admin portal.
+  * the only things that need to be changed from the defaults are
+    * "Origin domain" - this should be the domain that was originally generated for your admin portal.
+    eg: *janelia-hortacloudwebapp-janeliahortacloudwebadmi-yefcny29t8n6.s3-website-us-east-1.amazonaws.com*
+    * "Viewer protocol policy" - Change this to "Redirect HTTP to HTTPS"
+    * "Custom SSL certificate" - Select the certificate that you registered with AWS Certificate Manager
+  * Finally, click the "Create distribution" button.

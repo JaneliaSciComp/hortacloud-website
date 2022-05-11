@@ -3,7 +3,7 @@ title: "AWS"
 linkTitle: "AWS"
 weight: 10
 description: >
-  Learn how to deploy your own HortaCloud instance on AWS
+  Learn how to deploy and operate your own HortaCloud instance on AWS
 ---
 
-HortaCloud is easily deployed using the AWS CDK to automatically provision AWS resources.
+HortaCloud is easily deployed on Amazon Web Services (AWS) using the AWS CDK to automatically provision resources. 
