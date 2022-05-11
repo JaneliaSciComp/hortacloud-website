@@ -47,42 +47,54 @@ To install Docker and Docker Compose on Oracle Linux 8, follow [these instructio
 
 On **HOST1**, bring up swarm as a manager node:
 
-    docker swarm init
+```bash
+docker swarm init
+```
 
 On **HOST2**, copy and paste the output of the previous command to join the swarm as a worker.
 
-    docker swarm join --token ...
+```bash
+docker swarm join --token ...
+```
 
 All further commands should be executed on **HOST1**, i.e. the master node. One final step is to label the nodes. Each node needs the "jacs=true" label, as well as "jacs_name=nodeX".
 
-    docker node update --label-add jacs_name=node1 $(docker node ls -f "role=manager" --format "{{.ID}}")
-    docker node update --label-add jacs_name=node2 $(docker node ls -f "role=worker" --format "{{.ID}}")
-    docker node update --label-add jacs=true $(docker node ls -f "role=manager" --format "{{.ID}}")
-    docker node update --label-add jacs=true $(docker node ls -f "role=worker" --format "{{.ID}}")
+```bash
+docker node update --label-add jacs_name=node1 $(docker node ls -f "role=manager" --format "{{.ID}}")
+docker node update --label-add jacs_name=node2 $(docker node ls -f "role=worker" --format "{{.ID}}")
+docker node update --label-add jacs=true $(docker node ls -f "role=manager" --format "{{.ID}}")
+docker node update --label-add jacs=true $(docker node ls -f "role=worker" --format "{{.ID}}")
+```
 
 Finally, you can run this command to ensure that both nodes are up and in Ready status:
 
-    docker node ls
+```bash
+docker node ls
+```
 
 ## Download the installer
 
 Download the installer and extract it onto the master node, as follows. `VERSION` should be set to the [latest stable version](https://github.com/JaneliaSciComp/jacs-cm/releases) available on the releases page.
 
-    export VERSION=<version_number_here>
-    cd /opt
-    sudo mkdir deploy
-    sudo chown $USER deploy
-    cd deploy
-    curl https://codeload.github.com/JaneliaSciComp/jacs-cm/tar.gz/$VERSION | tar xvz
-    ln -s jacs-cm-$VERSION jacs-cm
-    cd jacs-cm
+```bash
+export VERSION=<version_number_here>
+cd /opt
+sudo mkdir deploy
+sudo chown $USER deploy
+cd deploy
+curl https://codeload.github.com/JaneliaSciComp/jacs-cm/tar.gz/$VERSION | tar xvz
+ln -s jacs-cm-$VERSION jacs-cm
+cd jacs-cm
+```
 
 ## Configure The System
 
 Next, create a `.env.config` file inside the intaller directory. This file defines the environment (usernames, passwords, etc.) You can copy the template to get started:
 
-    cp .env.template .env.config
-    vi .env.config
+```bash
+cp .env.template .env.config
+vi .env.config
+```
 
 At minimum, you must customize the following:
 

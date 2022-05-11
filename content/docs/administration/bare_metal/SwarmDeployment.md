@@ -48,7 +48,7 @@ The JACS system has its own self-contained authentication system, and can manage
 
 If you'd prefer that users authenticate against your existing LDAP or ActiveDirectory server, edit `$CONFIG_DIR/jacs-sync/jacs.properties` and add these properties:
 
-```bash
+```properties
 LDAP.URL=
 LDAP.SearchBase=
 LDAP.SearchFilter=
@@ -191,7 +191,7 @@ services:
 
 This will expose the path to both JADE agent containers. Now you need to configure the JADE agents to serve this data. On both hosts, edit /opt/jacs/config/jade/config.properties and add the following:
 
-```bash
+```properties
 StorageVolume.mouseLightNFS.RootDir=/path/to/your/nfs
 StorageVolume.mouseLightNFS.VirtualPath=/path/to/your/nfs
 StorageVolume.mouseLightNFS.Shared=true
@@ -201,7 +201,7 @@ StorageVolume.mouseLightNFS.VolumePermissions=READ
 
 You can use any name you want instead of mouseLightNFS. Then you should add this name to StorageAgent.BootstrappedVolumes:
 
-```bash
+```properties
 StorageAgent.BootstrappedVolumes=jade1,mouseLightNFS
 ```
 

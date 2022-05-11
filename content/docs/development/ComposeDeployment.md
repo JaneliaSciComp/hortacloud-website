@@ -82,7 +82,7 @@ The JACS system has its own self-contained authentication system, and can manage
 
 If you'd prefer that users authenticate against your existing LDAP or ActiveDirectory server, edit `$CONFIG_DIR/jacs-sync/jacs.properties` and add these properties:
 
-```bash
+```properties
 LDAP.URL=
 LDAP.SearchBase=
 LDAP.SearchFilter=
@@ -144,6 +144,6 @@ Now you can checkout the [Janelia Workstation](https://github.com/JaneliaSciComp
 
 The client will ask you for the API Gateway URL, which is just `http://$HOST1`. In order to automatically connect to your standalone gateway instance, you can create a new file at `workstation/modules/Core/src/main/resources/my.properties` with this content (replacing the variables with the values from your .env.config file):
 
-```bash
+```properties
 api.gateway=https://$HOST1
 ```

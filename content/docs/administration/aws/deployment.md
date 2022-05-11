@@ -203,3 +203,16 @@ By default the application will have a very long url that is not easy to remembe
     * "Viewer protocol policy" - Change this to "Redirect HTTP to HTTPS"
     * "Custom SSL certificate" - Select the certificate that you registered with AWS Certificate Manager
   * Finally, click the "Create distribution" button.
+
+## Troubleshooting
+
+### Troubleshooting client app installation
+
+If the client app installation fails for any reason, before you attempt the install again you must remove everything that was installed by the install script. Uninstall all applications installed with scoop and remove the 'C:\apps' folder. To do that run:
+
+```powershell
+scoop uninstall scoop
+del c:\apps
+```
+
+When prompted whether you really want to uninstall everything, select "yes" or "all".

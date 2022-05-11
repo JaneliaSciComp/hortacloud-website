@@ -16,7 +16,7 @@ Open the Data Explorer (**Window** → **Core** → **Data Explorer**) and navig
 
 ### Batch Sample Import
 
-The workstation offers an option to import all your samples from an S3 Bucket mapped on the backend into the workstation. This can be done from the Workstation, select **Services** → **Load Horta Data**. This opens a [dialog box](docs/images/horta_data_import.png) that allows you to enter the location of your samples and the data owner. The location of your data can be entered like `<s3_bucket_name>/<full_mouselight_data_prefix>`, e.g. `janelia-mouselight-imagery/images`. For sample owner typically select `Mouselight Users (mouselight)` from the drop down selection. Once you click OK the system will start a background task that will try to create new samples from all folders at the specified location and you will start seeing new samples under `Home (mouselight)/3D Tile Microscope Samples` as they are imported.
+The workstation offers an option to import all your samples from an S3 Bucket mapped on the backend into the workstation. This can be done from the Workstation, select **Services** → **Load Horta Data**. This opens a [dialog box](docs/images/horta_data_import.png) that allows you to enter the location of your samples and the data owner. The location of your data can be entered like `<s3_bucket_name>/<full_moouselight_data_prefix>`, e.g. `janelia-mouselight-imagery/images`. For sample owner typically select `Mouselight Users (mouselight)` from the drop down selection. Once you click OK the system will start a background task that will try to create new samples from all folders at the specified location and you will start seeing new samples under `Home (mouselight)/3D Tile Microscope Samples` as they are imported.
 
 ## System backup
 
@@ -25,16 +25,3 @@ The system can be configured to run nightly backups. All it is needed is to spec
 ## System restore
 
 If system backups are available the sample and tracing data can be restored from a specified backup bucket (HORTA_RESTORE_BUCKET) and prefix (HORTA_RESTORE_FOLDER) which typically was created by the nightly backup job.
-
-## Troubleshooting
-
-### Troubleshooting client app installation
-
-If the client app installation fails for any reason, before you attempt the install again you must remove everything that was installed by the install script. Uninstall all applications installed with scoop and remove the 'C:\apps' folder. To do that run:
-
-```powershell
-scoop uninstall scoop
-del c:\apps
-```
-
-When prompted whether you really want to uninstall everything, select "yes" or "all".
