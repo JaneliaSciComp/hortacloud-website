@@ -28,7 +28,7 @@ alt="cloud architecture diagram"/>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>git clone https://github.com/JaneliaSciComp/hortacloud/
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">cd&lt;/span> hortacloud
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Install the dependencies:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm run setup
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm run setup -- -i
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="configure-environment">Configure environment&lt;/h2>
 &lt;p>The following values must be set in the &lt;code>.env&lt;/code> file:&lt;/p>
 &lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">AWS_REGION=&amp;lt;your aws region&amp;gt;
@@ -77,9 +77,15 @@ For &lt;code>HORTA_WS_INSTANCE_TYPE&lt;/code> set to any &lt;code>stream.graphic
 &lt;h2 id="deploy-hortacloud-services-to-aws">Deploy HortaCloud services to AWS&lt;/h2>
 &lt;p>After the setup is complete, deploy the application by running:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm run deploy
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>First time the application is deployed we also need to create user login pool and this must be explicitly specified using &amp;lsquo;-u&amp;rsquo; flag [See &lt;strong>Deploy the user login stack&lt;/strong> section below]:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm run deploy -- -u
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>There are a few steps during the deployment that require manual intervention. The deploy script will indicate when these steps should be taken with a ⚠️ warning message.&lt;/p>
-&lt;p>The full deployment of the application is done in 3 steps run automatically one after the other, but the second step requires manual intervention:&lt;/p>
+&lt;p>The full deployment of the application is done in 3, or 4 steps - if user login stack is deployed too, that run automatically one after the other,
+with some manual intervention for &lt;strong>AppStream builder&lt;/strong> step (third step outlined below):&lt;/p>
 &lt;ol>
+&lt;li>
+&lt;p>&lt;strong>Deploy the user login stack&lt;/strong> - this step is optional and practically is only needed first time the application is deployed. To create the user login stack you need to pass in &amp;lsquo;-u&amp;rsquo; flag to the deploy command (&lt;code>npm run deploy -- -u&lt;/code>) which will automatically create a Cognito user pool and the &amp;lsquo;admin&amp;rsquo; user and &amp;lsquo;admins&amp;rsquo; group. You also have an option to import cognito users from a backup (&lt;code>npm run deploy -- -u \ -r -b janelia-mouselight-demo -f hortacloud/backups/20220511030001/cognito&lt;/code>) but in this case you may need to skip the creation of the default admin user and group.&lt;/p>
+&lt;/li>
 &lt;li>
 &lt;p>&lt;strong>Deploy the back-end stacks&lt;/strong> - this includes the AppStream builder. At the back end deployment the installation process will also create the admin user configured in &lt;code>ADMIN_USER_EMAIL&lt;/code>.&lt;/p>
 &lt;/li>
@@ -87,7 +93,7 @@ For &lt;code>HORTA_WS_INSTANCE_TYPE&lt;/code> set to any &lt;code>stream.graphic
 &lt;p>&lt;strong>Connect to AppStream builder and install the workstation application&lt;/strong> - This is a semiautomated step that involves copying and running two PowerShell scripts onto the AppStream builder instance.&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>&lt;strong>Deploy the user login and administration stack.&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>Deploy the administration stack.&lt;/strong>&lt;/p>
 &lt;/li>
 &lt;/ol>
 &lt;h3 id="workstation-app-installation">Workstation app installation&lt;/h3>
@@ -176,6 +182,16 @@ eg: &lt;em>janelia-hortacloudwebapp-janeliahortacloudwebadmi-yefcny29t8n6.s3-web
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
+&lt;h2 id="upgrading-hortacloud-services-to-aws">Upgrading HortaCloud services to AWS&lt;/h2>
+&lt;p>Upgrading the application, either for upgrading the back-end services or the Appstream front-end, require removing (uninstalling) the existing application and reinstalling it. To uninstall simply run:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm run destroy
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>and then reinstall it using:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm run deploy
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="uninstalling-hortacloud-services-to-aws">Uninstalling HortaCloud services to AWS&lt;/h2>
+&lt;p>To completely uninstall the application run:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm run destroy -- -u
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The command will uninstall all stacks including the user login stack.&lt;/p>
+&lt;p>Note in the previous &lt;a href="#Upgrading_HortaCloud_services_to_AWS">system upgrade section&lt;/a> that an upgrade typically does not require removing and recreating the user pool stack.&lt;/p>
 &lt;h2 id="troubleshooting">Troubleshooting&lt;/h2>
 &lt;h3 id="troubleshooting-client-app-installation">Troubleshooting client app installation&lt;/h3>
 &lt;p>If the client app installation fails for any reason, before you attempt the install again you must remove everything that was installed by the install script. Uninstall all applications installed with scoop and remove the &amp;lsquo;C:\apps&amp;rsquo; folder. To do that run:&lt;/p>
