@@ -41,7 +41,7 @@ cd hortacloud
 Install the dependencies:
 
 ```bash
-npm run setup
+npm run setup -- -i
 ```
 
 ## Configure environment
@@ -116,15 +116,25 @@ After the setup is complete, deploy the application by running:
 npm run deploy
 ```
 
+First time the application is deployed we also need to create user login pool and this must be explicitly specified using '-u' flag [See **Deploy the user login stack** section below]:
+
+```bash
+npm run deploy -- -u
+```
+
 There are a few steps during the deployment that require manual intervention. The deploy script will indicate when these steps should be taken with a ⚠️  warning message.
 
-The full deployment of the application is done in 3 steps run automatically one after the other, but the second step requires manual intervention:
+The full deployment of the application is done in 3, or 4 steps - if user login stack is deployed too, that run automatically one after the other,
+with some manual intervention for **AppStream builder** step (third step outlined below):
 
-1) **Deploy the back-end stacks** - this includes the AppStream builder. At the back end deployment the installation process will also create the admin user configured in `ADMIN_USER_EMAIL`.
+1) **Deploy the user login stack** - this step is optional and practically is only needed first time the application is deployed. To create the user login stack you need to pass in '-u' flag to the deploy command (`npm run deploy -- -u`) which will automatically create a Cognito user pool and the 'admin' user and 'admins' group. You also have an option to import cognito users from a backup (`npm run deploy -- -u \
+-r -b janelia-mouselight-demo -f hortacloud/backups/20220511030001/cognito`) but in this case you may need to skip the creation of the default admin user and group.
 
-2) **Connect to AppStream builder and install the workstation application** - This is a semiautomated step that involves copying and running two PowerShell scripts onto the AppStream builder instance.
+2) **Deploy the back-end stacks** - this includes the AppStream builder. At the back end deployment the installation process will also create the admin user configured in `ADMIN_USER_EMAIL`.
 
-3) **Deploy the user login and administration stack.**
+3) **Connect to AppStream builder and install the workstation application** - This is a semiautomated step that involves copying and running two PowerShell scripts onto the AppStream builder instance.
+
+4) **Deploy the administration stack.**
 
 ### Workstation app installation
 
@@ -198,6 +208,28 @@ By default the application will have a very long url that is not easy to remembe
     * "Viewer protocol policy" - Change this to "Redirect HTTP to HTTPS"
     * "Custom SSL certificate" - Select the certificate that you registered with AWS Certificate Manager
   * Finally, click the "Create distribution" button.
+
+## Upgrading HortaCloud services to AWS
+
+Upgrading the application, either for upgrading the back-end services or the Appstream front-end, require removing (uninstalling) the existing application and reinstalling it. To uninstall simply run:
+```bash
+npm run destroy
+```
+and then reinstall it using:
+```bash
+npm run deploy
+```
+
+## Uninstalling HortaCloud services to AWS
+
+To completely uninstall the application run:
+```bash
+npm run destroy -- -u
+```
+
+The command will uninstall all stacks including the user login stack.
+
+Note in the previous [system upgrade section](#Upgrading_HortaCloud_services_to_AWS) that an upgrade typically does not require removing and recreating the user pool stack.
 
 ## Troubleshooting
 
