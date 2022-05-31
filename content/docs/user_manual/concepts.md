@@ -3,7 +3,7 @@ title: "Concepts"
 linkTitle: "Concepts"
 weight: 1
 description: >
-  High-level descript of the data, the software, and the jargon
+  High-level description of the data, the software, and the jargon
 ---
 
 ## Data
@@ -20,7 +20,7 @@ Light microscopes of various kinds can now image an entire fly or mouse brain (e
 
 ## Software & tasks
 
-Horta includes the Horta 2D viewer, which is the 2d, plane-by-plane, viewing and annotation tool, and the Horta 3D viewer, which supports viewing and annotating the data in three dimensions. The two viewers connect to common data editing and storage functions, many of which can be viewed in the Horta Info Panel.
+Horta includes the Horta 2D viewer, which is the 2d, plane-by-plane, viewing and annotation tool, and the Horta 3D viewer, which supports viewing and annotating the data in three dimensions. The two viewers connect to common data editing and storage functions, many of which can be viewed in the Horta Control Center.
 
 Horta is designed for a variety of tasks:
 

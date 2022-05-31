@@ -197,7 +197,7 @@ There are a number of view options that can be adjusted in Horta. Many of them a
 
 #### View > Projection
 
-- Maximum Intensity Projection (MIP) is the default display projection mode in the Horta. MIP projection provides a robust, informative view of volumetric imagery data, under a wide variety of brightness settings. 
+- Maximum Intensity Projection (MIP) is the default display projection mode in Horta. MIP projection provides a robust, informative view of volumetric imagery data, under a wide variety of brightness settings. 
 - Occluding projection ("true" volume rendering) can convey a better sense of relative depth, compared to MIP, which can be useful for discriminating neurites that approach one another closely in space. The downside of this superior display quality is that it is very sensitive to the exact brightness settings. The user should probably adjust the brightness settings (Window->Horta->Brightness), especially the minimum intensity value, before switching to the "Occluding" mode.
 
 #### View > Rendering Filter
