@@ -3,7 +3,7 @@ title: "Concepts"
 linkTitle: "Concepts"
 weight: 1
 description: >
-  High-level description of the data, the software, and the jargon
+    High-level description of the data, the software, and the jargon
 ---
 
 ## Data

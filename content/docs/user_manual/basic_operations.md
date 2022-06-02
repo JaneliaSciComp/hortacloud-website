@@ -3,7 +3,7 @@ title: "Basic Operations"
 linkTitle: "Basic Operations"
 weight: 2
 description: >
-  Description of some basic operations: how to navigate images, how to trace neurons in 2d and 3d, and how to import and export neuron data
+    Description of some basic operations: how to navigate images, how to trace neurons in 2d and 3d, and how to import and export neuron data
 ---
 
 This section will walk you through the process of tracing a neuron and some other tasks. It's meant to introduce you to the basic operations of Horta. Not all features or details of features are discussed. You can find those details in the appropriate [Feature]({{< ref "/docs/user_manual/features" >}}) section.
@@ -111,6 +111,8 @@ The three handles on each slider control the range of color mapped to the range 
 At the bottom of the panel to the right of the 2D view area are two color-related buttons. The "Auto Contrast" button attempts to find a reasonable range of colors based on a simple histogram of the data. This almost never does a good job. The "Reset Colors" button returns the displayed color of each channel to its default value (ie, sliders at maximum, etc.). This is also rarely useful.
 
 Note that the current colors, contrast settings, channel visibility and locks are not saved automatically! You must manually save changes by clicking on the gear menu and choosing "Save Color Model To Workspace" or "Save Color Model As User Preference". As the desired settings usually depend on the characteristics of the individual sample, usually you will want to save the color model to the workspace, after which it will be automatically loaded when the workspace is opened. However, if you find there is a baseline color model you'd prefer over the default (sliders set to min/middle/max), you may save to your preferences as a personal default.
+
+On the same menu are options for saving or loading the color to/from disk.
 
 
 ### Viewing and navigating in Horta 3D

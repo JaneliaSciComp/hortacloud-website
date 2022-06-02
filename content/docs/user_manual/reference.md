@@ -3,18 +3,20 @@ title: "Reference"
 linkTitle: "Reference"
 weight: 4
 description: >
-  HortaCloud reference
+    Horta reference
 ---
 
 ## Import/export file formats
 
 ### SWC
 
-The swc file format is a standard format for recording neuron skeletons. Unfortunately, while the basic format is widely used, there is no single standard for defining the format, and as a result, there are differences in implementation among various swc writers and readers. Doubly unfortunately, the best reference for the format recently disappeared from the web. Here is a summary.
+The swc file format is a standard format for recording neuron skeletons. Unfortunately, while the basic format is widely used, there is no single standard for defining the format, and as a result, there are differences in implementation among various swc writers and readers. The basic spec can be seen [here](http://www.neuronland.org/NLMorphologyConverter/MorphologyFormats/SWC/Spec.html). 
 
-- text file 
-- a number of header lines, each beginning with a '#' character 
-- a list of points, one per line, with parents preceding children
+In summary, an SWC file:
+
+- is a text file 
+- contains a number of header lines, each beginning with a '#' character 
+- followed by a list of points, one per line, with parents preceding children
 
 Each line consists of seven numbers separated by whitespace in the following order: `id type x y z radius parent`, with: 
 
@@ -26,15 +28,23 @@ Each line consists of seven numbers separated by whitespace in the following ord
 | radius | floating point radius of the previous segment |
 | parent | id value of the parent for the current point; a root point has parent = -1 |
 
+Notes: 
+- two fields are non-critical for rendering the basic neuron skeleton:
+    + the `type` field describes but does not affect connectivity and can usually be ignored
+    + the `radius` field does not affect connectivity; it's only necessary if you are rendering neuron volumes (skeletons with width)
+- a node's `id` must appear in the `id` column before it appears as a `parent`; that is, child nodes must appear lower in the list than parent nodes
+
+
 #### Janelia-specific details
 
-- Only types 5 and 6 are marked by Horta, as they are the only types that can be inferred from geometry at export time. All other points are marked as type 0. On import, the type column is ignored. 
-- Coordinates and radii are in microns. 
+- Only nodes with `type` 5 and 6 are marked by Horta, as they are the only types that can be inferred from geometry at export time. All other points are marked as `type` 0. On import, the `type` column is ignored. 
+- Coordinates and radii are assumed to be in microns. 
 - A few headers are used by Horta: 
-  + `ORIGINAL_SOURCE`, a standard header, is set to Janelia Workstation Large Volume Viewer 
-    * That is the original name for the software, and we decided not to change this identifier. 
-  + The x, y, z locations of the nodes are centered on the origin at export time because not all swc viewers can handle the large coordinates (Horta can). The header field `OFFSET` gives the x, y, z offset needed to reproduce the original annotation location. The values are whitespace-delimited floating point numbers. Horta correctly handles this field during its own import and export; it will always use the field on export, but it doesn't complain if it's missing on import. If an swc reader ignores this header, the neuron will be of correct shape but shifted in space from its original location. 
-  + The color of the exported neuron (optional) is recorded in the header field `COLOR` as a comma-separated list of floating point RGB values ranging from 0 to 1. Other headers are ignored at import. 
+    + `ORIGINAL_SOURCE`, a fairly standard header, is set to "Janelia Workstation Large Volume Viewer" 
+        * That is the original name for the software, back when it was only 2d, and we decided not to change this identifier. 
+    + The x, y, z locations of the nodes are centered on the origin at export time because not all SWC viewers can handle the large coordinates (Horta can). The header field `OFFSET` gives the x, y, z offset needed to reproduce the original annotation location. The values are whitespace-delimited floating point numbers. Horta correctly handles this field during its own import and export; it will always use the field on export, but it doesn't complain if it's missing on import. If an swc reader ignores this header, the neuron will be of correct shape but shifted in space from its original location. 
+    + The color of the exported neuron (optional) is recorded in the header field `COLOR` as a comma-separated list of floating point RGB values ranging from 0 to 1. 
+    + Other headers are ignored at import. 
 - The name of the neuron is not stored inside the swc file. However, when imported, the neuron will be named like the swc file.
 
 Here is an example swc file:
@@ -59,8 +69,8 @@ When neurons are exported from Horta in swc format, any notes attached to the ne
 - username: contains the workstation username of the user doing the export 
 - offset: contains a list of floating point numbers [x, y, z] holding the offset as described in the section above 
 - neurons: contains a list of dictionaries, one per neuron exported; each dictionary has fields: 
-  + neuronID: contains the integer neuron ID number 
-  + notes: contains a list of neuron notes; each note is a list of [x, y, z, note] 
+    + neuronID: contains the integer neuron ID number 
+    + notes: contains a list of neuron notes; each note is a list of [x, y, z, note] 
 - on import, the username and workspace and neuron IDs are ignored
 
 The x, y, z, coordinates of each note will match the coordinates of the corresponding annotation in the corresponding swc file, as they use the same offset system. Horta automatically imports and exports the JSON files when the swc files are imported or exported.
@@ -82,33 +92,35 @@ Here is an example JSON file that corresponds to the above example swc file:
 
 ### Raw tiff stacks
 
-The raw microscope data is stored in tiff stacks. They can be displayed in the workstation in Horta on demand, but they are typically used only in rare instances when stitching in the rendered images is not perfect.
+The raw microscope data is stored in tiff stacks. They can be displayed in Horta 2d on demand, but they are typically used only in rare instances when stitching in the rendered images is not perfect. Typically this data is only availabe in the desktop version of the software at the site the sample was imaged.
 
 Details of the files and their organization will be added later.
 
 ### Rendered 2d images
 
-The raw microscope data is transformed and stitched together into a contiguous rendered whole. It's also stored in tiff stacks, rendered at multiple resolutions and arranged in an octree.
+The raw microscope data is transformed and stitched together into a contiguous rendered whole. It's also stored in tiff stacks, rendered at multiple resolutions and arranged in an octree. For HortaCloud, this data likely only has the a single low-resolution image for each channel.
 
-Details of the files and their organization appear on [this page](page-on-internal-wiki).
+Details of the files and their organization will be added later.
 
 ### Horta 3D images (ktx files)
 
 Horta's 3D images are optimized for fast loading into the Horta viewer. The ktx file format is designed to load directly into graphics cards. In order to keep the files both small enough to load rapidly and small enough to economically store, the rendered data is transformed and down-sampled before ktx tile creation. These files are also arranged in an octree, although currently Horta only uses the highest resolution images.
 
-Details of the files and their organization will be added later.
+The file format is managed by the Khronos Group and is described [here](https://www.khronos.org/api/index_2017/ktx).
+
+Horta-specific details will be added later.
 
 ## A* algorithm for automatically traced paths
 
 The algorithm for computing the path is:
 
-- Extract a rectangular solid block of voxels containing the two endpoints, plus a small buffer region in all three dimensions. (Thus, if the neuron meanders outside of this block, the technique will not work well. Try to choose anchors with relatively straight connections between them) 
+- Extract a rectangular solid block of voxels containing the two endpoints, plus a small buffer region in all three dimensions. (Thus, if the neuron meanders outside of this block, the technique will not work well. Try to choose anchors with relatively straight connections between them.) 
 - Measure the variation in voxel intensity within that block: record mean and standard deviation. 
-  + Currently, only the first channel is examined! 
+    + Currently, only the first channel is examined! 
 - Assume that the background (non-neuron) intensities follow a normal distribution, with the measured parameters (mean and standard deviation). 
 - Define the path weight for a particular voxel, as the probability that an intensity greater than or equal to the voxel intensity, could have arisen randomly from the background distribution. Thus dim voxels get a large path weight, and bright voxels get a small path weight. This value can get extremely small for very bright pixels (think 10 raised to the minus seventy power). You can think of this weight as (1.0 minus the probability this voxel is a neuron), assuming all voxels are either background or neurons. 
-  + weight = erf( (intensity - mean) / (standard_deviation) ), where erf() is the [error function](http://en.wikipedia.org/wiki/Error_function). 
-- Because it uses the mean and standard deviation of intensities, this method of path weighting is robust in the face large uniform intensity bias offsets, like we sometimes see in the mouse brain imagery. 
+    + weight = erf( (intensity - mean) / (standard_deviation) ), where erf() is the [error function](http://en.wikipedia.org/wiki/Error_function). 
+- Because it uses the mean and standard deviation of intensities, this method of path weighting is robust in the face of large uniform intensity bias offsets, like we sometimes see in the mouse brain imagery. 
 - Use the [A* (A-star) algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm) to compute the lowest cost path connecting the two endpoints. This path is guaranteed to be optimal. 
 - The algorithm will be terminated if it takes more than 10 seconds to finish.
 

@@ -3,10 +3,10 @@ title: "User manual"
 linkTitle: "User manual"
 weight: 5
 description: >
-  How to use the HortaCloud application
+    How to use the HortaCloud application
 ---
 
-The sections below describe HortaCloud's basic and advanced features. Generally they should be read in the order listed.
+The sections below describe HortaCloud's basic and advanced features. Generally the sections listed below should be read in the order listed.
 
 ### Note on Horta versions
 The Horta application exists in two versions that come from a common code base. The _cloud_ version (HortaCloud) that is available here is a reduced version of the _desktop_ version ([Janelia Workstation](https://github.com/JaneliaSciComp/workstation)). In fact, we'll often use the word "workstation" to refer to the Horta application in either form. 
@@ -28,4 +28,6 @@ The major user-visible differences between the two versions are:
 
 
 {{% pageinfo color="info" %}}
-This is a work in progress!{{% /pageinfo %}}
+This is a work in progress! 
+
+The original documentation for the desktop version of Horta and the Janelia Workstation are being adapted for HortaCloud, and this website. If something doesn't make sense for HortaCloud, it probably only applies to the desktop version and hasn't been revised yet. {{% /pageinfo %}}
