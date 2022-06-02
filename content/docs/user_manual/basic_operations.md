@@ -3,7 +3,7 @@ title: "Basic Operations"
 linkTitle: "Basic Operations"
 weight: 30
 description: >
-    Description of some basic operations: how to navigate images, how to trace neurons in 2d and 3d, and how to import and export neuron data
+    Description of some basic operations: how to navigate images, how to trace neurons in 2D and 3D, and how to import and export neuron data
 ---
 
 This section will walk you through the process of tracing a neuron and some other tasks. It's meant to introduce you to the basic operations of Horta. Not all features or details of features are discussed. You can find those details in the appropriate [Feature]({{< ref "/docs/user_manual/features" >}}) section.
@@ -83,7 +83,7 @@ After you've created a workspace (see below), use the same procedure to open the
 
 ### Viewing and navigating in the Horta 2D viewer
 
-Horta 2D displays the 3d data as a series of 2d planar images. It provides the usual suite of tools for viewing and navigating through the data. When zoomed out, a lower-resolution view of the data is displayed. When zoomed in, higher resolution images are loaded. Annotations are displayed when they are near the plane that is currently being displayed.
+Horta 2D displays the 3D data as a series of 2D planar images. It provides the usual suite of tools for viewing and navigating through the data. When zoomed out, a lower-resolution view of the data is displayed. When zoomed in, higher resolution images are loaded. Annotations are displayed when they are near the plane that is currently being displayed.
 
 {{% alert title="HortaCloud 2D data" color="primary" %}}
 In HortaCloud, usually only the lowest resolution of the 2D data is available. When a sample or workspace is loaded, a single image of the whole data set will be displayed at the lowest zoom level. If you zoom in, the image will become blurry. 
@@ -243,7 +243,7 @@ The complete procedure is then:
 - In the Horta Control Center, in the neuron list, select a neuron by clicking on it. 
 - If there are no points in the neuron: 
   + Shift-left-click a location to place a point at that location in the LVV.  
-  + (need to replace this with horta 3d version!)
+  + (need to replace this with horta 3D version!)
 - Navigate to the location you want to annotate in Horta 3D. 
 - Select the parent annotation you want to add a child to by clicking on it. The annotation will then be drawn with a "P" on it. 
 - Navigate to the location of the next annotation, possibly rotating as you do. Move the mouse cursor to the location. A ball cursor with a "+" sign should appear. 

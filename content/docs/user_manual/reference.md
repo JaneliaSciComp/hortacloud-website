@@ -41,7 +41,7 @@ Notes:
 - Coordinates and radii are assumed to be in microns. 
 - A few headers are used by Horta: 
     + `ORIGINAL_SOURCE`, a fairly standard header, is set to "Janelia Workstation Large Volume Viewer" 
-        * That is the original name for the software, back when it was only 2d, and we decided not to change this identifier. 
+        * That is the original name for the software, back when it was only 2D, and we decided not to change this identifier. 
     + The x, y, z locations of the nodes are centered on the origin at export time because not all SWC viewers can handle the large coordinates (Horta can). The header field `OFFSET` gives the x, y, z offset needed to reproduce the original annotation location. The values are whitespace-delimited floating point numbers. Horta correctly handles this field during its own import and export; it will always use the field on export, but it doesn't complain if it's missing on import. If an swc reader ignores this header, the neuron will be of correct shape but shifted in space from its original location. 
     + The color of the exported neuron (optional) is recorded in the header field `COLOR` as a comma-separated list of floating point RGB values ranging from 0 to 1. 
     + Other headers are ignored at import. 
@@ -92,11 +92,11 @@ Here is an example JSON file that corresponds to the above example swc file:
 
 ### Raw tiff stacks
 
-The raw microscope data is stored in tiff stacks. They can be displayed in Horta 2d on demand, but they are typically used only in rare instances when stitching in the rendered images is not perfect. Typically this data is only availabe in the desktop version of the software at the site the sample was imaged.
+The raw microscope data is stored in tiff stacks. They can be displayed in Horta 2D on demand, but they are typically used only in rare instances when stitching in the rendered images is not perfect. Typically this data is only availabe in the desktop version of the software at the site the sample was imaged.
 
 Details of the files and their organization will be added later.
 
-### Rendered 2d images
+### Rendered 2D images
 
 The raw microscope data is transformed and stitched together into a contiguous rendered whole. It's also stored in tiff stacks, rendered at multiple resolutions and arranged in an octree. For HortaCloud, this data likely only has the a single low-resolution image for each channel.
 

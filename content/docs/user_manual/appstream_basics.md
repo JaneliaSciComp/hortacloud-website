@@ -23,7 +23,7 @@ Clipboard access: if you copy anything in Horta to the clipboard, it's only acce
 
 ### Windows and screens
 
-Horta users often want to see the 2d and 3d views simultaneously, or they want a maximum 3d view while leaving room for the Data Explorer and/or Horta Control Center. To enable use of multiple monitors, click the seventh icon from left on the toolbar. There is also a full-screen mode enabled via the sixth icon.
+Horta users often want to see the 2D and 3D views simultaneously, or they want a maximum 3D view while leaving room for the Data Explorer and/or Horta Control Center. To enable use of multiple monitors, click the seventh icon from left on the toolbar. There is also a full-screen mode enabled via the sixth icon.
 
 The second icon on the toolbar shows all windows, in case you undock a Horta Window and then lose it behind a larger window. There's also a terminal window from which Horta is initially run; this can be ignored. If you close it, it will close Horta.
 
