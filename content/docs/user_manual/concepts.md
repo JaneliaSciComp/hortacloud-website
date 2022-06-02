@@ -1,7 +1,7 @@
 ---
 title: "Concepts"
 linkTitle: "Concepts"
-weight: 1
+weight: 10
 description: >
     High-level description of the data, the software, and the jargon
 ---

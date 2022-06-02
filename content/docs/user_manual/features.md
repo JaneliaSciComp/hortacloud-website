@@ -1,7 +1,7 @@
 ---
 title: "Features"
 linkTitle: "Features"
-weight: 3
+weight: 40
 description: >
     Horta features
 ---
@@ -44,11 +44,30 @@ Here are some settings of interest:
   + Note that some keyboard shortcuts in Horta cannot be changed from this dialog. Unfortunately, there is no central list of what they are. 
 
 
-### Click mode for adding annotations
+#### Click mode for adding annotations
 
 By default, to add annotations in Horta 2D and 3D, you select a parent annotation, then you shift-left-click on the desired location. For some people, holding down the shift key while making repeated annotations may cause stress on their hands, fingers, or wrists when done over a long period of time. For that reason, an option is provided to change that gesture to a simple left-click to add annotation (with no shift key). Note that this is set independently for Horta 2D and Horta 3D. The two settings are in different subpanels for historical reasons.
 
 Note that if the "left-click" option is selected, some other behaviors in the two viewers will change, specifically those involving left-clicks. Most notably, in Horta 2D, idle clicks when (for example) closing right-click menus will register as an annotation.
+
+Generally speaking, using the default group names:
+
+- all users should be a member of `workstation_users`
+- all users who want to interact with Horta samples or annotations should be a member of `mouselight`
+- all regular Horta tracers should _also_ be a member of `mouselight_tracers`; this group is used to populate some dialog boxes regarding neuron ownership, and project leadership, collaborators, and other non-tracers need not be in this group (it'll clutter the menus)
+
+### User and group administration
+
+If you are an administrator, you can Windows > Core > Administration tool to manage users and groups. Note that these are users and groups within the Horta or Janelia Workstation applications. For HortaCloud, there is a second layer of users and administrator for AppStream that are managed separately.
+
+An administrator within the Horta or Janelia Workstation system has a lot of power.
+
+- see all data and assign permissions for all data
+- set privileges for all users and groups
+- use Tools > Admin > Run as... to connect as any user (usually used for debugging purposes)
+
+You should limit the number of people with admin privileges.
+
 
 ## Horta Control Center features
 
@@ -103,7 +122,7 @@ Tags can be used to control a few useful toggle behaviors. This feature is calle
   + Crosscheck: this is the same as "background" and "radius" together; it's designed to have a neuron visible but unobtrusive and unchangeable 
 - Note that this feature has been buggy in the past; sometimes you need to save repeatedly before the setting holds.
 
-### Shared workspaces & the Neuron Broker
+### Shared workspaces & the Neuron Broker: updates
 
 When multiple users open and work in the same workspace, the Neuron Broker on the server acts as the intermediary for all changes to the database.
 
@@ -115,6 +134,9 @@ There are two elements of the UI that relate to the operation of the Neuron Brok
 
 - First, if "Shared Updates" is unchecked in the UI (in the right side panel of the Horta 2d view), then changes in the workspace will not be displayed until the "Refresh" button is clicked (same panel). This can be useful in the rare occasions that so many updates are arriving that it affects local performance. Normally, this should be left on. 
 - Second, if the name of a neuron in the neuron list becomes italicized, that is an indication that the data in the workstation has become unsynchronized with the data in the database for that neuron. If you hover the mouse over the neuron name, it will tell you how many changes are not synced. Generally, if this occurs and does not clear after a minute or two, you should reopen the workspace. The unsynced changes will be lost, but the workspace will then be fully in sync with the database.
+
+See also "Changing neuron ownership" in the Horta Features section.
+
 
 ### Spatial filtering
 

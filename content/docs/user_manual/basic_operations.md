@@ -1,7 +1,7 @@
 ---
 title: "Basic Operations"
 linkTitle: "Basic Operations"
-weight: 2
+weight: 30
 description: >
     Description of some basic operations: how to navigate images, how to trace neurons in 2d and 3d, and how to import and export neuron data
 ---
@@ -353,6 +353,11 @@ To change the owner of a neuron, single-click in the "O" column corresponding to
 
 This will be an icon or an empty space. From the dialog box, choose a new owner (user or group) for the neuron. To change the owner for multiple neurons, filter the neuron list to the desired set of neurons, then choose "Choose neuron owner..." from the gear menu under the neuron list.
 
+Admins in the system may change any neuron's owner at any time. 
+
+The workspace gear menu contains the very dangerous "Temp ownership admin" checkbox which gives the user the ability to change neuron ownership as if they were an admin (but grants no other admin privileges). Use this sparingly! It's intended for use by a trusted and professional group to circumvent situations where a neuron owner is, eg, on vacation, and no admin is available to change it.
+
+
 ## Exporting data
 
 Horta use the SWC file format for importing and exporting neuron data. It's a multi-column text file that records the position and connectivity of the neurons and not much else. Note that an SWC file may contain more than one neuron or neuron fragment.
@@ -420,4 +425,4 @@ Because HortaCloud running via AppStream does not have direct access to the comp
 Export works the same way, in reverse: export to "Temporary Files", then download from there.
 {{% /alert %}}
 
-{{< imglink src="../AppStream-toolbar.png" link="../AppStream-toolbar.png" alt="AppStream toolbar" width="318px" >}}
+{{< imglink src="../AppStream-MyFiles.png" link="../AppStream-MyFiles.png" alt="AppStream toolbar" width="318px" >}}
