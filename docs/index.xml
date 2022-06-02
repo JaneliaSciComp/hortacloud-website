@@ -1,4 +1,61 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>HortaCloud – Documentation</title><link>https://hortacloud.janelia.org/docs/</link><description>Recent content in Documentation on HortaCloud</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://hortacloud.janelia.org/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Deployment</title><link>https://hortacloud.janelia.org/docs/administration/aws/deployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/aws/deployment/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>HortaCloud – Documentation</title><link>https://hortacloud.janelia.org/docs/</link><description>Recent content in Documentation on HortaCloud</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://hortacloud.janelia.org/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Concepts</title><link>https://hortacloud.janelia.org/docs/user_manual/concepts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/concepts/</guid><description>
+&lt;h2 id="data">Data&lt;/h2>
+&lt;p>Light microscopes of various kinds can now image an entire fly or mouse brain (eg, resonant scanning two photon with integrated vibrotome or Bessel light sheet). Horta is capable of displaying and annotating the resulting multi-terabyte datasets. The details of how the data should be prepared for use in Horta is covered in the &lt;a href="https://hortacloud.janelia.org/docs/user_manual/reference/">Horta Reference&lt;/a> section. In general, though, the data will have these properties:&lt;/p>
+&lt;ul>
+&lt;li>size: generally limited by disk space (local or cloud)&lt;/li>
+&lt;li>channels: two channels are supported and tested; three channels are supported but not well tested; four or more channels are possible but would require more development&lt;/li>
+&lt;li>location: the data will be on a storage system accessible to the image server
+&lt;ul>
+&lt;li>(HortaCloud) AWS S3 bucket&lt;/li>
+&lt;li>(desktop) local or networked storage available to the workstation servers&lt;/li>
+&lt;li>the file path to the data should be known to the user if they will be creating samples manually&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>arrangement: the 2D and 3D images are arranged in multi-resolution octrees; details are covered in the reference section, but the user doesn&amp;rsquo;t need to know them&lt;/li>
+&lt;/ul>
+&lt;h2 id="software--tasks">Software &amp;amp; tasks&lt;/h2>
+&lt;p>Horta includes the Horta 2D viewer, which is the 2D, plane-by-plane, viewing and annotation tool, and the Horta 3D viewer, which supports viewing and annotating the data in three dimensions. The two viewers connect to common data editing and storage functions, many of which can be viewed in the Horta Control Center.&lt;/p>
+&lt;p>Horta is designed for a variety of tasks:&lt;/p>
+&lt;ul>
+&lt;li>viewing data: panning, zooming in and out, and scrolling through planes; brightness and contrast adjustment&lt;/li>
+&lt;li>skeletal tracing of neurons: tracer places connected points on the signal&lt;/li>
+&lt;li>text annotation: each point can have arbitrary text added to it&lt;/li>
+&lt;li>import/export: skeletons can be imported or exported as SWC files; text notes are imported/exported as JSON (see reference section for details)&lt;/li>
+&lt;/ul>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Why the name 'Horta'?&lt;/h4>
+&amp;ldquo;Horta&amp;rdquo; is the name of a tunneling silicon based lifeform from the Star Trek original series episode 25 &lt;a href="http://en.wikipedia.org/wiki/The_Devil_in_the_Dark">&amp;ldquo;The Devil in the Dark&amp;rdquo;&lt;/a>. Neuron traces in 3D resemble the tunnels such a creature might make in the ground. &amp;ldquo;Horta&amp;rdquo; can also be conveniently backronymed as &amp;ldquo;How Outstanding Researchers Trace Axons&amp;rdquo;.
+&lt;/div>
+&lt;h2 id="workflows">Workflows&lt;/h2>
+&lt;p>The basic tools can be used to implement a variety of workflows. For example, a user may trace a neuron entirely on their own. Or two users may trace the same neuron, export their results, and a later user may compare those results either by importing them both back in to the workstation or using other tools. If computational methods can trace neurons and export the results as SWC files, those results can be imported into the workstation for validation and/or correction and extension by later users. This flexibility supports neuron reconstruction at both small and large scales.&lt;/p>
+&lt;h2 id="jargon">Jargon&lt;/h2>
+&lt;ul>
+&lt;li>basic objects in Horta:
+&lt;ul>
+&lt;li>&lt;code>sample&lt;/code>: the data; specifically, the object in the workstation that represents a particular image dataset; it&amp;rsquo;s independent of user, and it&amp;rsquo;s all you need if you are only viewing the data&lt;/li>
+&lt;li>&lt;code>workspace&lt;/code>: the object in the workstation that collects a set of annotations (traced neurons and text annotations); it is owned by a user or group, and it contains neurons&lt;/li>
+&lt;li>&lt;code>neuron&lt;/code>: the object that holds the traced neuron skeletons; a neuron usually contains one or more neurites&lt;/li>
+&lt;li>&lt;code>neurite&lt;/code>: a single skeleton or tree; a group of annotations with parent-child relationships, all tracing back to a single root without a parent&lt;/li>
+&lt;li>&lt;code>annotation&lt;/code>: a single point that may have zero or one parent and zero or more children; annotations are sometimes called anchors&lt;/li>
+&lt;li>&lt;code>tag&lt;/code>: a word or phrase attached to a neuron; it may be used in filtering the neuron list or in controlling neuron appearance&lt;/li>
+&lt;li>&lt;code>owner&lt;/code>: a username or group that owns the neuron; if a neuron is owned by a user, only they may change it; if a neuron is owned by a group, any member of the group may take sole ownership of the neuron (and then change it)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>data and data formats:
+&lt;ul>
+&lt;li>&lt;code>tiles&lt;/code> or &lt;code>octree&lt;/code>: the files holding the 2D data&lt;/li>
+&lt;li>&lt;code>ktx tiles&lt;/code>: the files holding the 3D data&lt;/li>
+&lt;li>&lt;code>SWC file&lt;/code>: a common multi-column text file format for storing neuron skeletons&lt;/li>
+&lt;li>&lt;code>JSON file&lt;/code>: a common structured text file format used to import/export text annotations&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>tracing methods &amp;amp; workflows:
+&lt;ul>
+&lt;li>&lt;code>manual&lt;/code>: a tracer clicks along the signal in the data to create a neuron skeleton&lt;/li>
+&lt;li>&lt;code>semi-automated&lt;/code>: a computer program partially traces the signal in a dataset; the fragments are imported into the workstation; a tracer connects and/or extends fragments as needed to produce the skeleton&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></description></item><item><title>Docs: Deployment</title><link>https://hortacloud.janelia.org/docs/administration/aws/deployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/aws/deployment/</guid><description>
 &lt;p>The deployment uses AWS CDK to create AWS resources on your AWS account as shown in the diagram below. All services run in a secured Virtual Private Cloud (VPC).&lt;/p>
 &lt;a href="../cloud_architecture.png">
 &lt;img
@@ -197,7 +254,50 @@ eg: &lt;em>janelia-hortacloudwebapp-janeliahortacloudwebadmi-yefcny29t8n6.s3-web
 &lt;p>If the client app installation fails for any reason, before you attempt the install again you must remove everything that was installed by the install script. Uninstall all applications installed with scoop and remove the &amp;lsquo;C:\apps&amp;rsquo; folder. To do that run:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">scoop&lt;/span> &lt;span style="color:#000">uninstall&lt;/span> &lt;span style="color:#000">scoop&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">del &lt;/span>&lt;span style="color:#000">c:&lt;/span>&lt;span style="color:#000;font-weight:bold">\&lt;/span>&lt;span style="color:#000">apps&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>When prompted whether you really want to uninstall everything, select &amp;ldquo;yes&amp;rdquo; or &amp;ldquo;all&amp;rdquo;.&lt;/p></description></item><item><title>Docs: Getting started</title><link>https://hortacloud.janelia.org/docs/development/gettingstarted/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/gettingstarted/</guid><description/></item><item><title>Docs: Single server deployment</title><link>https://hortacloud.janelia.org/docs/development/composedeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/composedeployment/</guid><description>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>When prompted whether you really want to uninstall everything, select &amp;ldquo;yes&amp;rdquo; or &amp;ldquo;all&amp;rdquo;.&lt;/p></description></item><item><title>Docs: Getting started</title><link>https://hortacloud.janelia.org/docs/development/gettingstarted/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/gettingstarted/</guid><description/></item><item><title>Docs: Appstream Basics</title><link>https://hortacloud.janelia.org/docs/user_manual/appstream_basics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/appstream_basics/</guid><description>
+&lt;h2 id="the-appstream-environment">The AppStream environment&lt;/h2>
+&lt;p>In general, the AppStream environment behaves like a Windows desktop computer running a single application, Horta. Because it&amp;rsquo;s running in a browser, though, there are some important differences. Many of them are managed via the AppStream toolbar at the top of the screen.&lt;/p>
+&lt;a href="../AppStream-toolbar.png">
+&lt;img
+src="../AppStream-toolbar.png"
+class="rounded mx-auto"
+style="max-width: 761px;"
+alt="AppStream toolbar"/>
+&lt;/a>
+&lt;h3 id="data-import-and-export-file-system-and-clipboard">Data import and export: file system and clipboard&lt;/h3>
+&lt;p>Web browsers are constrained with respect to how they read and write data on a computer, and applications running in virtual machines displayed in a browser, even more so.&lt;/p>
+&lt;p>File system access: the third icon from the left opens a dialog showing &amp;ldquo;My Files&amp;rdquo;, and within it, a &amp;ldquo;Temporary Files&amp;rdquo; location. This is a file location on the remote computer running Horta and Horta can read and write to. You can then transfer files from that location to your local computer via the &amp;ldquo;My Files&amp;rdquo; dialog box. See &amp;ldquo;Importing Data&amp;rdquo; and &amp;ldquo;Exporting Data&amp;rdquo; in the &amp;ldquo;Basic Operations&amp;rdquo; section for more details.&lt;/p>
+&lt;p>Clipboard access: if you copy anything in Horta to the clipboard, it&amp;rsquo;s only accessible on the remote computer. The fourth icon from left on the toolbar will transfer the remote clipboard&amp;rsquo;s contents to the local clipboard.&lt;/p>
+&lt;h3 id="windows-and-screens">Windows and screens&lt;/h3>
+&lt;p>Horta users often want to see the 2D and 3D views simultaneously, or they want a maximum 3D view while leaving room for the Data Explorer and/or Horta Control Center. To enable use of multiple monitors, click the seventh icon from left on the toolbar. There is also a full-screen mode enabled via the sixth icon.&lt;/p>
+&lt;p>The second icon on the toolbar shows all windows, in case you undock a Horta Window and then lose it behind a larger window. There&amp;rsquo;s also a terminal window from which Horta is initially run; this can be ignored. If you close it, it will close Horta.&lt;/p>
+&lt;h3 id="quitting-and-relaunching-horta">Quitting and relaunching Horta&lt;/h3>
+&lt;p>Sometimes Horta does have issues. Often reloading data by reopening a workspace will clear them up. If not, to relaunch the application again without ending the AppStream session, choose File &amp;gt; Exit or click the &amp;ldquo;x&amp;rdquo; at top right. Then relaunch the application by clicking the first icon in the toolbar and choosing &amp;ldquo;Horta Workstation&amp;rdquo; again.&lt;/p>
+&lt;h3 id="ending-the-session">Ending the session&lt;/h3>
+&lt;p>To end the session, you can choose &amp;ldquo;End Session&amp;rdquo; from the drop-down menu on the top-right toolbar button.&lt;/p>
+&lt;p>Remember that when you end a session, some data that is stored on the remote computer will be lost:&lt;/p>
+&lt;p>Volatile data:&lt;/p>
+&lt;ul>
+&lt;li>files in &amp;ldquo;MyFiles/Temporary Files&amp;rdquo;&lt;/li>
+&lt;li>information on the clipboard&lt;/li>
+&lt;/ul>
+&lt;p>All other data (sample data, workspace data, annotations, notes, etc.) is stored in the database and is not lost when a session ends.&lt;/p>
+&lt;div class="alert alert-warn" role="alert">
+&lt;h4 class="alert-heading">Data safety during development&lt;/h4>
+&lt;p>HortaCloud is still under development!&lt;/p>
+&lt;ul>
+&lt;li>there is some risk of database loss during upgrades
+&lt;ul>
+&lt;li>any neurons should be exported to SWC for safety&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>some settings/preference data will be lost when sessions end
+&lt;ul>
+&lt;li>this will be moved into the database in a future release&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/div></description></item><item><title>Docs: Single server deployment</title><link>https://hortacloud.janelia.org/docs/development/composedeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/composedeployment/</guid><description>
 &lt;div class="pb-3">
 &lt;a href="single_server.png">
 &lt;img
@@ -364,7 +464,431 @@ alt="two-server deployment diagram"/>
 &lt;p>In the Workstation, select &lt;strong>File&lt;/strong> → &lt;strong>New&lt;/strong> → &lt;strong>Tiled Microscope Sample&lt;/strong>, and then set &amp;ldquo;Sample Name&amp;rdquo; to &lt;code>&amp;lt;sampleDirectoryName&amp;gt;&lt;/code> and &amp;ldquo;Path to Render Folder&amp;rdquo; as &lt;code>/jade1/&amp;lt;sampleDirectoryName&amp;gt;&lt;/code>.&lt;/p>
 &lt;p>Open the Data Explorer (&lt;strong>Window&lt;/strong> → &lt;strong>Core&lt;/strong> → &lt;strong>Data Explorer&lt;/strong>) and navigate to Home, then &amp;ldquo;3D RawTile Microscope Samples&amp;rdquo;, and your sample name. Right-click the sample and choose &amp;ldquo;Open in Large Volume Viewer&amp;rdquo;. The 2D imagery should load into the middle panel. You should be able to right-click anywhere on the image and select &amp;ldquo;Navigate to This Location in Horta (channel 1)&amp;rdquo;, to load the 3D imagery.&lt;/p>
 &lt;h2 id="find-more-information">Find More Information&lt;/h2>
-&lt;p>This concludes the MouseLight Workstation installation procedure. Further information on using the tools can be found in the &lt;a href="../../../user_manual">User Manual&lt;/a>.&lt;/p></description></item><item><title>Docs: Three-server deployment</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/fulldeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/fulldeployment/</guid><description>
+&lt;p>This concludes the MouseLight Workstation installation procedure. Further information on using the tools can be found in the &lt;a href="../../../user_manual">User Manual&lt;/a>.&lt;/p></description></item><item><title>Docs: Basic Operations</title><link>https://hortacloud.janelia.org/docs/user_manual/basic_operations/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/basic_operations/</guid><description>
+&lt;p>This section will walk you through the process of tracing a neuron and some other tasks. It&amp;rsquo;s meant to introduce you to the basic operations of Horta. Not all features or details of features are discussed. You can find those details in the appropriate &lt;a href="https://hortacloud.janelia.org/docs/user_manual/features/">Feature&lt;/a> section.&lt;/p>
+&lt;h2 id="assumptions">Assumptions&lt;/h2>
+&lt;p>Before you get started with Horta, it is assumed:&lt;/p>
+&lt;ul>
+&lt;li>The data is available in the proper format.&lt;/li>
+&lt;li>If a sample hasn&amp;rsquo;t been created, you know the file path to the data.&lt;/li>
+&lt;li>(HortaCloud) You have a HortaCloud username and password.&lt;/li>
+&lt;li>(desktop) The Janelia Workstation is installed, you have a username and password, and you have logged in after launching the workstation. You have set the memory used by the workstation to a large number, preferably 40G or more.&lt;/li>
+&lt;li>You&amp;rsquo;ve read the &lt;a href="https://hortacloud.janelia.org/docs/user_manual/concepts/">Concepts&lt;/a> section of this documentation.&lt;/li>
+&lt;/ul>
+&lt;p>You should contact whomever prepared your data if you don&amp;rsquo;t know the answers to the above questions.&lt;/p>
+&lt;h2 id="data-explorer-and-data-inspector">Data Explorer and Data Inspector&lt;/h2>
+&lt;p>When Horta is lauched (either version), you will see the Data Explorer and Data Inspector at the left edge of the application window.&lt;/p>
+&lt;p>The Data Explorer panel lists all of the objects in the workstation that the user has permission to view. These objects include both samples and workspaces as well as folders used to organize them.&lt;/p>
+&lt;p>Single-clicking on an object in the Explorer will populate the Data Inspector with more details about the object. The &lt;code>Attributes&lt;/code> tab shows object metadata. &lt;code>Permissions&lt;/code> shows current access permission and, via the &amp;ldquo;Grant permission&amp;rdquo; button at the bottom, allows the user to share read or write (edit) permissions for the selected object. The &lt;code>Annotations&lt;/code> tab is only used in the desktop application for datatypes not available in HortaCloud.&lt;/p>
+&lt;p>Right-clicking on an object brings up a menu of actions. Most are self-explanatory; others will be described later in this section or in one of the reference sections.&lt;/p>
+&lt;h2 id="basic-annotation">Basic annotation&lt;/h2>
+&lt;p>The most basic workflow for neuron tracing is this:&lt;/p>
+&lt;ul>
+&lt;li>Create a sample&lt;/li>
+&lt;li>Create a workspace&lt;/li>
+&lt;li>Create a neuron&lt;/li>
+&lt;li>Add points to the neuron&lt;/li>
+&lt;li>When done, export the neuron&lt;/li>
+&lt;/ul>
+&lt;p>Those tasks, and others, are detailed below.&lt;/p>
+&lt;h2 id="creating-a-sample">Creating a sample&lt;/h2>
+&lt;p>A sample is the representation of a dataset in the workstation. This only needs to be created once per dataset and can be shared among all users who are annotating that dataset. You need to create a sample in order to view data.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">HortaCloud&lt;/h4>
+In HortaCloud, samples are usually already created automatically by the system.
+&lt;/div>
+&lt;ul>
+&lt;li>File menu &amp;gt; New &amp;gt; Tiled Microscope Sample&lt;/li>
+&lt;li>In &amp;ldquo;Sample Name&amp;rdquo;, enter a name for the sample&lt;/li>
+&lt;li>In &amp;ldquo;Path To Render Folder&amp;rdquo;, enter the path that the image server will use to locate the images. This should be a Linux-style path.
+&lt;ul>
+&lt;li>(HortaCloud) The sample path will refer to a S3 bucket.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Click &amp;ldquo;Add Sample&amp;rdquo;.&lt;/li>
+&lt;li>The sample will appear in your &amp;ldquo;3D Tile Microscope Samples&amp;rdquo; in your home folder. You may need to refresh the Data Explorer to see it.&lt;/li>
+&lt;li>(optional) &lt;a href="broken-link-to-nonexistant-docs">Share the data&lt;/a> with other users or groups.&lt;/li>
+&lt;/ul>
+&lt;p>Once it&amp;rsquo;s been created, you may perform any operations on the sample that you can do with any other object in the workstation. For example, you may move, rename, or remove it. See the main workstation documentation for details.&lt;/p>
+&lt;h3 id="relocating-a-sample">Relocating a sample&lt;/h3>
+&lt;p>If, for any reason, the images for a sample change location or change name, you can update the path stored in the sample without recreating it. Right-click on the sample and choose &amp;ldquo;Edit sample path&amp;rdquo;.&lt;/p>
+&lt;h2 id="viewing-and-navigation">Viewing and navigation&lt;/h2>
+&lt;h3 id="opening-a-sample">Opening a sample&lt;/h3>
+&lt;ul>
+&lt;li>In the Data Explorer, browse to the sample.&lt;/li>
+&lt;li>Right-click the sample and choose &amp;ldquo;Open in Horta&amp;rdquo;.&lt;/li>
+&lt;li>This option loads both samples and workspaces.&lt;/li>
+&lt;li>The sample will open the Horta Control Center, which is typically docked at the right-hand side of the main window. When you open a sample (rather than a workspace), very little information will appear in the Horta Control Center.&lt;/li>
+&lt;li>To view the images in the sample, click the checkbox next to &amp;ldquo;Open 2D&amp;rdquo; or &amp;ldquo;Open 3D&amp;rdquo; near the top of the Horta Control Center (see screenshot below).&lt;/li>
+&lt;li>The viewer (2D or 3D) will open in the center panel. Depending on the data volume, network speed, and disk speed, the data may take anywhere from a few seconds to a few minute to open. The status bar at the bottom of the application will indicate some of the loading steps.&lt;/li>
+&lt;li>The 2D and 3D viewers each have their own tab, and you can switch between them freely.&lt;/li>
+&lt;/ul>
+&lt;a href="../workspace-panel-1.png">
+&lt;img
+src="../workspace-panel-1.png"
+class="rounded mx-auto"
+style="max-width: 419px;"
+alt="workspace panel screenshot"/>
+&lt;/a>
+&lt;p>After you&amp;rsquo;ve created a workspace (see below), use the same procedure to open the workspace.&lt;/p>
+&lt;h3 id="viewing-and-navigating-in-the-horta-2d-viewer">Viewing and navigating in the Horta 2D viewer&lt;/h3>
+&lt;p>Horta 2D displays the 3D data as a series of 2D planar images. It provides the usual suite of tools for viewing and navigating through the data. When zoomed out, a lower-resolution view of the data is displayed. When zoomed in, higher resolution images are loaded. Annotations are displayed when they are near the plane that is currently being displayed.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">HortaCloud 2D data&lt;/h4>
+In HortaCloud, usually only the lowest resolution of the 2D data is available. When a sample or workspace is loaded, a single image of the whole data set will be displayed at the lowest zoom level. If you zoom in, the image will become blurry.
+&lt;/div>
+&lt;a href="../LVV-toolbar.png">
+&lt;img
+src="../LVV-toolbar.png"
+class="rounded mx-auto"
+style="max-width: 296px;"
+alt="image toolbar"/>
+&lt;/a>
+&lt;p>The toolbar at the top of Horta 2D (screenshot above) indicates the current mouse mode. Usually it&amp;rsquo;s the &amp;ldquo;pen mode&amp;rdquo; shown above, which is used for normal annotation. Hover the mouse cursor above each mode to get a description of what they do. This section assumes you are in &amp;ldquo;pen mode&amp;rdquo;. Holding down &amp;ldquo;option&amp;rdquo; will change to &amp;ldquo;hand mode&amp;rdquo; while the key is held down. This mode is useful for navigation.&lt;/p>
+&lt;ul>
+&lt;li>To pan the image, hold down option so hand mode is active, then left click and drag the image. Alternately, double-click the image in either mode to recenter at the selected point.&lt;/li>
+&lt;li>To zoom the image, do any of: hold down shift and use the mouse scroll wheel, drag the slider to the right of the image, click &amp;ldquo;Zoom Min&amp;rdquo; or &amp;ldquo;Zoom Max&amp;rdquo;, or (when zoom mode is selected from the toolbar) left-click to drag the area to zoom to.&lt;/li>
+&lt;li>To change planes, do any of: drag the slider under the image, click the arrows in the plane number indicator under the image, or scroll the mouse wheel when it is in plane change mode. Note that when you are zoomed out, each click of the mouse wheel will traverse more than one plane.
+&lt;ul>
+&lt;li>Note that holding down the shift key will put the mouse scroll wheel into zoom mode, and releasing the shift key will place the mouse scroll wheel into plane change mode, regardless of the mode the mouse scroll wheel was in when the shift key was depressed.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>The &amp;ldquo;Reset View&amp;rdquo; button will recenter the image in x, y, and z and zoom out.&lt;/li>
+&lt;li>In the Horta Control Center, the &amp;ldquo;Go to&amp;hellip;&amp;rdquo; button allows you to enter an x, y or x, y, z location, and the view will move to center itself at that point. If you don&amp;rsquo;t enter z, the plane doesn&amp;rsquo;t change. Commas are optional. Square brackets around the coordinates are ignored.&lt;/li>
+&lt;/ul>
+&lt;h3 id="adjusting-colors-in-horta-2d">Adjusting colors in Horta 2D&lt;/h3>
+&lt;p>Controls for adjusting the color of each channel in the image appear below the image, below the plane slider.&lt;/p>
+&lt;p>Each channel can be shown or hidden (eye icon at far left), and its color can be change (color patch at far right, which will open a color choice dialog).&lt;/p>
+&lt;p>The three handles on each slider control the range of color mapped to the range of data. The three locks below the sliders will force each of those values to remain in sync across all channel individually.&lt;/p>
+&lt;p>At the bottom of the panel to the right of the 2D view area are two color-related buttons. The &amp;ldquo;Auto Contrast&amp;rdquo; button attempts to find a reasonable range of colors based on a simple histogram of the data. This almost never does a good job. The &amp;ldquo;Reset Colors&amp;rdquo; button returns the displayed color of each channel to its default value (ie, sliders at maximum, etc.). This is also rarely useful.&lt;/p>
+&lt;p>Note that the current colors, contrast settings, channel visibility and locks are not saved automatically! You must manually save changes by clicking on the gear menu and choosing &amp;ldquo;Save Color Model To Workspace&amp;rdquo; or &amp;ldquo;Save Color Model As User Preference&amp;rdquo;. As the desired settings usually depend on the characteristics of the individual sample, usually you will want to save the color model to the workspace, after which it will be automatically loaded when the workspace is opened. However, if you find there is a baseline color model you&amp;rsquo;d prefer over the default (sliders set to min/middle/max), you may save to your preferences as a personal default.&lt;/p>
+&lt;p>On the same menu are options for saving or loading the color to/from disk.&lt;/p>
+&lt;h3 id="viewing-and-navigating-in-horta-3d">Viewing and navigating in Horta 3D&lt;/h3>
+&lt;p>The Horta 3D viewer is opened by clicking the checkbox next to &amp;ldquo;Open 3D&amp;rdquo; from within the Horta Control Center. At low zoom, lower resolution images are displayed. When zoomed in, higher resolution images are loaded. Annotations are displayed at all zoom levels.&lt;/p>
+&lt;p>To move around the volume:&lt;/p>
+&lt;ul>
+&lt;li>Single-left click anywhere (including on an annotation): center the volume on that point. Note that if you click on an annotation or near signal, Horta will find the depth in z of the point and center on it correctly. This allows you to follow a neuron by clicking along its length with minimal depth changing.&lt;/li>
+&lt;li>Left-click and drag: move the viewpoint in the view plane.&lt;/li>
+&lt;li>Middle-click and drag: rotate the volume&lt;/li>
+&lt;li>Scroll wheel: change the zoom level&lt;/li>
+&lt;li>Right-click anywhere and choose &amp;ldquo;Reset Horta rotation&amp;rdquo; if you would like to return to the original image orientation.&lt;/li>
+&lt;li>In the Horta Control Center panel, the &amp;ldquo;Go to&amp;hellip;&amp;rdquo; button just above the neuron list allows you to enter an x, y or x, y, z location, and the view will move to center itself at that point. If you don&amp;rsquo;t enter z, the plane doesn&amp;rsquo;t change. Commas are optional. Square brackets around the coordinates are ignored.&lt;/li>
+&lt;/ul>
+&lt;h3 id="horta-2d-and-horta-3d-view-synchronization">Horta 2D and Horta 3D view synchronization&lt;/h3>
+&lt;p>If both viewers are open, you may synchronize the views by right-clicking on a point in either viewer and choosing &amp;ldquo;Synchronize Views at This Location&amp;rdquo;. This command moves the point to the center of the screen in each view. The zoom level is not changed.&lt;/p>
+&lt;h3 id="adjusting-colors-in-horta-3d">Adjusting colors in Horta 3D&lt;/h3>
+&lt;p>Adjusting colors and the general appearance of the data in Horta 3D can be challenging. Horta 3D has been tested and used with one or two data channels. The mixing feature especially may not work with more channels.&lt;/p>
+&lt;h4 id="basic-settings">Basic settings&lt;/h4>
+&lt;p>To make basic color adjustments in Horta 3D, Windows menu &amp;gt; Horta &amp;gt; Color sliders. In the window that appears, you can adjust color sliders as you would for the Horta 2D. Usually you will want to hide the third channel in this case.&lt;/p>
+&lt;h4 id="unmixing">Unmixing&lt;/h4>
+&lt;p>Often the two data channels are used to display a desired signal in one channel and a reference in the other channel. However, fluorescence from the reference channel can also appear in the signal channel. Subtracting it out can make the signal substantially more distinct. To make use of this feature:&lt;/p>
+&lt;ul>
+&lt;li>Adjust the signal and reference channels independently (see note below) with the third channel hidden (click the eye to the right of the third slider)&lt;/li>
+&lt;li>Right-click and choose Tracing channel &amp;gt; Unmix channel 1 using current brightness (or 2, depending on which channel is which)&lt;/li>
+&lt;li>Hide the first two channels and unhide the third&lt;/li>
+&lt;li>Adjust the third channel&amp;rsquo;s contrast and brightness&lt;/li>
+&lt;/ul>
+&lt;p>Note: finding good contrast/brightness settings for the first two channels so the unmixing works well is quite difficult! In general, you should set the channel color slider for the signal channel so the brightest part of the signal (usually the soma) is oversaturated and work from there.&lt;/p>
+&lt;p>Color model settings are saved as in 2D (see &lt;a href="#adjusting-colors-in-horta-2d">Adjusting colors in Horta 2D&lt;/a> above). Note that this saves a wider array of setting than for Horta 2D, including rendering options!&lt;/p>
+&lt;h3 id="navigating-to-neurons-or-annotations">Navigating to neurons or annotations&lt;/h3>
+&lt;p>Once you&amp;rsquo;ve begun annotation, you can easily navigate to neurons or their constituent annotations (see below for how to annotate).&lt;/p>
+&lt;p>&lt;strong>Neurons&lt;/strong>: If you double-click on a neuron name in the neuron list, the view will center on the center of the neuron&amp;rsquo;s bounding box. Note that if a neuron spans a lot of area and you are zoomed in, you may not see any of the actual neuron!&lt;/p>
+&lt;p>&lt;strong>Annotations&lt;/strong>: If you double-click on an annotation in the annotation list, the view will center on the annotation.&lt;/p>
+&lt;h2 id="basic-tracing-and-editing">Basic tracing and editing&lt;/h2>
+&lt;p>Annotations are stored in workspaces. A workspace is associated with a sample, which contains the images. You must create a workspace before annotating. Multiple workspaces may be associated with the same sample. For example, multiple people may trace the same neuron independently as a quality control check. Alternatively, a single workspace may be shared among multiple users, usually tracing different neurons simultaneously.&lt;/p>
+&lt;p>In general, only one tracer should be working on any given neuron at the same time, to prevent one tracer&amp;rsquo;s work from being overwritten by another&amp;rsquo;s. Horta attempts to prevent this from happening, but it is possible.&lt;/p>
+&lt;p>&lt;strong>Note&lt;/strong> Most editing and tracing tools are containing in the Horta Control Center panel at right. If you&amp;rsquo;re working on a small display, you may need to use the panel&amp;rsquo;s scroll bar to make some of the lower tools visible.&lt;/p>
+&lt;h3 id="creating-a-workspace">Creating a workspace&lt;/h3>
+&lt;a href="../workspace-panel-2.png">
+&lt;img
+src="../workspace-panel-2.png"
+class="rounded mx-auto"
+style="max-width: 257px;"
+alt="workspace panel screenshot"/>
+&lt;/a>
+&lt;p>To create a workspace:&lt;/p>
+&lt;ul>
+&lt;li>Open a sample from the Data Explorer; it will appear in the Horta Control Center.&lt;/li>
+&lt;li>In the workspace controls at the top of the editor panel at right (see screenshot above), click the &amp;ldquo;+&amp;rdquo; button.&lt;/li>
+&lt;li>Fill in the desired name for the workspace. By default, it has a structured name based on the date and other data. You may optionally click &amp;ldquo;Manual override&amp;rdquo; to name the workspace whatever you would like.
+&lt;ul>
+&lt;li>(Note that &amp;ldquo;Assign neurons&amp;rdquo; has no effect for this method of creating a workspace.)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>The workspace will be created, and it will automatically immediately load in the Horta Control Center. The workspace name and sample name will appear in the workspace controls area. The workspace will also appear in the Data Explorer under &amp;ldquo;Workspaces&amp;rdquo; in your home directory (you may need to refresh the explorer).&lt;/li>
+&lt;li>Once the workspace has been created, you can open it again just like you&amp;rsquo;d open a sample, by right-clicking the workspace in the Data Explorer and choosing &amp;ldquo;Open in Horta&amp;rdquo;.&lt;/li>
+&lt;/ul>
+&lt;h3 id="operations-on-workspaces">Operations on workspaces&lt;/h3>
+&lt;p>You can perform a number of operations on the workspace. Some of these operations are common to all data in the workstation; these operations can be performed from the Data Explorer, typically by right-clicking on the workspace. These operations include moving, sharing, renaming, deleting the workspace.&lt;/p>
+&lt;p>Other operations are specific to Horta. These operations can be accessed by clicking the gear icon in the Horta Control Center, in the workspace information panel just above the neuron list. Most of these will be discussed in other sections.&lt;/p>
+&lt;p>&lt;strong>Save as&lt;/strong>: If you need to make a copy of the workstation and all the annotations within it, choose &amp;ldquo;Save as&amp;hellip;&amp;rdquo; from the workspace gear menu. You will be prompted for a new name just as if you were creating the workspace from scratch.&lt;/p>
+&lt;h3 id="creating-or-deleting-a-neuron">Creating or deleting a neuron&lt;/h3>
+&lt;p>Annotations are contained within neurons. Typically a neuron in Horta represents one biological neuron. Usually its root annotation is placed on the neuron&amp;rsquo;s soma. Neurons may contain more than one annotation tree, however. For example, it can be convenient to trace large arbors individually and link them later. Neuron controls and the neuron list are located below the workspace controls in the Horta Control Center (screenshot below).&lt;/p>
+&lt;a href="../neuron-panel.png">
+&lt;img
+src="../neuron-panel.png"
+class="rounded mx-auto"
+style="max-width: 419px;"
+alt="neuron panel screenshot"/>
+&lt;/a>
+&lt;p>To create a neuron:&lt;/p>
+&lt;ul>
+&lt;li>Open a workspace.&lt;/li>
+&lt;li>Click the &amp;ldquo;+&amp;rdquo; button below the neuron list.&lt;/li>
+&lt;li>Type in a name for the neuron and click &amp;ldquo;OK&amp;rdquo;.&lt;/li>
+&lt;li>The new neuron will appear in the neuron list, selected.&lt;/li>
+&lt;/ul>
+&lt;p>To delete a neuron, select a neuron in the list, then click the &amp;ldquo;-&amp;rdquo; button below the neuron list. You will be shown a dialog box to confirm your decision.&lt;/p>
+&lt;h3 id="annotating-in-horta-2d">Annotating in Horta 2D&lt;/h3>
+&lt;p>To add points to a neuron in the Horta 2D viewer:&lt;/p>
+&lt;ul>
+&lt;li>Open a workspace.
+&lt;ul>
+&lt;li>Create a neuron if one does not exist.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>In the neuron list, select a neuron by clicking on it.&lt;/li>
+&lt;li>Be sure you have the pen tool selected in the toolbar; this is the default, and it is rarely changed.&lt;/li>
+&lt;li>If there are no points in the neuron:
+&lt;ul>
+&lt;li>Shift-left-click a location to place a point at that location.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>If there are already points in the neuron:
+&lt;ul>
+&lt;li>Select the parent annotation you want to add a child to by clicking on it. The annotation will then be drawn with a &amp;ldquo;P&amp;rdquo; on it.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Navigate to the location of the next annotation, possibly changing planes as you do.&lt;/li>
+&lt;li>Shift-click the location where the annotation should be placed.&lt;/li>
+&lt;li>A new point will be added, connected to its parent, and the new point will become the parent annotation for the next annotation added. In Horta 2D, this point is marked with a &amp;ldquo;P&amp;rdquo;.&lt;/li>
+&lt;li>The view will re-center on the new point.&lt;/li>
+&lt;li>Continue adding points by shift-clicking&lt;/li>
+&lt;/ul>
+&lt;h3 id="annotating-in-horta-3d">Annotating in Horta 3D&lt;/h3>
+&lt;p>Adding points to neurons in the Horta 3D viewer is somewhat different than in the Horta 2D viewer because of the third dimension. In Horta 2D, when you add a point, it is added at the z-coordinate of the plane you are viewing. In Horta 3D, though, you are looking at a three-dimensional representation of the data, so a mouse-click might correspond to a number of locations in the data corresponding to various depths into the screen.&lt;/p>
+&lt;p>&lt;strong>Snap to signal&lt;/strong>: However, Horta 3D provides the user with assistance in placing annotations on signal. When you move the mouse cursor in Horta 3D, if it nears a bright signal (hopefully a labelled neuron and not background noise), the mouse cursor will change to a ball with a &amp;ldquo;+&amp;rdquo; sign, and it will jump to the center of the brightness automatically. If you shift-click to place a point, that point will be placed in three dimensional space on top of the brightest part of the data. In this way, you can annotate correctly in three dimensions without having to determine the exact depth of the signal manually.&lt;/p>
+&lt;p>Note that the &amp;ldquo;snap to signal&amp;rdquo; feature depends on which image channel has signal, and is therefore channel-dependent! Right-click and choose &amp;ldquo;Tracing channel&amp;rdquo; to determine whether signal is sought in the raw channels or a combination of multiple channels (average or unmixing; see above for unmixing details).&lt;/p>
+&lt;p>The complete procedure is then:&lt;/p>
+&lt;ul>
+&lt;li>Open a workspace.
+&lt;ul>
+&lt;li>Create a neuron if one does not exist.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Open the Horta 3D viewer&lt;/li>
+&lt;li>In the Horta Control Center, in the neuron list, select a neuron by clicking on it.&lt;/li>
+&lt;li>If there are no points in the neuron:
+&lt;ul>
+&lt;li>Shift-left-click a location to place a point at that location in the LVV.&lt;/li>
+&lt;li>(need to replace this with horta 3D version!)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Navigate to the location you want to annotate in Horta 3D.&lt;/li>
+&lt;li>Select the parent annotation you want to add a child to by clicking on it. The annotation will then be drawn with a &amp;ldquo;P&amp;rdquo; on it.&lt;/li>
+&lt;li>Navigate to the location of the next annotation, possibly rotating as you do. Move the mouse cursor to the location. A ball cursor with a &amp;ldquo;+&amp;rdquo; sign should appear.&lt;/li>
+&lt;li>Shift-click the location. Note that if there is no bright signal, the &amp;ldquo;+&amp;rdquo; cursor will not appear, and you will not be able to place an annotation!&lt;/li>
+&lt;li>A new point will be added, connected to its parent, and the new point will become the parent annotation for the next annotation added. This point is marked with a ball with a &amp;ldquo;P&amp;rdquo; on it.&lt;/li>
+&lt;li>The view will re-center on the new point.&lt;/li>
+&lt;li>Continue adding points by shift-clicking&lt;/li>
+&lt;/ul>
+&lt;h3 id="editing-neurons">Editing neurons&lt;/h3>
+&lt;p>Horta contains several useful tools for manipulating neurons and annotations. Most of these operations are performed by right-clicking an annotation and choosing from the pop-up menu in one of the viewers. Some of the more commonly used actions are:&lt;/p>
+&lt;p>Mouse &amp;amp; keyboard actions:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Set next parent&lt;/strong>: left-click an selected annotation to set it to be the parent for the next added annotation&lt;/li>
+&lt;li>&lt;strong>Move annotation&lt;/strong>: to move an annotation, left-click and drag it to a new location&lt;/li>
+&lt;li>&lt;strong>Merge neurites&lt;/strong>: to merge one fragment with another, left-click and drag an annotation on top of another annotation; after a confirming dialog, the two neurites will be linked together between those two annotations
+&lt;ul>
+&lt;li>The first neurite, with the dragged annotation, becomes a branch of the second annotation&lt;/li>
+&lt;li>&lt;strong>Note!&lt;/strong> The tolerance for this operation is quite small! This is best done zoomed quite far in.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>Delete annotation&lt;/strong>: to delete the &amp;ldquo;next parent&amp;rdquo; annotation, press the delete key; this acts like the &amp;ldquo;Delete link&amp;rdquo; function, below; if no annotation is deleted, nothing happens&lt;/li>
+&lt;/ul>
+&lt;p>Right-click menu actions (as named on the menu):&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Delete link&lt;/strong>: deletes the clicked annotation; connects the annotation&amp;rsquo;s parent and child; can&amp;rsquo;t be used on branch points&lt;/li>
+&lt;li>&lt;strong>Delete subtree rooted at this anchor&lt;/strong>: deletes the clicked annotation and all annotations below it in the tree&lt;/li>
+&lt;li>&lt;strong>Split anchor&lt;/strong>: add a new annotation located between the clicked annotation and its parent; this annotation can then be dragged to a new location; this is used to annotate more densely after the fact&lt;/li>
+&lt;li>&lt;strong>Split neurite&lt;/strong>: break the neurite (neuron fragment) apart by removing the link between the clicked annotation and its parent; the clicked annotation becomes a root annotation&lt;/li>
+&lt;/ul>
+&lt;h3 id="changing-neuron-appearance">Changing neuron appearance&lt;/h3>
+&lt;p>&lt;strong>Color&lt;/strong>: You can change the color of each neuron&amp;rsquo;s annotations by clicking on the colored square in the neuron list (&amp;ldquo;C&amp;rdquo; column), by right-clicking the neuron in the neuron list and choosing &amp;ldquo;Change neuron color&amp;hellip;&amp;rdquo;, or by right-clicking on one of its annotations and choosing &amp;ldquo;Change neuron color&amp;hellip;&amp;rdquo;. In either case, you&amp;rsquo;ll be presented with a dialog box that lets you choose the neuron color. If you choose &amp;ldquo;Change neuron color&amp;hellip;&amp;rdquo; from the gear menu under the neuron list, you will change the color of all neurons currently visible in the neuron list.&lt;/p>
+&lt;p>&lt;strong>Visibility&lt;/strong>: It&amp;rsquo;s often useful to hide some or most neurons from view. There are a variety of controls for accomplishing that.&lt;/p>
+&lt;p>&lt;em>Temporary&lt;/em>: To temporarily hide all neurons, hold down the &amp;ldquo;v&amp;rdquo; key. This function is useful for viewing the data under a neuron, often as it&amp;rsquo;s being annotated.&lt;/p>
+&lt;p>&lt;em>Persistent&lt;/em>: Neurons can be toggled between visible and invisible (shown or hidden) for the duration of the annotation session (until the workspace is reloaded). There are multiple ways to do this:&lt;/p>
+&lt;ul>
+&lt;li>Right-click on an annotation and choose &amp;ldquo;Hide neuron&amp;rdquo;.&lt;/li>
+&lt;li>Click the eye icon in the &amp;ldquo;V&amp;rdquo; column in the neuron list; this column also indicates the current visibility of each neuron (open or closed eye).&lt;/li>
+&lt;li>Right-click the neuron name in the neuron list and choose one of the hide/show neurons options (show all, hide all, or hide all except the clicked neuron).&lt;/li>
+&lt;li>On the gear menu below the neuron list, choose one of the hide/show neurons options (show all, hide all, or hide all except the currently selected neuron). This will apply to all neurons currently displayed in the list&lt;/li>
+&lt;/ul>
+&lt;h3 id="filtering-neurons">Filtering neurons&lt;/h3>
+&lt;p>The neuron list usually displays all neurons in the workspace, but its contents can be filtered to a subset of neurons, which is especially useful when the list is long.&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Text filter&lt;/strong>: As you type characters into the box (2-3 or more), the list will update to show only neurons whose names contain the entered text somewhere in the name. Java regular expressions can be used.&lt;/li>
+&lt;li>&lt;strong>Ignore prefix&lt;/strong>: As you type characters into the box, the list will update to show only neurons whose names do not begin with the entered text. Again, regular expressions can be used.&lt;/li>
+&lt;li>&lt;strong>Tag filter&lt;/strong>: Neurons can be included or excluded from the displayed list based on their tags. See the &amp;ldquo;Tags&amp;rdquo; section in &lt;a href="https://hortacloud.janelia.org/docs/user_manual/features/">Horta Features&lt;/a>.&lt;/li>
+&lt;li>&lt;strong>Spatial filter&lt;/strong>: When there are a large number of neurons (hundreds or more), perhaps computationally generated, performance can suffer if all of them are visible. Neurons can be filtered by spatial proximity to a neuron of interest. See the &amp;ldquo;Spatial Filtering&amp;rdquo; section in &lt;a href="https://hortacloud.janelia.org/docs/user_manual/features/">Horta Features&lt;/a>.&lt;/li>
+&lt;/ul>
+&lt;p>Note that any actions triggered from the gear menu below the neuron list will only act on neurons that are currently visible in the list! In this way, you can, for example, easily change colors or visibility of a specific subset of neurons.&lt;/p>
+&lt;p>The sort order of the neurons can be changed by choosing &amp;ldquo;Sort&amp;rdquo; from the neuron gear menu.&lt;/p>
+&lt;h3 id="filtering-annotations">Filtering annotations&lt;/h3>
+&lt;p>The annotation list is located below the neuron list in the right-hand panel. By default, it displays annotations that are &amp;ldquo;interesting&amp;rdquo;: roots, branch points, end points, and any annotation with notes (see below). Note that the &amp;ldquo;geo&amp;rdquo; column is meant to suggest the neuron&amp;rsquo;s geometry (see below). They are ordered by last update time (newest at the bottom). Only annotations from the currently selected neuron are shown.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>symbol&lt;/th>
+&lt;th>geometry&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>o--&lt;/code>&lt;/td>
+&lt;td>root&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>---&lt;/code>&lt;/td>
+&lt;td>link&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>--&amp;lt;&lt;/code>&lt;/td>
+&lt;td>branch&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>--o&lt;/code>&lt;/td>
+&lt;td>end&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;strong>Filter menu and buttons&lt;/strong>: The filter menu lets you switch between several pre-determined filters (with buttons provided to quickly switch to some of those filters without navigating the menu).&lt;/p>
+&lt;p>Note that some of these filters do not operate the way you&amp;rsquo;d think! They are designed to assist tracers to locate specific classes of annotations in conjunction with the note system (see below) and one possible workflow.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>filter&lt;/th>
+&lt;th>included annotations&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>default&lt;/td>
+&lt;td>roots, branches, ends, annotations with a note&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ends&lt;/td>
+&lt;td>endpoint that do not have a note &amp;ldquo;traced end&amp;rdquo; or &amp;ldquo;problem end&amp;rdquo; (ie, an endpoint that needs to be traced out = unfinished endpoint)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>branches&lt;/td>
+&lt;td>has &amp;ldquo;branch&amp;rdquo; note (ie, manually marked as a place that should be a branch point)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>roots&lt;/td>
+&lt;td>is a root node&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>notes&lt;/td>
+&lt;td>has any note&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>geometry&lt;/td>
+&lt;td>roots, branches, ends&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>interesting&lt;/td>
+&lt;td>has &amp;ldquo;interesting&amp;rdquo; note&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>review&lt;/td>
+&lt;td>has &amp;ldquo;review&amp;rdquo; note&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;strong>Filter text&lt;/strong>: As you type characters into the box, the list will update to only show annotations whose note contains the entered text somewhere in the note. Regular expressions may be used. Note that this filter also operates on the &amp;ldquo;geometry&amp;rdquo; column! For example, if you type &lt;code>o–-&lt;/code> in the text filter, you will only see root annotations. This can also be done via the menu (above), but it may be useful in some cases.&lt;/p>
+&lt;h3 id="adding-notes-text-annotations">Adding notes (text annotations)&lt;/h3>
+&lt;p>Arbitrary text notes may be added to any annotation. To bring up the dialog box for adding, editing, or deleting notes: right-click on the annotation and choose &amp;ldquo;Add, edit, or delete note&amp;hellip;&amp;rdquo;, double-click on the &amp;ldquo;note&amp;rdquo; column in the annotation list corresponding to the annotation, or select the annotation and press the assigned keyboard shortcut. In the dialog that pops up, you may enter any text you like. You may also edit or delete the note from this dialog.&lt;/p>
+&lt;p>&lt;strong>Predefined notes&lt;/strong>: There are a set of buttons that insert predefined notes (such as &amp;ldquo;branch&amp;rdquo;, &amp;ldquo;interesting&amp;rdquo;, and &amp;ldquo;review&amp;rdquo;). The predefined notes interact in important ways with the annotation filters. The details are described in the &amp;ldquo;Notes&amp;rdquo; section of Horta Features.&lt;/p>
+&lt;p>Notes are imported and exported along with the neurons (see below).&lt;/p>
+&lt;h3 id="changing-neuron-ownership">Changing neuron ownership&lt;/h3>
+&lt;p>There are two kinds of ownership in Horta. First is the ownership that is managed by the Janelia workstation itself. The items that appear in the Data Explorer (workspaces and samples) are shared using the &amp;ldquo;Permissions&amp;rdquo; tab in the Data Inspector window. A tracer must have write access to the workspace before annotating. (This is usually only relevant when sharing workspaces. A tracer always has write access to workspaces they create.)&lt;/p>
+&lt;p>The ownership of individual neurons, by contrast, is managed within Horta itself. The &amp;ldquo;O&amp;rdquo; column of the neuron list displays an icon corresponding to the neuron&amp;rsquo;s owner: an icon of a head for another user, an icon of a computer for a generic &amp;ldquo;system&amp;rdquo; group, and nothing (no icon) for the current user. In all cases, if you hover your mouse over the icon (or empty space without an icon), a tooltip will show the full name of the owner.&lt;/p>
+&lt;p>First of all, most operations are prohibited when a neuron is owned by another user or a group that the current user is not a member of. This includes adding or deleting points or notes. Changing color or visibility is allowed, however, and those changes will not be seen by others.&lt;/p>
+&lt;p>Second, if a neuron is owned by a group, then any member of that group may make any changes to that neuron. When they do, they will also become the owner of the neuron automatically.&lt;/p>
+&lt;p>You may change the owner of a neuron if you own it, you are a member of the group that owns it, or you are designated as an administrator of the group that owns the workspace.&lt;/p>
+&lt;p>To change the owner of a neuron, single-click in the &amp;ldquo;O&amp;rdquo; column corresponding to the neuron in the neuron list.&lt;/p>
+&lt;p>This will be an icon or an empty space. From the dialog box, choose a new owner (user or group) for the neuron. To change the owner for multiple neurons, filter the neuron list to the desired set of neurons, then choose &amp;ldquo;Choose neuron owner&amp;hellip;&amp;rdquo; from the gear menu under the neuron list.&lt;/p>
+&lt;p>Admins in the system may change any neuron&amp;rsquo;s owner at any time.&lt;/p>
+&lt;p>The workspace gear menu contains the very dangerous &amp;ldquo;Temp ownership admin&amp;rdquo; checkbox which gives the user the ability to change neuron ownership as if they were an admin (but grants no other admin privileges). Use this sparingly! It&amp;rsquo;s intended for use by a trusted and professional group to circumvent situations where a neuron owner is, eg, on vacation, and no admin is available to change it.&lt;/p>
+&lt;h2 id="exporting-data">Exporting data&lt;/h2>
+&lt;p>Horta use the SWC file format for importing and exporting neuron data. It&amp;rsquo;s a multi-column text file that records the position and connectivity of the neurons and not much else. Note that an SWC file may contain more than one neuron or neuron fragment.&lt;/p>
+&lt;ul>
+&lt;li>To export all of the neurons in a workspace, choose &amp;ldquo;Export SWC file&amp;rdquo; from the gear menu in the workspace information area.&lt;/li>
+&lt;li>To export one specific neuron, right-click on the neuron name in the neuron list and choose &amp;ldquo;Export SWC file&amp;hellip;&amp;rdquo;.&lt;/li>
+&lt;li>To export all neurons in the neuron list (potentially filtered), from the gear menu under the neuron list, choose &amp;ldquo;Export neurons&amp;hellip;&amp;rdquo;.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Output files&lt;/strong>: In all cases, you will be prompted to choose an output location for the exported neuron(s).&lt;/p>
+&lt;ul>
+&lt;li>If you are exporting one neuron, it will be saved in the chosen location.&lt;/li>
+&lt;li>If you are exporting more than one neuron, two versions of the data will be exported:
+&lt;ul>
+&lt;li>A single SWC named for the workspace that contains all of the neurons.&lt;/li>
+&lt;li>A folder named for the workspace that contains one SWC file for each individual neuron.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Options&lt;/strong>: When exporting neurons, there are two options on the right side of the location choosing dialog box:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Point density&lt;/strong>: This option can be ignored unless you are using automatically traced paths (described elsewhere). Click &amp;ldquo;Help&amp;rdquo; for more info.&lt;/li>
+&lt;li>&lt;strong>Export notes&lt;/strong>: When this option is checked, any notes (text annotations) on the neuron are also exported in a JSON file. The file has the same name as the SWC file but uses the .json file extension instead of .swc.&lt;/li>
+&lt;/ul>
+&lt;p>See the &lt;a href="https://hortacloud.janelia.org/docs/user_manual/reference/">Horta Reference&lt;/a> section for details on the SWC and note file formats.&lt;/p>
+&lt;h2 id="importing-data">Importing data&lt;/h2>
+&lt;p>SWC files may be imported into Horta either interactively or in the background. Because importing large numbers of neurons can be time-consuming, importing more than a dozen or so neurons should be done in the background if you want to use Horta while the files are imported.&lt;/p>
+&lt;h3 id="interactive">Interactive&lt;/h3>
+&lt;p>Because an SWC file may store one or more than one neuron per file, and in Horta, you may have multiple neuron fragments per neuron, there are two ways to handle the import. Both of these options are found on the gear menu under the workspace information area.&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Import SWC file as one neuron&lt;/strong>: This option reads all neurons in the SWC file(s), creates a single neuron, and places all neurons in the file in the newly created neuron (as what Horta calls neurites).&lt;/li>
+&lt;li>&lt;strong>Import SWC file as separate neurons&lt;/strong>: This option reads all neurons in the SWC file(s) and creates one neuron per root in the file(s).&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Multiple files&lt;/strong>: In either case, you may choose either a single SWC file or a folder containing multiple SWC files. In the latter case, all SWC files in the folder are imported. Files in subfolders are not imported.&lt;/p>
+&lt;p>&lt;strong>Note&lt;/strong>: If the SWC file was exported from Horta and has an associated .json notes file, the notes will automatically be imported with the neurons.&lt;/p>
+&lt;h3 id="background">Background&lt;/h3>
+&lt;p>SWC files, especially large numbers of them, may be imported into a workspace that will be created for them in the background (on the server).&lt;/p>
+&lt;p>The SWC files to be imported must be collected in a folder that can be read by the workstation server.&lt;/p>
+&lt;ul>
+&lt;li>Right-click on the sample in the Data Explorer&lt;/li>
+&lt;li>Choose &amp;ldquo;Import Linux SWC Folder into new Workspace on Sample&amp;rdquo;&lt;/li>
+&lt;li>Give the new workspace a name in the first dialog box&lt;/li>
+&lt;li>(optional) Click the &amp;ldquo;Assign Neurons&amp;rdquo; box and provide a user or group that will be the owner of all the newly imported neurons&lt;/li>
+&lt;li>In the second dialog, enter the Linux file path to the folder containing the neurons.&lt;/li>
+&lt;li>(optional) There is a redundant check box to assign all neurons to the default common user group. In principle, this can be done from the previous dialog box as well.&lt;/li>
+&lt;li>After clicking OK, the import process will begin. It may show its progress in the &amp;ldquo;Background Tasks&amp;rdquo; tab.
+&lt;ul>
+&lt;li>Do not attempt to load or use the workspace until the task completes!&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>Note that the import process will continue (on the server) even if you quit the workstation!&lt;/p>
+&lt;p>Important note: Unlike the interactive case, subfolders are recursively traversed, and all SWC files are imported!&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">HortaCloud imports and exports&lt;/h4>
+&lt;p>Because HortaCloud running via AppStream does not have direct access to the computer&amp;rsquo;s hard drive, a two-step process must be used for importing and exporting SWC files and their associated JSON notes files. The process uses the &amp;ldquo;My Files&amp;rdquo; location in AppStream, which is a location for temporary files that last for the length of an AppStream session. If you click on the &amp;ldquo;My Files&amp;rdquo; folder icon on the top AppStream toolbar (screenshot below), a dialog box will open up. If you click on &amp;ldquo;Temporary Files&amp;rdquo;, it will open a folder where you can upload (via the button or by dragging) or download files (by clicking the downward-pointing arrow next to the filename). This &amp;ldquo;Temporary Files&amp;rdquo; location is visible from Horta, within any file dialog. So the process for importing SWC files is:&lt;/p>
+&lt;ul>
+&lt;li>Open &amp;ldquo;My Files&amp;rdquo;, then &amp;ldquo;Temporary Files&amp;rdquo;.&lt;/li>
+&lt;li>Upload SWCs by clicking &amp;ldquo;Upload Files&amp;rdquo; or by dragging.&lt;/li>
+&lt;li>In Horta, choose one of the SWC import options (see above), and navigate to &amp;ldquo;Temporary Files&amp;rdquo; in the file dialog.&lt;/li>
+&lt;/ul>
+&lt;p>Export works the same way, in reverse: export to &amp;ldquo;Temporary Files&amp;rdquo;, then download from there.&lt;/p>
+&lt;/div>
+&lt;a href="../AppStream-MyFiles.png">
+&lt;img
+src="../AppStream-MyFiles.png"
+class="rounded mx-auto"
+style="max-width: 318px;"
+alt="AppStream toolbar"/>
+&lt;/a></description></item><item><title>Docs: Three-server deployment</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/fulldeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/fulldeployment/</guid><description>
 &lt;p>This document describes the full three-server Janelia Workstation deployment for supporting both FlyLight and MouseLight at Janelia Research Campus. This deployment uses Docker Swarm to orchestrate containers available on Docker Hub.&lt;/p>
 &lt;p>Multiple &lt;em>environments&lt;/em> are supported with this deployment:&lt;/p>
 &lt;ul>
@@ -427,7 +951,327 @@ alt="three-server deployment diagram"/>
 &lt;h2 id="deploy-elk-for-monitoring">Deploy ELK for monitoring&lt;/h2>
 &lt;p>To deploy an ELK stack for monitoring follow &lt;a href="../elkdeployment">ELK Deployment&lt;/a>.&lt;/p>
 &lt;h2 id="find-more-information">Find More Information&lt;/h2>
-&lt;p>This concludes the MouseLight Workstation installation procedure. Further information on using the tools can be found in the &lt;a href="../../../user_manual">User Manual&lt;/a>.&lt;/p></description></item><item><title>Docs: Installing Docker</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/installingdocker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/installingdocker/</guid><description>
+&lt;p>This concludes the MouseLight Workstation installation procedure. Further information on using the tools can be found in the &lt;a href="../../../user_manual">User Manual&lt;/a>.&lt;/p></description></item><item><title>Docs: Features</title><link>https://hortacloud.janelia.org/docs/user_manual/features/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/features/</guid><description>
+&lt;p>This section discusses Horta features. It contains both details of basic operations that are covering in the &lt;a href="https://hortacloud.janelia.org/docs/user_manual/basic_operations/">previous section&lt;/a> as well as descriptions of features that haven&amp;rsquo;t yet been discussed.&lt;/p>
+&lt;h2 id="global">Global&lt;/h2>
+&lt;h3 id="preferencessettings">Preferences/settings&lt;/h3>
+&lt;p>There are a number of customization options for Horta.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">HortaCloud&lt;/h4>
+In HortaCloud, choose Tools &amp;gt; Options.
+&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Desktop&lt;/h4>
+If you&amp;rsquo;re running Windows, choose Tools &amp;gt; Options if you&amp;rsquo;re running Windows. On a Mac, the settings are called &amp;ldquo;Preferences&amp;rdquo; and are in the traditional place under the application menu at top right.
+&lt;/div>
+&lt;p>Here are some settings of interest:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>Core &amp;gt; Application&lt;/code>:
+&lt;ul>
+&lt;li>Max Memory (desktop): This should be set to a high number, preferably 40G or more.&lt;/li>
+&lt;li>Max Memory (HortaCloud): This should be left blank; the system will set the memory correctly.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>Horta &amp;gt; Application&lt;/code>:
+&lt;ul>
+&lt;li>&amp;ldquo;Use http for file access&amp;rdquo;: Must be left checked.&lt;/li>
+&lt;li>&amp;ldquo;Load last opened sample&amp;hellip;&amp;rdquo;: This option is not currently working.&lt;/li>
+&lt;li>&amp;ldquo;Verify neurons on load&amp;rdquo; is never needed under normal circumstances. It can be enabled to check for some internal inconsistancies in neurons stored in the database.&lt;/li>
+&lt;li>&amp;ldquo;Use anchors-in-viewport&amp;rdquo; should be left enabled. This is a graphics optimization.&lt;/li>
+&lt;li>See below for &amp;ldquo;Click mode for adding annotations&amp;rdquo;&lt;/li>
+&lt;li>&amp;ldquo;Z-slice thickness&amp;rdquo;: The 2D view shown in Horta 2D actually shows annotations from multiple planes. This setting determines the depth of this effect. If you increase the number, annotations become visible on a large number of surrounding planes. Note however that there are some subtle behaviors in how the data and annotations are rendered, and changing this value dramatically away from its default value may not have the effect you want.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>Horta &amp;gt; Tile Loading&lt;/code>:
+&lt;ul>
+&lt;li>In general, you can leave &amp;ldquo;Concurrent tile loads&amp;rdquo; and &amp;ldquo;Number of tiles to cache&amp;rdquo; to their defaults. Larger numbers &lt;em>may&lt;/em> improve tile loading in Horta 3D.&lt;/li>
+&lt;li>See below for &amp;ldquo;Click mode for adding annotations&amp;rdquo;&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>Keymap&lt;/code>:
+&lt;ul>
+&lt;li>This section shows all of the user-changeable keyboard shortcuts for the Janelia workstation, including Horta. The shortcuts are listed by section.&lt;/li>
+&lt;li>New shortcuts will take effect after the application is restarted.&lt;/li>
+&lt;li>Note that some keyboard shortcuts in Horta cannot be changed from this dialog. Unfortunately, there is no central list of what they are.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="click-mode-for-adding-annotations">Click mode for adding annotations&lt;/h4>
+&lt;p>By default, to add annotations in Horta 2D and 3D, you select a parent annotation, then you shift-left-click on the desired location. For some people, holding down the shift key while making repeated annotations may cause stress on their hands, fingers, or wrists when done over a long period of time. For that reason, an option is provided to change that gesture to a simple left-click to add annotation (with no shift key). Note that this is set independently for Horta 2D and Horta 3D. The two settings are in different subpanels for historical reasons.&lt;/p>
+&lt;p>Note that if the &amp;ldquo;left-click&amp;rdquo; option is selected, some other behaviors in the two viewers will change, specifically those involving left-clicks. Most notably, in Horta 2D, idle clicks when (for example) closing right-click menus will register as an annotation.&lt;/p>
+&lt;p>Generally speaking, using the default group names:&lt;/p>
+&lt;ul>
+&lt;li>all users should be a member of &lt;code>workstation_users&lt;/code>&lt;/li>
+&lt;li>all users who want to interact with Horta samples or annotations should be a member of &lt;code>mouselight&lt;/code>&lt;/li>
+&lt;li>all regular Horta tracers should &lt;em>also&lt;/em> be a member of &lt;code>mouselight_tracers&lt;/code>; this group is used to populate some dialog boxes regarding neuron ownership, and project leadership, collaborators, and other non-tracers need not be in this group (it&amp;rsquo;ll clutter the menus)&lt;/li>
+&lt;/ul>
+&lt;h3 id="user-and-group-administration">User and group administration&lt;/h3>
+&lt;p>If you are an administrator, you can Windows &amp;gt; Core &amp;gt; Administration tool to manage users and groups. Note that these are users and groups within the Horta or Janelia Workstation applications. For HortaCloud, there is a second layer of users and administrator for AppStream that are managed separately.&lt;/p>
+&lt;p>An administrator within the Horta or Janelia Workstation system has a lot of power.&lt;/p>
+&lt;ul>
+&lt;li>see all data and assign permissions for all data&lt;/li>
+&lt;li>set privileges for all users and groups&lt;/li>
+&lt;li>use Tools &amp;gt; Admin &amp;gt; Run as&amp;hellip; to connect as any user (usually used for debugging purposes)&lt;/li>
+&lt;/ul>
+&lt;p>You should limit the number of people with admin privileges.&lt;/p>
+&lt;h2 id="horta-control-center-features">Horta Control Center features&lt;/h2>
+&lt;h3 id="notes">Notes&lt;/h3>
+&lt;p>Notes are text annotations that are attached to point annotations. They can be added, edited, or deleted from a dialog box triggered by a right-click on the annotation and choosing &amp;ldquo;Add, edit, delete note&amp;rdquo;. The contents can be arbitrary.&lt;/p>
+&lt;p>However, the note dialog does provide several pre-defined notes that can be used to support a simple tracing workflow. In addition, some of those pre-defined notes have specific effects on other operations and on the annotation filters.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>predefined note&lt;/th>
+&lt;th>intended use&lt;/th>
+&lt;th>behavior&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>traced end&lt;/td>
+&lt;td>to be added when the signal at that point has been traced as far as it can; it&amp;rsquo;s a &amp;ldquo;done&amp;rdquo; marker&lt;/td>
+&lt;td>&lt;ul>&lt;li>must be placed on an endpoint&lt;/li>&lt;li>if another point is placed as a child, it&amp;rsquo;s automatically removed&lt;/li>&lt;li>does not appear in the &amp;ldquo;ends&amp;rdquo; filter&lt;/li>&lt;/ul>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>branch&lt;/td>
+&lt;td>to be added when the tracer finds a point where signal branches but doesn&amp;rsquo;t want to follow the branch at that time; it&amp;rsquo;s a &amp;ldquo;come back to this&amp;rdquo; marker&lt;/td>
+&lt;td>&lt;ul>&lt;li>cannot be placed on an existing branch&lt;/li> &lt;li>if another point is placed to make it an actual branch, it&amp;rsquo;s automatically removed&lt;/li> &lt;li>does not appear in the &amp;ldquo;branches&amp;rdquo; filter&lt;/li>&lt;/ul>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>interesting&lt;/td>
+&lt;td>indicates a point of interest&lt;/td>
+&lt;td>no special behavior&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>review&lt;/td>
+&lt;td>indicates a point that needs review by a second set of eyes, supervisor, or expert&lt;/td>
+&lt;td>no special behavior&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>problem end&lt;/td>
+&lt;td>indicates an endpoint that may or may not be able to be traced further by the current user; it&amp;rsquo;s a &amp;ldquo;done (but problematic)&amp;rdquo; marker&lt;/td>
+&lt;td>&lt;ul>&lt;li>must be placed on an endpoint&lt;/li> &lt;li>if another point is placed as a child, it&amp;rsquo;s automatically removed&lt;/li> &lt;li>does not appear in the &amp;ldquo;ends&amp;rdquo; filter&lt;/li>&lt;/ul>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>(arbitrary text)&lt;/td>
+&lt;td>the user may place arbitrary text at any point&lt;/td>
+&lt;td>no special behavior&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>All together, the notes and filters together were designed to support the following workflow:
+- start tracing at a soma or a segment of interest
+- add point along the segment
+- at a branching point in the signal, add the &amp;ldquo;branch&amp;rdquo; note to the annotation to mark it as a point to be revisited; there is then no need to place a single point on the second branch to find it later
+- when a branch ends in a synapse or becomes too faint to trace, place a &amp;ldquo;traced end&amp;rdquo; or &amp;ldquo;problem end&amp;rdquo; note, indicating that the tracing is complete for this branch
+- if those notes are added consistently, then the &amp;ldquo;branches&amp;rdquo; and &amp;ldquo;ends&amp;rdquo; filters will identify those locations that need further work
+- when those two filters have no annotations in them, the neuron is done&lt;/p>
+&lt;h3 id="tags">Tags&lt;/h3>
+&lt;p>Tags are user-defined, usually short, labels that are applied to neurons.&lt;/p>
+&lt;ul>
+&lt;li>To add or remove tags from a single neuron, right-click on the neuron in either the Horta 2D view or the neuron list and choose &amp;ldquo;Edit neuron tags&amp;rdquo;.
+&lt;ul>
+&lt;li>The left &amp;ldquo;Applied&amp;rdquo; column contains tags that have already been applied to the neuron. Click on a tag in this column to removed it.&lt;/li>
+&lt;li>The right &amp;ldquo;Available&amp;rdquo; column contains existing tags that can be applied to the neuron by clicking on them.&lt;/li>
+&lt;li>To define a new tag, type the tag in the box below the &amp;ldquo;Available&amp;rdquo; column and click &amp;ldquo;New tag&amp;rdquo;. It will be created and applied immediately.&lt;/li>
+&lt;li>The list of &amp;ldquo;available&amp;rdquo; tags is the list of tags that exist on any neuron, plus two special tags.&lt;/li>
+&lt;li>The &amp;ldquo;auto&amp;rdquo; tag may be used freely. It is suggested to use this tag to mark neurons that were created by some automated process, to distinguish them from human-created neurons. When automatically created neurons are numerous, this can be used to filter them out (See &amp;ldquo;Spatial filter&amp;rdquo;).&lt;/li>
+&lt;li>The &amp;ldquo;hidden&amp;rdquo; tag is used internally and shouldn&amp;rsquo;t be used.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>To add or remove a tag from multiple neurons, choose &amp;ldquo;Edit tags&amp;rdquo; from the gear menu in the neuron list. The tag will be added or removed from all the neurons in the filtered list, if applicable.&lt;/li>
+&lt;li>Tags can be used to filter the neuron list by either including or excluding neurons with a single tag.&lt;/li>
+&lt;/ul>
+&lt;p>Tags can be used to control a few useful toggle behaviors. This feature is called &amp;ldquo;Neuron group properties&amp;rdquo;.&lt;/p>
+&lt;ul>
+&lt;li>First, add a tag to one or more neurons of interest using one of the above methods.&lt;/li>
+&lt;li>Right-click on a neuron and choose &amp;ldquo;Edit neuron group properties&amp;rdquo;.&lt;/li>
+&lt;li>The dialog box shows each user-applied tag as a &amp;ldquo;Neuron group&amp;rdquo; and indicates how many neurons are in the group.&lt;/li>
+&lt;li>Click on the cell in the third column of a row corresponding to a tag to assign a hotkey for the toggle.&lt;/li>
+&lt;li>Click on the fourth column to assign a toggleable property.&lt;/li>
+&lt;li>Click save. Now when keyboard focus is in Horta 2D, the hot key will toggle the property:
+&lt;ul>
+&lt;li>Radius: the radii of the neuron(s) in Horta 3D will be toggled between their set size (either default or user-set) and a very thin radius&lt;/li>
+&lt;li>Visibility: the hotkey will hide or show the neurons(s)&lt;/li>
+&lt;li>Background: when this is toggled on, the neuron is placed in a &amp;ldquo;background&amp;rdquo; state that can be seen but not interacted with (ie, you cannot move, select, or add points to a background neuron)&lt;/li>
+&lt;li>Crosscheck: this is the same as &amp;ldquo;background&amp;rdquo; and &amp;ldquo;radius&amp;rdquo; together; it&amp;rsquo;s designed to have a neuron visible but unobtrusive and unchangeable&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Note that this feature has been buggy in the past; sometimes you need to save repeatedly before the setting holds.&lt;/li>
+&lt;/ul>
+&lt;h3 id="shared-workspaces--the-neuron-broker-updates">Shared workspaces &amp;amp; the Neuron Broker: updates&lt;/h3>
+&lt;p>When multiple users open and work in the same workspace, the Neuron Broker on the server acts as the intermediary for all changes to the database.&lt;/p>
+&lt;ul>
+&lt;li>It ensures that changes occur one at a time, in order.&lt;/li>
+&lt;li>It prevents users from changing neurons they do not own.&lt;/li>
+&lt;li>It broadcasts the results of changes to all users, so users in the same workspace can see changes made by other users.&lt;/li>
+&lt;/ul>
+&lt;p>There are two elements of the UI that relate to the operation of the Neuron Broker.&lt;/p>
+&lt;ul>
+&lt;li>First, if &amp;ldquo;Shared Updates&amp;rdquo; is unchecked in the UI (in the right side panel of the Horta 2D view), then changes in the workspace will not be displayed until the &amp;ldquo;Refresh&amp;rdquo; button is clicked (same panel). This can be useful in the rare occasions that so many updates are arriving that it affects local performance. Normally, this should be left on.&lt;/li>
+&lt;li>Second, if the name of a neuron in the neuron list becomes italicized, that is an indication that the data in the workstation has become unsynchronized with the data in the database for that neuron. If you hover the mouse over the neuron name, it will tell you how many changes are not synced. Generally, if this occurs and does not clear after a minute or two, you should reopen the workspace. The unsynced changes will be lost, but the workspace will then be fully in sync with the database.&lt;/li>
+&lt;/ul>
+&lt;p>See also &amp;ldquo;Changing neuron ownership&amp;rdquo; in the Horta Features section.&lt;/p>
+&lt;h3 id="spatial-filtering">Spatial filtering&lt;/h3>
+&lt;p>When a workspace has a large number of neuron fragments, such as those created by an automated segmentation process, two negative consequences may occur. First, the display becomes visually cluttered, and second and more important, performance of all kinds can degrade. These problems can be alleviated by only loading and displaying a small subset of all fragments in the region where the tracer is working. To enable spatial filtering:&lt;/p>
+&lt;ul>
+&lt;li>Click the gear menu under the neuron list and choose &amp;ldquo;Set Neuron Filter Strategy&amp;rdquo;.&lt;/li>
+&lt;li>The first check box enables or disables the filter.
+&lt;ul>
+&lt;li>In all cases, only fragments owned by the tracing group are affected. Neurons owned by tracers (current tracer or other tracers) will always be loaded.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>There are currently two options for the filter:
+&lt;ul>
+&lt;li>Proximity: fragments will be loaded if they are close to any non-fragment neuron.&lt;/li>
+&lt;li>Selection: fragments will be loaded if they are close to the last selected annotation.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Distance: in either strategy, this controls how close fragments need to be to the target neuron(s) or point in order to be loaded.&lt;/li>
+&lt;/ul>
+&lt;h3 id="task-workflow--neuron-cam">Task workflow &amp;amp; Neuron Cam&lt;/h3>
+&lt;p>This feature is still being developed and will be documented later.&lt;/p>
+&lt;h3 id="movie-maker-and-scene-editor">Movie Maker and Scene Editor&lt;/h3>
+&lt;p>The Horta Movie Maker is designed to created fly-through movies, typically for presentations. It is not supported and not documented at this time.&lt;/p>
+&lt;h2 id="more-horta-2d-features">More Horta 2D features&lt;/h2>
+&lt;h3 id="right-click-operations">Right-click operations&lt;/h3>
+&lt;p>Horta 2D has a number of operations on its right-click menu. Many of them are described elsewhere, especially in the &lt;a href="https://hortacloud.janelia.org/docs/user_manual/basic_operations/">Horta Basic Operations&lt;/a> section. We will quickly summarize most of the operations here. Operations that are not documented below fall into two categories. First, some of them are redundant with other parts of the UI and are likely to be removed from the menu. For example, &amp;ldquo;Begin new neurite here&amp;rdquo; is unnecessary on the right-click menu. That operation is also documented in the Horta Basic operation section. Second, if an operation is not documented anywhere, it is deprecated and likely to be removed entirely, not just from this menu. Some of these will be noted explicitly.&lt;/p>
+&lt;h4 id="right-click-in-empty-space">Right-click in empty space&lt;/h4>
+&lt;p>Some options appear when you click in empty space in the 2D view, with no annotation under the mouse pointer.&lt;/p>
+&lt;ul>
+&lt;li>Scroll through Sample (Z): The camera will move to the lowest plane (smallest z) at the mouse pointer location and smoothly move through the planes until it reaches the highest plane. The zoom level is not changed.&lt;/li>
+&lt;li>File: All the operations on this menu are deprecated and should not be used.&lt;/li>
+&lt;li>Copy (various): When any of these options are selected, information about the location of the mouse pointer is copied to the clipboard. Note that for HortaCloud, the data is copied to the AppStream clipboard, and you must click the icon in the toolbar to copy it to the clipboard of your local computer
+&lt;ul>
+&lt;li>Micron coords: the x, y, z location in µm in this form: &lt;code>[75556.8, 43819.6, 23460.8]&lt;/code>&lt;/li>
+&lt;li>Octree location: the location in the file hierarchy of the 2D tile under the mouse pointer. See the Horta Reference section for more details on the file layout. The format is this: &lt;code>/5&lt;/code>&lt;/li>
+&lt;li>Raw file tile location: the file path to the raw microscope tile that produced the rendered data under the mouse pointer, if available.&lt;/li>
+&lt;li>Octree filepath: the file path to the rendered tile under the mouse pointer.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Task Workflow: see below&lt;/li>
+&lt;li>View: The view submenu replicates a number of buttons on the Horta 2D toolbar and side navigation panel. It is redundant and likely to be removed at some point in the future.&lt;/li>
+&lt;/ul>
+&lt;h4 id="right-click-on-an-annotation">Right-click on an annotation&lt;/h4>
+&lt;p>If you right-click on an annotation in Horta 2D, a longer set of operations appears in addition to those described above. Note that an annotation will become visibly slightly larger when the mouse pointer is over it, indicating that the annotation will be the target of the click. Again, some of the operations are either deprecated or may be removed from the menu.&lt;/p>
+&lt;ul>
+&lt;li>Trace path to parent: generate an automatically traced path from the selected annotation to its parent (see &amp;ldquo;Automatic point refinement and tracing&amp;rdquo;, below)&lt;/li>
+&lt;li>Delete subtree: deletes the annotation under the mouse pointer and all annotations in the tree below it&lt;/li>
+&lt;li>Delete link: deletes the annotation under the mouse pointer if it is an endpoint, an isolated single point, or a point with a single parent and child (in which case the parent and child are connected). You cannot delete a branch point or a root point with children; use &amp;ldquo;delete subtree&amp;rdquo; instead.&lt;/li>
+&lt;li>Merge chosen neurite&amp;hellip;: see &amp;ldquo;Smart merge&amp;rdquo; below&lt;/li>
+&lt;li>Transfer neurite: As described in Horta Concepts, a &amp;ldquo;neurite&amp;rdquo; is a structure rooted at a single root annotation, while a &amp;ldquo;neuron&amp;rdquo; is a container that may hold several neurites. This operation moves the selected neurite to another existing neuron (chosen from a dialog), or to a newly created neuron, which you are prompted to name.&lt;/li>
+&lt;li>Split anchor: This operation creates a new annotation between the selected annotation and its parent, placed close to the selected annotation. It&amp;rsquo;s used to increase the density of points in the neuron.&lt;/li>
+&lt;li>Split neurite: This operation splits the current neurite into two, with the selected annotation cut from its parent into a new root.&lt;/li>
+&lt;li>Add, edit, delete note: See &amp;ldquo;Notes&amp;rdquo; section below.&lt;/li>
+&lt;li>Edit neuron tags/group properties: See &amp;ldquo;Tags&amp;rdquo; section below.&lt;/li>
+&lt;li>Generate neuron review tree/Select point in Task View: See &amp;ldquo;Task workflow&amp;rdquo; section below.&lt;/li>
+&lt;li>Set neuron radius: This operation allows the user to set the radius associated with the annotation. By default it is set to 1.0 µm.&lt;/li>
+&lt;/ul>
+&lt;h3 id="automatic-point-refinement-and-path-tracing">Automatic point refinement and path tracing&lt;/h3>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Desktop only&lt;/h4>
+&lt;p>These features only work in the desktop version of Horta. HortaCloud data does not contain the high-resolution 2D data needed to make them work.&lt;/p>
+&lt;p>If you are working on a rare dataset that &lt;em>does&lt;/em> have the full 2D octree in HortaCloud, it should work.&lt;/p>
+&lt;/div>
+&lt;ul>
+&lt;li>Automatic point refinement: This option can be toggled on and off from the gear menu in the workspace information area. It only applies to Horta 2D.
+&lt;ul>
+&lt;li>When this feature is toggled on, annotations will be placed at the x, y location of the click as usual. However, the annotation will be placed on the z-plane which has the brightest signal in the first channel within five planes of the click.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Automatic path tracing: This option can be toggled on and off from the gear menu in the workspace information area.
+&lt;ul>
+&lt;li>When this feature is toggled on, when the user adds a new annotation, Horta 2D places an additional set of annotations between the new annotation and its parent.&lt;/li>
+&lt;li>The &amp;ldquo;automatic path&amp;rdquo; is calculated automatically to follow the signal in three dimensions in the first channel using an A-* (A-star) algorithm. The details are contained in the reference section. The points are placed densely, approximately one pixel apart.&lt;/li>
+&lt;li>These paths are also drawn in a different style than the links between manually-placed points.&lt;/li>
+&lt;li>While the toggle is active, the paths are automatically recalculated whenever any manually-placed annotation changes. So if an annotation is moved by hand, all of the links to its parent and children will be updated with new automatic paths.&lt;/li>
+&lt;li>If you are using this feature, you should place annotations not too far apart. The algorithm is limited so it will not run more than a handful of seconds, and if points are too far apart, the algorithm may not find a path before it runs out of time.&lt;/li>
+&lt;li>These points may be exported as other points are. The &amp;ldquo;Export SWC&amp;rdquo; dialog contains one option to let you control how many points are exported. The &amp;ldquo;Point density&amp;rdquo; value should be set to 0 if you don&amp;rsquo;t want to export any automatically placed points, set to 1 if you want to export all of them, or to a positive integer n if you want to export every nth point.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>Note that you may request an automatic path tracing from an annotation to its parent explicitly from the right-click annotation menu.&lt;/p>
+&lt;h3 id="smart-merging">Smart merging&lt;/h3>
+&lt;p>&lt;strong>Note&lt;/strong>: this feature is experimental!&lt;/p>
+&lt;p>When presented with a large number of neuron fragments that must be assembled into reconstructed neurons, such as those provided by automated image analysis, the amount of time merging each neuron pair should be minimized. The &amp;ldquo;smart merge&amp;rdquo; feature tries to make it easier for the user to do a large number of repeated merges.&lt;/p>
+&lt;ul>
+&lt;li>To use this feature, select any point on the first neuron fragment. Then right-click on any point in the second neuron fragment and choose &amp;ldquo;Merge chosen neurite to selected neurite&amp;rdquo;.&lt;/li>
+&lt;li>Horta 2D will attempt to find the two endpoints in the two fragments that are closest.&lt;/li>
+&lt;li>Horta 2D will then move the point selection (the next parent selection) to the farthest endpoint in the merged neuron.&lt;/li>
+&lt;/ul>
+&lt;h3 id="arrow-key-navigation">Arrow key navigation&lt;/h3>
+&lt;p>You may navigate along the neuron backbone in Horta 2D using the arrow keys. With a point in a neuron selected (set as next parent), pressing an arrow key moves the selection to another point and recenters the screen on that point.&lt;/p>
+&lt;ul>
+&lt;li>Right arrow: moves to the next branch point or endpoint farther away from the neuron root; if there are multiple possible branches, the first is followed (see below)&lt;/li>
+&lt;li>Left arrow: moves to the previous branch point or root toward the root&lt;/li>
+&lt;li>Alt + left/right arrow: as before, but move by only one point instead of until next branch/root/end&lt;/li>
+&lt;li>Up/down arrows:
+&lt;ul>
+&lt;li>In general, the up and down arrows move you among parallel branches&lt;/li>
+&lt;li>When on a neuron segment that has another segment in parallel (another segment with the same branch point parent), move to the next such branch in sequence, positioned at the first point beyond the branch point.&lt;/li>
+&lt;li>When on a branch point or root, or segment without parallel branches, does nothing.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>The order of branches in all cases (&amp;ldquo;first&amp;rdquo; for right arrow, or parallel branches for up/down arrow) is determined by the order the children of the branch appear in internal data structures&lt;/li>
+&lt;/ul>
+&lt;h3 id="other">Other&lt;/h3>
+&lt;p>The &amp;ldquo;Volume cache&amp;rdquo; checkbox and &amp;ldquo;Clear cache&amp;rdquo; button to the right of the 2D view area should generally be ignored.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Desktop&lt;/h4>
+Since the desktop version of Horta uses the full 2D octree, prolonged browsing in the 2D view can fill up the 2D tile cache. Usually the system will clear its cache automatically, but in rare cases, when the cache is near full, the system will spend too much time managing the cache relative to loading tiles, and performance will suffer. When noticing a slowdown in tile loading, the user can press &amp;ldquo;Clear Cache&amp;rdquo;, and this may alleviate the issue.
+&lt;/div>
+&lt;h2 id="more-horta-3d-features">More Horta 3D features&lt;/h2>
+&lt;h3 id="right-click-operations-1">Right-click operations&lt;/h3>
+&lt;p>Horta 3D has a number of operations on its right-click menu. As with Horta 2D, some appear only when you right-click over an annotation, and others appear all the time. The options that always appear relate to display, and they are described below in &amp;ldquo;Display options&amp;rdquo;.&lt;/p>
+&lt;p>The operations that pertain the the annotation (anchor) or neuron under the mouse pointer replicate the corresponding functions in Horta 2D&amp;rsquo;s UI (see above).&lt;/p>
+&lt;h3 id="display-options">Display options&lt;/h3>
+&lt;p>There are a number of view options that can be adjusted in Horta. Many of them are located on the right-click menu under &amp;ldquo;View&amp;rdquo;.&lt;/p>
+&lt;h4 id="view--projection">View &amp;gt; Projection&lt;/h4>
+&lt;ul>
+&lt;li>Maximum Intensity Projection (MIP) is the default display projection mode in Horta. MIP projection provides a robust, informative view of volumetric imagery data, under a wide variety of brightness settings.&lt;/li>
+&lt;li>Occluding projection (&amp;ldquo;true&amp;rdquo; volume rendering) can convey a better sense of relative depth, compared to MIP, which can be useful for discriminating neurites that approach one another closely in space. The downside of this superior display quality is that it is very sensitive to the exact brightness settings. The user should probably adjust the brightness settings (Window-&amp;gt;Horta-&amp;gt;Brightness), especially the minimum intensity value, before switching to the &amp;ldquo;Occluding&amp;rdquo; mode.&lt;/li>
+&lt;/ul>
+&lt;h4 id="view--rendering-filter">View &amp;gt; Rendering Filter&lt;/h4>
+&lt;p>Horta provides three sub-voxel filtering options: Nearest Neighbor, Trilinear, and Tricubic. These filtering options can be used to trade off speed for image quality.&lt;/p>
+&lt;ul>
+&lt;li>Nearest-neighbor filtering shows the individual voxels of the raw image tile as discrete blocks. This mode is not particularly useful for visualization, but it is fast, and it is very useful for debugging, and for directly demonstrating the true spatial resolution of the underlying imagery data.&lt;/li>
+&lt;li>Trilinear filtering, the default option, interpolates between adjacent voxel intensities using a fast hardware-accelerated computation. This is a good compromise between render speed and image quality.&lt;/li>
+&lt;li>Tricubic interpolation is significantly slower than trilinear interpolation, but yields a smoother appearance, which can make it easier to see the true structure of the tissue being observed.&lt;/li>
+&lt;/ul>
+&lt;h4 id="other-view-options">Other View options&lt;/h4>
+&lt;ul>
+&lt;li>View &amp;gt; Stereo3D lets you choose between multiple methods of displaying images if you have appropriate 3D hardware support.&lt;/li>
+&lt;li>View &amp;gt; Compress voxels in z: This option, when checked, compresses voxels in the z direction to make them appear more cubic. Normally, the data has a worse resolution in z, giving the image volume a stretched look. The user may choose which appearance they prefer.&lt;/li>
+&lt;li>View &amp;gt; Save viewer settings: If you make changes to the color sliders, tracing channel settings, or any other Horta view settings, you must choose this command to save those changes.
+&lt;ul>
+&lt;li>&lt;strong>Note&lt;/strong>: unlike Horta 2D color model settings, which are saved with the workspace, these settings are save on a per-user basis! If you switch to another workspace, the same Horta color settings will be used.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Tracing channel: As described in Horta Basic operation, annotation in Horta 3D is assisted by Horta 3D&amp;rsquo;s &amp;ldquo;Snap to Signal&amp;rdquo; feature. This menu allows the user to choose which channel or combination of channels will be used to determine signal brightness.&lt;/li>
+&lt;/ul>
+&lt;h4 id="tiles">Tiles&lt;/h4>
+&lt;p>The tiles submenu controls loading of the 3D data tiles. Note that in normal operation, tiles are loaded automatically as you navigate through the volume, typically displaying 5-8 tiles surrounding the last mouse click.&lt;/p>
+&lt;ul>
+&lt;li>Tiles &amp;gt; Load Horta Tile at Cursor/Focus: Force load a tile at either the center of the screen (Focus) or the location of the mouse cursor; occasionally useful if the automatic algorithm isn&amp;rsquo;t doing what you want.&lt;/li>
+&lt;li>Tiles &amp;gt; Prefer rendered ktx tiles: When checked, Horta will prefer to load the ktx file format tiles. This is the default; ktx tiles load much faster than the alternative raw tiles. If this setting is unchecked, raw tiles, if available, will be loaded instead. Note that you must save viewer settings and restart the application if you change this setting.&lt;/li>
+&lt;li>Tiles &amp;gt; Clear all volume blocks: Choosing this operation forces all tiles to be discarded from the screen and cache and reloaded.&lt;/li>
+&lt;li>Auto-load image tiles: When checked, tiles are loaded automatically as you navigate; when unchecked, you must manually specify load of each desired tile using the other operations (Load at Cursor or Focus).&lt;/li>
+&lt;/ul>
+&lt;p>Normally the user will not change any of these options or use any of these operations.&lt;/p>
+&lt;h4 id="horta-3d-auxiliary-windows">Horta 3D auxiliary windows&lt;/h4>
+&lt;p>Horta 3D has a number of panels containing a variety of supplemental controls. They can be opened from the Window menu &amp;gt; Horta. All of them can be undocked, moved, and redocked anywhere you like.&lt;/p>
+&lt;ul>
+&lt;li>Horta 2D, Horta 3D: opens the view window but does not load any data (if data has already been loaded, it will be visible)&lt;/li>
+&lt;li>Camera Control: provides another way to control the camera in Horta 3D
+&lt;ul>
+&lt;li>Center focus, rotation, and zoom: replicate mouse commands&lt;/li>
+&lt;li>View Slab: adjusts how thick the visible slab of data is; the default preset II shows a nice chunk of data; preset I shows a very thin slab, closely resembling the 2D view&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Color Sliders: used to adjust the color settings for the image data channels and the tracing channel (as described in Horta Basic operation&lt;/li>
+&lt;li>Movie Maker and Scene Editor: not supported or documented&lt;/li>
+&lt;li>Graphics Speed: used for debugging; displays some graphics performance data&lt;/li>
+&lt;/ul></description></item><item><title>Docs: Installing Docker</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/installingdocker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/installingdocker/</guid><description>
 &lt;p>To install Docker on a server running Oracle Linux 8, some special configuration is needed. Much of this comes from the &lt;a href="https://docs.docker.com/install/linux/docker-ce/centos/">official documentation&lt;/a>.&lt;/p>
 &lt;h2 id="prerequisites">Prerequisites&lt;/h2>
 &lt;p>First, make sure that Docker isn’t already installed:&lt;/p>
@@ -564,7 +1408,151 @@ StorageVolume.mouseLightNFS.Tags=mousebrain,light
 StorageVolume.mouseLightNFS.VolumePermissions=READ
 &lt;/code>&lt;/pre>&lt;p>You can use any name you want instead of mouseLightNFS. Then you should add this name to StorageAgent.BootstrappedVolumes:&lt;/p>
 &lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">StorageAgent.BootstrappedVolumes=jade1,mouseLightNFS
-&lt;/code>&lt;/pre>&lt;p>You will need to bounce the service stack to pick up these changes.&lt;/p></description></item><item><title>Docs: Deploying ELK</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/elkdeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/elkdeployment/</guid><description>
+&lt;/code>&lt;/pre>&lt;p>You will need to bounce the service stack to pick up these changes.&lt;/p></description></item><item><title>Docs: Reference</title><link>https://hortacloud.janelia.org/docs/user_manual/reference/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/reference/</guid><description>
+&lt;h2 id="importexport-file-formats">Import/export file formats&lt;/h2>
+&lt;h3 id="swc">SWC&lt;/h3>
+&lt;p>The swc file format is a standard format for recording neuron skeletons. Unfortunately, while the basic format is widely used, there is no single standard for defining the format, and as a result, there are differences in implementation among various swc writers and readers. The basic spec can be seen &lt;a href="http://www.neuronland.org/NLMorphologyConverter/MorphologyFormats/SWC/Spec.html">here&lt;/a>.&lt;/p>
+&lt;p>In summary, an SWC file:&lt;/p>
+&lt;ul>
+&lt;li>is a text file&lt;/li>
+&lt;li>contains a number of header lines, each beginning with a &amp;lsquo;#&amp;rsquo; character&lt;/li>
+&lt;li>followed by a list of points, one per line, with parents preceding children&lt;/li>
+&lt;/ul>
+&lt;p>Each line consists of seven numbers separated by whitespace in the following order: &lt;code>id type x y z radius parent&lt;/code>, with:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>field&lt;/th>
+&lt;th>value&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>id&lt;/td>
+&lt;td>integer identifying the point, in ascending order&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>type&lt;/td>
+&lt;td>integer indicating the type of the previous segment, with: &lt;br/> 0 = undefined &lt;br/> 1 = soma &lt;br/> 2 = axon &lt;br/> 3 = dendrite &lt;br/> 4 = apical dendrite &lt;br/> 5 = fork point &lt;br/> 6 = end point &lt;br/> 7 = custom&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x, y, z&lt;/td>
+&lt;td>floating point coordinates of the point&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>radius&lt;/td>
+&lt;td>floating point radius of the previous segment&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>parent&lt;/td>
+&lt;td>id value of the parent for the current point; a root point has parent = -1&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Notes:&lt;/p>
+&lt;ul>
+&lt;li>two fields are non-critical for rendering the basic neuron skeleton:
+&lt;ul>
+&lt;li>the &lt;code>type&lt;/code> field describes but does not affect connectivity and can usually be ignored&lt;/li>
+&lt;li>the &lt;code>radius&lt;/code> field does not affect connectivity; it&amp;rsquo;s only necessary if you are rendering neuron volumes (skeletons with width)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>a node&amp;rsquo;s &lt;code>id&lt;/code> must appear in the &lt;code>id&lt;/code> column before it appears as a &lt;code>parent&lt;/code>; that is, child nodes must appear lower in the list than parent nodes&lt;/li>
+&lt;/ul>
+&lt;h4 id="janelia-specific-details">Janelia-specific details&lt;/h4>
+&lt;ul>
+&lt;li>Only nodes with &lt;code>type&lt;/code> 5 and 6 are marked by Horta, as they are the only types that can be inferred from geometry at export time. All other points are marked as &lt;code>type&lt;/code> 0. On import, the &lt;code>type&lt;/code> column is ignored.&lt;/li>
+&lt;li>Coordinates and radii are assumed to be in microns.&lt;/li>
+&lt;li>A few headers are used by Horta:
+&lt;ul>
+&lt;li>&lt;code>ORIGINAL_SOURCE&lt;/code>, a fairly standard header, is set to &amp;ldquo;Janelia Workstation Large Volume Viewer&amp;rdquo;
+&lt;ul>
+&lt;li>That is the original name for the software, back when it was only 2D, and we decided not to change this identifier.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>The x, y, z locations of the nodes are centered on the origin at export time because not all SWC viewers can handle the large coordinates (Horta can). The header field &lt;code>OFFSET&lt;/code> gives the x, y, z offset needed to reproduce the original annotation location. The values are whitespace-delimited floating point numbers. Horta correctly handles this field during its own import and export; it will always use the field on export, but it doesn&amp;rsquo;t complain if it&amp;rsquo;s missing on import. If an swc reader ignores this header, the neuron will be of correct shape but shifted in space from its original location.&lt;/li>
+&lt;li>The color of the exported neuron (optional) is recorded in the header field &lt;code>COLOR&lt;/code> as a comma-separated list of floating point RGB values ranging from 0 to 1.&lt;/li>
+&lt;li>Other headers are ignored at import.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>The name of the neuron is not stored inside the swc file. However, when imported, the neuron will be named like the swc file.&lt;/li>
+&lt;/ul>
+&lt;p>Here is an example swc file:&lt;/p>
+&lt;pre tabindex="0">&lt;code># ORIGINAL_SOURCE Janelia Workstation Large Volume Viewer
+# OFFSET 76290.282407 42379.443335 23460.277313
+# COLOR 0.501961,0.000000,1.000000
+1 0 -870.258314 84.790733 0.000000 1.000000 -1
+2 0 -408.096941 6.007367 0.000000 1.000000 1
+3 5 54.064431 -72.775998 0.000000 1.000000 2
+4 0 232.512856 -256.688292 0.000000 1.000000 3
+5 6 600.186790 -429.961032 0.000000 1.000000 4
+6 0 159.078322 142.548313 0.000000 1.000000 3
+7 6 232.512856 526.078910 0.000000 1.000000 6
+&lt;/code>&lt;/pre>&lt;h3 id="json">JSON&lt;/h3>
+&lt;p>When neurons are exported from Horta in swc format, any notes attached to the neuron&amp;rsquo;s points are also exported. The notes are contained in a JSON file of the same name as the swc file but with a &amp;ldquo;.json&amp;rdquo; extension. The JSON file contains a dictionary with the following fields:&lt;/p>
+&lt;ul>
+&lt;li>workspaceID: contains the integer workspace ID number&lt;/li>
+&lt;li>username: contains the workstation username of the user doing the export&lt;/li>
+&lt;li>offset: contains a list of floating point numbers [x, y, z] holding the offset as described in the section above&lt;/li>
+&lt;li>neurons: contains a list of dictionaries, one per neuron exported; each dictionary has fields:
+&lt;ul>
+&lt;li>neuronID: contains the integer neuron ID number&lt;/li>
+&lt;li>notes: contains a list of neuron notes; each note is a list of [x, y, z, note]&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>on import, the username and workspace and neuron IDs are ignored&lt;/li>
+&lt;/ul>
+&lt;p>The x, y, z, coordinates of each note will match the coordinates of the corresponding annotation in the corresponding swc file, as they use the same offset system. Horta automatically imports and exports the JSON files when the swc files are imported or exported.&lt;/p>
+&lt;p>Here is an example JSON file that corresponds to the above example swc file:&lt;/p>
+&lt;pre tabindex="0">&lt;code>{
+&amp;#34;workspaceID&amp;#34; : 2229358932059488401,
+&amp;#34;username&amp;#34; : &amp;#34;olbrisd&amp;#34;,
+&amp;#34;neurons&amp;#34; : [ {
+&amp;#34;neuronID&amp;#34; : 2653026075256291473,
+&amp;#34;notes&amp;#34; : [ [ 232.51285642151197, 526.0789095035507, 3.637978807091713E-12, &amp;#34;traced end&amp;#34; ], [ 232.51285642151197, -256.68829229611583, 3.637978807091713E-12, &amp;#34;interesting&amp;#34; ] ]
+} ],
+&amp;#34;offset&amp;#34; : [ 76290.28240663109, 42379.443335160235, 23460.2773125 ]
+}
+&lt;/code>&lt;/pre>&lt;h2 id="image-file-formats">Image file formats&lt;/h2>
+&lt;h3 id="raw-tiff-stacks">Raw tiff stacks&lt;/h3>
+&lt;p>The raw microscope data is stored in tiff stacks. They can be displayed in Horta 2D on demand, but they are typically used only in rare instances when stitching in the rendered images is not perfect. Typically this data is only availabe in the desktop version of the software at the site the sample was imaged.&lt;/p>
+&lt;p>Details of the files and their organization will be added later.&lt;/p>
+&lt;h3 id="rendered-2d-images">Rendered 2D images&lt;/h3>
+&lt;p>The raw microscope data is transformed and stitched together into a contiguous rendered whole. It&amp;rsquo;s also stored in tiff stacks, rendered at multiple resolutions and arranged in an octree. For HortaCloud, this data likely only has the a single low-resolution image for each channel.&lt;/p>
+&lt;p>Details of the files and their organization will be added later.&lt;/p>
+&lt;h3 id="horta-3d-images-ktx-files">Horta 3D images (ktx files)&lt;/h3>
+&lt;p>Horta&amp;rsquo;s 3D images are optimized for fast loading into the Horta viewer. The ktx file format is designed to load directly into graphics cards. In order to keep the files both small enough to load rapidly and small enough to economically store, the rendered data is transformed and down-sampled before ktx tile creation. These files are also arranged in an octree, although currently Horta only uses the highest resolution images.&lt;/p>
+&lt;p>The file format is managed by the Khronos Group and is described &lt;a href="https://www.khronos.org/api/index_2017/ktx">here&lt;/a>.&lt;/p>
+&lt;p>Horta-specific details will be added later.&lt;/p>
+&lt;h2 id="a-algorithm-for-automatically-traced-paths">A* algorithm for automatically traced paths&lt;/h2>
+&lt;p>The algorithm for computing the path is:&lt;/p>
+&lt;ul>
+&lt;li>Extract a rectangular solid block of voxels containing the two endpoints, plus a small buffer region in all three dimensions. (Thus, if the neuron meanders outside of this block, the technique will not work well. Try to choose anchors with relatively straight connections between them.)&lt;/li>
+&lt;li>Measure the variation in voxel intensity within that block: record mean and standard deviation.
+&lt;ul>
+&lt;li>Currently, only the first channel is examined!&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Assume that the background (non-neuron) intensities follow a normal distribution, with the measured parameters (mean and standard deviation).&lt;/li>
+&lt;li>Define the path weight for a particular voxel, as the probability that an intensity greater than or equal to the voxel intensity, could have arisen randomly from the background distribution. Thus dim voxels get a large path weight, and bright voxels get a small path weight. This value can get extremely small for very bright pixels (think 10 raised to the minus seventy power). You can think of this weight as (1.0 minus the probability this voxel is a neuron), assuming all voxels are either background or neurons.
+&lt;ul>
+&lt;li>weight = erf( (intensity - mean) / (standard_deviation) ), where erf() is the &lt;a href="http://en.wikipedia.org/wiki/Error_function">error function&lt;/a>.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Because it uses the mean and standard deviation of intensities, this method of path weighting is robust in the face of large uniform intensity bias offsets, like we sometimes see in the mouse brain imagery.&lt;/li>
+&lt;li>Use the &lt;a href="https://en.wikipedia.org/wiki/A*_search_algorithm">A* (A-star) algorithm&lt;/a> to compute the lowest cost path connecting the two endpoints. This path is guaranteed to be optimal.&lt;/li>
+&lt;li>The algorithm will be terminated if it takes more than 10 seconds to finish.&lt;/li>
+&lt;/ul>
+&lt;h2 id="user-groups-for-ownership-purposes">User groups for ownership purposes&lt;/h2>
+&lt;p>There are two user groups in the workstation that are used in neuron ownership operations. They are set at compile time to values specified in the &lt;code>console.properties&lt;/code> file.&lt;/p>
+&lt;pre tabindex="0">&lt;code>console.LVVHorta.tracersgroup=group:mouselight
+console.LVVHorta.activetracersgroup=group:mouselight_tracers
+&lt;/code>&lt;/pre>&lt;ul>
+&lt;li>The &amp;ldquo;tracersgroup&amp;rdquo; variable should be set to a group that contains all of the people using Horta to trace neurons. If a neuron is owned by this group, any member of the group can take ownership immediately. This group is expected to be used for ownership of samples and workspaces as well, so it may contain people who are not tracers but who will be looking at the same data and/or the tracers&amp;rsquo; work.&lt;/li>
+&lt;li>The &amp;ldquo;activetracersgroup&amp;rdquo; variable should be set to a group containing only people who are tracing. The members of this group will be listed in some neuron ownership change dialogs for convenience.&lt;/li>
+&lt;li>If either group does not exist in the workstation database, the corresponding features will be disabled.&lt;/li>
+&lt;li>&lt;strong>Note&lt;/strong>: This scheme assumes that all tracers are members of one group that shares data freely. If you need to support multiple groups that will not be sharing data, you should currently deploy separate infrastructure (servers, etc) to support each group.&lt;/li>
+&lt;/ul></description></item><item><title>Docs: Deploying ELK</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/elkdeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/elkdeployment/</guid><description>
 &lt;p>Currently ELK is only available in a swarm deployment because of how the ELK stack is configured.&lt;/p>
 &lt;p>Most of the set up necessary for ELK - configuration files and/or data directories - is already done as part of filesystem initialization performed while executing:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>./manage.sh init-filesystems
