@@ -31,7 +31,7 @@ Here are some settings of interest:
 - `Horta > Application`:
     + "Use http for file access": Must be left checked.
     + "Load last opened sample...": This option is not currently working.
-    + "Verify neurons on load" is never needed under normal circumstances. It can be enabled to check for some internal inconsistancies in neurons stored in the database.
+    + "Verify neurons on load" is never needed under normal circumstances. It can be enabled to check for some internal inconsistencies in neurons stored in the database.
     + "Use anchors-in-viewport" should be left enabled. This is a graphics optimization. 
     + See below for "Click mode for adding annotations"
     + "Z-slice thickness": The 2D view shown in Horta 2D actually shows annotations from multiple planes. This setting determines the depth of this effect. If you increase the number, annotations become visible on a large number of surrounding planes. Note however that there are some subtle behaviors in how the data and annotations are rendered, and changing this value dramatically away from its default value may not have the effect you want.

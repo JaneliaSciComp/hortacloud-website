@@ -92,7 +92,7 @@ Here is an example JSON file that corresponds to the above example swc file:
 
 ### Raw tiff stacks
 
-The raw microscope data is stored in tiff stacks. They can be displayed in Horta 2D on demand, but they are typically used only in rare instances when stitching in the rendered images is not perfect. Typically this data is only availabe in the desktop version of the software at the site the sample was imaged.
+The raw microscope data is stored in tiff stacks. They can be displayed in Horta 2D on demand, but they are typically used only in rare instances when stitching in the rendered images is not perfect. Typically this data is only available in the desktop version of the software at the site the sample was imaged.
 
 Details of the files and their organization will be added later.
 

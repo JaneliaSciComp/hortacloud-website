@@ -22,7 +22,7 @@ You should contact whomever prepared your data if you don't know the answers to 
 
 ## Data Explorer and Data Inspector
 
-When Horta is lauched (either version), you will see the Data Explorer and Data Inspector at the left edge of the application window. 
+When Horta is launched (either version), you will see the Data Explorer and Data Inspector at the left edge of the application window. 
 
 The Data Explorer panel lists all of the objects in the workstation that the user has permission to view. These objects include both samples and workspaces as well as folders used to organize them. 
 

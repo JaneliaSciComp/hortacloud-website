@@ -1,9 +1,9 @@
 ---
-title: "Appstream Basics"
-linkTitle: "Appstream Basics"
+title: "AppStream Basics"
+linkTitle: "AppStream Basics"
 weight: 20
 description: >
-    Some general information about running HortaCloud in the Appstream environment
+    Some general information about running HortaCloud in the AppStream environment
 ---
 
 
