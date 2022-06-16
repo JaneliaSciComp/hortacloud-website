@@ -55,7 +55,7 @@
 &lt;li>&lt;code>semi-automated&lt;/code>: a computer program partially traces the signal in a dataset; the fragments are imported into the workstation; a tracer connects and/or extends fragments as needed to produce the skeleton&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;/ul></description></item><item><title>Docs: Appstream Basics</title><link>https://hortacloud.janelia.org/docs/user_manual/appstream_basics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/appstream_basics/</guid><description>
+&lt;/ul></description></item><item><title>Docs: AppStream Basics</title><link>https://hortacloud.janelia.org/docs/user_manual/appstream_basics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/appstream_basics/</guid><description>
 &lt;h2 id="the-appstream-environment">The AppStream environment&lt;/h2>
 &lt;p>In general, the AppStream environment behaves like a Windows desktop computer running a single application, Horta. Because it&amp;rsquo;s running in a browser, though, there are some important differences. Many of them are managed via the AppStream toolbar at the top of the screen.&lt;/p>
 &lt;a href="../AppStream-toolbar.png">
@@ -111,7 +111,7 @@ alt="AppStream toolbar"/>
 &lt;/ul>
 &lt;p>You should contact whomever prepared your data if you don&amp;rsquo;t know the answers to the above questions.&lt;/p>
 &lt;h2 id="data-explorer-and-data-inspector">Data Explorer and Data Inspector&lt;/h2>
-&lt;p>When Horta is lauched (either version), you will see the Data Explorer and Data Inspector at the left edge of the application window.&lt;/p>
+&lt;p>When Horta is launched (either version), you will see the Data Explorer and Data Inspector at the left edge of the application window.&lt;/p>
 &lt;p>The Data Explorer panel lists all of the objects in the workstation that the user has permission to view. These objects include both samples and workspaces as well as folders used to organize them.&lt;/p>
 &lt;p>Single-clicking on an object in the Explorer will populate the Data Inspector with more details about the object. The &lt;code>Attributes&lt;/code> tab shows object metadata. &lt;code>Permissions&lt;/code> shows current access permission and, via the &amp;ldquo;Grant permission&amp;rdquo; button at the bottom, allows the user to share read or write (edit) permissions for the selected object. The &lt;code>Annotations&lt;/code> tab is only used in the desktop application for datatypes not available in HortaCloud.&lt;/p>
 &lt;p>Right-clicking on an object brings up a menu of actions. Most are self-explanatory; others will be described later in this section or in one of the reference sections.&lt;/p>
@@ -547,7 +547,7 @@ If you&amp;rsquo;re running Windows, choose Tools &amp;gt; Options if you&amp;rs
 &lt;ul>
 &lt;li>&amp;ldquo;Use http for file access&amp;rdquo;: Must be left checked.&lt;/li>
 &lt;li>&amp;ldquo;Load last opened sample&amp;hellip;&amp;rdquo;: This option is not currently working.&lt;/li>
-&lt;li>&amp;ldquo;Verify neurons on load&amp;rdquo; is never needed under normal circumstances. It can be enabled to check for some internal inconsistancies in neurons stored in the database.&lt;/li>
+&lt;li>&amp;ldquo;Verify neurons on load&amp;rdquo; is never needed under normal circumstances. It can be enabled to check for some internal inconsistencies in neurons stored in the database.&lt;/li>
 &lt;li>&amp;ldquo;Use anchors-in-viewport&amp;rdquo; should be left enabled. This is a graphics optimization.&lt;/li>
 &lt;li>See below for &amp;ldquo;Click mode for adding annotations&amp;rdquo;&lt;/li>
 &lt;li>&amp;ldquo;Z-slice thickness&amp;rdquo;: The 2D view shown in Horta 2D actually shows annotations from multiple planes. This setting determines the depth of this effect. If you increase the number, annotations become visible on a large number of surrounding planes. Note however that there are some subtle behaviors in how the data and annotations are rendered, and changing this value dramatically away from its default value may not have the effect you want.&lt;/li>
@@ -949,7 +949,7 @@ Since the desktop version of Horta uses the full 2D octree, prolonged browsing i
 }
 &lt;/code>&lt;/pre>&lt;h2 id="image-file-formats">Image file formats&lt;/h2>
 &lt;h3 id="raw-tiff-stacks">Raw tiff stacks&lt;/h3>
-&lt;p>The raw microscope data is stored in tiff stacks. They can be displayed in Horta 2D on demand, but they are typically used only in rare instances when stitching in the rendered images is not perfect. Typically this data is only availabe in the desktop version of the software at the site the sample was imaged.&lt;/p>
+&lt;p>The raw microscope data is stored in tiff stacks. They can be displayed in Horta 2D on demand, but they are typically used only in rare instances when stitching in the rendered images is not perfect. Typically this data is only available in the desktop version of the software at the site the sample was imaged.&lt;/p>
 &lt;p>Details of the files and their organization will be added later.&lt;/p>
 &lt;h3 id="rendered-2d-images">Rendered 2D images&lt;/h3>
 &lt;p>The raw microscope data is transformed and stitched together into a contiguous rendered whole. It&amp;rsquo;s also stored in tiff stacks, rendered at multiple resolutions and arranged in an octree. For HortaCloud, this data likely only has the a single low-resolution image for each channel.&lt;/p>
