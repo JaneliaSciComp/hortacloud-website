@@ -8,6 +8,10 @@ description: >
 
 In this tutorial, we'll go over the steps needed to log into HortaCloud and start the Horta application.
 
+{{% alert title="HortaCloud only" color="primary" %}}
+This tutorial applies to HortaCloud only.
+{{% /alert %}}
+
 ## Prerequisites
 
 - You should know the URL for the HortaCloud instance that you will be using.

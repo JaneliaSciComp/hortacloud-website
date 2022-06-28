@@ -9,6 +9,11 @@ description: >
 
 In this tutorial, we'll go over the steps needed to load images in Horta and view them.
 
+{{% alert title="HortaCloud-focused" color="primary" %}}
+This tutorial is focused on HortaCloud. However, most of it applies to the desktop version of Horta as well. If you can launch Horta on the desktop, and you see data in the Data Explorer, you should be able to follow most of the other steps of the tutorial.
+{{% /alert %}}
+
+
 ## Prerequisites
 
 - You should be able to log into HortaCloud and launch the Horta application.
@@ -20,21 +25,148 @@ In this tutorial, we'll go over the steps needed to load images in Horta and vie
 
 ### Start the Horta Application
 
-See the previous tutorial "Logging in" for more detail.
+Launch the Horta application. See the previous tutorial "Logging in" for more detail.
 
-### Locate the data in the Data Explorer
+### Locate and examine data in the Data Explorer
+
+The "Data Explorer", which appears by default in the upper left panel of Horta, shows a representation of all the data in Horta that you are allowed to see. This data is organized in folders, both created by the system and created by users. The exact list of folder you see will differ depending on which data you have permission to see.
+
+Click on the triangle to the left of the folder named `Home` with the owner `mouselight`, which appears immediately to the right of the folder name, in yellow. This will open the folder to show its contents.
+
+Click on the triangle to the left of the "3D Tile Microscope Samples" folder, also owned by `mouselight`. You will see a long list of samples, indicated by a green flask icon. Each of these sample represents a group of image files on disk or in an AWS S3 bucket.
+
+(screenshot of data explorer showing all the folders)
+
+For this tutorial, we're going to look at one of the Janelia Mouse Light samples, the `2021-03-17` sample. Scroll down the list of samples until you see it. Left-click on the sample to select it. You will see information appear in the "Data Inspector", located just below the Data Explorer.
+
+(screenshot of data explorer showing folders open, 2021-03-17 selected)
+
+The three tabs of the Data Inspector each show information about the sample. The "Attributes" tab contains typical metdata like name, creation/modification date, and globally unique identifier (GUID). It also shows the sample's owner and the location of the image files that belong to the sample. The "Permissions" tab shows which users or groups can read or write to the data. There's also a button which allows someone to grant permissions to other users to see or edit the data. The third tab, "Annotations", is not used by Horta and is only used with other tools in the desktop workstation client.
 
 
-### Open the data in Horta
+### Open a sample in Horta
 
+Now that we've located the `2021-03-17` sample, it's time to open it in Horta. 
 
-### Open the Horta 2D window
+Do one of two things:
 
+1. Right-click the sample, and choose "Open in Horta".
+2. Left-click the sample to selecte it; then choose `Horta` > `Open in Horta` from the `Actions` menu.
 
-### Explore the data in 2D
+At this point, not a lot will visibly happen. When you open a sample in Horta, all that happens is that the dataset's metadata is loaded into the application. The images themselves are not yet loaded. You will see that in the "Horta Control Center" panel at right, near the top, the "Sample" field will now show the name "2021-03-17". That's all (screenshot below). In the next tutorial ("Tracing neurons"), we'll see that opening a workspace in Horta populates much more information in the UI. The "Concepts" section of the documentation has more information on the difference between samples and workspaces.
+
+(screenshot of HCC with sample name visible?  or all of Horta, to emphasize nothing loaded)
 
 
 ### Open the Horta 3D window
 
+It's time to finally look at some images. For this demonstration, we'll start with the 3D images. Near the top of the Horta Control Center, find the checkbox labeled "Open 3D". Click it so it's checked.
+
+You will see a window tab titled "Horta 3D" open in the center panel. The first 3D images will also load. Initially, it'll be underwhelming. Probably you'll see one small bright rectangle in the center of the screen. In the next section, we'll see how to adjust the color. For now, if you left-click in the 3D window, more data will load to cover most of the window.
+
+(screenshot of loaded 3d sample, default colors)
+
+
 
 ### Explore the data in 3D
+
+#### Adjust colors
+
+The default color settings are not good; in general, the data will appear to be a washed out bright, light blue/purple. In order to adjust the color, first we need to go to the "Windows" menu and choose Horta > Color Sliders. Like other panels in Horta, it may be resized and docked or undocked from the main window. Often when the sliders are first opened, the 3D image will be redrawn, or potentially not drawn at all. If this occurs, left-click in the 3D window to trigger a redraw.
+
+Even though the data only has two channels (a signal channel and a reference channel), you'll see three sliders. The third blue slider has a specialized use that we're not going to cover in this tutorial. Click the eye next to the blue slider, and the blue channel will be hidden.
+
+In practice, the user will likely spend a lot of time tuning the color settings so the desired biological structures are most visible. For this tutorial, we'll cover a few simple steps to make the data more aparent:
+
+1. Click the eye icon to the left of the top, green slider. This turns the green channel data invisible.
+2. Now drag the leftmost slider of the middle, purple slider to the right. Do this until the blocky, purple background of the image tiles disappears and you can see the purple outline of the brain. For this data, you'll be dragging the slider until it's just to the right of the center lock icon below the sliders.
+3. Now do it again for green. Click the eye next to the green slider to show the green channel, and the eye next to the purple channel to hide it. Drag the leftmost slide of the green bar until, again, the blocky background disappears and the brain outline is visible. For this data, it is again just to the right of the center lock icon below the sliders.
+4. Click the eye next to the purple slide so both data channels are visible again.
+
+At this point (screenshot), the brain appears kind of gray. The labeled neurons, though, stand out in green. Feel free to experiment with the other sliders. In practice, some tracers prefer to adjust the settings until the background is nearly invisible, so that the neuron signal is prominent, even if dim.
+
+Note: Color settings are not saved for samples! In the next tutorial, we'll see how these settings _are_ saved in workspaces.
+
+
+
+#### Pan, zoom, rotate
+
+Navigating the 3D data is done using the mouse. 
+
+To navigate in space (pan):
+- left-click to center on a location
+- left-drag to move the image in the view plane
+- as you navigate, images will be loaded and unloaded
+
+
+To zoom in and out:
+- use the scroll wheel to zoom in or out; as you zoom, higher or lower resolutions images will be loaded
+- note that as you zoom in, you will see less and less of the thickness of the brain; that is, the displayed data will come from a projection depth that is smaller, allowing you to more clearly isolate smaller structures as you zoom in
+
+
+To rotate in 3D:
+- middle-click and drag, or hold down the shift key and left-click and drag; the cursor will change to two curved arrows, and the image will rotate in three dimensions
+
+(screenshot?)
+
+
+### Open the Horta 2D window
+
+{{% alert title="HortaCloud" color="primary" %}}
+Note that HortaCloud does not store high-resolution 2D images! When you zoom in, the images will be blurry.
+
+In the Horta desktop application, when you zoom in, higher-resolution images will automatically be loaded.
+{{% /alert %}}
+
+Loading the 2D images is done just like for 3D. Near the top of the Horta Control Center, find the checkbox labeled "Open 2D". Click it so it's checked.
+
+You will see a window tab titled "Horta 2D" open in the center panel. The first 2D images will also load.
+
+(screenshot of loaded 2d sample, default colors)
+
+
+### Explore the data in 2D
+
+#### Adjust colors
+
+As with 3D, the default color settings are almost never useful, and we'll quickly adjust them to make the data more visible. In practice, the user will likely spend a lot of time tuning the color settings so the desired biological structures are most visible.
+
+The colors of the two data channels are controlled by the sliders and buttons at the bottom of the middle panel in the "Horta 2D" tab. They are distinct from the sliders used to adjust the 3D colors. Here are the steps to make some minimal adjustments to the colors:
+
+1. Click the eye icon to the left of the top, green slider. This turns the green channel data invisible.
+2. Now drag the leftmost slider of the lower, purple slider to the right. Do this until the blocky, purple background of the image tiles disappears and you can see the purple outline of the brain. For this data, you'll be dragging the slider until it's just to the right of the center lock icon below the sliders.
+3. Now do it again for green. Click the eye next to the green slider to show the green channel, and the eye next to the purple channel to hide it. Drag the leftmost slide of the green bar until, again, the blocky background disappears and the brain outline is visible. For this data, it is again just to the right of the center lock icon below the sliders.
+4. Click the eye next to the purple slide so both data channels are visible again.
+
+At this point (screenshot), the brain appears kind of gray. The labeled neurons, though, stand out in green. Note for example the neuron to the left of the midline on the starting plane (plane number 5632).
+
+Feel free to experiment with the other sliders. In practice, some tracers prefer to adjust the settings until the background is nearly invisible so the neuron signal is prominent, even if dim.
+
+(screenshot of sample, adjusted colors)
+
+
+Note: Color settings are not saved for samples! In the next tutorial, we'll see how these settings _are_ saved in workspaces.
+
+
+#### Pan, scroll through z, zoom
+
+Navigating the 2D data is done using the mouse. 
+
+To navigate in the x-y plane, you can:
+- double-left-click on any location to center the view on that point
+- middle-click and drag to pan the image to any location
+
+To navigate along the z-axis, you can:
+- use the scroll wheel to change the visible plane
+- drag the horizontal slider below the 2D view to change the visible plane
+- change the plane number visible in the plane number box to the right of the plane slider by either typing a plane number in the box, or by clicking the up and down arrows in the box
+
+To zoom the image:
+- hold down the shift key and spin the scroll wheel
+- drag the vertical slider to the right of the 2D view
+- remember, HortaCloud does not has high-resolution 2D images; when you zoom in, it will be blurry!
+
+
+(screenshot of what?  something zoomed in?  or controls with labels?)
+
+
