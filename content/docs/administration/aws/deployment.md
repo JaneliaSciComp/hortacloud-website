@@ -247,6 +247,38 @@ npm run deploy -- -u -r -b <backup bucket> -f hortacloud/backups/manual-backup/c
 
 The folder parameter must point to the actual cognito prefix, where 'users.json' and 'groups.json' are located
 
+### Incremental approach
+
+Incremental approach is more manual but it does not require any data restore. It basically removes only the frontend stacks, i.e. Appstream and admin app and it requires a manual update of the backend stack and of the workstation. The steps for the incremental approach are the following:
+* Remove only the frontend stacks:
+    ```npm run destroy -- -b```
+* From the AWS console connect to the EC2 instance (`<ORG>-hc-jacs-node-<STAGE>`) running the JACS stack.
+* Once connected run the following commands
+    ```
+    cd /opt/jacs/deploy
+    ./manage.sh compose down
+    sudo git pull origin stable
+    ./manage.sh compose up -d
+    ```
+* Start AppStream builder (`<ORG>-hc-image-builder-<STAGE>`)
+* Connect as Administrator
+* Check that 'reinstallwsonly.ps1' script is available, in the Admin's home directory. If not copy it from the application repo or just create it like the other install scripts, ('installcmd.ps1' and 'createappimage.ps1') were created on the initial deployment.
+* Run the reinstallwssonly.ps1 script:
+    ```
+    .\reinstallwssonly.ps1 <IP of host running JACS stack>
+    ```
+    The IP of the host running JACS is the same used for initial run of 'installcmd.ps1' and it can be found from the AWS console.
+* Try out the workstation application to make sure it works
+    ```
+    C:\apps\runJaneliaWorkstation.ps1
+    ```
+* Start the script for creating the AppStream image `.\createappimage.ps1`
+* Reinstall the frontend stacks
+    ```
+    npm run deploy
+    ```
+  If no changes were made to the code CDK is smart enough to only update the missing stacks, leaving JACS stack as is since the stack already exists
+
 ## Uninstalling HortaCloud services to AWS
 
 To completely uninstall the application run:
