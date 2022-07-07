@@ -211,14 +211,41 @@ By default the application will have a very long url that is not easy to remembe
 
 ## Upgrading HortaCloud services to AWS
 
-Upgrading the application, either for upgrading the back-end services or the Appstream front-end, require removing (uninstalling) the existing application and reinstalling it. To uninstall simply run:
+### Brute Force Approach
+
+This method requires removing (uninstalling) the existing HortaCloud stack and then reinstalling it. Because of the requirement to remove the existing installation the approach there is a relatively high risk of loosing the data, so before starting anything it is best to check that the latest backup or some backup is available. Upgrading the application typically only requires a backend and an application frontend upgrade - without any need to migrate the users so you only need to check if a backup for the JACS Mongo database exists typically at `s3://<HORTA_BACKUP_BUCKET value>/<HORTA_BACKUP_FOLDER value>/<timestamp>/jacs`
+
+To uninstall current HortaCloud instance run:
 ```bash
 npm run destroy
 ```
-and then reinstall it using:
+
+This command will uninstall the frontend and the backend AWS Cloudformation stacks, i.e., Admin, Appstream and JACS stacks, but it will not uninstall Cognito stack, so no user account will be removed.
+
+The next step is to upgrade the local git repo using
+```
+git pull
+```
+followed by redeploying the application.
+
+In order to restore the database from an existing backup make sure the following properties are set:
+```
+HORTA_RESTORE_BUCKET=<backup bucket name>
+HORTA_RESTORE_FOLDER="/hortacloud/backups/latest"
+```
+HORTA_RESTORE_BUCKET is the name of the backup bucket and HORTA_RESTORE_FOLDER must reference the parent prefix containing the 'jacs' folder - the location of the actual mongo backup. Typically the backup job creates a "softlink"  - "/hortacloud/backups/latest" so if you simply set the restore folder to that it should pick up the latest backup. If the backup was a manual backup or you need to restore to a previous date set the restore folder to that folder. For example setting `HORTA_RESTORE_FOLDER=/hortacloud/backups/20220609030001` will restore the database to the content saved on "Jun 9, 2022".
+
+After setting these properties you can proceed with the actual deploy procedure which will only install the backend and the frontend stack (skipping any Cognito installation):
 ```bash
 npm run deploy
 ```
+
+If somehow you need to recreate the user login accounts because you inadvertently removed the Cognito stack as well (using '-u' flag) you can restore all the accounts from a previous backup using the following command:
+```
+npm run deploy -- -u -r -b <backup bucket> -f hortacloud/backups/manual-backup/cognito
+```
+
+The folder parameter must point to the actual cognito prefix, where 'users.json' and 'groups.json' are located
 
 ## Uninstalling HortaCloud services to AWS
 
@@ -227,7 +254,7 @@ To completely uninstall the application run:
 npm run destroy -- -u
 ```
 
-The command will uninstall all stacks including the user login stack.
+The command will uninstall all stacks including the user logins (Cognito) stack.
 
 Note in the previous [system upgrade section](#Upgrading_HortaCloud_services_to_AWS) that an upgrade typically does not require removing and recreating the user pool stack.
 
