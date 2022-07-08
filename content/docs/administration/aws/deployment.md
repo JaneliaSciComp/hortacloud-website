@@ -272,12 +272,13 @@ Incremental approach is more manual but it does not require any data restore. It
     ```
     C:\apps\runJaneliaWorkstation.ps1
     ```
-* Start the script for creating the AppStream image `.\createappimage.ps1`
+* Make sure you have the latest 'createappimage.ps1' script from the application git repository. If you don't copy the latest script that supports '--skip-registration' flag.
+* Start the script for creating the AppStream image but skip the application registration: `.\createappimage.ps1 --skip-registration`
 * Reinstall the frontend stacks
     ```
     npm run deploy
     ```
-  If no changes were made to the code CDK is smart enough to only update the missing stacks, leaving JACS stack as is since the stack already exists
+  If no changes were made to the code AWS CDK will only update the missing stacks, leaving JACS stack as it was since it practically has not been changed from AWS' perspective
 
 ## Uninstalling HortaCloud services to AWS
 
