@@ -202,6 +202,32 @@ HORTA_RESTORE_FOLDER=&amp;#34;/hortacloud/backups/latest&amp;#34;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If somehow you need to recreate the user login accounts because you inadvertently removed the Cognito stack as well (using &amp;lsquo;-u&amp;rsquo; flag) you can restore all the accounts from a previous backup using the following command:&lt;/p>
 &lt;pre tabindex="0">&lt;code>npm run deploy -- -u -r -b &amp;lt;backup bucket&amp;gt; -f hortacloud/backups/manual-backup/cognito
 &lt;/code>&lt;/pre>&lt;p>The folder parameter must point to the actual cognito prefix, where &amp;lsquo;users.json&amp;rsquo; and &amp;lsquo;groups.json&amp;rsquo; are located&lt;/p>
+&lt;h3 id="incremental-approach">Incremental approach&lt;/h3>
+&lt;p>Incremental approach is more manual but it does not require any data restore. It basically removes only the frontend stacks, i.e. Appstream and admin app and it requires a manual update of the backend stack and of the workstation. The steps for the incremental approach are the following:&lt;/p>
+&lt;ul>
+&lt;li>Remove only the frontend stacks:
+&lt;code>npm run destroy -- -b&lt;/code>&lt;/li>
+&lt;li>From the AWS console connect to the EC2 instance (&lt;code>&amp;lt;ORG&amp;gt;-hc-jacs-node-&amp;lt;STAGE&amp;gt;&lt;/code>) running the JACS stack.&lt;/li>
+&lt;li>Once connected run the following commands
+&lt;pre tabindex="0">&lt;code>cd /opt/jacs/deploy
+./manage.sh compose down
+sudo git pull origin stable
+./manage.sh compose up -d
+&lt;/code>&lt;/pre>&lt;/li>
+&lt;li>Start AppStream builder (&lt;code>&amp;lt;ORG&amp;gt;-hc-image-builder-&amp;lt;STAGE&amp;gt;&lt;/code>)&lt;/li>
+&lt;li>Connect as Administrator&lt;/li>
+&lt;li>Check that &amp;lsquo;reinstallwsonly.ps1&amp;rsquo; script is available, in the Admin&amp;rsquo;s home directory. If not copy it from the application repo or just create it like the other install scripts, (&amp;lsquo;installcmd.ps1&amp;rsquo; and &amp;lsquo;createappimage.ps1&amp;rsquo;) were created on the initial deployment.&lt;/li>
+&lt;li>Run the reinstallwssonly.ps1 script:
+&lt;pre tabindex="0">&lt;code>.\reinstallwssonly.ps1 &amp;lt;IP of host running JACS stack&amp;gt;
+&lt;/code>&lt;/pre>The IP of the host running JACS is the same used for initial run of &amp;lsquo;installcmd.ps1&amp;rsquo; and it can be found from the AWS console.&lt;/li>
+&lt;li>Try out the workstation application to make sure it works
+&lt;pre tabindex="0">&lt;code>C:\apps\runJaneliaWorkstation.ps1
+&lt;/code>&lt;/pre>&lt;/li>
+&lt;li>Start the script for creating the AppStream image &lt;code>.\createappimage.ps1&lt;/code>&lt;/li>
+&lt;li>Reinstall the frontend stacks
+&lt;pre tabindex="0">&lt;code>npm run deploy
+&lt;/code>&lt;/pre>If no changes were made to the code CDK is smart enough to only update the missing stacks, leaving JACS stack as is since the stack already exists&lt;/li>
+&lt;/ul>
 &lt;h2 id="uninstalling-hortacloud-services-to-aws">Uninstalling HortaCloud services to AWS&lt;/h2>
 &lt;p>To completely uninstall the application run:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm run destroy -- -u
