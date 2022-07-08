@@ -223,10 +223,11 @@ sudo git pull origin stable
 &lt;li>Try out the workstation application to make sure it works
 &lt;pre tabindex="0">&lt;code>C:\apps\runJaneliaWorkstation.ps1
 &lt;/code>&lt;/pre>&lt;/li>
-&lt;li>Start the script for creating the AppStream image &lt;code>.\createappimage.ps1&lt;/code>&lt;/li>
+&lt;li>Make sure you have the latest &amp;lsquo;createappimage.ps1&amp;rsquo; script from the application git repository. If you don&amp;rsquo;t copy the latest script that supports &amp;lsquo;&amp;ndash;skip-registration&amp;rsquo; flag.&lt;/li>
+&lt;li>Start the script for creating the AppStream image but skip the application registration: &lt;code>.\createappimage.ps1 --skip-registration&lt;/code>&lt;/li>
 &lt;li>Reinstall the frontend stacks
 &lt;pre tabindex="0">&lt;code>npm run deploy
-&lt;/code>&lt;/pre>If no changes were made to the code CDK is smart enough to only update the missing stacks, leaving JACS stack as is since the stack already exists&lt;/li>
+&lt;/code>&lt;/pre>If no changes were made to the code AWS CDK will only update the missing stacks, leaving JACS stack as it was since it practically has not been changed from AWS&amp;rsquo; perspective&lt;/li>
 &lt;/ul>
 &lt;h2 id="uninstalling-hortacloud-services-to-aws">Uninstalling HortaCloud services to AWS&lt;/h2>
 &lt;p>To completely uninstall the application run:&lt;/p>
