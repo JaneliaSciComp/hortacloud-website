@@ -86,13 +86,16 @@ However, the note dialog does provide several pre-defined notes that can be used
 | problem end | indicates an endpoint that may or may not be able to be traced further by the current user; it's a "done (but problematic)" marker | <ul><li>must be placed on an endpoint</li> <li>if another point is placed as a child, it's automatically removed</li> <li>does not appear in the "ends" filter</li></ul> |
 | (arbitrary text) | the user may place arbitrary text at any point | no special behavior |
 
+#### Simple workflow with notes and filters
+
 All together, the notes and filters together were designed to support the following workflow:
-    - start tracing at a soma or a segment of interest
-    - add point along the segment
-    - at a branching point in the signal, add the "branch" note to the annotation to mark it as a point to be revisited; there is then no need to place a single point on the second branch to find it later
-    - when a branch ends in a synapse or becomes too faint to trace, place a "traced end" or "problem end" note, indicating that the tracing is complete for this branch
-    - if those notes are added consistently, then the "branches" and "ends" filters will identify those locations that need further work
-    - when those two filters have no annotations in them, the neuron is done
+
+- start tracing at a soma or a segment of interest
+- add point along the segment
+- at a branching point in the signal, add the "branch" note to the annotation to mark it as a point to be revisited; there is then no need to place a single point on the second branch to find it later
+- when a branch ends in a synapse or becomes too faint to trace, place a "traced end" or "problem end" note, indicating that the tracing is complete for this branch
+- if those notes are added consistently, then the "branches" and "ends" filters will identify those locations that need further work
+- when those two filters have no annotations in them, the neuron is done
 
 ### Tags
 

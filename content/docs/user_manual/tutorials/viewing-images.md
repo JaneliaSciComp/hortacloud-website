@@ -16,7 +16,7 @@ This tutorial is focused on HortaCloud. However, most of it applies to the deskt
 
 ## Prerequisites
 
-- You should be able to log into HortaCloud and launch the Horta application.
+- You should be able to log into HortaCloud and launch the Horta application, as detailed in the previous tutorial.
 - Your HortaCloud instance should have access to the Janelia MouseLight data on Amazon AWS S3.
     + If not, you should have access to some similar data in your HortaCloud instance.
 
@@ -86,7 +86,6 @@ In practice, the user will likely spend a lot of time tuning the color settings 
 At this point (screenshot), the brain appears kind of gray. The labeled neurons, though, stand out in green. Feel free to experiment with the other sliders. In practice, some tracers prefer to adjust the settings until the background is nearly invisible, so that the neuron signal is prominent, even if dim.
 
 Note: Color settings are not saved for samples! In the next tutorial, we'll see how these settings _are_ saved in workspaces.
-
 
 
 #### Pan, zoom, rotate
@@ -168,5 +167,41 @@ To zoom the image:
 
 
 (screenshot of what?  something zoomed in?  or controls with labels?)
+
+
+## x, y, z locations
+
+### Status bars
+
+As you move the mouse cursor in either the 2D or 3D windows, you will see the `x, y, z` location of the cursor displayed in the status bars. 
+
+- in 3D, the status bar is at the very bottom of the Horta application window
+- in 2D, the status bar is at the bottom of the 2D window; the 3D status bar in this case is not accurate, and it does not update
+- in both cases, the `x, y, z` location is given in microns (µm), as a floating-point number
+
+### Copying location values
+
+You can copy the the current `x, y, z` location to the clipboard by right-clicking in the view.
+
+- in 3D, right-click and choose "Copy Micron Location to Clipboard"
+- in 2D, right-click and choose "Copy Micron Coords to Clipboard"
+- in both cases, the copied text has the following form: `[68665.88,48154.89,26670.117]`
+    + this is convenient for pasting into eg Matlab or Python
+- (HortaCloud) see the "AppStream Basics" section in this documentation for how to transfer the data from AppStream's clipboard to your local system's clipboard
+
+### Go to point
+
+If you know the `x, y, z` location you'd like to navigate to, and that data is on the clipboard, click the "Go to..." button that appears just above the neuron list in the Horta Control Center. Paste in the data from the clipboard and click "OK". Both the 2D and 3D views will navigate to put that point at the center of the view without changing the zoom level.
+
+Details:
+
+- the values should be in microns
+- you can paste in `x, y, z` coordinates or just `x, y`; in the latter case, the current `z` value will not change
+- any brackets or commas will be removed
+    + thus you can copy and paste from Horta, or from eg Matlab or Python
+
+Again, HortaCloud users should see "AppStream Basics" for how to move data from your local system to the AppStream Clipboard.
+
+
 
 

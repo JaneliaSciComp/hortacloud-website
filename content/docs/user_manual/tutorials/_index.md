@@ -6,4 +6,4 @@ description: >
     Some Horta tutorials: how to login and start HortaCloud, how to view images, and how to trace neurons
 ---
 
-Each of the first three tutorials builds on the preceding tutorials, and they should be completed in order.
+Each of the tutorials builds on the preceding tutorials, and they should be completed in order.

@@ -57,7 +57,7 @@ In HortaCloud, samples are usually already created automatically by the system.
   + (HortaCloud) The sample path will refer to a S3 bucket.
 - Click "Add Sample". 
 - The sample will appear in your "3D Tile Microscope Samples" in your home folder. You may need to refresh the Data Explorer to see it. 
-- (optional) [Share the data](broken-link-to-nonexistant-docs) with other users or groups.
+- (optional) Share the data with other users or groups.
 
 Once it's been created, you may perform any operations on the sample that you can do with any other object in the workstation. For example, you may move, rename, or remove it. See the main workstation documentation for details.
 
