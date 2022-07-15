@@ -12,26 +12,20 @@ alt="cloud architecture diagram"/>
 &lt;h2 id="install-prerequisites">Install prerequisites&lt;/h2>
 &lt;p>You should have &lt;strong>node v14&lt;/strong> installed on your local machine. We recommend using &lt;a href="https://github.com/nvm-sh/nvm">nvm&lt;/a> to install and activate this version of node.&lt;/p>
 &lt;ul>
-&lt;li>
-&lt;p>Install AWS CLI&lt;/p>
+&lt;li>Install AWS CLI
 &lt;ul>
 &lt;li>AWS CDK requires AWS CLI to be installed and configured on the computer from which one runs the deployment procedure. &lt;a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html">Installation&lt;/a> &amp;amp; &lt;a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html">configuration&lt;/a> instructions can be found in the AWS documentation.&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;li>
-&lt;p>Install AWS CDK by running&lt;/p>
-&lt;/li>
 &lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm install
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This command will install CDK in your development environment so you can access its help as below (notice the &amp;lsquo;&amp;ndash;&amp;rsquo; separator between cdk and cdk options - this is specific to npm not to cdk so all CDK flags must be after the double hyphen separator):&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm run cdk -- --help
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="get-the-deployment-scripts">Get the deployment scripts&lt;/h2>
+&lt;h2 id="get-the-deployment-scripts">Get the deployment scripts&lt;/h2>
 &lt;p>Clone the &lt;a href="https://github.com/JaneliaSciComp/hortacloud">HortaCloud GitHib repository&lt;/a> containing the deployment scripts:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>git clone https://github.com/JaneliaSciComp/hortacloud/
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">cd&lt;/span> hortacloud
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Install the dependencies:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm run setup -- -i
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="configure-environment">Configure environment&lt;/h2>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This command will install all packages that are needed to run the deployment procedure. The &amp;lsquo;-i&amp;rsquo; flag will tell the setup script to install npm packages for all application modules: cognito_stack, vpc_stack, workstation_stack and admin_api_stack. If you do not specify the &amp;lsquo;-i&amp;rsquo; flag, the command will only check the .env file and create it in case it&amp;rsquo;s missing. Notice how the &amp;lsquo;-i&amp;rsquo; flag is preceded by two hyhens &amp;lsquo;&amp;ndash;&amp;rsquo; - this is specific to npm not to cdk, so all script specific flags must be after the double hyphen separator.&lt;/p>
+&lt;h2 id="configure-environment">Configure environment&lt;/h2>
 &lt;p>The following values must be set in the &lt;code>.env&lt;/code> file:&lt;/p>
 &lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">AWS_REGION=&amp;lt;your aws region&amp;gt;
 AWS_ACCOUNT=&amp;lt;your aws account&amp;gt;
@@ -121,7 +115,7 @@ with some manual intervention for &lt;strong>AppStream builder&lt;/strong> step 
 &lt;/ul>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">cd &lt;/span>&lt;span style="color:#4e9a06">&amp;#39;C:\Users\ImagebuilderAdmin\My Files\Temporary Files&amp;#39;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>Run the installcmd script to install the workstation. &amp;lt;serverName&amp;gt; is the name of the backend EC2 instance, typically it looks like &lt;code>ip-&amp;lt;ip4 with dashes instead of dots&amp;gt;.ec2.internal&lt;/code>. Instructions for locating this are provided as output from the installer script.&lt;/li>
+&lt;li>Run the installcmd script to install the workstation. &amp;lt;serverName&amp;gt; is the name of the backend EC2 instance, typically it looks like &lt;code>ip-&amp;lt;ip4 with dashes instead of dots&amp;gt;.ec2.internal&lt;/code>. Instructions for locating this are provided as output from the installer script. The workstation client certificate is signed using the ec2 internal name so do not use the actual IP for the &amp;lt;serverName&amp;gt; parameter, because user logins will fail with a certificate error.&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">installcmd&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">ps1&lt;/span> &lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#000">serverName&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will install the JDK and the workstation. The installer will run silently and it will install the workstation under the &lt;code>C:\apps&lt;/code> folder. If it prompts you for the install directory, select &lt;code>C:\apps&lt;/code> as the JaneliaWorkstation location.&lt;/p>
@@ -199,7 +193,9 @@ HORTA_RESTORE_FOLDER=&amp;#34;/hortacloud/backups/latest&amp;#34;
 &lt;/code>&lt;/pre>&lt;p>HORTA_RESTORE_BUCKET is the name of the backup bucket and HORTA_RESTORE_FOLDER must reference the parent prefix containing the &amp;lsquo;jacs&amp;rsquo; folder - the location of the actual mongo backup. Typically the backup job creates a &amp;ldquo;softlink&amp;rdquo; - &amp;ldquo;/hortacloud/backups/latest&amp;rdquo; so if you simply set the restore folder to that it should pick up the latest backup. If the backup was a manual backup or you need to restore to a previous date set the restore folder to that folder. For example setting &lt;code>HORTA_RESTORE_FOLDER=/hortacloud/backups/20220609030001&lt;/code> will restore the database to the content saved on &amp;ldquo;Jun 9, 2022&amp;rdquo;.&lt;/p>
 &lt;p>After setting these properties you can proceed with the actual deploy procedure which will only install the backend and the frontend stack (skipping any Cognito installation):&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm run deploy
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If somehow you need to recreate the user login accounts because you inadvertently removed the Cognito stack as well (using &amp;lsquo;-u&amp;rsquo; flag) you can restore all the accounts from a previous backup using the following command:&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>From here on, this approach is identical with the initial deployment, with the only exception that data and users should already exist once the backend stack is fully deployed.
+So after you start the deploy command, please follow the instructions you see on the screen which will prompt you when you need to setup the AppStream Builder exactly as it is described in the &lt;a href="#workstation-app-installation">Workstation app-installation section&lt;/a>&lt;/p>
+&lt;p>If somehow you need to recreate the user login accounts because you inadvertently removed the Cognito stack as well (using &amp;lsquo;-u&amp;rsquo; flag) you can restore all the accounts from a previous backup using the following command:&lt;/p>
 &lt;pre tabindex="0">&lt;code>npm run deploy -- -u -r -b &amp;lt;backup bucket&amp;gt; -f hortacloud/backups/manual-backup/cognito
 &lt;/code>&lt;/pre>&lt;p>The folder parameter must point to the actual cognito prefix, where &amp;lsquo;users.json&amp;rsquo; and &amp;lsquo;groups.json&amp;rsquo; are located&lt;/p>
 &lt;h3 id="incremental-approach">Incremental approach&lt;/h3>
@@ -226,7 +222,7 @@ sudo git pull origin stable
 &lt;li>Make sure you have the latest &amp;lsquo;createappimage.ps1&amp;rsquo; script from the application git repository. If you don&amp;rsquo;t copy the latest script that supports &amp;lsquo;&amp;ndash;skip-registration&amp;rsquo; flag.&lt;/li>
 &lt;li>Start the script for creating the AppStream image but skip the application registration: &lt;code>.\createappimage.ps1 --skip-registration&lt;/code>&lt;/li>
 &lt;li>Reinstall the frontend stacks
-&lt;pre tabindex="0">&lt;code>npm run deploy
+&lt;pre tabindex="0">&lt;code>npm run deploy -- --skip-vpc
 &lt;/code>&lt;/pre>If no changes were made to the code AWS CDK will only update the missing stacks, leaving JACS stack as it was since it practically has not been changed from AWS&amp;rsquo; perspective&lt;/li>
 &lt;/ul>
 &lt;h2 id="uninstalling-hortacloud-services-to-aws">Uninstalling HortaCloud services to AWS&lt;/h2>
