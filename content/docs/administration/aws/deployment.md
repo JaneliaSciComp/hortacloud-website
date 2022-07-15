@@ -17,18 +17,6 @@ You should have **node v14** installed on your local machine. We recommend using
 * Install AWS CLI
   * AWS CDK requires AWS CLI to be installed and configured on the computer from which one runs the deployment procedure. [Installation](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) & [configuration](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) instructions can be found in the AWS documentation.
 
-* Install AWS CDK by running
-
-```bash
-npm install
-```
-
-This command will install CDK in your development environment so you can access its help as below (notice the '--' separator between cdk and cdk options - this is specific to npm not to cdk so all CDK flags must be after the double hyphen separator):
-
-```bash
-npm run cdk -- --help
-```
-
 ## Get the deployment scripts
 
 Clone the [HortaCloud GitHib repository](https://github.com/JaneliaSciComp/hortacloud) containing the deployment scripts:
@@ -43,6 +31,8 @@ Install the dependencies:
 ```bash
 npm run setup -- -i
 ```
+
+This command will install all packages that are needed to run the deployment procedure. The '-i' flag will tell the setup script to install npm packages for all application modules: cognito_stack, vpc_stack, workstation_stack and admin_api_stack. If you do not specify the '-i'  flag, the command will only check the .env file and create it in case it's missing. Notice how the '-i' flag is preceded by two hyhens '--' - this is specific to npm not to cdk, so all script specific flags must be after the double hyphen separator.
 
 ## Configure environment
 
@@ -159,7 +149,7 @@ After you copied or created the scripts:
 cd 'C:\Users\ImagebuilderAdmin\My Files\Temporary Files'
 ```
 
-* Run the installcmd script to install the workstation. &lt;serverName&gt; is the name of the backend EC2 instance, typically it looks like `ip-<ip4 with dashes instead of dots>.ec2.internal`. Instructions for locating this are provided as output from the installer script.
+* Run the installcmd script to install the workstation. &lt;serverName&gt; is the name of the backend EC2 instance, typically it looks like `ip-<ip4 with dashes instead of dots>.ec2.internal`. Instructions for locating this are provided as output from the installer script. The workstation client certificate is signed using the ec2 internal name so do not use the actual IP for the &lt;serverName&gt; parameter, because user logins will fail with a certificate error.
 
 ```powershell
 installcmd.ps1 <serverName>
@@ -239,6 +229,8 @@ After setting these properties you can proceed with the actual deploy procedure 
 ```bash
 npm run deploy
 ```
+From here on, this approach is identical with the initial deployment, with the only exception that data and users should already exist once the backend stack is fully deployed.
+So after you start the deploy command, please follow the instructions you see on the screen which will prompt you when you need to setup the AppStream Builder exactly as it is described in the [Workstation app-installation section](#workstation-app-installation)
 
 If somehow you need to recreate the user login accounts because you inadvertently removed the Cognito stack as well (using '-u' flag) you can restore all the accounts from a previous backup using the following command:
 ```
@@ -276,7 +268,7 @@ Incremental approach is more manual but it does not require any data restore. It
 * Start the script for creating the AppStream image but skip the application registration: `.\createappimage.ps1 --skip-registration`
 * Reinstall the frontend stacks
     ```
-    npm run deploy
+    npm run deploy -- --skip-vpc
     ```
   If no changes were made to the code AWS CDK will only update the missing stacks, leaving JACS stack as it was since it practically has not been changed from AWS' perspective
 
