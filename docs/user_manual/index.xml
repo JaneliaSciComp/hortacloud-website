@@ -75,7 +75,7 @@ alt="AppStream toolbar"/>
 &lt;h3 id="quitting-and-relaunching-horta">Quitting and relaunching Horta&lt;/h3>
 &lt;p>Sometimes Horta does have issues. Often reloading data by reopening a workspace will clear them up. If not, to relaunch the application again without ending the AppStream session, choose File &amp;gt; Exit or click the &amp;ldquo;x&amp;rdquo; at top right. Then relaunch the application by clicking the first icon in the toolbar and choosing &amp;ldquo;Horta Workstation&amp;rdquo; again.&lt;/p>
 &lt;h3 id="ending-the-session">Ending the session&lt;/h3>
-&lt;p>To end the session, you can choose &amp;ldquo;End Session&amp;rdquo; from the drop-down menu on the top-right toolbar button.&lt;/p>
+&lt;p>Generally sessions will automatically close after a period of inactivity. To end the session manually, you can choose &amp;ldquo;End Session&amp;rdquo; from the drop-down menu on the top-right toolbar button.&lt;/p>
 &lt;p>Remember that when you end a session, some data that is stored on the remote computer will be lost:&lt;/p>
 &lt;p>Volatile data:&lt;/p>
 &lt;ul>
@@ -87,18 +87,17 @@ alt="AppStream toolbar"/>
 &lt;h4 class="alert-heading">Data safety during development&lt;/h4>
 &lt;p>HortaCloud is still under development!&lt;/p>
 &lt;ul>
-&lt;li>there is some risk of database loss during upgrades
+&lt;li>some settings and preference data will be lost when sessions end
 &lt;ul>
-&lt;li>any neurons should be exported to SWC for safety&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>some settings/preference data will be lost when sessions end
-&lt;ul>
+&lt;li>this includes things like preferred font size and window and panel positions&lt;/li>
 &lt;li>this will be moved into the database in a future release&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;/div></description></item><item><title>Docs: Basic Operations</title><link>https://hortacloud.janelia.org/docs/user_manual/basic_operations/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/basic_operations/</guid><description>
+&lt;/div>
+&lt;h3 id="reconnecting">Reconnecting&lt;/h3>
+&lt;p>If your browser window is accidentally closed, your session is not lost. Simply repeat the login steps, and you will be reconnected to the session, even if from a different browser and/or computer.&lt;/p></description></item><item><title>Docs: Tutorials</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/</guid><description>
+&lt;p>Each of the tutorials builds on the preceding tutorials, and they should be completed in order.&lt;/p></description></item><item><title>Docs: Basic Operations</title><link>https://hortacloud.janelia.org/docs/user_manual/basic_operations/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/basic_operations/</guid><description>
 &lt;p>This section will walk you through the process of tracing a neuron and some other tasks. It&amp;rsquo;s meant to introduce you to the basic operations of Horta. Not all features or details of features are discussed. You can find those details in the appropriate &lt;a href="https://hortacloud.janelia.org/docs/user_manual/features/">Feature&lt;/a> section.&lt;/p>
 &lt;h2 id="assumptions">Assumptions&lt;/h2>
 &lt;p>Before you get started with Horta, it is assumed:&lt;/p>
@@ -141,7 +140,7 @@ In HortaCloud, samples are usually already created automatically by the system.
 &lt;/li>
 &lt;li>Click &amp;ldquo;Add Sample&amp;rdquo;.&lt;/li>
 &lt;li>The sample will appear in your &amp;ldquo;3D Tile Microscope Samples&amp;rdquo; in your home folder. You may need to refresh the Data Explorer to see it.&lt;/li>
-&lt;li>(optional) &lt;a href="broken-link-to-nonexistant-docs">Share the data&lt;/a> with other users or groups.&lt;/li>
+&lt;li>(optional) Share the data with other users or groups.&lt;/li>
 &lt;/ul>
 &lt;p>Once it&amp;rsquo;s been created, you may perform any operations on the sample that you can do with any other object in the workstation. For example, you may move, rename, or remove it. See the main workstation documentation for details.&lt;/p>
 &lt;h3 id="relocating-a-sample">Relocating a sample&lt;/h3>
@@ -630,13 +629,16 @@ If you&amp;rsquo;re running Windows, choose Tools &amp;gt; Options if you&amp;rs
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;p>All together, the notes and filters together were designed to support the following workflow:
-- start tracing at a soma or a segment of interest
-- add point along the segment
-- at a branching point in the signal, add the &amp;ldquo;branch&amp;rdquo; note to the annotation to mark it as a point to be revisited; there is then no need to place a single point on the second branch to find it later
-- when a branch ends in a synapse or becomes too faint to trace, place a &amp;ldquo;traced end&amp;rdquo; or &amp;ldquo;problem end&amp;rdquo; note, indicating that the tracing is complete for this branch
-- if those notes are added consistently, then the &amp;ldquo;branches&amp;rdquo; and &amp;ldquo;ends&amp;rdquo; filters will identify those locations that need further work
-- when those two filters have no annotations in them, the neuron is done&lt;/p>
+&lt;h4 id="simple-workflow-with-notes-and-filters">Simple workflow with notes and filters&lt;/h4>
+&lt;p>All together, the notes and filters together were designed to support the following workflow:&lt;/p>
+&lt;ul>
+&lt;li>start tracing at a soma or a segment of interest&lt;/li>
+&lt;li>add point along the segment&lt;/li>
+&lt;li>at a branching point in the signal, add the &amp;ldquo;branch&amp;rdquo; note to the annotation to mark it as a point to be revisited; there is then no need to place a single point on the second branch to find it later&lt;/li>
+&lt;li>when a branch ends in a synapse or becomes too faint to trace, place a &amp;ldquo;traced end&amp;rdquo; or &amp;ldquo;problem end&amp;rdquo; note, indicating that the tracing is complete for this branch&lt;/li>
+&lt;li>if those notes are added consistently, then the &amp;ldquo;branches&amp;rdquo; and &amp;ldquo;ends&amp;rdquo; filters will identify those locations that need further work&lt;/li>
+&lt;li>when those two filters have no annotations in them, the neuron is done&lt;/li>
+&lt;/ul>
 &lt;h3 id="tags">Tags&lt;/h3>
 &lt;p>Tags are user-defined, usually short, labels that are applied to neurons.&lt;/p>
 &lt;ul>
@@ -986,4 +988,29 @@ console.LVVHorta.activetracersgroup=group:mouselight_tracers
 &lt;li>The &amp;ldquo;activetracersgroup&amp;rdquo; variable should be set to a group containing only people who are tracing. The members of this group will be listed in some neuron ownership change dialogs for convenience.&lt;/li>
 &lt;li>If either group does not exist in the workstation database, the corresponding features will be disabled.&lt;/li>
 &lt;li>&lt;strong>Note&lt;/strong>: This scheme assumes that all tracers are members of one group that shares data freely. If you need to support multiple groups that will not be sharing data, you should currently deploy separate infrastructure (servers, etc) to support each group.&lt;/li>
-&lt;/ul></description></item></channel></rss>
+&lt;/ul></description></item><item><title>Docs: Reporting issues</title><link>https://hortacloud.janelia.org/docs/user_manual/issues/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/issues/</guid><description>
+&lt;p>If you encounter an issue while running Horta, or if you have comments, questions, or suggestions, there are multiple ways you can contact the Horta development team.&lt;/p>
+&lt;h2 id="inside-horta">Inside Horta&lt;/h2>
+&lt;p>(desktop) You may report a bug at any time within Horta. Simply choose &amp;ldquo;Report a bug&amp;rdquo; from the Help menu. Provide a description of what you were doing at the time of the issue! Sometimes Horta will encounter problems and display a dialog box with an ugly-looking error message. At the bottom of this dialog box, you&amp;rsquo;ll also see a &amp;ldquo;Report&amp;rdquo; button. Again, please let us know what you were doing at the time of the issue if you choose to report an issue at this time.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Coming soon&lt;/h4>
+This feature does not currently work in HortaCloud! The dialog works, but email is not sent!
+&lt;/div>
+&lt;h2 id="github">GitHub&lt;/h2>
+&lt;p>GitHub is where the HortaCloud and Janelia Workstation source code is stored. If you are a GitHub user and would like to open an issue:&lt;/p>
+&lt;ul>
+&lt;li>the Janelia Workstation repository: &lt;a href="https://github.com/JaneliaSciComp/workstation">https://github.com/JaneliaSciComp/workstation&lt;/a>
+&lt;ul>
+&lt;li>this repo contains the code for the Horta application; if you have issues inside the application, this is the place to report them&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>the HortaCloud repository: &lt;a href="https://github.com/JaneliaSciComp/hortacloud">https://github.com/JaneliaSciComp/hortacloud&lt;/a>
+&lt;ul>
+&lt;li>this repository contains the code for managing the AWS infrastructure that deploys and runs Horta in AppStream; if you are a system admin and have deployment or management issues, report them here&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="twitter">Twitter&lt;/h2>
+&lt;p>The HortaCoud Twitter address is &lt;a href="https://twitter.com/HortaCloud">HortaCloud&lt;/a>.&lt;/p>
+&lt;h2 id="google-groups">Google groups&lt;/h2>
+&lt;p>You can ask to join the Google group for HortaCloud support &lt;a href="https://groups.google.com/g/hortacloud-support">here&lt;/a>.&lt;/p></description></item></channel></rss>

@@ -312,7 +312,7 @@ alt="AppStream toolbar"/>
 &lt;h3 id="quitting-and-relaunching-horta">Quitting and relaunching Horta&lt;/h3>
 &lt;p>Sometimes Horta does have issues. Often reloading data by reopening a workspace will clear them up. If not, to relaunch the application again without ending the AppStream session, choose File &amp;gt; Exit or click the &amp;ldquo;x&amp;rdquo; at top right. Then relaunch the application by clicking the first icon in the toolbar and choosing &amp;ldquo;Horta Workstation&amp;rdquo; again.&lt;/p>
 &lt;h3 id="ending-the-session">Ending the session&lt;/h3>
-&lt;p>To end the session, you can choose &amp;ldquo;End Session&amp;rdquo; from the drop-down menu on the top-right toolbar button.&lt;/p>
+&lt;p>Generally sessions will automatically close after a period of inactivity. To end the session manually, you can choose &amp;ldquo;End Session&amp;rdquo; from the drop-down menu on the top-right toolbar button.&lt;/p>
 &lt;p>Remember that when you end a session, some data that is stored on the remote computer will be lost:&lt;/p>
 &lt;p>Volatile data:&lt;/p>
 &lt;ul>
@@ -324,18 +324,16 @@ alt="AppStream toolbar"/>
 &lt;h4 class="alert-heading">Data safety during development&lt;/h4>
 &lt;p>HortaCloud is still under development!&lt;/p>
 &lt;ul>
-&lt;li>there is some risk of database loss during upgrades
+&lt;li>some settings and preference data will be lost when sessions end
 &lt;ul>
-&lt;li>any neurons should be exported to SWC for safety&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>some settings/preference data will be lost when sessions end
-&lt;ul>
+&lt;li>this includes things like preferred font size and window and panel positions&lt;/li>
 &lt;li>this will be moved into the database in a future release&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;/div></description></item><item><title>Docs: Single server deployment</title><link>https://hortacloud.janelia.org/docs/development/composedeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/composedeployment/</guid><description>
+&lt;/div>
+&lt;h3 id="reconnecting">Reconnecting&lt;/h3>
+&lt;p>If your browser window is accidentally closed, your session is not lost. Simply repeat the login steps, and you will be reconnected to the session, even if from a different browser and/or computer.&lt;/p></description></item><item><title>Docs: Single server deployment</title><link>https://hortacloud.janelia.org/docs/development/composedeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/composedeployment/</guid><description>
 &lt;div class="pb-3">
 &lt;a href="single_server.png">
 &lt;img
@@ -545,7 +543,7 @@ In HortaCloud, samples are usually already created automatically by the system.
 &lt;/li>
 &lt;li>Click &amp;ldquo;Add Sample&amp;rdquo;.&lt;/li>
 &lt;li>The sample will appear in your &amp;ldquo;3D Tile Microscope Samples&amp;rdquo; in your home folder. You may need to refresh the Data Explorer to see it.&lt;/li>
-&lt;li>(optional) &lt;a href="broken-link-to-nonexistant-docs">Share the data&lt;/a> with other users or groups.&lt;/li>
+&lt;li>(optional) Share the data with other users or groups.&lt;/li>
 &lt;/ul>
 &lt;p>Once it&amp;rsquo;s been created, you may perform any operations on the sample that you can do with any other object in the workstation. For example, you may move, rename, or remove it. See the main workstation documentation for details.&lt;/p>
 &lt;h3 id="relocating-a-sample">Relocating a sample&lt;/h3>
@@ -1097,13 +1095,16 @@ If you&amp;rsquo;re running Windows, choose Tools &amp;gt; Options if you&amp;rs
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;p>All together, the notes and filters together were designed to support the following workflow:
-- start tracing at a soma or a segment of interest
-- add point along the segment
-- at a branching point in the signal, add the &amp;ldquo;branch&amp;rdquo; note to the annotation to mark it as a point to be revisited; there is then no need to place a single point on the second branch to find it later
-- when a branch ends in a synapse or becomes too faint to trace, place a &amp;ldquo;traced end&amp;rdquo; or &amp;ldquo;problem end&amp;rdquo; note, indicating that the tracing is complete for this branch
-- if those notes are added consistently, then the &amp;ldquo;branches&amp;rdquo; and &amp;ldquo;ends&amp;rdquo; filters will identify those locations that need further work
-- when those two filters have no annotations in them, the neuron is done&lt;/p>
+&lt;h4 id="simple-workflow-with-notes-and-filters">Simple workflow with notes and filters&lt;/h4>
+&lt;p>All together, the notes and filters together were designed to support the following workflow:&lt;/p>
+&lt;ul>
+&lt;li>start tracing at a soma or a segment of interest&lt;/li>
+&lt;li>add point along the segment&lt;/li>
+&lt;li>at a branching point in the signal, add the &amp;ldquo;branch&amp;rdquo; note to the annotation to mark it as a point to be revisited; there is then no need to place a single point on the second branch to find it later&lt;/li>
+&lt;li>when a branch ends in a synapse or becomes too faint to trace, place a &amp;ldquo;traced end&amp;rdquo; or &amp;ldquo;problem end&amp;rdquo; note, indicating that the tracing is complete for this branch&lt;/li>
+&lt;li>if those notes are added consistently, then the &amp;ldquo;branches&amp;rdquo; and &amp;ldquo;ends&amp;rdquo; filters will identify those locations that need further work&lt;/li>
+&lt;li>when those two filters have no annotations in them, the neuron is done&lt;/li>
+&lt;/ul>
 &lt;h3 id="tags">Tags&lt;/h3>
 &lt;p>Tags are user-defined, usually short, labels that are applied to neurons.&lt;/p>
 &lt;ul>
@@ -1446,7 +1447,86 @@ StorageVolume.mouseLightNFS.Tags=mousebrain,light
 StorageVolume.mouseLightNFS.VolumePermissions=READ
 &lt;/code>&lt;/pre>&lt;p>You can use any name you want instead of mouseLightNFS. Then you should add this name to StorageAgent.BootstrappedVolumes:&lt;/p>
 &lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">StorageAgent.BootstrappedVolumes=jade1,mouseLightNFS
-&lt;/code>&lt;/pre>&lt;p>You will need to bounce the service stack to pick up these changes.&lt;/p></description></item><item><title>Docs: Reference</title><link>https://hortacloud.janelia.org/docs/user_manual/reference/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/reference/</guid><description>
+&lt;/code>&lt;/pre>&lt;p>You will need to bounce the service stack to pick up these changes.&lt;/p></description></item><item><title>Docs: Logging in</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/logging-in/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/logging-in/</guid><description>
+&lt;p>In this tutorial, we&amp;rsquo;ll go over the steps needed to log into HortaCloud and start the Horta application.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">HortaCloud only&lt;/h4>
+This tutorial applies to HortaCloud only.
+&lt;/div>
+&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
+&lt;ul>
+&lt;li>You should know the URL for the HortaCloud instance that you will be using.&lt;/li>
+&lt;li>The administrator of the instance should have created an account for you.&lt;/li>
+&lt;li>You should know the username and password for that account.&lt;/li>
+&lt;/ul>
+&lt;p>The screenshots below were taken from the Janelia instance in June 2022.&lt;/p>
+&lt;h2 id="steps">Steps&lt;/h2>
+&lt;p>The steps to log in to HortaCloud and starting the Horta application are similar to the steps for many web applications. The procedure is straightforward, but we&amp;rsquo;ve provided screenshots of every step to help troubleshooting when things go wrong.&lt;/p>
+&lt;h3 id="navigate-to-your-hortacloud-websites-url-in-your-browser">Navigate to your HortaCloud website&amp;rsquo;s URL in your browser.&lt;/h3>
+&lt;p>You are probably already on the site, if you&amp;rsquo;re reading this documentation! Click the button on the right labeled &amp;ldquo;Login to HortaCloud&amp;rdquo;.&lt;/p>
+&lt;p>All major browsers are supported: Safari, Google Chrome, Mozilla Firefox, and Microsoft Edge.&lt;/p>
+&lt;a href="../images-logging-in/1-front-page.png">
+&lt;img
+src="../images-logging-in/1-front-page.png"
+class="rounded mx-auto"
+alt="HortaCloud home screen"/>
+&lt;/a>
+&lt;h3 id="enter-your-username-and-password-given-to-you-by-your-local-administrator-in-the-entry-fields-then-click-the-login-button">Enter your username and password given to you by your local administrator in the entry fields, then click the &amp;ldquo;Login&amp;rdquo; button.&lt;/h3>
+&lt;p>On this page, there are also links for changing your password and for requesting a password reset if you have forgotten your password.&lt;/p>
+&lt;a href="../images-logging-in/2-login-blank.png">
+&lt;img
+src="../images-logging-in/2-login-blank.png"
+class="rounded mx-auto"
+alt="HortaCloud portal username and password screen"/>
+&lt;/a>
+&lt;h3 id="click-appstream-login-to-continue">Click &amp;ldquo;AppStream Login&amp;rdquo; to continue.&lt;/h3>
+&lt;p>This screen also contains a change password link, and if you are a Horta application administrator, you will also see tools for managing users and groups in Horta.&lt;/p>
+&lt;a href="../images-logging-in/2-login-portal.png">
+&lt;img
+src="../images-logging-in/2-login-portal.png"
+class="rounded mx-auto"
+alt="HortaCloud portal when logged in"/>
+&lt;/a>
+&lt;h3 id="click-horta-workstation-to-start-the-application">Click &amp;ldquo;Horta Workstation&amp;rdquo; to start the application.&lt;/h3>
+&lt;p>This is currently the only application in HortaCloud.&lt;/p>
+&lt;a href="../images-logging-in/3-app-list.png">
+&lt;img
+src="../images-logging-in/3-app-list.png"
+class="rounded mx-auto"
+alt="AppStream application list"/>
+&lt;/a>
+&lt;h3 id="wait-for-application-startup">Wait for application startup&lt;/h3>
+&lt;p>As the application starts, which can take a couple minutes, you will see a wait screen (first image below). The percentage should steadily increase. After that, you will see a brief console screen (second image below), then the Horta application itself (third image below).&lt;/p>
+&lt;p>The list of folders you see in the &amp;ldquo;Data Explorer&amp;rdquo; in Horta will be different and will depend on what data is available in your instance and which data you personally have permissions to see.&lt;/p>
+&lt;a href="../images-logging-in/4-wait-screen.png">
+&lt;img
+src="../images-logging-in/4-wait-screen.png"
+class="rounded mx-auto"
+alt="AppStream wait screen"/>
+&lt;/a>
+&lt;a href="../images-logging-in/5-console.png">
+&lt;img
+src="../images-logging-in/5-console.png"
+class="rounded mx-auto"
+alt="console"/>
+&lt;/a>
+&lt;a href="../images-logging-in/6-Horta.png">
+&lt;img
+src="../images-logging-in/6-Horta.png"
+class="rounded mx-auto"
+alt="Horta"/>
+&lt;/a>
+&lt;h2 id="troubleshooting">Troubleshooting&lt;/h2>
+&lt;p>In most cases, if you have trouble launching the Horta application, you should contact your local HortaCloud administrator. If the application launches but you do not see the expected data, you should contact the local Horta application administrator. Of course, these may be the same person.&lt;/p>
+&lt;h2 id="ending-your-session">Ending your session&lt;/h2>
+&lt;p>You can end your session by clicking on the rightmost icon on the AppStream toolbar and choosing &amp;ldquo;End Session&amp;rdquo;.&lt;/p>
+&lt;a href="../../AppStream-toolbar.png">
+&lt;img
+src="../../AppStream-toolbar.png"
+class="rounded mx-auto"
+style="max-width: 761px;"
+alt="AppStream toolbar"/>
+&lt;/a></description></item><item><title>Docs: Reference</title><link>https://hortacloud.janelia.org/docs/user_manual/reference/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/reference/</guid><description>
 &lt;h2 id="importexport-file-formats">Import/export file formats&lt;/h2>
 &lt;h3 id="swc">SWC&lt;/h3>
 &lt;p>The swc file format is a standard format for recording neuron skeletons. Unfortunately, while the basic format is widely used, there is no single standard for defining the format, and as a result, there are differences in implementation among various swc writers and readers. The basic spec can be seen &lt;a href="http://www.neuronland.org/NLMorphologyConverter/MorphologyFormats/SWC/Spec.html">here&lt;/a>.&lt;/p>
@@ -1643,7 +1723,32 @@ console.LVVHorta.activetracersgroup=group:mouselight_tracers
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>curl -X POST http://e03u06.int.janelia.org:5601/api/saved_objects/_import &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> -H &lt;span style="color:#4e9a06">&amp;#39;kbn-xsrf: true&amp;#39;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> --form &lt;span style="color:#000">file&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>@local/kibana-visualizations.ndjson
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Docs: Self-signed Certificates</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/selfsignedcerts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/selfsignedcerts/</guid><description>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Docs: Reporting issues</title><link>https://hortacloud.janelia.org/docs/user_manual/issues/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/issues/</guid><description>
+&lt;p>If you encounter an issue while running Horta, or if you have comments, questions, or suggestions, there are multiple ways you can contact the Horta development team.&lt;/p>
+&lt;h2 id="inside-horta">Inside Horta&lt;/h2>
+&lt;p>(desktop) You may report a bug at any time within Horta. Simply choose &amp;ldquo;Report a bug&amp;rdquo; from the Help menu. Provide a description of what you were doing at the time of the issue! Sometimes Horta will encounter problems and display a dialog box with an ugly-looking error message. At the bottom of this dialog box, you&amp;rsquo;ll also see a &amp;ldquo;Report&amp;rdquo; button. Again, please let us know what you were doing at the time of the issue if you choose to report an issue at this time.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Coming soon&lt;/h4>
+This feature does not currently work in HortaCloud! The dialog works, but email is not sent!
+&lt;/div>
+&lt;h2 id="github">GitHub&lt;/h2>
+&lt;p>GitHub is where the HortaCloud and Janelia Workstation source code is stored. If you are a GitHub user and would like to open an issue:&lt;/p>
+&lt;ul>
+&lt;li>the Janelia Workstation repository: &lt;a href="https://github.com/JaneliaSciComp/workstation">https://github.com/JaneliaSciComp/workstation&lt;/a>
+&lt;ul>
+&lt;li>this repo contains the code for the Horta application; if you have issues inside the application, this is the place to report them&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>the HortaCloud repository: &lt;a href="https://github.com/JaneliaSciComp/hortacloud">https://github.com/JaneliaSciComp/hortacloud&lt;/a>
+&lt;ul>
+&lt;li>this repository contains the code for managing the AWS infrastructure that deploys and runs Horta in AppStream; if you are a system admin and have deployment or management issues, report them here&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="twitter">Twitter&lt;/h2>
+&lt;p>The HortaCoud Twitter address is &lt;a href="https://twitter.com/HortaCloud">HortaCloud&lt;/a>.&lt;/p>
+&lt;h2 id="google-groups">Google groups&lt;/h2>
+&lt;p>You can ask to join the Google group for HortaCloud support &lt;a href="https://groups.google.com/g/hortacloud-support">here&lt;/a>.&lt;/p></description></item><item><title>Docs: Self-signed Certificates</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/selfsignedcerts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/selfsignedcerts/</guid><description>
 &lt;p>A self-signed certificate is automatically generated during the &lt;code>init-filesystem&lt;/code> step of a jacs-cm installation. For production use, it is recommended that you replace this certificate with a real one. The self-signed certificate is less secure, and it requires some extra steps to get working.&lt;/p>
 &lt;p>In order to connect to &lt;a href="https://HOST1">https://HOST1&lt;/a>, you need to accept the certificate in the browser. This differs by browser.&lt;/p>
 &lt;p>Then, in order to allow the Workstation to accept the certificate, it needs to be added to Java&amp;rsquo;s keystore. For this, you will need the certificate on the desktop computer where you are running the Workstation. You can either export it from the browser, or copy it over from the server. On the server, it is located in &lt;code>$CONFIG_DIR/certs/cert.crt&lt;/code>. Once you have the certificate, you can import it using Java&amp;rsquo;s keytool.&lt;/p>
@@ -1696,7 +1801,202 @@ StorageVolume.s3data.VolumePermissions=READ,WRITE,DELETE
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">/data/s3data:/s3data:shared&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Restart the stack after making the changes above and the volume will be created when the JADE worker starts.&lt;/p>
 &lt;h2 id="host-specific-volumes">Host-specific Volumes&lt;/h2>
-&lt;p>By default, all JADE agents are configured to serve all volumes in the database. You can use &lt;code>StorageAgent.ServedVolumes&lt;/code> to control which volumes are served by which hosts.&lt;/p></description></item><item><title>Docs: Data import</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/dataimport/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/dataimport/</guid><description>
+&lt;p>By default, all JADE agents are configured to serve all volumes in the database. You can use &lt;code>StorageAgent.ServedVolumes&lt;/code> to control which volumes are served by which hosts.&lt;/p></description></item><item><title>Docs: Viewing images</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/viewing-images/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/viewing-images/</guid><description>
+&lt;p>In this tutorial, we&amp;rsquo;ll go over the steps needed to load images in Horta and view them.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">HortaCloud-focused&lt;/h4>
+This tutorial is focused on HortaCloud. However, most of it applies to the desktop version of Horta as well. If you can launch Horta on the desktop, and you see data in the Data Explorer, you should be able to follow most of the other steps of the tutorial.
+&lt;/div>
+&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
+&lt;ul>
+&lt;li>You should be able to log into HortaCloud and launch the Horta application, as detailed in the previous tutorial.&lt;/li>
+&lt;li>Your HortaCloud instance should have access to the Janelia MouseLight data on Amazon AWS S3.
+&lt;ul>
+&lt;li>If not, you should have access to some similar data in your HortaCloud instance.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="steps">Steps&lt;/h2>
+&lt;h3 id="start-the-horta-application">Start the Horta Application&lt;/h3>
+&lt;p>Launch the Horta application. See the previous tutorial &amp;ldquo;Logging in&amp;rdquo; for more detail.&lt;/p>
+&lt;h3 id="locate-and-examine-data-in-the-data-explorer">Locate and examine data in the Data Explorer&lt;/h3>
+&lt;p>The &amp;ldquo;Data Explorer&amp;rdquo;, which appears by default in the upper left panel of Horta, shows a representation of all the data in Horta that you are allowed to see. This data is organized in folders, both created by the system and created by users. The exact list of folder you see will differ depending on which data you have permission to see.&lt;/p>
+&lt;p>Click on the triangle to the left of the folder named &lt;code>Home&lt;/code> with the owner &lt;code>mouselight&lt;/code>, which appears immediately to the right of the folder name, in yellow. This will open the folder to show its contents.&lt;/p>
+&lt;p>Click on the triangle to the left of the &amp;ldquo;3D Tile Microscope Samples&amp;rdquo; folder, also owned by &lt;code>mouselight&lt;/code>. You will see a long list of samples, indicated by a green flask icon. Each of these sample represents a group of image files on disk or in an AWS S3 bucket.&lt;/p>
+&lt;p>For this tutorial, we&amp;rsquo;re going to look at one of the Janelia Mouse Light samples, the &lt;code>2018-07-02&lt;/code> sample. Scroll down the list of samples until you see it. Left-click on the sample to select it. You will see information appear in the &amp;ldquo;Data Inspector&amp;rdquo;, located just below the Data Explorer.&lt;/p>
+&lt;p>The three tabs of the Data Inspector each show information about the sample. The &amp;ldquo;Attributes&amp;rdquo; tab contains typical metadata like name, creation/modification date, and globally unique identifier (GUID). It also shows the sample&amp;rsquo;s owner and the location of the image files that belong to the sample. The &amp;ldquo;Permissions&amp;rdquo; tab shows which users or groups can read or write to the data. There&amp;rsquo;s also a button which allows someone to grant permissions to other users to see or edit the data. The third tab, &amp;ldquo;Annotations&amp;rdquo;, is not used by Horta and is only used with other tools in the desktop workstation client.&lt;/p>
+&lt;a href="../images-viewing/data-explorer.png">
+&lt;img
+src="../images-viewing/data-explorer.png"
+class="rounded mx-auto"
+alt="Data Explorer showing target sample"/>
+&lt;/a>
+&lt;h3 id="open-a-sample-in-horta">Open a sample in Horta&lt;/h3>
+&lt;p>Now that we&amp;rsquo;ve located the &lt;code>2018-07-02&lt;/code> sample, it&amp;rsquo;s time to open it in Horta.&lt;/p>
+&lt;p>Do one of two things:&lt;/p>
+&lt;ol>
+&lt;li>Right-click the sample, and choose &amp;ldquo;Open in Horta&amp;rdquo;.&lt;/li>
+&lt;li>Left-click the sample to select it; then choose &lt;code>Horta&lt;/code> &amp;gt; &lt;code>Open in Horta&lt;/code> from the &lt;code>Actions&lt;/code> menu.&lt;/li>
+&lt;/ol>
+&lt;p>At this point, not a lot will visibly happen. When you open a sample in Horta, all that happens is that the dataset&amp;rsquo;s metadata is loaded into the application. The images themselves are not yet loaded. You will see that in the &amp;ldquo;Horta Control Center&amp;rdquo; panel at right, near the top, the &amp;ldquo;Sample&amp;rdquo; field will now show the name &amp;ldquo;2018-07-02&amp;rdquo;. That&amp;rsquo;s all (screenshot below). In the next tutorial (&amp;ldquo;Tracing neurons&amp;rdquo;), we&amp;rsquo;ll see that opening a workspace in Horta populates much more information in the UI. The &amp;ldquo;Concepts&amp;rdquo; section of the documentation has more information on the difference between samples and workspaces.&lt;/p>
+&lt;a href="../images-viewing/sample-open-hcc.png">
+&lt;img
+src="../images-viewing/sample-open-hcc.png"
+class="rounded mx-auto"
+alt="sample information in the Horta Control Center"/>
+&lt;/a>
+&lt;h3 id="open-the-horta-3d-window">Open the Horta 3D window&lt;/h3>
+&lt;p>It&amp;rsquo;s time to finally look at some images. For this demonstration, we&amp;rsquo;ll start with the 3D images. Near the top of the Horta Control Center, find the checkbox labeled &amp;ldquo;Open 3D&amp;rdquo;. Click it so it&amp;rsquo;s checked.&lt;/p>
+&lt;p>You will see a window tab titled &amp;ldquo;Horta 3D&amp;rdquo; open in the center panel. The first 3D images will also load. Initially, it&amp;rsquo;ll be underwhelming. Probably you&amp;rsquo;ll see one small bright rectangle in the center of the screen. In the next section, we&amp;rsquo;ll see how to adjust the color. For now, if you left-click in the 3D window, more data will load to cover most of the window.&lt;/p>
+&lt;a href="../images-viewing/3d-sample-initial.png">
+&lt;img
+src="../images-viewing/3d-sample-initial.png"
+class="rounded mx-auto"
+alt="sample immediately after opening in 3D"/>
+&lt;/a>
+&lt;a href="../images-viewing/3d-sample-initial&amp;#43;click.png">
+&lt;img
+src="../images-viewing/3d-sample-initial&amp;#43;click.png"
+class="rounded mx-auto"
+alt="sample in 3D after clicking"/>
+&lt;/a>
+&lt;h3 id="explore-the-data-in-3d">Explore the data in 3D&lt;/h3>
+&lt;h4 id="adjust-colors">Adjust colors&lt;/h4>
+&lt;p>The default color settings are not good; in general, the data will appear to be a washed out bright, light blue/purple. In order to adjust the color, first we need to go to the &amp;ldquo;Windows&amp;rdquo; menu and choose Horta &amp;gt; Color Sliders.&lt;/p>
+&lt;p>Often when the sliders are first opened, their panel will not be the correct height. You can adjust this. Like other panels in Horta, the color slider panel may be resized and docked or undocked from the main window as you like.&lt;/p>
+&lt;p>Also, when the color sliders are first opened, often the 3D image will be redrawn, or potentially not drawn at all. If this occurs, left-click in the 3D window to trigger a redraw.&lt;/p>
+&lt;p>Even though the data only has two channels (a signal channel and a reference channel), you&amp;rsquo;ll see three sliders. The third blue slider has a specialized use that we&amp;rsquo;re not going to cover in this tutorial. Click the eye next to the blue slider, and the blue channel will be hidden.&lt;/p>
+&lt;p>In practice, you will likely spend a lot of time tuning the color settings so the desired biological structures are most visible. For this tutorial, we&amp;rsquo;ll cover a few simple steps to make the data more visible:&lt;/p>
+&lt;ol>
+&lt;li>Click the eye icon to the left of the top, green slider. This turns the green channel data invisible.&lt;/li>
+&lt;li>Now drag the leftmost slider of the middle, purple slider to the right. Do this until the blocky, purple background of the image tiles disappears and you can see the purple outline of the brain. For this data, you&amp;rsquo;ll be dragging the slider until it&amp;rsquo;s midway between the left edge and the center lock icon below the sliders.&lt;/li>
+&lt;li>Now do it again for green. Click the eye next to the green slider to show the green channel, and the eye next to the purple channel to hide it. Drag the leftmost slide of the green bar until, again, the blocky background disappears and the brain outline is visible. For this data, try setting it a bit to the left of the middle purple slider.&lt;/li>
+&lt;li>Click the eye next to the purple slide so both data channels are visible again.&lt;/li>
+&lt;/ol>
+&lt;p>At this point (screenshot below), the labeled neurons, though, stand out in green against the purple background. Feel free to experiment with the other sliders. In practice, some tracers prefer to adjust the settings until the background is nearly invisible, so that the neuron signal is prominent, even if dim.&lt;/p>
+&lt;p>Note: Color settings are not saved for samples! In the next tutorial, we&amp;rsquo;ll see how these settings &lt;em>are&lt;/em> saved in workspaces.&lt;/p>
+&lt;a href="../images-viewing/3d-colors-adjusted.png">
+&lt;img
+src="../images-viewing/3d-colors-adjusted.png"
+class="rounded mx-auto"
+alt="sample in 3D after minimal color adjustment"/>
+&lt;/a>
+&lt;h4 id="pan-zoom-rotate">Pan, zoom, rotate&lt;/h4>
+&lt;p>Navigating the 3D data is done using the mouse.&lt;/p>
+&lt;p>To navigate in space (pan):&lt;/p>
+&lt;ul>
+&lt;li>left-click to center on a location&lt;/li>
+&lt;li>left-drag to move the image in the view plane&lt;/li>
+&lt;li>as you navigate, images will be loaded and unloaded&lt;/li>
+&lt;/ul>
+&lt;p>To zoom in and out:&lt;/p>
+&lt;ul>
+&lt;li>use the scroll wheel to zoom in or out; as you zoom, higher or lower resolutions images will be loaded&lt;/li>
+&lt;li>note that as you zoom in, you will see less and less of the thickness of the brain; that is, the displayed data will come from a projection depth that is smaller, allowing you to more clearly isolate smaller structures as you zoom in&lt;/li>
+&lt;/ul>
+&lt;p>To rotate in 3D:&lt;/p>
+&lt;ul>
+&lt;li>middle-click and drag, or hold down the shift key and left-click and drag; the cursor will change to two curved arrows, and the image will rotate in three dimensions&lt;/li>
+&lt;/ul>
+&lt;a href="../images-viewing/3d-rotated-zoomed.png">
+&lt;img
+src="../images-viewing/3d-rotated-zoomed.png"
+class="rounded mx-auto"
+alt="sample in 3D after rotating and zooming"/>
+&lt;/a>
+&lt;h3 id="open-the-horta-2d-window">Open the Horta 2D window&lt;/h3>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">HortaCloud&lt;/h4>
+&lt;p>Note that HortaCloud does not store high-resolution 2D images! When you zoom in, the images will be blurry.&lt;/p>
+&lt;p>In the Horta desktop application, when you zoom in, higher-resolution images will automatically be loaded.&lt;/p>
+&lt;/div>
+&lt;p>Loading the 2D images is done just like for 3D. Near the top of the Horta Control Center, find the checkbox labeled &amp;ldquo;Open 2D&amp;rdquo;. Click it so it&amp;rsquo;s checked.&lt;/p>
+&lt;p>You will see a window tab titled &amp;ldquo;Horta 2D&amp;rdquo; open in the center panel. The first 2D images will also load.&lt;/p>
+&lt;a href="../images-viewing/2d-sample-initial.png">
+&lt;img
+src="../images-viewing/2d-sample-initial.png"
+class="rounded mx-auto"
+alt="sample after opening in 2D"/>
+&lt;/a>
+&lt;h3 id="explore-the-data-in-2d">Explore the data in 2D&lt;/h3>
+&lt;h4 id="adjust-colors-1">Adjust colors&lt;/h4>
+&lt;p>As with 3D, the default color settings are almost never useful, and we&amp;rsquo;ll quickly adjust them to make the data more visible. In practice, you will likely spend a lot of time tuning the color settings so the desired biological structures are most visible.&lt;/p>
+&lt;p>The colors of the two data channels are controlled by the sliders and buttons at the bottom of the middle panel in the &amp;ldquo;Horta 2D&amp;rdquo; tab. They are distinct from the sliders used to adjust the 3D colors.&lt;/p>
+&lt;p>NOTE: Sometimes the color slider do not draw correctly when the sample initially opens in 2D. If this is the case, you will see two small checkboxes and two small plus signs at the right of the empty area below the 2D image. Toggle either on of the check boxes off and on, and the sliders should redraw.&lt;/p>
+&lt;p>Here are the steps to make some minimal adjustments to the colors:&lt;/p>
+&lt;ol>
+&lt;li>Click the eye icon to the left of the top, green slider. This turns the green channel data invisible.&lt;/li>
+&lt;li>Now drag the leftmost slider of the lower, purple slider to the right. Do this until the blocky, purple background of the image tiles disappears and you can see the purple outline of the brain. For this data, you&amp;rsquo;ll be dragging the slider until it&amp;rsquo;s midway between the left edge and the center lock icon below the sliders.&lt;/li>
+&lt;li>Now do it again for green. Click the eye next to the green slider to show the green channel, and the eye next to the purple channel to hide it. Drag the leftmost slide of the green bar until, again, the blocky background disappears and the brain outline is visible. For this data, try a location just to the left of the middle purple slider.&lt;/li>
+&lt;li>Click the eye next to the purple slide so both data channels are visible again.&lt;/li>
+&lt;/ol>
+&lt;p>At this point (screenshot), the labeled neurons stand out in green against the purple background. Feel free to experiment with the other sliders. In practice, some tracers prefer to adjust the settings until the background is nearly invisible so the neuron signal is prominent, even if dim.&lt;/p>
+&lt;a href="../images-viewing/2d-colors-adjusted.png">
+&lt;img
+src="../images-viewing/2d-colors-adjusted.png"
+class="rounded mx-auto"
+alt="sample in 2D after adjusting colors"/>
+&lt;/a>
+&lt;p>Note: Color settings are not saved for samples! In the next tutorial, we&amp;rsquo;ll see how these settings &lt;em>are&lt;/em> saved in workspaces.&lt;/p>
+&lt;h4 id="pan-scroll-through-z-zoom">Pan, scroll through z, zoom&lt;/h4>
+&lt;p>Navigating the 2D data is done using the mouse.&lt;/p>
+&lt;p>To navigate in the x-y plane, you can:&lt;/p>
+&lt;ul>
+&lt;li>double-left-click on any location to center the view on that point&lt;/li>
+&lt;li>middle-click and drag to pan the image to any location&lt;/li>
+&lt;/ul>
+&lt;p>To navigate along the z-axis, you can:&lt;/p>
+&lt;ul>
+&lt;li>use the scroll wheel to change the visible plane&lt;/li>
+&lt;li>drag the horizontal slider below the 2D view to change the visible plane&lt;/li>
+&lt;li>change the plane number visible in the plane number box to the right of the plane slider by either typing a plane number in the box, or by clicking the up and down arrows in the box&lt;/li>
+&lt;/ul>
+&lt;p>To zoom the image:&lt;/p>
+&lt;ul>
+&lt;li>hold down the shift key and spin the scroll wheel&lt;/li>
+&lt;li>drag the vertical slider to the right of the 2D view&lt;/li>
+&lt;li>remember, HortaCloud does not has high-resolution 2D images; when you zoom in, it will be blurry!&lt;/li>
+&lt;/ul>
+&lt;h2 id="x-y-z-locations">x, y, z locations&lt;/h2>
+&lt;h3 id="status-bars">Status bars&lt;/h3>
+&lt;p>As you move the mouse cursor in either the 2D or 3D windows, you will see the &lt;code>x, y, z&lt;/code> location of the cursor displayed in the status bars.&lt;/p>
+&lt;ul>
+&lt;li>in 3D, the status bar is at the very bottom of the Horta application window&lt;/li>
+&lt;li>in 2D, the status bar is at the bottom of the 2D window; the 3D status bar in this case is not accurate, and it does not update&lt;/li>
+&lt;li>in both cases, the &lt;code>x, y, z&lt;/code> location is given in microns (µm), as a floating-point number&lt;/li>
+&lt;/ul>
+&lt;p>The screenshot below shows both status bars, with the 3D bar at the bottom and the 2D bar above it.&lt;/p>
+&lt;a href="../images-viewing/status-bars.png">
+&lt;img
+src="../images-viewing/status-bars.png"
+class="rounded mx-auto"
+alt="the 2D and 3D status bars"/>
+&lt;/a>
+&lt;h3 id="copying-location-values">Copying location values&lt;/h3>
+&lt;p>You can copy the the current &lt;code>x, y, z&lt;/code> location to the clipboard by right-clicking in the view.&lt;/p>
+&lt;ul>
+&lt;li>in 3D, right-click and choose &amp;ldquo;Copy Micron Location to Clipboard&amp;rdquo;&lt;/li>
+&lt;li>in 2D, right-click and choose &amp;ldquo;Copy Micron Coords to Clipboard&amp;rdquo;&lt;/li>
+&lt;li>in both cases, the copied text has the following form: &lt;code>[68665.88,48154.89,26670.117]&lt;/code>
+&lt;ul>
+&lt;li>this is convenient for pasting into eg Matlab or Python&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>(HortaCloud) see the &amp;ldquo;AppStream Basics&amp;rdquo; section in this documentation for how to transfer the data from AppStream&amp;rsquo;s clipboard to your local system&amp;rsquo;s clipboard&lt;/li>
+&lt;/ul>
+&lt;h3 id="go-to-point">Go to point&lt;/h3>
+&lt;p>If you know the &lt;code>x, y, z&lt;/code> location you&amp;rsquo;d like to navigate to, and that data is on the clipboard, click the &amp;ldquo;Go to&amp;hellip;&amp;rdquo; button that appears just above the neuron list in the Horta Control Center. Paste in the data from the clipboard and click &amp;ldquo;OK&amp;rdquo;. Both the 2D and 3D views will navigate to put that point at the center of the view without changing the zoom level.&lt;/p>
+&lt;p>Details:&lt;/p>
+&lt;ul>
+&lt;li>the values should be in microns&lt;/li>
+&lt;li>you can paste in &lt;code>x, y, z&lt;/code> coordinates or just &lt;code>x, y&lt;/code>; in the latter case, the current &lt;code>z&lt;/code> value will not change&lt;/li>
+&lt;li>any brackets or commas will be removed
+&lt;ul>
+&lt;li>thus you can copy and paste from Horta, or from eg Matlab or Python&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>Again, HortaCloud users should see &amp;ldquo;AppStream Basics&amp;rdquo; for how to move data from your local system to the AppStream Clipboard.&lt;/p></description></item><item><title>Docs: Data import</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/dataimport/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/dataimport/</guid><description>
 &lt;p>In principle, any 3d volumetric data can be imported into the MouseLight Workstation.
 At this moment we only provide some very basic tools for converting only TIFF format images into the expected format on disk. Another limitation of the current tools is that the entire volume must be in a single tiff file (per channel)&lt;/p>
 &lt;p>The imagery for MouseLight Workstation is a directory containing TIFF and KTX images organized into octrees. JACS compute includes a a service that can generate the octree data from a single volume TIFF file. If there is more than 1 channel, the channels are numbered 0 .. n-1 and each channel is expected to be in its own file. For example if you have 2 channels you would have two tiff files:&lt;/p>
@@ -1766,7 +2066,233 @@ https://api-gateway-host/SCSW/JACS2AsyncServices/v2/lvDataImport \
 &lt;code>&amp;quot;&amp;quot; 3, &amp;quot;111&amp;quot; 3, &amp;quot;112&amp;quot; 3, ..., &amp;quot;118&amp;quot; 3, ..., &amp;quot;888&amp;quot; 3, ..., &amp;quot;111111&amp;quot; 3, ..., &amp;quot;888888&amp;quot; 3&lt;/code>
 If you leave the default (&lt;code>subtreeLengthForSubjobSplitting=5&lt;/code>) then the KTX conversion will start only &lt;code>1 + 8^5 = 32769&lt;/code> jobs (&lt;code>&amp;quot;11111&amp;quot; 5, ..., &amp;quot;88888&amp;quot; 5&lt;/code>)&lt;/li>
 &lt;/ul>
-&lt;p>Note that the service invocation requires authentication so before you invoke it, you need to obtain an JWS token from the authentication service - see the &lt;a href="../swarmdeployment">Verify Functionality section on this page&lt;/a>.&lt;/p></description></item><item><title>Docs: Troubleshooting</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/troubleshooting/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/troubleshooting/</guid><description>
+&lt;p>Note that the service invocation requires authentication so before you invoke it, you need to obtain an JWS token from the authentication service - see the &lt;a href="../swarmdeployment">Verify Functionality section on this page&lt;/a>.&lt;/p></description></item><item><title>Docs: Tracing neurons</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/tracing-neurons/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/tracing-neurons/</guid><description>
+&lt;p>In this tutorial, we&amp;rsquo;ll go over the steps needed to begin tracing a neuron in Horta in the 3D view.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">HortaCloud-focused&lt;/h4>
+This tutorial is focused on HortaCloud. However, most of it applies to the desktop version of Horta as well. If you can launch Horta on the desktop, and you see data in the Data Explorer, you should be able to follow most of the other steps of the tutorial.
+&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">3D-focused&lt;/h4>
+&lt;p>This tutorial doesn&amp;rsquo;t cover tracing in 2D in detail. Most of it is the same (creating workspaces, neurons, shift-click to add points), but there are some slight differences. See the &amp;ldquo;Basic Operations&amp;rdquo; section for details on 2D tracing.&lt;/p>
+&lt;p>For HortaCloud, 2D tracing is rarely useful, as HortaCloud does not usually contain high-resolution 2D data. You&amp;rsquo;re not going to be able to accurately place annotations with the low-resolution data.&lt;/p>
+&lt;/div>
+&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
+&lt;ul>
+&lt;li>You should be able to log into HortaCloud and launch the Horta application, as detailed in the first tutorial.&lt;/li>
+&lt;li>You should be able to open a sample in 3D and navigate the data, as detailed in the second tutorial.&lt;/li>
+&lt;li>Your HortaCloud instance should have access to the Janelia MouseLight data on Amazon AWS S3.
+&lt;ul>
+&lt;li>If not, you should have access to some similar data in your HortaCloud instance.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="steps">Steps&lt;/h2>
+&lt;h3 id="start-the-horta-application-and-open-a-sample-in-horta">Start the Horta Application and open a sample in Horta&lt;/h3>
+&lt;p>As detailed in the previous two tutorials:&lt;/p>
+&lt;ol>
+&lt;li>Launch HortaCloud&lt;/li>
+&lt;li>Locate the &lt;code>2018-07-02&lt;/code> sample in the Data Explorer and open it in the Horta Control Center&lt;/li>
+&lt;li>Open the sample in the 3D viewer&lt;/li>
+&lt;/ol>
+&lt;h3 id="create-a-workspace">Create a workspace&lt;/h3>
+&lt;p>The sample that is listed in the Data Explorer, that we&amp;rsquo;ve opened in Horta, is the representation of the image data in the database. In general, a user never needs to change this information&amp;ndash;it&amp;rsquo;s a static snapshot of the image data. The sample is shared among all users who will work with that dataset.&lt;/p>
+&lt;p>A workspace, by contrast, contains the neurons that a user has traced. The workspace initially belongs to and can only be seen by the user that created it, but it can then be shared with other users and/or groups.&lt;/p>
+&lt;p>To create a workspace:&lt;/p>
+&lt;ol>
+&lt;li>Open a sample in Horta (as done in the previous step); this is the dataset that the neuron tracing will be associated with&lt;/li>
+&lt;li>In the Horta Control Center at right, near the top, just under the &amp;ldquo;Open 2d&amp;rdquo; checkbox, click the button with the &amp;ldquo;+&amp;rdquo; on it.&lt;/li>
+&lt;li>By default, the dialog box that pops up provides a template for naming the workspace. For this tutorial, however, click the &amp;ldquo;Manual override&amp;rdquo; button to name the workspace without using the template. You can use the default name &amp;ldquo;new workspace&amp;rdquo; or enter another name, perhaps &amp;ldquo;tutorial workspace&amp;rdquo;. For this tutorial, leave &amp;ldquo;Assign neurons&amp;rdquo; unchecked.&lt;/li>
+&lt;li>Click &amp;ldquo;OK&amp;rdquo;&lt;/li>
+&lt;/ol>
+&lt;a href="../images-tracing/workspace-naming-dialog.png">
+&lt;img
+src="../images-tracing/workspace-naming-dialog.png"
+class="rounded mx-auto"
+alt="naming a new workspace"/>
+&lt;/a>
+&lt;p>The system will work for a moment, then it will reload the images, this time loading the workspace instead of the sample. You will notice that at the top of the Horta Control Center, the name you gave the workspace will appear just above the sample name now.&lt;/p>
+&lt;a href="../images-tracing/new-workspace-hcc.png">
+&lt;img
+src="../images-tracing/new-workspace-hcc.png"
+class="rounded mx-auto"
+alt="new workspace in the Horta Control Center"/>
+&lt;/a>
+&lt;p>In the Data Explorer, this workspace will be located in your &amp;ldquo;Home&amp;rdquo; folder (the one with your username next to it in gold), within the &amp;ldquo;Workspaces&amp;rdquo; subfolder. You may need to click the refresh button (upper left corner, two arrows in a circle) in the Data Explorer before it shows up.&lt;/p>
+&lt;p>By default, you are the only person who can see, open, or edit the workspace, save Horta administrators. See the &amp;ldquo;Basic Operations&amp;rdquo; section for how to share data.&lt;/p>
+&lt;h3 id="adjust-colors-and-save-the-color-model">Adjust colors and save the color model&lt;/h3>
+&lt;p>One immediate advantage of the workspace is the ability to save color settings, which Horta calls the &amp;ldquo;color model&amp;rdquo;. Unlike the sample, which is (potentially) shared among many or all users, workspaces often belong to one user. They are therefore appropriate for storing information like color settings, which are often a matter of personal preference.&lt;/p>
+&lt;ul>
+&lt;li>First, if the 3D view is not open, click the &amp;ldquo;Open 3D&amp;rdquo; checkbox and/or switch to the &amp;ldquo;Horta 3D&amp;rdquo; tab as needed.&lt;/li>
+&lt;li>Then adjust colors as described in the previous tutorial and shown in screenshots therein. For this sample: set the second purple slider to midway between the left edge and the center lock icons; set the first green slider a bit to the left of the second slider; and hide the third blue channel.&lt;/li>
+&lt;li>Next, to save the color model, locate the gear menu in the 3D &amp;ldquo;Color Sliders&amp;rdquo; panel, to the right, just under the three channels&amp;rsquo; color swatches. Note that the &amp;ldquo;Horta 2D&amp;rdquo; tab has its own color sliders. Be sure to use the 3D sliders for this tutorial.&lt;/li>
+&lt;li>From the gear menu, choose &amp;ldquo;Save Color Model to Workspace&amp;rdquo;.&lt;/li>
+&lt;/ul>
+&lt;p>When you save a color model, all of the color slider settings are saved: channel colors, channel visibility, all sliders, and all locks. From this point forward, when you open this workspace, the color model will be loaded. If you change the color settings later and want to keep them, you&amp;rsquo;ll need to save them again, however. The color model does not automatically save itself when changed.&lt;/p>
+&lt;p>The same applies to 2D; you can save the 2D color model (separately) from the gear menu in the 2D color slider area in the Horta 2D tab.&lt;/p>
+&lt;h3 id="create-a-neuron">Create a neuron&lt;/h3>
+&lt;p>Now, deep in the third tutorial, we are &lt;em>finally&lt;/em> ready to trace a neuron!&lt;/p>
+&lt;p>In Horta, tracing neurons is done by placing a series of connected point annotations along the neuron signal in the images. These points form one or more trees of points, with each point having one parent point and zero, one, or more child points.&lt;/p>
+&lt;p>The Horta Control Center contains, below the &amp;ldquo;Workspace&amp;rdquo; area, a list of neurons and controls for interacting with neurons.&lt;/p>
+&lt;p>To create a neuron, click the &amp;ldquo;+&amp;rdquo; button below the neuron list, just below the &amp;ldquo;Spatial filter&amp;rdquo; label. The default name is &amp;ldquo;Neuron 1&amp;rdquo;, where the number will be incremented to be larger than existing neurons. You may also give the neuron any name you like, with some restrictions (ie, the &lt;code>*&lt;/code> and &lt;code>?&lt;/code> characters can&amp;rsquo;t be used). You can rename the neuron at any time by right-clicking its name in the neuron list and choosing &amp;ldquo;Rename&amp;rdquo;. Once the neuron is created, the name will appear in the neuron list, and the neuron will be selected (highlighted).&lt;/p>
+&lt;p>The initial color is randomly chosen from a palette of about twenty. If you&amp;rsquo;d like to change the color of the neuron, click the color swatch to the right of the neuron&amp;rsquo;s name in the list and choose a new color from the dialog box.&lt;/p>
+&lt;a href="../images-tracing/new-neuron.png">
+&lt;img
+src="../images-tracing/new-neuron.png"
+class="rounded mx-auto"
+alt="new neuron in the neuron list"/>
+&lt;/a>
+&lt;h3 id="add-points">Add points&lt;/h3>
+&lt;p>Let&amp;rsquo;s find a neuron to trace. You can find any neuron you like (especially if you are not using the 2018-07-02 sample), but we&amp;rsquo;ll provide the location of a sample neuron if you want to follow along closely. This neuron is chosen for demonstration purposes only! It may not even be traceable along its entire length.&lt;/p>
+&lt;p>To find the sample neuron:&lt;/p>
+&lt;ul>
+&lt;li>Right-click in the 3D view and choose &amp;ldquo;Reset Horta Rotation&amp;rdquo; so you are oriented in the default direction&lt;/li>
+&lt;li>Click the &amp;ldquo;Go to&amp;hellip;&amp;rdquo; button in the Horta Control Center (described in more detail in the previous tutorial)&lt;/li>
+&lt;li>Enter the following coordinates and click OK: &lt;code>[74130,18910,35035]&lt;/code>
+&lt;ul>
+&lt;li>Remember, if you copy and paste these coordinates, you&amp;rsquo;ll need to choose the middle icon on the AppStream toolbar and choose &amp;ldquo;Past to remote session&amp;rdquo; to transfer the coordinates from your local computer&amp;rsquo;s clipboard to the AppStream clipboard; once it&amp;rsquo;s there, you can use control-V to paste as usual&lt;/li>
+&lt;li>See &amp;ldquo;AppStream Basics&amp;rdquo; for more information on copying and pasting to and from AppStream&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>We&amp;rsquo;re going to trace a small part of the bright neuron making a hairpin turn from the right edge of the screen.&lt;/p>
+&lt;a href="../images-tracing/target-area.png">
+&lt;img
+src="../images-tracing/target-area.png"
+class="rounded mx-auto"
+alt="target area for tracing"/>
+&lt;/a>
+&lt;p>The neuron you want to trace (&amp;ldquo;Neuron 1&amp;rdquo; in our case) should be highlighted in the neuron list. If it isn&amp;rsquo;t, single click it. The list of annotations below the neuron list should be empty at this time, if you&amp;rsquo;re following the tutorial exactly.&lt;/p>
+&lt;p>Navigate to the place you want to start tracing. Often this will be the soma of the neuron, but it can be anywhere. For this tutorial, we&amp;rsquo;ll start placing points in the middle of it. By single-clicking to recenter, dragging the image, and zooming in and out, center the neuron in the view. Feel free to rotate if you like, but to make this tutorial easy to follow from the screenshots, we&amp;rsquo;ll keep the default rotation.&lt;/p>
+&lt;p>Now move the mouse pointer over the signal, and over places near the signal but not on it. You&amp;rsquo;ll notice that a blob with the letter &amp;ldquo;P&amp;rdquo; in it appears and reappears as you move the mouse. In fact, you will see that it snaps to the brightest pixels in a small neighborhood around the mouse pointer. If there are no bright pixels, it may not appear at all. This &amp;ldquo;P&amp;rdquo; cursor indicates where the point will be placed. Zoom in as much as you need to place the point accurately. Shift-left-click to place the first point when the &amp;ldquo;P&amp;rdquo; blob is visible and on top of signal. Near the (x, y, z) location shown above is a good place to place the first point.&lt;/p>
+&lt;a href="../images-tracing/first-point.png">
+&lt;img
+src="../images-tracing/first-point.png"
+class="rounded mx-auto"
+alt="first point placed"/>
+&lt;/a>
+&lt;p>The first point appears! It&amp;rsquo;ll be drawn in the color of the neuron, and it will also have a &amp;ldquo;P&amp;rdquo; indicator drawn on it (although that indicator may be difficult to read depending on the strength of the signal nearby). At this point, if you were to rotate the view, you&amp;rsquo;ll see that the point lies properly on top of the signal in all dimensions. This is another feature of the &amp;ldquo;P&amp;rdquo; blob cursor: it senses the correct depth at which to place points. That is, it not only finds bright pixels in the plane of the display, it also finds the brightest pixel along the axis perpendicular to the screen (with a larger search neighborhood).&lt;/p>
+&lt;p>Move the mouse cursor along the neuron signal and shift-click again, working to the right of the screen on the upper segment. Repeat a few times until you have a short string of annotations, points connected by lines. The most recent point you&amp;rsquo;ve placed always has a (sometimes faint) &amp;ldquo;P&amp;rdquo; icon. &amp;ldquo;P&amp;rdquo; stands for &amp;ldquo;Parent&amp;rdquo;: that is the point to which your next point will be connected.&lt;/p>
+&lt;a href="../images-tracing/few-points.png">
+&lt;img
+src="../images-tracing/few-points.png"
+class="rounded mx-auto"
+alt="few points placed"/>
+&lt;/a>
+&lt;p>How densely should you place points? That depends on your intended scientific analysis. If you intend to determine region-to-region connectivity, you can annotate quite sparsely. However, if you intend to calculate neuron length or analyze neuron morphology, you will want to place points with smaller separation. If you&amp;rsquo;re using the tracing as ground truth for machine learning purposes, you may want near pixel-perfect tracing. In this case, look at the main documentation for the &amp;ldquo;automatically traced path&amp;rdquo; feature, in which you can have the computer trace paths between human placed points.&lt;/p>
+&lt;h3 id="the-annotation-list-and-more-navigation">The annotation list and more navigation&lt;/h3>
+&lt;p>The annotations list now contains a summary of the points you&amp;rsquo;ve placed. Not every point is listed&amp;ndash;that would quickly get unwieldy&amp;ndash;but the &amp;ldquo;interesting&amp;rdquo; points are. By default, the list includes every root point, endpoint, and branch point. It does not include points along a linear chain. But it also includes points that have some kind of user annotation attached to them (discussed elsewhere in the documentation). If you&amp;rsquo;re following closely, there will only be two points in the annotation list at this time, the root point and the endpoint.&lt;/p>
+&lt;a href="../images-tracing/annotation-list.png">
+&lt;img
+src="../images-tracing/annotation-list.png"
+class="rounded mx-auto"
+alt="annotation list with two entries"/>
+&lt;/a>
+&lt;p>Both the annotation list and the neuron list can be used for navigation.&lt;/p>
+&lt;ul>
+&lt;li>if you double-click a neuron in the neuron list, the view will center on the first point (the root point) in the neuron&lt;/li>
+&lt;li>if you double-click on an annotation in the annotation list, the view will center on it&lt;/li>
+&lt;/ul>
+&lt;h3 id="moving-and-deleting-points">Moving and deleting points&lt;/h3>
+&lt;p>If you make any errors when adding points, there are easy ways to correct them.&lt;/p>
+&lt;p>If you need to move a point a short distance, left-click and drag it.&lt;/p>
+&lt;ul>
+&lt;li>in 2D, you can only drag in the same plane&lt;/li>
+&lt;li>in 3D, you can again only drag in the plane of the view; the point does &lt;em>not&lt;/em> snap to bright pixels when you drag, so you&amp;rsquo;ll probably have to rotate and drag multiple times from different angles to fine-tune the location&lt;/li>
+&lt;/ul>
+&lt;p>To delete a point:&lt;/p>
+&lt;ul>
+&lt;li>in 2D: left click on it, then press the delete key on the keyboard&lt;/li>
+&lt;li>in 2D: right-click on it, then choose &amp;ldquo;Delete link&amp;rdquo; from the menu&lt;/li>
+&lt;li>in 3D: right-click on it, then choose &amp;ldquo;Delete Vertex&amp;rdquo; from the menu&lt;/li>
+&lt;/ul>
+&lt;p>If you delete an annotation in a linear chain, it&amp;rsquo;ll connect the two surrounding points. You can&amp;rsquo;t delete the root of the tree or branch points (see below for more on branching). If you need to delete multiple points, see the &amp;ldquo;Delete subtree&amp;rdquo; feature described in the &amp;ldquo;Basic Operations&amp;rdquo; section.&lt;/p>
+&lt;h3 id="branching">Branching&lt;/h3>
+&lt;p>You will see that each time you shift-click, the &amp;ldquo;P&amp;rdquo; indicator moves to the point you&amp;rsquo;ve most recently placed. &amp;ldquo;P&amp;rdquo; stands for &amp;ldquo;Parent&amp;rdquo;: that is the point to which your next point will be connected. This is how you&amp;rsquo;ll create branches.&lt;/p>
+&lt;p>If you&amp;rsquo;ve been following this tutorial closely, your neuron should be approaching a place where the signal branches. Continue adding points headed left until you reach the branch, and place a point directly on the branch location. If you&amp;rsquo;re tracing on different data, find a convenient branch point, or imagine one (it&amp;rsquo;s only a tutorial!).&lt;/p>
+&lt;p>At this point, the next parent icon (&amp;ldquo;P&amp;rdquo;) should be on the branch. Choose one arm of the neuron to trace, and add a few points. Now, go back to the branch point and single-click it so it again shows the &amp;ldquo;P&amp;rdquo; icon. This indicates that the next point you place will use this point (the branch point) as its parent. Add a few more points along the other branch. You&amp;rsquo;ve now got a branching structure.&lt;/p>
+&lt;a href="../images-tracing/branch.png">
+&lt;img
+src="../images-tracing/branch.png"
+class="rounded mx-auto"
+alt="branched neuron"/>
+&lt;/a>
+&lt;p>The annotation list now shows the root point, the branch point, and two endpoints.&lt;/p>
+&lt;a href="../images-tracing/annotation-list-branch.png">
+&lt;img
+src="../images-tracing/annotation-list-branch.png"
+class="rounded mx-auto"
+alt="branched neuron"/>
+&lt;/a>
+&lt;p>There are workflows that help you manage the task of tracing a branched structure. See, for example, &amp;ldquo;Simple workflow with notes and filters&amp;rdquo; in the &amp;ldquo;Features&amp;rdquo; section&lt;/p>
+&lt;h2 id="continuing-work-in-the-workspace">Continuing work in the workspace&lt;/h2>
+&lt;p>Annotations are saved to the database immediately after they are placed. This goes for all operations; the application is in constant communication with the database, and all changes are saved immediately. You can quit at any time, and no work will be lost. In this respect, HortaCloud acts more like a mobile application than a desktop application.&lt;/p>
+&lt;p>When you want to continue work, simple open the workspace from the Data Explorer just as you earlier opened a sample. That is, right-click it in the Data Explorer and choose &amp;ldquo;Open in Horta&amp;rdquo;. The neuron data will load immediately. After that, you can choose &amp;ldquo;Open 3D&amp;rdquo; and continue work tracing.&lt;/p></description></item><item><title>Docs: Exporting and importing neurons</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/import-export/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/import-export/</guid><description>
+&lt;p>In this tutorial, we&amp;rsquo;ll go over how to export and import traced neurons from/to Horta.&lt;/p>
+&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
+&lt;ul>
+&lt;li>You should be able to log into HortaCloud and launch the Horta application, as detailed in the first tutorial.&lt;/li>
+&lt;li>You should be able to open a workspace in 3D and navigate the data, as detailed in the second tutorial.&lt;/li>
+&lt;li>You should be able to create and add points to a neuron, as detailed in the third tutorial.&lt;/li>
+&lt;/ul>
+&lt;h2 id="steps">Steps&lt;/h2>
+&lt;h3 id="open-the-workspace">Open the workspace&lt;/h3>
+&lt;p>Launch HortaCloud and open the workspace created in the previous tutorial, or any other workspace that you can trace in.&lt;/p>
+&lt;h3 id="exporting-neurons-as-swc-files">Exporting neurons as SWC files&lt;/h3>
+&lt;p>Once you&amp;rsquo;ve finished tracing a neuron, you will probably want to export the data for analysis or visualization in another piece of software. Horta supports import and export to the standard SWC file format. Details of the SWC format can be found in the &amp;ldquo;Reference&amp;rdquo; section.&lt;/p>
+&lt;p>To export a traced neuron:&lt;/p>
+&lt;ol>
+&lt;li>Right click on its name in the neuron list and choose &amp;ldquo;Export SWC File&amp;rdquo;. A file dialog box will open.&lt;/li>
+&lt;li>Name the file whatever you like. An extension of &amp;ldquo;.swc&amp;rdquo; is strongly recommended. The two options on the right are discussed in the &amp;ldquo;Basic Operations&amp;rdquo; section. The defaults are appropriate almost all of the time.&lt;/li>
+&lt;li>Choose the export location. For desktop, choose any location you like on your hard drive. For HortaCloud, we need to save to an intermediate location first. At the top of the dialog box, click the &amp;ldquo;Save in&amp;rdquo; drop-down menu and choose &amp;ldquo;Temporary Files&amp;rdquo;.&lt;/li>
+&lt;/ol>
+&lt;a href="../images-import-export/export-dialog.png">
+&lt;img
+src="../images-import-export/export-dialog.png"
+class="rounded mx-auto"
+alt="export neurons dialog"/>
+&lt;/a>
+&lt;ol start="4">
+&lt;li>Click &amp;ldquo;OK&amp;rdquo;. A &amp;ldquo;Background Tasks&amp;rdquo; window will open with a progress bar. This operation is very fast, and you may not even see the bar before it&amp;rsquo;s filled. For desktop Horta, you&amp;rsquo;re done after this step.&lt;/li>
+&lt;li>For HortaCloud users, you now need to download your file(s) from the &amp;ldquo;Temporary Files&amp;rdquo; location on AppStream. The AppStream toolbar appears at the top of the browser&amp;rsquo;s content window, above the top of the Horta main window. Click the third icon from left, which has a tooltip of &amp;ldquo;My Files&amp;rdquo;.&lt;/li>
+&lt;li>In the new dialog box that opens, click &amp;ldquo;Temporary Files&amp;rdquo;. This is a web view into the folder where you exported your neuron. At the right end of the row for each file in this directory is a downward facing chevron. Click it and choose &amp;ldquo;Download&amp;rdquo; from the drop-down menu. Depending on your browser, you may be prompted to choose a location, or the file may be downloaded to your default downloads location. Also depending on your browser, you may need to authorize or confirm the download from the AppStream site.&lt;/li>
+&lt;/ol>
+&lt;a href="../images-import-export/temporary-files-download.png">
+&lt;img
+src="../images-import-export/temporary-files-download.png"
+class="rounded mx-auto"
+alt="download from temporary files"/>
+&lt;/a>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Safari&lt;/h4>
+File downloads seem not to work in Safari. Use Firefox or Chrome on Mac if you need to download from &amp;ldquo;Temporary Files&amp;rdquo;. (Strangely, uploading files to the same location &lt;em>does&lt;/em> work in Safari.)
+&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Temporary means temporary!&lt;/h4>
+The name &amp;ldquo;Temporary Files&amp;rdquo; is accurate! The files in this location will be deleted when your session ends. You &lt;em>must&lt;/em> download any exported neurons to your local computer in the same session in which you exported them.
+&lt;/div>
+&lt;h3 id="importing-neurons-from-swc-files">Importing neurons from SWC files&lt;/h3>
+&lt;p>Importing neurons from SWC files is basically the same as exporting, in reverse. Again, the HortaCloud procedure involves an intermediate location.&lt;/p>
+&lt;p>If you&amp;rsquo;ve been using the Janelia &lt;code>2021-03-17&lt;/code> sample for your test, you can &lt;a href="..//images-import-export/test-neuron.swc">download a test neuron to import&lt;/a> (right-click and download the linked file). If you don&amp;rsquo;t have access to the Janelia sample we&amp;rsquo;re using in these tutorials, you can test importing a neuron into your own sample and workspace by simply exporting any neuron (as in the previous section), deleting the neuron using the &amp;ldquo;-&amp;rdquo; button under the neuron list, and then reimporting the same neuron.&lt;/p>
+&lt;p>To import a traced neuron:&lt;/p>
+&lt;ol>
+&lt;li>Open a workspace that corresponds to the same sample the neuron was exported from. In other words, the exported neuron&amp;rsquo;s SWC file must be using the same coordinate system and same scale as the target sample. If not, the imported neuron will not lie on top of the neuron signal in the images. In many cases, it will be imported somewhere in space far from the brain imagery.&lt;/li>
+&lt;li>(HortaCloud only) Upload the SWC file to AppStream. Click the &amp;ldquo;My Files&amp;rdquo; icon on the AppStream toolbar (third from left). Click &amp;ldquo;Temporary Files&amp;rdquo;. You can drag files directly to this dialog box, and they will be uploaded. Alternately, click &amp;ldquo;Upload files&amp;rdquo; and choose the files from the file dialog that opens.&lt;/li>
+&lt;li>In Horta, click the gear menu under the workspace information area, above the neuron list. Choose &amp;ldquo;Import SWC file as separate neurons&amp;rdquo;.&lt;/li>
+&lt;li>Desktop users may choose any neuron on their hard disk at this point. HortaCloud users should again navigate to the &amp;ldquo;Temporary Files&amp;rdquo; area by using the drop-down menu called &amp;ldquo;Look in&amp;rdquo; at the top. Either way, choose a neuron SWC file and then click &amp;ldquo;Open&amp;rdquo;.&lt;/li>
+&lt;li>The &amp;ldquo;Background Tasks&amp;rdquo; window will again open, and the neuron will appear in the neurons list, and in the 2D or 3D views, if you have them open.&lt;/li>
+&lt;/ol>
+&lt;p>Once the neuron has loaded, it will be visible in the 3D view, the 2D view (if it&amp;rsquo;s open), and the neuron list. If you select the test neuron in the neuron list, you&amp;rsquo;ll see a large number of branch points and endpoints in the annotation list.&lt;/p>
+&lt;a href="../images-import-export/test-neuron-import.png">
+&lt;img
+src="../images-import-export/test-neuron-import.png"
+class="rounded mx-auto"
+alt="imported test neuron"/>
+&lt;/a>
+&lt;h3 id="bulk-importexport">Bulk import/export&lt;/h3>
+&lt;p>See the &amp;ldquo;Basic Operations&amp;rdquo; section for more information on exporting multiple neurons at once, and on importing multiple neurons either interactive or in a offline batch process.&lt;/p>
+&lt;h2 id="whats-next">What&amp;rsquo;s next&lt;/h2>
+&lt;p>After finishing these tutorials, you may want to read the &amp;ldquo;Basic Operations&amp;rdquo; section of the User Manual. This section will cover much of the same material discussed in these tutorials, with a few more details and a few more operations described. The &amp;ldquo;Features&amp;rdquo; section lists many less-commonly used tools. The &amp;ldquo;Reference&amp;rdquo; section contains details on, for example, file formats. Typically users will rarely need to consult that section.&lt;/p></description></item><item><title>Docs: Troubleshooting</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/troubleshooting/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/troubleshooting/</guid><description>
 &lt;h2 id="docker">Docker&lt;/h2>
 &lt;p>These are some useful commands for troubleshooting Docker:&lt;/p>
 &lt;p>View logs for Docker daemon&lt;/p>
