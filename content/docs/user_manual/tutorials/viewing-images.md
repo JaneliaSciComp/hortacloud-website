@@ -35,27 +35,25 @@ Click on the triangle to the left of the folder named `Home` with the owner `mou
 
 Click on the triangle to the left of the "3D Tile Microscope Samples" folder, also owned by `mouselight`. You will see a long list of samples, indicated by a green flask icon. Each of these sample represents a group of image files on disk or in an AWS S3 bucket.
 
-(screenshot of data explorer showing all the folders)
-
-For this tutorial, we're going to look at one of the Janelia Mouse Light samples, the `2021-03-17` sample. Scroll down the list of samples until you see it. Left-click on the sample to select it. You will see information appear in the "Data Inspector", located just below the Data Explorer.
-
-(screenshot of data explorer showing folders open, 2021-03-17 selected)
+For this tutorial, we're going to look at one of the Janelia Mouse Light samples, the `2018-07-02` sample. Scroll down the list of samples until you see it. Left-click on the sample to select it. You will see information appear in the "Data Inspector", located just below the Data Explorer.
 
 The three tabs of the Data Inspector each show information about the sample. The "Attributes" tab contains typical metdata like name, creation/modification date, and globally unique identifier (GUID). It also shows the sample's owner and the location of the image files that belong to the sample. The "Permissions" tab shows which users or groups can read or write to the data. There's also a button which allows someone to grant permissions to other users to see or edit the data. The third tab, "Annotations", is not used by Horta and is only used with other tools in the desktop workstation client.
+
+{{< imglink src="../images-viewing/data-explorer.png" link="../images-viewing/data-explorer.png" alt="Data Explorer showing target sample" >}}
 
 
 ### Open a sample in Horta
 
-Now that we've located the `2021-03-17` sample, it's time to open it in Horta. 
+Now that we've located the `2018-07-02` sample, it's time to open it in Horta. 
 
 Do one of two things:
 
 1. Right-click the sample, and choose "Open in Horta".
 2. Left-click the sample to selecte it; then choose `Horta` > `Open in Horta` from the `Actions` menu.
 
-At this point, not a lot will visibly happen. When you open a sample in Horta, all that happens is that the dataset's metadata is loaded into the application. The images themselves are not yet loaded. You will see that in the "Horta Control Center" panel at right, near the top, the "Sample" field will now show the name "2021-03-17". That's all (screenshot below). In the next tutorial ("Tracing neurons"), we'll see that opening a workspace in Horta populates much more information in the UI. The "Concepts" section of the documentation has more information on the difference between samples and workspaces.
+At this point, not a lot will visibly happen. When you open a sample in Horta, all that happens is that the dataset's metadata is loaded into the application. The images themselves are not yet loaded. You will see that in the "Horta Control Center" panel at right, near the top, the "Sample" field will now show the name "2018-07-02". That's all (screenshot below). In the next tutorial ("Tracing neurons"), we'll see that opening a workspace in Horta populates much more information in the UI. The "Concepts" section of the documentation has more information on the difference between samples and workspaces.
 
-(screenshot of HCC with sample name visible?  or all of Horta, to emphasize nothing loaded)
+{{< imglink src="../images-viewing/sample-open-hcc.png" link="../images-viewing/sample-open-hcc.png" alt="sample information in the Horta Control Center" >}}
 
 
 ### Open the Horta 3D window
@@ -64,7 +62,9 @@ It's time to finally look at some images. For this demonstration, we'll start wi
 
 You will see a window tab titled "Horta 3D" open in the center panel. The first 3D images will also load. Initially, it'll be underwhelming. Probably you'll see one small bright rectangle in the center of the screen. In the next section, we'll see how to adjust the color. For now, if you left-click in the 3D window, more data will load to cover most of the window.
 
-(screenshot of loaded 3d sample, default colors)
+{{< imglink src="../images-viewing/3d-sample-initial.png" link="../images-viewing/3d-sample-initial.png" alt="sample immediately after opening in 3D" >}}
+
+{{< imglink src="../images-viewing/3d-sample-initial+click.png" link="../images-viewing/3d-sample-initial+click.png" alt="sample in 3D after clicking" >}}
 
 
 
@@ -72,20 +72,25 @@ You will see a window tab titled "Horta 3D" open in the center panel. The first 
 
 #### Adjust colors
 
-The default color settings are not good; in general, the data will appear to be a washed out bright, light blue/purple. In order to adjust the color, first we need to go to the "Windows" menu and choose Horta > Color Sliders. Like other panels in Horta, it may be resized and docked or undocked from the main window. Often when the sliders are first opened, the 3D image will be redrawn, or potentially not drawn at all. If this occurs, left-click in the 3D window to trigger a redraw.
+The default color settings are not good; in general, the data will appear to be a washed out bright, light blue/purple. In order to adjust the color, first we need to go to the "Windows" menu and choose Horta > Color Sliders. Often when the sliders are first opened, their panel will not be the correct height. You can adjust this. Like other panels in Horta, the color slider panel may be resized and docked or undocked from the main window as you like. 
+
+Also, when the color sliders are first opened, often the 3D image will be redrawn, or potentially not drawn at all. If this occurs, left-click in the 3D window to trigger a redraw.
 
 Even though the data only has two channels (a signal channel and a reference channel), you'll see three sliders. The third blue slider has a specialized use that we're not going to cover in this tutorial. Click the eye next to the blue slider, and the blue channel will be hidden.
 
-In practice, the user will likely spend a lot of time tuning the color settings so the desired biological structures are most visible. For this tutorial, we'll cover a few simple steps to make the data more aparent:
+In practice, you will likely spend a lot of time tuning the color settings so the desired biological structures are most visible. For this tutorial, we'll cover a few simple steps to make the data more visible:
 
 1. Click the eye icon to the left of the top, green slider. This turns the green channel data invisible.
-2. Now drag the leftmost slider of the middle, purple slider to the right. Do this until the blocky, purple background of the image tiles disappears and you can see the purple outline of the brain. For this data, you'll be dragging the slider until it's just to the right of the center lock icon below the sliders.
-3. Now do it again for green. Click the eye next to the green slider to show the green channel, and the eye next to the purple channel to hide it. Drag the leftmost slide of the green bar until, again, the blocky background disappears and the brain outline is visible. For this data, it is again just to the right of the center lock icon below the sliders.
+2. Now drag the leftmost slider of the middle, purple slider to the right. Do this until the blocky, purple background of the image tiles disappears and you can see the purple outline of the brain. For this data, you'll be dragging the slider until it's midway between the left edge and the center lock icon below the sliders.
+3. Now do it again for green. Click the eye next to the green slider to show the green channel, and the eye next to the purple channel to hide it. Drag the leftmost slide of the green bar until, again, the blocky background disappears and the brain outline is visible. For this data, try setting it a bit to the left of the middle purple slider.
 4. Click the eye next to the purple slide so both data channels are visible again.
 
-At this point (screenshot), the brain appears kind of gray. The labeled neurons, though, stand out in green. Feel free to experiment with the other sliders. In practice, some tracers prefer to adjust the settings until the background is nearly invisible, so that the neuron signal is prominent, even if dim.
+At this point (screenshot below), the labeled neurons, though, stand out in green against the purple background. Feel free to experiment with the other sliders. In practice, some tracers prefer to adjust the settings until the background is nearly invisible, so that the neuron signal is prominent, even if dim.
 
 Note: Color settings are not saved for samples! In the next tutorial, we'll see how these settings _are_ saved in workspaces.
+
+{{< imglink src="../images-viewing/3d-colors-adjusted.png" link="../images-viewing/3d-colors-adjusted.png" alt="sample in 3D after minimal color adjustment" >}}
+
 
 
 #### Pan, zoom, rotate
@@ -106,7 +111,7 @@ To zoom in and out:
 To rotate in 3D:
 - middle-click and drag, or hold down the shift key and left-click and drag; the cursor will change to two curved arrows, and the image will rotate in three dimensions
 
-(screenshot?)
+{{< imglink src="../images-viewing/3d-rotated-zoomed.png" link="../images-viewing/3d-rotated-zoomed.png" alt="sample in 3D after rotating and zooming" >}}
 
 
 ### Open the Horta 2D window
@@ -121,28 +126,29 @@ Loading the 2D images is done just like for 3D. Near the top of the Horta Contro
 
 You will see a window tab titled "Horta 2D" open in the center panel. The first 2D images will also load.
 
-(screenshot of loaded 2d sample, default colors)
+{{< imglink src="../images-viewing/2d-sample-initial.png" link="../images-viewing/2d-sample-initial.png" alt="sample after opening in 2D" >}}
 
 
 ### Explore the data in 2D
 
 #### Adjust colors
 
-As with 3D, the default color settings are almost never useful, and we'll quickly adjust them to make the data more visible. In practice, the user will likely spend a lot of time tuning the color settings so the desired biological structures are most visible.
+As with 3D, the default color settings are almost never useful, and we'll quickly adjust them to make the data more visible. In practice, you will likely spend a lot of time tuning the color settings so the desired biological structures are most visible.
 
-The colors of the two data channels are controlled by the sliders and buttons at the bottom of the middle panel in the "Horta 2D" tab. They are distinct from the sliders used to adjust the 3D colors. Here are the steps to make some minimal adjustments to the colors:
+The colors of the two data channels are controlled by the sliders and buttons at the bottom of the middle panel in the "Horta 2D" tab. They are distinct from the sliders used to adjust the 3D colors. 
+
+NOTE: sometimes the color slider do not draw correctly when the sample initially opens in 2D. If this is the case, you will see two small checkboxes and two small plus signs at the right of the empty area below the 2D image. Toggle either on of the check boxes off and on, and the sliders should redraw.
+
+Here are the steps to make some minimal adjustments to the colors:
 
 1. Click the eye icon to the left of the top, green slider. This turns the green channel data invisible.
-2. Now drag the leftmost slider of the lower, purple slider to the right. Do this until the blocky, purple background of the image tiles disappears and you can see the purple outline of the brain. For this data, you'll be dragging the slider until it's just to the right of the center lock icon below the sliders.
-3. Now do it again for green. Click the eye next to the green slider to show the green channel, and the eye next to the purple channel to hide it. Drag the leftmost slide of the green bar until, again, the blocky background disappears and the brain outline is visible. For this data, it is again just to the right of the center lock icon below the sliders.
+2. Now drag the leftmost slider of the lower, purple slider to the right. Do this until the blocky, purple background of the image tiles disappears and you can see the purple outline of the brain. For this data, you'll be dragging the slider until it's midway between the left edge and the center lock icon below the sliders.
+3. Now do it again for green. Click the eye next to the green slider to show the green channel, and the eye next to the purple channel to hide it. Drag the leftmost slide of the green bar until, again, the blocky background disappears and the brain outline is visible. For this data, try a location just to the left of the middle purple slider.
 4. Click the eye next to the purple slide so both data channels are visible again.
 
-At this point (screenshot), the brain appears kind of gray. The labeled neurons, though, stand out in green. Note for example the neuron to the left of the midline on the starting plane (plane number 5632).
+At this point (screenshot), the labeled neurons stand out in green against the purple background. Feel free to experiment with the other sliders. In practice, some tracers prefer to adjust the settings until the background is nearly invisible so the neuron signal is prominent, even if dim.
 
-Feel free to experiment with the other sliders. In practice, some tracers prefer to adjust the settings until the background is nearly invisible so the neuron signal is prominent, even if dim.
-
-(screenshot of sample, adjusted colors)
-
+{{< imglink src="../images-viewing/2d-colors-adjusted.png" link="../images-viewing/2d-colors-adjusted.png" alt="sample in 2D after adjusting colors" >}}
 
 Note: Color settings are not saved for samples! In the next tutorial, we'll see how these settings _are_ saved in workspaces.
 
@@ -166,9 +172,6 @@ To zoom the image:
 - remember, HortaCloud does not has high-resolution 2D images; when you zoom in, it will be blurry!
 
 
-(screenshot of what?  something zoomed in?  or controls with labels?)
-
-
 ## x, y, z locations
 
 ### Status bars
@@ -178,6 +181,11 @@ As you move the mouse cursor in either the 2D or 3D windows, you will see the `x
 - in 3D, the status bar is at the very bottom of the Horta application window
 - in 2D, the status bar is at the bottom of the 2D window; the 3D status bar in this case is not accurate, and it does not update
 - in both cases, the `x, y, z` location is given in microns (µm), as a floating-point number
+
+The screenshot below shows both status bars, with the 3D bar at the bottom and the 2D bar above it.
+
+{{< imglink src="../images-viewing/status-bars.png" link="../images-viewing/status-bars.png" alt="the 2D and 3D status bars" >}}
+
 
 ### Copying location values
 
