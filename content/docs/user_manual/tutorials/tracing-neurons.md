@@ -14,7 +14,7 @@ This tutorial is focused on HortaCloud. However, most of it applies to the deskt
 {{% /alert %}}
 
 
-{{% alert title="2D-focused" color="primary" %}}
+{{% alert title="3D-focused" color="primary" %}}
 This tutorial doesn't cover tracing in 2D in detail. Most of it is the same (creating workspaces, neurons, shift-click to add points), but there are some slight differences. See the "Basic Operations" section for details on 2D tracing.
 
 For HortaCloud, 2D tracing is rarely useful, as HortaCloud does not usually contain high-resolution 2D data. You're not going to be able to accurately place annotations with the low-resolution data.
@@ -37,7 +37,7 @@ For HortaCloud, 2D tracing is rarely useful, as HortaCloud does not usually cont
 As detailed in the previous two tutorials:
 
 1. Launch HortaCloud
-2. Locate the `2021-03-17` sample in the Data Explorer and open it in the Horta Control Center
+2. Locate the `2018-07-02` sample in the Data Explorer and open it in the Horta Control Center
 3. Open the sample in the 3D viewer
 
 
@@ -45,7 +45,7 @@ As detailed in the previous two tutorials:
 
 The sample that is listed in the Data Explorer, that we've opened in Horta, is the representation of the image data in the database. In general, a user never needs to change this information--it's a static snapshot of the image data. The sample is shared among all users who will work with that dataset.
 
-A workspace, by contrast, contains the neurons that a user has traced. The workspace initially belongs to and can only be seen by the user that created it, but it can be shared with other users and/or groups.
+A workspace, by contrast, contains the neurons that a user has traced. The workspace initially belongs to and can only be seen by the user that created it, but it can then be shared with other users and/or groups.
 
 To create a workspace:
 
@@ -54,12 +54,14 @@ To create a workspace:
 3. By default, the dialog box that pops up provides a template for naming the workspace. For this tutorial, however, click the "Manual override" button to name the workspace without using the template. You can use the default name "new workspace" or enter another name, perhaps "tutorial workspace". For this tutorial, leave "Assign neurons" unchecked.
 4. Click "OK"
 
+{{< imglink src="../images-tracing/workspace-naming-dialog.png" link="../images-tracing/workspace-naming-dialog.png" alt="naming a new workspace" >}}
+
 The system will work for a moment, then it will reload the images, this time loading the workspace instead of the sample. You will notice that at the top of the Horta Control Center, the name you gave the workspace will appear just above the sample name now.
 
 
-(screenshot of HCC with names)
+{{< imglink src="../images-tracing/new-workspace-hcc.png" link="../images-tracing/new-workspace-hcc.png" alt="new workspace in the Horta Control Center" >}}
 
-In the Data Explorer, this workspace will be located in your "Home" folder (the one with your username next to it in gold), within the "Workspaces" subfolder. You may need to click the refresh button (upper left corner, two arros in a circle) in the Data Explorer before it shows up. 
+In the Data Explorer, this workspace will be located in your "Home" folder (the one with your username next to it in gold), within the "Workspaces" subfolder. You may need to click the refresh button (upper left corner, two arrows in a circle) in the Data Explorer before it shows up. 
 
 By default, you are the only person who can see, open, or edit the workspace, save Horta administrators. See the "Basic Operations" section for how to share data.
 
@@ -70,16 +72,13 @@ By default, you are the only person who can see, open, or edit the workspace, sa
 One immediate advantage of the workspace is the ability to save color settings, which Horta calls the "color model". Unlike the sample, which is (potentially) shared among many or all users, workspaces often belong to one user. They are therefore appropriate for storing information like color settings, which are often a matter of personal preference.
 
 - First, if the 3D view is not open, click the "Open 3D" checkbox and/or switch to the "Horta 3D" tab as needed. 
-- Then adjust colors as described in the previous tutorial. For this sample, moving the leftmost slider to just right of center for both channels will be enough to see the signal.
+- Then adjust colors as described in the previous tutorial and shown in screenshots therein. For this sample: set the second purple slider to midway between the left edge and the center lock icons; set the first green slider a bit to the left of the second slider; and hide the third blue channel.
 - Next, to save the color model, locate the gear menu in the 3D "Color Sliders" panel, to the right, just under the three channels' color swatches. Note that the "Horta 2D" tab has its own color sliders. Be sure to use the 3D sliders for this tutorial.
 - From the gear menu, choose "Save Color Model to Workspace".
 
 When you save a color model, all of the color slider settings are saved: channel colors, channel visibility, all sliders, and all locks. From this point forward, when you open this workspace, the color model will be loaded. If you change the color settings later and want to keep them, you'll need to save them again, however. The color model does not automatically save itself when changed. 
 
 The same applies to 2D; you can save the 2D color model (separately) from the gear menu in the 2D color slider area in the Horta 2D tab.
-
-
-(screenshot of sliders and gear menu?)
 
 
 ### Create a neuron
@@ -92,47 +91,48 @@ The Horta Control Center contains, below the "Workspace" area, a list of neurons
 
 To create a neuron, click the "+" button below the neuron list, just below the "Spatial filter" label. The default name is "Neuron 1", where the number will be incremented to be larger than existing neurons. You may also give the neuron any name you like, with some restrictions (ie, the `*` and `?` characters can't be used). You can rename the neuron at any time by right-clicking its name in the neuron list and choosing "Rename". Once the neuron is created, the name will appear in the neuron list, and the neuron will be selected (highlighted).
 
-If you'd like to change the color of the neuron, click the color swatch to the right of the neuron's name in the list and choose a new color from the dialog box. 
+The initial color is randomly chosen from a palette of about twenty. If you'd like to change the color of the neuron, click the color swatch to the right of the neuron's name in the list and choose a new color from the dialog box. 
 
-(screenshot)
+{{< imglink src="../images-tracing/new-neuron.png" link="../images-tracing/new-neuron.png" alt="new neuron in the neuron list" >}}
 
 
 ### Add points
 
-Let's find a neuron to trace. 
+Let's find a neuron to trace. You can find any neuron you like (especially if you are not using the 2018-07-02 sample), but we'll provide the location of a sample neuron if you want to follow along closely. This neuron is chosen for demonstration purposes only! It may not even be traceable along its entire length.
 
-- find a good place in this sample
-- how to reset 3d view so we're starting at the same view? (right-click, Reset Horta Rotation)
-- get a good x, y, z location
-    + and choose a direction, so I can approach a branch point!  adjust text, add screenshots
+To find the sample neuron:
 
+- Right-click in the 3D view and choose "Reset Horta Rotation" so you are oriented in the default direction
+- Click the "Go to..." button in the Horta Control Center (described in more detail in the previous tutorial)
+- Enter the following coordinates and click OK: `[74130,18910,35035]`
+    + Remember, if you copy and paste these coordinates, you'll need to choose the middle icon on the AppStream toolbar and choose "Past to remote session" to transfer the coordinates from your local computer's clipboard to the AppStream clipboard; once it's there, you can use control-V to paste as usual
+    + See "AppStream Basics" for more information on copying and pasting to and from AppStream
 
-If you're not using the 2021-03-17 sample, find any neuron in your data that has bright signal for this tutorial.
+We're going to trace a small part of the bright neuron making a hairpin turn from the right edge of the screen.
 
-The neuron you want to trace should be highlighted in the neuron list. If it isn't, single click it. The list of annotations below the neuron list should be empty at this time, if you're following the tutorial exactly.
+{{< imglink src="../images-tracing/target-area.png" link="../images-tracing/target-area.png" alt="target area for tracing" >}}
 
-Navigate to the place you want to start tracing. Often this will be the soma of the neuron, but it can be anywhere. For this tutorial, we'll start placing points in the middle of the neurite. By single-clicking to recenter, dragging the image, and zooming in and out, center the neuron in the view.
+The neuron you want to trace ("Neuron 1" in our case) should be highlighted in the neuron list. If it isn't, single click it. The list of annotations below the neuron list should be empty at this time, if you're following the tutorial exactly.
 
-Now move the mouse pointer over the signal, and over places near the signal but not on it. You'll notice that a blob with the letter "P" in it appears and reappears as you move the mouse. In fact, you will see that it snaps to the brightest pixels in a small neighborhood around the mouse pointer. If there are no bright pixels, it may not appear at all. This "P" cursor indicates where the point will be placed. Shift-left-click to place the first point when the "P" blob is visible and on top of signal.
+Navigate to the place you want to start tracing. Often this will be the soma of the neuron, but it can be anywhere. For this tutorial, we'll start placing points in the middle of it. By single-clicking to recenter, dragging the image, and zooming in and out, center the neuron in the view. Feel free to rotate if you like, but to make this tutorial easy to follow from the screenshots, we'll keep the default rotation.
 
-(include coordinates of suggested location?)
-(which means adding "go to" to previous tutorial, which is a good idea anyway?)
+Now move the mouse pointer over the signal, and over places near the signal but not on it. You'll notice that a blob with the letter "P" in it appears and reappears as you move the mouse. In fact, you will see that it snaps to the brightest pixels in a small neighborhood around the mouse pointer. If there are no bright pixels, it may not appear at all. This "P" cursor indicates where the point will be placed. Zoom in as much as you need to place the point accurately. Shift-left-click to place the first point when the "P" blob is visible and on top of signal. Near the (x, y, z) location shown above is a good place to place the first point.
 
-(screenshot)
+{{< imglink src="../images-tracing/first-point.png" link="../images-tracing/first-point.png" alt="first point placed" >}}
 
-The first point appears! It'll be drawn in the color of the neuron, and it will also have a "P" indicator drawn on it. At this point, if you were to rotate the view, you'll see that the point lies properaly on top of the signal in all dimensions. This is another feature of the "P" blob cursor: it senses the correct depth at which to place points. That is, it not only finds bright pixels in the plane of the display, it also finds the brightest pixel along the axis perpendicular to the screen (with a larger search neighborhood). 
+The first point appears! It'll be drawn in the color of the neuron, and it will also have a "P" indicator drawn on it (although that indicator may be difficult to read depending on the strength of the signal nearby). At this point, if you were to rotate the view, you'll see that the point lies properly on top of the signal in all dimensions. This is another feature of the "P" blob cursor: it senses the correct depth at which to place points. That is, it not only finds bright pixels in the plane of the display, it also finds the brightest pixel along the axis perpendicular to the screen (with a larger search neighborhood). 
 
-Move the mouse cursor along the neuron signal and shift-click again. Repeat a few times until you have a short string of annotations, points connected by lines. The most recent point you've placed always has a (sometimes faint) "P" icon. "P" stands for "Parent": that is the point to which your next point will be connected. 
+Move the mouse cursor along the neuron signal and shift-click again, working to the right of the screen on the upper segment. Repeat a few times until you have a short string of annotations, points connected by lines. The most recent point you've placed always has a (sometimes faint) "P" icon. "P" stands for "Parent": that is the point to which your next point will be connected. 
 
-(screenshot)
+{{< imglink src="../images-tracing/few-points.png" link="../images-tracing/few-points.png" alt="few points placed" >}}
 
 How densely should you place points? That depends on your intended scientific analysis. If you intend to determine region-to-region connectivity, you can annotate quite sparsely. However, if you intend to calculate neuron length or analyze neuron morphology, you will want to place points with smaller separation. If you're using the tracing as ground truth for machine learning purposes, you may want near pixel-perfect tracing. In this case, look at the main documentation for the "automatically traced path" feature, in which you can have the computer trace paths between human placed points.
 
 ### The annotation list and more navigation
 
-The annotations list now contains a summary of the points you've placed. Not every point is listed--that would quickly get unweildy--but the "interesting" points are. By default, the list includes every root point, endpoint, and branch point. It does not include points along a linear chain. But it also includes points that have some kind of user annotation attached to them (discussed elsewhere in the documentation).
+The annotations list now contains a summary of the points you've placed. Not every point is listed--that would quickly get unwieldy--but the "interesting" points are. By default, the list includes every root point, endpoint, and branch point. It does not include points along a linear chain. But it also includes points that have some kind of user annotation attached to them (discussed elsewhere in the documentation). If you're following closely, there will only be two points in the annotation list at this time, the root point and the endpoint.
 
-(screenshot)
+{{< imglink src="../images-tracing/annotation-list.png" link="../images-tracing/annotation-list.png" alt="annotation list with two entries" >}}
 
 
 Both the annotation list and the neuron list can be used for navigation.
@@ -161,13 +161,17 @@ If you delete an annotation in a linear chain, it'll connect the two surrounding
 
 You will see that each time you shift-click, the "P" indicator moves to the point you've most recently placed. "P" stands for "Parent": that is the point to which your next point will be connected. This is how you'll create branches.
 
-If you've been following this tutorial closely, your neuron should be approaching a place where the signal branches. Continue adding points until you reach the branch, and place a point directly on the branch location. If you're tracing on different data, find a convenient branch point, or imagine one (it's only a tutorial!).
+If you've been following this tutorial closely, your neuron should be approaching a place where the signal branches. Continue adding points headed left until you reach the branch, and place a point directly on the branch location. If you're tracing on different data, find a convenient branch point, or imagine one (it's only a tutorial!).
 
 At this point, the next parent icon ("P") should be on the branch. Choose one arm of the neuron to trace, and add a few points. Now, go back to the branch point and single-click it so it again shows the "P" icon. This indicates that the next point you place will use this point (the branch point) as its parent. Add a few more points along the other branch. You've now got a branching structure. 
 
-There are workflows that help you manage the task of tracing a branched structure. See, for example, "Simple workflow with notes and filters" in the "Features" section
+{{< imglink src="../images-tracing/branch.png" link="../images-tracing/branch.png" alt="branched neuron" >}}
 
-(screenshot)
+The annotation list now shows the root point, the branch point, and two endpoints.
+
+{{< imglink src="../images-tracing/annotation-list-branch.png" link="../images-tracing/annotation-list-branch.png" alt="branched neuron" >}}
+
+There are workflows that help you manage the task of tracing a branched structure. See, for example, "Simple workflow with notes and filters" in the "Features" section
 
 
 ## Continuing work in the workspace

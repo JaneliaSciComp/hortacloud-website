@@ -33,7 +33,7 @@ Sometimes Horta does have issues. Often reloading data by reopening a workspace 
 
 ### Ending the session
 
-To end the session, you can choose "End Session" from the drop-down menu on the top-right toolbar button.
+Generally sessions will automatically close after a period of inactivity. To end the session manually, you can choose "End Session" from the drop-down menu on the top-right toolbar button.
 
 Remember that when you end a session, some data that is stored on the remote computer will be lost:
 
@@ -46,10 +46,14 @@ All other data (sample data, workspace data, annotations, notes, etc.) is stored
 {{% alert title="Data safety during development" color="warn" %}}
 HortaCloud is still under development! 
 
-- there is some risk of database loss during upgrades
-    + any neurons should be exported to SWC for safety
-- some settings/preference data will be lost when sessions end
+- some settings and preference data will be lost when sessions end
+    + this includes things like preferred font size and window and panel positions
     + this will be moved into the database in a future release
 
 {{% /alert %}}
+
+
+### Reconnecting
+
+If your browser window is accidentally closed, your session is not lost. Simply repeat the login steps, and you will be reconnected to the session, even if from a different browser and/or computer.
 

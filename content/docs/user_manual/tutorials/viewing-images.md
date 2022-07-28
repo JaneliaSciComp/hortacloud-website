@@ -37,7 +37,7 @@ Click on the triangle to the left of the "3D Tile Microscope Samples" folder, al
 
 For this tutorial, we're going to look at one of the Janelia Mouse Light samples, the `2018-07-02` sample. Scroll down the list of samples until you see it. Left-click on the sample to select it. You will see information appear in the "Data Inspector", located just below the Data Explorer.
 
-The three tabs of the Data Inspector each show information about the sample. The "Attributes" tab contains typical metdata like name, creation/modification date, and globally unique identifier (GUID). It also shows the sample's owner and the location of the image files that belong to the sample. The "Permissions" tab shows which users or groups can read or write to the data. There's also a button which allows someone to grant permissions to other users to see or edit the data. The third tab, "Annotations", is not used by Horta and is only used with other tools in the desktop workstation client.
+The three tabs of the Data Inspector each show information about the sample. The "Attributes" tab contains typical metadata like name, creation/modification date, and globally unique identifier (GUID). It also shows the sample's owner and the location of the image files that belong to the sample. The "Permissions" tab shows which users or groups can read or write to the data. There's also a button which allows someone to grant permissions to other users to see or edit the data. The third tab, "Annotations", is not used by Horta and is only used with other tools in the desktop workstation client.
 
 {{< imglink src="../images-viewing/data-explorer.png" link="../images-viewing/data-explorer.png" alt="Data Explorer showing target sample" >}}
 
@@ -49,7 +49,7 @@ Now that we've located the `2018-07-02` sample, it's time to open it in Horta.
 Do one of two things:
 
 1. Right-click the sample, and choose "Open in Horta".
-2. Left-click the sample to selecte it; then choose `Horta` > `Open in Horta` from the `Actions` menu.
+2. Left-click the sample to select it; then choose `Horta` > `Open in Horta` from the `Actions` menu.
 
 At this point, not a lot will visibly happen. When you open a sample in Horta, all that happens is that the dataset's metadata is loaded into the application. The images themselves are not yet loaded. You will see that in the "Horta Control Center" panel at right, near the top, the "Sample" field will now show the name "2018-07-02". That's all (screenshot below). In the next tutorial ("Tracing neurons"), we'll see that opening a workspace in Horta populates much more information in the UI. The "Concepts" section of the documentation has more information on the difference between samples and workspaces.
 
@@ -72,7 +72,9 @@ You will see a window tab titled "Horta 3D" open in the center panel. The first 
 
 #### Adjust colors
 
-The default color settings are not good; in general, the data will appear to be a washed out bright, light blue/purple. In order to adjust the color, first we need to go to the "Windows" menu and choose Horta > Color Sliders. Often when the sliders are first opened, their panel will not be the correct height. You can adjust this. Like other panels in Horta, the color slider panel may be resized and docked or undocked from the main window as you like. 
+The default color settings are not good; in general, the data will appear to be a washed out bright, light blue/purple. In order to adjust the color, first we need to go to the "Windows" menu and choose Horta > Color Sliders. 
+
+Often when the sliders are first opened, their panel will not be the correct height. You can adjust this. Like other panels in Horta, the color slider panel may be resized and docked or undocked from the main window as you like. 
 
 Also, when the color sliders are first opened, often the 3D image will be redrawn, or potentially not drawn at all. If this occurs, left-click in the 3D window to trigger a redraw.
 
@@ -137,7 +139,7 @@ As with 3D, the default color settings are almost never useful, and we'll quickl
 
 The colors of the two data channels are controlled by the sliders and buttons at the bottom of the middle panel in the "Horta 2D" tab. They are distinct from the sliders used to adjust the 3D colors. 
 
-NOTE: sometimes the color slider do not draw correctly when the sample initially opens in 2D. If this is the case, you will see two small checkboxes and two small plus signs at the right of the empty area below the 2D image. Toggle either on of the check boxes off and on, and the sliders should redraw.
+NOTE: Sometimes the color slider do not draw correctly when the sample initially opens in 2D. If this is the case, you will see two small checkboxes and two small plus signs at the right of the empty area below the 2D image. Toggle either on of the check boxes off and on, and the sliders should redraw.
 
 Here are the steps to make some minimal adjustments to the colors:
 
