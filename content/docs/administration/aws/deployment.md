@@ -17,18 +17,6 @@ You should have **node v14** installed on your local machine. We recommend using
 * Install AWS CLI
   * AWS CDK requires AWS CLI to be installed and configured on the computer from which one runs the deployment procedure. [Installation](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) & [configuration](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) instructions can be found in the AWS documentation.
 
-* Install AWS CDK by running
-
-```bash
-npm install
-```
-
-This command will install CDK in your development environment so you can access its help as below (notice the '--' separator between cdk and cdk options - this is specific to npm not to cdk so all CDK flags must be after the double hyphen separator):
-
-```bash
-npm run cdk -- --help
-```
-
 ## Get the deployment scripts
 
 Clone the [HortaCloud GitHib repository](https://github.com/JaneliaSciComp/hortacloud) containing the deployment scripts:
@@ -43,6 +31,8 @@ Install the dependencies:
 ```bash
 npm run setup -- -i
 ```
+
+This command will install all packages that are needed to run the deployment procedure. The '-i' flag will tell the setup script to install npm packages for all application modules: cognito_stack, vpc_stack, workstation_stack and admin_api_stack. If you do not specify the '-i'  flag, the command will only check the .env file and create it in case it's missing. Notice how the '-i' flag is preceded by two hyhens '--' - this is specific to npm not to cdk, so all script specific flags must be after the double hyphen separator.
 
 ## Configure environment
 
@@ -159,7 +149,7 @@ After you copied or created the scripts:
 cd 'C:\Users\ImagebuilderAdmin\My Files\Temporary Files'
 ```
 
-* Run the installcmd script to install the workstation. &lt;serverName&gt; is the name of the backend EC2 instance, typically it looks like `ip-<ip4 with dashes instead of dots>.ec2.internal`. Instructions for locating this are provided as output from the installer script.
+* Run the installcmd script to install the workstation. &lt;serverName&gt; is the name of the backend EC2 instance, typically it looks like `ip-<ip4 with dashes instead of dots>.ec2.internal`. Instructions for locating this are provided as output from the installer script. The workstation client certificate is signed using the ec2 internal name so do not use the actual IP for the &lt;serverName&gt; parameter, because user logins will fail with a certificate error.
 
 ```powershell
 installcmd.ps1 <serverName>
@@ -211,14 +201,76 @@ By default the application will have a very long url that is not easy to remembe
 
 ## Upgrading HortaCloud services to AWS
 
-Upgrading the application, either for upgrading the back-end services or the Appstream front-end, require removing (uninstalling) the existing application and reinstalling it. To uninstall simply run:
+### Brute Force Approach
+
+This method requires removing (uninstalling) the existing HortaCloud stack and then reinstalling it. Because of the requirement to remove the existing installation the approach there is a relatively high risk of loosing the data, so before starting anything it is best to check that the latest backup or some backup is available. Upgrading the application typically only requires a backend and an application frontend upgrade - without any need to migrate the users so you only need to check if a backup for the JACS Mongo database exists typically at `s3://<HORTA_BACKUP_BUCKET value>/<HORTA_BACKUP_FOLDER value>/<timestamp>/jacs`
+
+To uninstall current HortaCloud instance run:
 ```bash
 npm run destroy
 ```
-and then reinstall it using:
+
+This command will uninstall the frontend and the backend AWS Cloudformation stacks, i.e., Admin, Appstream and JACS stacks, but it will not uninstall Cognito stack, so no user account will be removed.
+
+The next step is to upgrade the local git repo using
+```
+git pull
+```
+followed by redeploying the application.
+
+In order to restore the database from an existing backup make sure the following properties are set:
+```
+HORTA_RESTORE_BUCKET=<backup bucket name>
+HORTA_RESTORE_FOLDER="/hortacloud/backups/latest"
+```
+HORTA_RESTORE_BUCKET is the name of the backup bucket and HORTA_RESTORE_FOLDER must reference the parent prefix containing the 'jacs' folder - the location of the actual mongo backup. Typically the backup job creates a "softlink"  - "/hortacloud/backups/latest" so if you simply set the restore folder to that it should pick up the latest backup. If the backup was a manual backup or you need to restore to a previous date set the restore folder to that folder. For example setting `HORTA_RESTORE_FOLDER=/hortacloud/backups/20220609030001` will restore the database to the content saved on "Jun 9, 2022".
+
+After setting these properties you can proceed with the actual deploy procedure which will only install the backend and the frontend stack (skipping any Cognito installation):
 ```bash
 npm run deploy
 ```
+From here on, this approach is identical with the initial deployment, with the only exception that data and users should already exist once the backend stack is fully deployed.
+So after you start the deploy command, please follow the instructions you see on the screen which will prompt you when you need to setup the AppStream Builder exactly as it is described in the [Workstation app-installation section](#workstation-app-installation)
+
+If somehow you need to recreate the user login accounts because you inadvertently removed the Cognito stack as well (using '-u' flag) you can restore all the accounts from a previous backup using the following command:
+```
+npm run deploy -- -u -r -b <backup bucket> -f hortacloud/backups/manual-backup/cognito
+```
+
+The folder parameter must point to the actual cognito prefix, where 'users.json' and 'groups.json' are located
+
+### Incremental approach
+
+Incremental approach is more manual but it does not require any data restore. It basically removes only the frontend stacks, i.e. Appstream and admin app and it requires a manual update of the backend stack and of the workstation. The steps for the incremental approach are the following:
+* Remove only the frontend stacks:
+    ```npm run destroy -- -b```
+* From the AWS console connect to the EC2 instance (`<ORG>-hc-jacs-node-<STAGE>`) running the JACS stack.
+* Once connected run the following commands
+    ```
+    cd /opt/jacs/deploy
+    ./manage.sh compose down
+    sudo git pull origin stable
+    ./manage.sh compose up -d
+    ```
+* Start AppStream builder (`<ORG>-hc-image-builder-<STAGE>`)
+* Connect as Administrator
+* Check that 'reinstallwsonly.ps1' script is available, in the Admin's home directory. If not copy it from the application repo or just create it like the other install scripts, ('installcmd.ps1' and 'createappimage.ps1') were created on the initial deployment.
+* Run the reinstallwssonly.ps1 script:
+    ```
+    .\reinstallwssonly.ps1 <IP of host running JACS stack>
+    ```
+    The IP of the host running JACS is the same used for initial run of 'installcmd.ps1' and it can be found from the AWS console.
+* Try out the workstation application to make sure it works
+    ```
+    C:\apps\runJaneliaWorkstation.ps1
+    ```
+* Make sure you have the latest 'createappimage.ps1' script from the application git repository. If you don't copy the latest script that supports '--skip-registration' flag.
+* Start the script for creating the AppStream image but skip the application registration: `.\createappimage.ps1 --skip-registration`
+* Reinstall the frontend stacks
+    ```
+    npm run deploy -- --skip-vpc
+    ```
+  If no changes were made to the code AWS CDK will only update the missing stacks, leaving JACS stack as it was since it practically has not been changed from AWS' perspective
 
 ## Uninstalling HortaCloud services to AWS
 
@@ -227,7 +279,7 @@ To completely uninstall the application run:
 npm run destroy -- -u
 ```
 
-The command will uninstall all stacks including the user login stack.
+The command will uninstall all stacks including the user logins (Cognito) stack.
 
 Note in the previous [system upgrade section](#Upgrading_HortaCloud_services_to_AWS) that an upgrade typically does not require removing and recreating the user pool stack.
 
