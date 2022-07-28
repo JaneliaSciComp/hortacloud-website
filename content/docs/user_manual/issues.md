@@ -8,6 +8,7 @@ description: >
 
 If you encounter an issue while running Horta, or if you have comments, questions, or suggestions, there are multiple ways you can contact the Horta development team.
 
+
 ## Inside Horta
 
 (desktop) You may report a bug at any time within Horta. Simply choose "Report a bug" from the Help menu. Provide a description of what you were doing at the time of the issue! Sometimes Horta will encounter problems and display a dialog box with an ugly-looking error message. At the bottom of this dialog box, you'll also see a "Report" button. Again, please let us know what you were doing at the time of the issue if you choose to report an issue at this time.
@@ -17,36 +18,23 @@ This feature does not currently work in HortaCloud! The dialog works, but email 
 {{% /alert %}}
 
 
+## GitHub
 
-(I asked on Slack what else we want here.)
+GitHub is where the HortaCloud and Janelia Workstation source code is stored. If you are a GitHub user and would like to open an issue:
 
+- the Janelia Workstation repository: https://github.com/JaneliaSciComp/workstation
+    + this repo contains the code for the Horta application; if you have issues inside the application, this is the place to report them
+- the HortaCloud repository: https://github.com/JaneliaSciComp/hortacloud
+    + this repository contains the code for managing the AWS infrastructure that deploys and runs Horta in AppStream; if you are a system admin and have deployment or management issues, report them here
 
-
-## GitHub?
-
-https://github.com/JaneliaSciComp/hortacloud
-
-or workstation?
-
-https://github.com/JaneliaSciComp/workstation
-
-
-## email?
-
-- if we end up with a Clickup-linked address, show that here?
-
-
-## Slack?
-- link on community page doesn't work
-- goes to HHMI slack, not sure it can work?
 
 
 ## Twitter
 
+The HortaCoud Twitter address is [HortaCloud](https://twitter.com/HortaCloud).
 
 
 ## Google groups
 
-- https://groups.google.com/g/hortacloud-support
-- need to join
+You can ask to join the Google group for HortaCloud support [here](https://groups.google.com/g/hortacloud-support).
 

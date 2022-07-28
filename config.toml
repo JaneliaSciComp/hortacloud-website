@@ -179,11 +179,6 @@ enable = false
   icon = "fab fa-github"
   desc = "GitHub code repository for this website"
 
-[[params.links.developer]]
-  name = "Slack"
-  url = "https://scicomp-software.slack.com/archives/C03BZ177717"
-  icon = "fab fa-slack"
-  desc = "Chat with the software developers"
 
 # hugo module configuration
 
