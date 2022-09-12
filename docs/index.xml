@@ -260,7 +260,7 @@ So after you start the deploy command, please follow the instructions you see on
 &lt;ul>
 &lt;li>Remove only the frontend stacks:
 &lt;code>npm run destroy -- -b&lt;/code>&lt;/li>
-&lt;li>From the AWS console connect to the EC2 instance (&lt;code>&amp;lt;ORG&amp;gt;-hc-jacs-node-&amp;lt;STAGE&amp;gt;&lt;/code>) running the JACS stack.&lt;/li>
+&lt;li>From the AWS console connect to the EC2 instance (&lt;code>&amp;lt;ORG&amp;gt;-hc-jacs-node-&amp;lt;STAGE&amp;gt;&lt;/code>) running the JACS stack using the &amp;ldquo;Session Manager&amp;rdquo;. To be more specific, from the EC2 instances page, select the instance &lt;code>&amp;lt;ORG&amp;gt;-hc-jacs-node-&amp;lt;STAGE&amp;gt;&lt;/code> and click on the &amp;ldquo;Connect&amp;rdquo; button. This will take you to the instance page, and then from there select the &amp;ldquo;Session Manager&amp;rsquo; tab and click the &amp;ldquo;Connect&amp;rdquo; button again. The &amp;ldquo;Connect&amp;rdquo; button should be enabled - if it&amp;rsquo;s not there either was a problem with the deployment or there might be a problem with the instance itself.&lt;/li>
 &lt;li>Once connected run the following commands
 &lt;pre tabindex="0">&lt;code>cd /opt/jacs/deploy
 ./manage.sh compose down
