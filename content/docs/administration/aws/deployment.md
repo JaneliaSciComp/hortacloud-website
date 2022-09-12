@@ -244,7 +244,7 @@ The folder parameter must point to the actual cognito prefix, where 'users.json'
 Incremental approach is more manual but it does not require any data restore. It basically removes only the frontend stacks, i.e. Appstream and admin app and it requires a manual update of the backend stack and of the workstation. The steps for the incremental approach are the following:
 * Remove only the frontend stacks:
     ```npm run destroy -- -b```
-* From the AWS console connect to the EC2 instance (`<ORG>-hc-jacs-node-<STAGE>`) running the JACS stack.
+* From the AWS console connect to the EC2 instance (`<ORG>-hc-jacs-node-<STAGE>`) running the JACS stack using the "Session Manager". To be more specific, from the EC2 instances page, select the instance `<ORG>-hc-jacs-node-<STAGE>` and click on the "Connect" button. This will take you to the instance page, and then from there select the "Session Manager' tab and click the "Connect" button again. The "Connect" button should be enabled - if it's not there either was a problem with the deployment or there might be a problem with the instance itself.
 * Once connected run the following commands
     ```
     cd /opt/jacs/deploy
