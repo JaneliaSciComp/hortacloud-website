@@ -1,7 +1,7 @@
 ---
 title: "Operation"
 linkTitle: "Operation"
-weight: 100
+weight: 50
 description: >
   Day-to-day operation of the system
 ---
@@ -17,11 +17,3 @@ Open the Data Explorer (**Window** → **Core** → **Data Explorer**) and navig
 ### Batch Sample Import
 
 The workstation offers an option to import all your samples from an S3 Bucket mapped on the backend into the workstation. This can be done from the Workstation, select **Services** → **Load Horta Data**. This opens a [dialog box](docs/images/horta_data_import.png) that allows you to enter the location of your samples and the data owner. The location of your data can be entered like `<s3_bucket_name>/<full_moouselight_data_prefix>`, e.g. `janelia-mouselight-imagery/images`. For sample owner typically select `Mouselight Users (mouselight)` from the drop down selection. Once you click OK the system will start a background task that will try to create new samples from all folders at the specified location and you will start seeing new samples under `Home (mouselight)/3D Tile Microscope Samples` as they are imported.
-
-## System backup
-
-The system can be configured to run nightly backups. All it is needed is to specify a writeable bucket (HORTA_BACKUP_BUCKET) and a prefix (HORTA_BACKUP_FOLDER) that will hold the backups. Currently we only backup the Mongo database that contains samples info and tracing data and each backup will be stored in a timestamp ('yyyyMMddHHmmss') folder under the base backup prefix.
-
-## System restore
-
-If system backups are available the sample and tracing data can be restored from a specified backup bucket (HORTA_RESTORE_BUCKET) and prefix (HORTA_RESTORE_FOLDER) which typically was created by the nightly backup job.

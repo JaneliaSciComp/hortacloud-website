@@ -1,7 +1,7 @@
 ---
 title: "Deployment"
 linkTitle: "Deployment"
-weight: 10
+weight: 20
 description: >
   How to deploy HortaCloud to your own AWS account
 ---
@@ -98,7 +98,7 @@ In order to create an AppStream Image Builder, which is needed to create the Wor
 
 Most AWS services allow you to setup restrictions on the number of active instances. The default limits, especially for some AppStream resources, such as "Maximum ImageBuilders" for some graphics instances - "stream.graphics.g4dn.xlarge" may be really low (0 in some cases). Connect to AWS console "Service Quotas" service and increase the limit for in case you see a `limit was exceeded` error. Typically take a look at the limits setup for your account for EC2, VPC, AppStream, S3. Keep in mind that limits may be different from instance type to instance type for AppStream service, so you may have to adjust the limits based on the AppStream instance type selection.
 
-## Deploy HortaCloud services to AWS
+## Deploy HortaCloud services
 
 After the setup is complete, deploy the application by running:
 
@@ -199,82 +199,10 @@ By default the application will have a very long url that is not easy to remembe
     * "Custom SSL certificate" - Select the certificate that you registered with AWS Certificate Manager
   * Finally, click the "Create distribution" button.
 
-## Upgrading HortaCloud services to AWS
-
-### Brute Force Approach
-
-This method requires removing (uninstalling) the existing HortaCloud stack and then reinstalling it. Because of the requirement to remove the existing installation the approach there is a relatively high risk of loosing the data, so before starting anything it is best to check that the latest backup or some backup is available. Upgrading the application typically only requires a backend and an application frontend upgrade - without any need to migrate the users so you only need to check if a backup for the JACS Mongo database exists typically at `s3://<HORTA_BACKUP_BUCKET value>/<HORTA_BACKUP_FOLDER value>/<timestamp>/jacs`
-
-To uninstall current HortaCloud instance run:
-```bash
-npm run destroy
-```
-
-This command will uninstall the frontend and the backend AWS Cloudformation stacks, i.e., Admin, Appstream and JACS stacks, but it will not uninstall Cognito stack, so no user account will be removed.
-
-The next step is to upgrade the local git repo using
-```
-git pull
-```
-followed by redeploying the application.
-
-In order to restore the database from an existing backup make sure the following properties are set:
-```
-HORTA_RESTORE_BUCKET=<backup bucket name>
-HORTA_RESTORE_FOLDER="/hortacloud/backups/latest"
-```
-HORTA_RESTORE_BUCKET is the name of the backup bucket and HORTA_RESTORE_FOLDER must reference the parent prefix containing the 'jacs' folder - the location of the actual mongo backup. Typically the backup job creates a "softlink"  - "/hortacloud/backups/latest" so if you simply set the restore folder to that it should pick up the latest backup. If the backup was a manual backup or you need to restore to a previous date set the restore folder to that folder. For example setting `HORTA_RESTORE_FOLDER=/hortacloud/backups/20220609030001` will restore the database to the content saved on "Jun 9, 2022".
-
-After setting these properties you can proceed with the actual deploy procedure which will only install the backend and the frontend stack (skipping any Cognito installation):
-```bash
-npm run deploy
-```
-From here on, this approach is identical with the initial deployment, with the only exception that data and users should already exist once the backend stack is fully deployed.
-So after you start the deploy command, please follow the instructions you see on the screen which will prompt you when you need to setup the AppStream Builder exactly as it is described in the [Workstation app-installation section](#workstation-app-installation)
-
-If somehow you need to recreate the user login accounts because you inadvertently removed the Cognito stack as well (using '-u' flag) you can restore all the accounts from a previous backup using the following command:
-```
-npm run deploy -- -u -r -b <backup bucket> -f hortacloud/backups/manual-backup/cognito
-```
-
-The folder parameter must point to the actual cognito prefix, where 'users.json' and 'groups.json' are located
-
-### Incremental approach
-
-Incremental approach is more manual but it does not require any data restore. It basically removes only the frontend stacks, i.e. Appstream and admin app and it requires a manual update of the backend stack and of the workstation. The steps for the incremental approach are the following:
-* Remove only the frontend stacks:
-    ```npm run destroy -- -b```
-* From the AWS console connect to the EC2 instance (`<ORG>-hc-jacs-node-<STAGE>`) running the JACS stack using the "Session Manager". To be more specific, from the EC2 instances page, select the instance `<ORG>-hc-jacs-node-<STAGE>` and click on the "Connect" button. This will take you to the instance page, and then from there select the "Session Manager' tab and click the "Connect" button again. The "Connect" button should be enabled - if it's not there either was a problem with the deployment or there might be a problem with the instance itself.
-* Once connected run the following commands
-    ```
-    cd /opt/jacs/deploy
-    ./manage.sh compose down
-    sudo git pull origin stable
-    ./manage.sh compose up -d
-    ```
-* Start AppStream builder (`<ORG>-hc-image-builder-<STAGE>`)
-* Connect as Administrator
-* Check that 'reinstallwsonly.ps1' script is available, in the Admin's home directory. If not copy it from the application repo or just create it like the other install scripts, ('installcmd.ps1' and 'createappimage.ps1') were created on the initial deployment.
-* Run the reinstallwssonly.ps1 script:
-    ```
-    .\reinstallwssonly.ps1 <IP of host running JACS stack>
-    ```
-    The IP of the host running JACS is the same used for initial run of 'installcmd.ps1' and it can be found from the AWS console.
-* Try out the workstation application to make sure it works
-    ```
-    C:\apps\runJaneliaWorkstation.ps1
-    ```
-* Make sure you have the latest 'createappimage.ps1' script from the application git repository. If you don't copy the latest script that supports '--skip-registration' flag.
-* Start the script for creating the AppStream image but skip the application registration: `.\createappimage.ps1 --skip-registration`
-* Reinstall the frontend stacks
-    ```
-    npm run deploy -- --skip-vpc
-    ```
-  If no changes were made to the code AWS CDK will only update the missing stacks, leaving JACS stack as it was since it practically has not been changed from AWS' perspective
-
-## Uninstalling HortaCloud services to AWS
+## Uninstalling HortaCloud services
 
 To completely uninstall the application run:
+
 ```bash
 npm run destroy -- -u
 ```
