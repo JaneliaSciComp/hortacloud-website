@@ -1,6 +1,8 @@
 # HortaCloud Website
 
-This is the website for [HortaCloud](https://github.com/JaneliaSciComp/hortacloud).
+[![DOI](https://zenodo.org/badge/481740552.svg)](https://zenodo.org/badge/latestdoi/481740552)
+
+This is the website for [HortaCloud](https://github.com/JaneliaSciComp/hortacloud), including the user manual and deployment documentation.
 
 It is built using the [Hugo](https://gohugo.io) static site generator, and uses the [Docsy theme](https://docsy.dev).
 
