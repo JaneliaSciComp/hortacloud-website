@@ -29,6 +29,7 @@ cd hortacloud
 Install the dependencies:
 
 ```bash
+npm install
 npm run setup -- -i
 ```
 
