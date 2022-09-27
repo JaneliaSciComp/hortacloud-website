@@ -217,12 +217,12 @@ alt="three-server deployment diagram"/>
 &lt;h3 id="external-authentication">External Authentication&lt;/h3>
 &lt;p>The JACS system has its own self-contained authentication system, and can manage users and passwords internally.&lt;/p>
 &lt;p>If you&amp;rsquo;d prefer that users authenticate against your existing LDAP or ActiveDirectory server, edit &lt;code>$CONFIG_DIR/jacs-sync/jacs.properties&lt;/code> and add these properties:&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">LDAP.URL=
-LDAP.SearchBase=
-LDAP.SearchFilter=
-LDAP.BindDN=
-LDAP.BindCredentials=
-&lt;/code>&lt;/pre>&lt;p>The URL should point to your authentication server. The SearchBase is part of a distinguished name to search, something like &amp;ldquo;ou=People,dc=yourorg,dc=org&amp;rdquo;. The SearchFilter is the attribute to search on, something like &amp;ldquo;(cn={{username}})&amp;rdquo;. BindDN and BindCredentials defines the distinguished name and password for a service user that can access user information like full names and emails.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-properties" data-lang="properties">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">LDAP.URL&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">LDAP.SearchBase&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">LDAP.SearchFilter&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">LDAP.BindDN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">LDAP.BindCredentials&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The URL should point to your authentication server. The SearchBase is part of a distinguished name to search, something like &amp;ldquo;ou=People,dc=yourorg,dc=org&amp;rdquo;. The SearchFilter is the attribute to search on, something like &amp;ldquo;(cn={{username}})&amp;rdquo;. BindDN and BindCredentials defines the distinguished name and password for a service user that can access user information like full names and emails.&lt;/p>
 &lt;h2 id="start-all-containers">Start All Containers&lt;/h2>
 &lt;p>Next, start up all of the service containers. The parameter to the start command specifies the environment to use. The &lt;strong>dev&lt;/strong> environment uses containers tagged as &lt;em>latest&lt;/em> and updates them automatically when they change. The &lt;strong>prod&lt;/strong> deployment uses a frozen set of production versions. When in doubt, use the &lt;strong>prod&lt;/strong> deployment:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>./manage.sh start
@@ -282,14 +282,14 @@ LDAP.BindCredentials=
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">volumes&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">/path/to/your/nfs:/path/to/your/nfs:ro,shared&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will expose the path to both JADE agent containers. Now you need to configure the JADE agents to serve this data. On both hosts, edit /opt/jacs/config/jade/config.properties and add the following:&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">StorageVolume.mouseLightNFS.RootDir=/path/to/your/nfs
-StorageVolume.mouseLightNFS.VirtualPath=/path/to/your/nfs
-StorageVolume.mouseLightNFS.Shared=true
-StorageVolume.mouseLightNFS.Tags=mousebrain,light
-StorageVolume.mouseLightNFS.VolumePermissions=READ
-&lt;/code>&lt;/pre>&lt;p>You can use any name you want instead of mouseLightNFS. Then you should add this name to StorageAgent.BootstrappedVolumes:&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">StorageAgent.BootstrappedVolumes=jade1,mouseLightNFS
-&lt;/code>&lt;/pre>&lt;p>You will need to bounce the service stack to pick up these changes.&lt;/p></description></item><item><title>Docs: Deploying ELK</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/elkdeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/elkdeployment/</guid><description>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-properties" data-lang="properties">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">StorageVolume.mouseLightNFS.RootDir&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">/path/to/your/nfs&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">StorageVolume.mouseLightNFS.VirtualPath&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">/path/to/your/nfs&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">StorageVolume.mouseLightNFS.Shared&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">StorageVolume.mouseLightNFS.Tags&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">mousebrain,light&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">StorageVolume.mouseLightNFS.VolumePermissions&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">READ&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can use any name you want instead of mouseLightNFS. Then you should add this name to StorageAgent.BootstrappedVolumes:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-properties" data-lang="properties">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">StorageAgent.BootstrappedVolumes&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">jade1,mouseLightNFS&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You will need to bounce the service stack to pick up these changes.&lt;/p></description></item><item><title>Docs: Deploying ELK</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/elkdeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/elkdeployment/</guid><description>
 &lt;p>Currently ELK is only available in a swarm deployment because of how the ELK stack is configured.&lt;/p>
 &lt;p>Most of the set up necessary for ELK - configuration files and/or data directories - is already done as part of filesystem initialization performed while executing:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>./manage.sh init-filesystems

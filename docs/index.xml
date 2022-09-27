@@ -129,22 +129,25 @@ alt="cloud architecture diagram"/>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>git clone https://github.com/JaneliaSciComp/hortacloud/
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">cd&lt;/span> hortacloud
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Install the dependencies:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm run setup -- -i
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm install
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>npm run setup -- -i
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This command will install all packages that are needed to run the deployment procedure. The &amp;lsquo;-i&amp;rsquo; flag will tell the setup script to install npm packages for all application modules: cognito_stack, vpc_stack, workstation_stack and admin_api_stack. If you do not specify the &amp;lsquo;-i&amp;rsquo; flag, the command will only check the .env file and create it in case it&amp;rsquo;s missing. Notice how the &amp;lsquo;-i&amp;rsquo; flag is preceded by two hyhens &amp;lsquo;&amp;ndash;&amp;rsquo; - this is specific to npm not to cdk, so all script specific flags must be after the double hyphen separator.&lt;/p>
 &lt;h2 id="configure-environment">Configure environment&lt;/h2>
 &lt;p>The following values must be set in the &lt;code>.env&lt;/code> file:&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">AWS_REGION=&amp;lt;your aws region&amp;gt;
-AWS_ACCOUNT=&amp;lt;your aws account&amp;gt;
-HORTA_ORG=&amp;lt;app qualifier name&amp;gt;
-ADMIN_USER_EMAIL=&amp;lt;admin email&amp;gt;
-JACS_JWT_KEY=&amp;lt;a 32 byte jwt secret&amp;gt;
-JACS_MONGO_KEY=&amp;lt;a 32 byte mongo secret&amp;gt;
-JACS_APP_PASSWD=&amp;lt;app password&amp;gt;
-RABBITMQ_PASSWD=&amp;lt;rabbitmq password&amp;gt;
-JACS_API_KEY=&amp;lt;jacs api key&amp;gt;
-JADE_API_KEY=&amp;lt;jade api key&amp;gt;
-HORTA_DATA_BUCKETS=&amp;lt;s3 buckets that hold MouseLight data&amp;gt;
-&lt;/code>&lt;/pre>&lt;p>The api keys and secrets have been randomly generated during the setup step, but you can generate new ones with the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-properties" data-lang="properties">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">AWS_REGION&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;lt;your aws region&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">AWS_ACCOUNT&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;lt;your aws account&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">HORTA_ORG&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;lt;app qualifier name&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">ADMIN_USER_EMAIL&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;lt;admin email&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">JACS_JWT_KEY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;lt;a 32 byte jwt secret&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">JACS_MONGO_KEY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;lt;a 32 byte mongo secret&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">JACS_APP_PASSWD&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;lt;app password&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">RABBITMQ_PASSWD&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;lt;rabbitmq password&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">JACS_API_KEY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;lt;jacs api key&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">JADE_API_KEY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;lt;jade api key&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">HORTA_DATA_BUCKETS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;lt;s3 buckets that hold MouseLight data&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The api keys and secrets have been randomly generated during the setup step, but you can generate new ones with the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>openssl rand -hex &lt;span style="color:#0000cf;font-weight:bold">32&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>We prefer this procedure because these values will be handled during the installation using the &lt;code>sed&lt;/code> command and it is preferable that they not contain any characters that require escaping in a sed command.&lt;/p>
 &lt;p>If you already have data on some S3 buckets you can add them to &lt;code>HORTA_DATA_BUCKETS&lt;/code> as a comma separated list. For example, if you want to use Janelia&amp;rsquo;s Open Data bucket but in addition you also have your data on a private bucket (&amp;lsquo;janelia-mouseligh-demo&amp;rsquo; in this example) you need to set &lt;code>HORTA_DATA_BUCKETS=&amp;quot;janelia-mouselight-imagery,janelia-mouselight-demo&amp;quot;&lt;/code>. Currently it is set to Janelia&amp;rsquo;s open data MouseLight bucket only. Every bucket specified in the &amp;lsquo;HORTA_DATA_BUCKETS&amp;rsquo; list will be available in the workstation as &lt;code>/&amp;lt;s3BucketName&amp;gt;&lt;/code> directory.&lt;/p>
@@ -342,12 +345,12 @@ If you are using Docker for Mac, you&amp;rsquo;ll need to take the additional st
 &lt;h3 id="external-authentication">External Authentication&lt;/h3>
 &lt;p>The JACS system has its own self-contained authentication system, and can manage users and passwords internally.&lt;/p>
 &lt;p>If you&amp;rsquo;d prefer that users authenticate against your existing LDAP or ActiveDirectory server, edit &lt;code>$CONFIG_DIR/jacs-sync/jacs.properties&lt;/code> and add these properties:&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">LDAP.URL=
-LDAP.SearchBase=
-LDAP.SearchFilter=
-LDAP.BindDN=
-LDAP.BindCredentials=
-&lt;/code>&lt;/pre>&lt;p>The URL should point to your authentication server. The SearchBase is part of a distinguished name to search, something like &amp;ldquo;ou=People,dc=yourorg,dc=org&amp;rdquo;. The SearchFilter is the attribute to search on, something like &amp;ldquo;(cn={{username}})&amp;rdquo;. BindDN and BindCredentials defines the distinguished name and password for a service user that can access user information like full names and emails.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-properties" data-lang="properties">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">LDAP.URL&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">LDAP.SearchBase&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">LDAP.SearchFilter&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">LDAP.BindDN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">LDAP.BindCredentials&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The URL should point to your authentication server. The SearchBase is part of a distinguished name to search, something like &amp;ldquo;ou=People,dc=yourorg,dc=org&amp;rdquo;. The SearchFilter is the attribute to search on, something like &amp;ldquo;(cn={{username}})&amp;rdquo;. BindDN and BindCredentials defines the distinguished name and password for a service user that can access user information like full names and emails.&lt;/p>
 &lt;h2 id="start-all-containers">Start All Containers&lt;/h2>
 &lt;p>Now you can bring up all of the application containers:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>./manage.sh compose up -d
@@ -369,8 +372,8 @@ LDAP.BindCredentials=
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="build-and-run-client">Build and Run Client&lt;/h2>
 &lt;p>Now you can checkout the &lt;a href="https://github.com/JaneliaSciComp/workstation">Janelia Workstation&lt;/a> code base in IntelliJ or NetBeans and run its as per its README.&lt;/p>
 &lt;p>The client will ask you for the API Gateway URL, which is just &lt;code>http://$HOST1&lt;/code>. In order to automatically connect to your standalone gateway instance, you can create a new file at &lt;code>workstation/modules/Core/src/main/resources/my.properties&lt;/code> with this content (replacing the variables with the values from your .env.config file):&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">api.gateway=https://$HOST1
-&lt;/code>&lt;/pre></description></item><item><title>Docs: Two-server deployment</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/twoserverdeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/twoserverdeployment/</guid><description>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-properties" data-lang="properties">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">api.gateway&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">https://$HOST1&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Docs: Two-server deployment</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/twoserverdeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/twoserverdeployment/</guid><description>
 &lt;p>This document describes the canonical two-server Janelia Workstation deployment for supporting neuron tracing for the &lt;a href="https://www.janelia.org/project-team/mouselight">MouseLight project&lt;/a> at the Janelia Research Campus and other research institutions. This deployment uses Docker Swarm to orchestrate prebuilt containers available on Docker Hub.&lt;/p>
 &lt;h2 id="deployment-diagram">Deployment Diagram&lt;/h2>
 &lt;a href="../TwoServerDeployment.png">
@@ -1416,12 +1419,12 @@ sudo git checkout &amp;lt;version&amp;gt;
 &lt;h3 id="external-authentication">External Authentication&lt;/h3>
 &lt;p>The JACS system has its own self-contained authentication system, and can manage users and passwords internally.&lt;/p>
 &lt;p>If you&amp;rsquo;d prefer that users authenticate against your existing LDAP or ActiveDirectory server, edit &lt;code>$CONFIG_DIR/jacs-sync/jacs.properties&lt;/code> and add these properties:&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">LDAP.URL=
-LDAP.SearchBase=
-LDAP.SearchFilter=
-LDAP.BindDN=
-LDAP.BindCredentials=
-&lt;/code>&lt;/pre>&lt;p>The URL should point to your authentication server. The SearchBase is part of a distinguished name to search, something like &amp;ldquo;ou=People,dc=yourorg,dc=org&amp;rdquo;. The SearchFilter is the attribute to search on, something like &amp;ldquo;(cn={{username}})&amp;rdquo;. BindDN and BindCredentials defines the distinguished name and password for a service user that can access user information like full names and emails.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-properties" data-lang="properties">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">LDAP.URL&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">LDAP.SearchBase&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">LDAP.SearchFilter&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">LDAP.BindDN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">LDAP.BindCredentials&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The URL should point to your authentication server. The SearchBase is part of a distinguished name to search, something like &amp;ldquo;ou=People,dc=yourorg,dc=org&amp;rdquo;. The SearchFilter is the attribute to search on, something like &amp;ldquo;(cn={{username}})&amp;rdquo;. BindDN and BindCredentials defines the distinguished name and password for a service user that can access user information like full names and emails.&lt;/p>
 &lt;h2 id="start-all-containers">Start All Containers&lt;/h2>
 &lt;p>Next, start up all of the service containers. The parameter to the start command specifies the environment to use. The &lt;strong>dev&lt;/strong> environment uses containers tagged as &lt;em>latest&lt;/em> and updates them automatically when they change. The &lt;strong>prod&lt;/strong> deployment uses a frozen set of production versions. When in doubt, use the &lt;strong>prod&lt;/strong> deployment:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>./manage.sh start
@@ -1481,14 +1484,14 @@ LDAP.BindCredentials=
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">volumes&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">/path/to/your/nfs:/path/to/your/nfs:ro,shared&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will expose the path to both JADE agent containers. Now you need to configure the JADE agents to serve this data. On both hosts, edit /opt/jacs/config/jade/config.properties and add the following:&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">StorageVolume.mouseLightNFS.RootDir=/path/to/your/nfs
-StorageVolume.mouseLightNFS.VirtualPath=/path/to/your/nfs
-StorageVolume.mouseLightNFS.Shared=true
-StorageVolume.mouseLightNFS.Tags=mousebrain,light
-StorageVolume.mouseLightNFS.VolumePermissions=READ
-&lt;/code>&lt;/pre>&lt;p>You can use any name you want instead of mouseLightNFS. Then you should add this name to StorageAgent.BootstrappedVolumes:&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">StorageAgent.BootstrappedVolumes=jade1,mouseLightNFS
-&lt;/code>&lt;/pre>&lt;p>You will need to bounce the service stack to pick up these changes.&lt;/p></description></item><item><title>Docs: Logging in</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/logging-in/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/logging-in/</guid><description>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-properties" data-lang="properties">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">StorageVolume.mouseLightNFS.RootDir&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">/path/to/your/nfs&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">StorageVolume.mouseLightNFS.VirtualPath&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">/path/to/your/nfs&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">StorageVolume.mouseLightNFS.Shared&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">StorageVolume.mouseLightNFS.Tags&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">mousebrain,light&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">StorageVolume.mouseLightNFS.VolumePermissions&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">READ&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can use any name you want instead of mouseLightNFS. Then you should add this name to StorageAgent.BootstrappedVolumes:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-properties" data-lang="properties">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">StorageAgent.BootstrappedVolumes&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">jade1,mouseLightNFS&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You will need to bounce the service stack to pick up these changes.&lt;/p></description></item><item><title>Docs: Logging in</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/logging-in/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/logging-in/</guid><description>
 &lt;p>In this tutorial, we&amp;rsquo;ll go over the steps needed to log into HortaCloud and start the Horta application.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">HortaCloud only&lt;/h4>

@@ -46,12 +46,12 @@ If you are using Docker for Mac, you&amp;rsquo;ll need to take the additional st
 &lt;h3 id="external-authentication">External Authentication&lt;/h3>
 &lt;p>The JACS system has its own self-contained authentication system, and can manage users and passwords internally.&lt;/p>
 &lt;p>If you&amp;rsquo;d prefer that users authenticate against your existing LDAP or ActiveDirectory server, edit &lt;code>$CONFIG_DIR/jacs-sync/jacs.properties&lt;/code> and add these properties:&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">LDAP.URL=
-LDAP.SearchBase=
-LDAP.SearchFilter=
-LDAP.BindDN=
-LDAP.BindCredentials=
-&lt;/code>&lt;/pre>&lt;p>The URL should point to your authentication server. The SearchBase is part of a distinguished name to search, something like &amp;ldquo;ou=People,dc=yourorg,dc=org&amp;rdquo;. The SearchFilter is the attribute to search on, something like &amp;ldquo;(cn={{username}})&amp;rdquo;. BindDN and BindCredentials defines the distinguished name and password for a service user that can access user information like full names and emails.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-properties" data-lang="properties">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">LDAP.URL&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">LDAP.SearchBase&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">LDAP.SearchFilter&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">LDAP.BindDN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">LDAP.BindCredentials&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The URL should point to your authentication server. The SearchBase is part of a distinguished name to search, something like &amp;ldquo;ou=People,dc=yourorg,dc=org&amp;rdquo;. The SearchFilter is the attribute to search on, something like &amp;ldquo;(cn={{username}})&amp;rdquo;. BindDN and BindCredentials defines the distinguished name and password for a service user that can access user information like full names and emails.&lt;/p>
 &lt;h2 id="start-all-containers">Start All Containers&lt;/h2>
 &lt;p>Now you can bring up all of the application containers:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>./manage.sh compose up -d
@@ -73,5 +73,5 @@ LDAP.BindCredentials=
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="build-and-run-client">Build and Run Client&lt;/h2>
 &lt;p>Now you can checkout the &lt;a href="https://github.com/JaneliaSciComp/workstation">Janelia Workstation&lt;/a> code base in IntelliJ or NetBeans and run its as per its README.&lt;/p>
 &lt;p>The client will ask you for the API Gateway URL, which is just &lt;code>http://$HOST1&lt;/code>. In order to automatically connect to your standalone gateway instance, you can create a new file at &lt;code>workstation/modules/Core/src/main/resources/my.properties&lt;/code> with this content (replacing the variables with the values from your .env.config file):&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">api.gateway=https://$HOST1
-&lt;/code>&lt;/pre></description></item><item><title>Docs: Contribution guidelines</title><link>https://hortacloud.janelia.org/docs/development/contributing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/contributing/</guid><description/></item></channel></rss>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-properties" data-lang="properties">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">api.gateway&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">https://$HOST1&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Docs: Contribution guidelines</title><link>https://hortacloud.janelia.org/docs/development/contributing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/contributing/</guid><description/></item></channel></rss>

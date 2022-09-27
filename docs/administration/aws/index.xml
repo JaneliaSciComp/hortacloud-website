@@ -31,22 +31,25 @@ alt="cloud architecture diagram"/>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>git clone https://github.com/JaneliaSciComp/hortacloud/
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">cd&lt;/span> hortacloud
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Install the dependencies:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm run setup -- -i
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm install
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>npm run setup -- -i
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This command will install all packages that are needed to run the deployment procedure. The &amp;lsquo;-i&amp;rsquo; flag will tell the setup script to install npm packages for all application modules: cognito_stack, vpc_stack, workstation_stack and admin_api_stack. If you do not specify the &amp;lsquo;-i&amp;rsquo; flag, the command will only check the .env file and create it in case it&amp;rsquo;s missing. Notice how the &amp;lsquo;-i&amp;rsquo; flag is preceded by two hyhens &amp;lsquo;&amp;ndash;&amp;rsquo; - this is specific to npm not to cdk, so all script specific flags must be after the double hyphen separator.&lt;/p>
 &lt;h2 id="configure-environment">Configure environment&lt;/h2>
 &lt;p>The following values must be set in the &lt;code>.env&lt;/code> file:&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-properties" data-lang="properties">AWS_REGION=&amp;lt;your aws region&amp;gt;
-AWS_ACCOUNT=&amp;lt;your aws account&amp;gt;
-HORTA_ORG=&amp;lt;app qualifier name&amp;gt;
-ADMIN_USER_EMAIL=&amp;lt;admin email&amp;gt;
-JACS_JWT_KEY=&amp;lt;a 32 byte jwt secret&amp;gt;
-JACS_MONGO_KEY=&amp;lt;a 32 byte mongo secret&amp;gt;
-JACS_APP_PASSWD=&amp;lt;app password&amp;gt;
-RABBITMQ_PASSWD=&amp;lt;rabbitmq password&amp;gt;
-JACS_API_KEY=&amp;lt;jacs api key&amp;gt;
-JADE_API_KEY=&amp;lt;jade api key&amp;gt;
-HORTA_DATA_BUCKETS=&amp;lt;s3 buckets that hold MouseLight data&amp;gt;
-&lt;/code>&lt;/pre>&lt;p>The api keys and secrets have been randomly generated during the setup step, but you can generate new ones with the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-properties" data-lang="properties">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">AWS_REGION&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;lt;your aws region&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">AWS_ACCOUNT&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;lt;your aws account&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">HORTA_ORG&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;lt;app qualifier name&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">ADMIN_USER_EMAIL&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;lt;admin email&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">JACS_JWT_KEY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;lt;a 32 byte jwt secret&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">JACS_MONGO_KEY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;lt;a 32 byte mongo secret&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">JACS_APP_PASSWD&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;lt;app password&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">RABBITMQ_PASSWD&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;lt;rabbitmq password&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">JACS_API_KEY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;lt;jacs api key&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">JADE_API_KEY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;lt;jade api key&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">HORTA_DATA_BUCKETS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;lt;s3 buckets that hold MouseLight data&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The api keys and secrets have been randomly generated during the setup step, but you can generate new ones with the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>openssl rand -hex &lt;span style="color:#0000cf;font-weight:bold">32&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>We prefer this procedure because these values will be handled during the installation using the &lt;code>sed&lt;/code> command and it is preferable that they not contain any characters that require escaping in a sed command.&lt;/p>
 &lt;p>If you already have data on some S3 buckets you can add them to &lt;code>HORTA_DATA_BUCKETS&lt;/code> as a comma separated list. For example, if you want to use Janelia&amp;rsquo;s Open Data bucket but in addition you also have your data on a private bucket (&amp;lsquo;janelia-mouseligh-demo&amp;rsquo; in this example) you need to set &lt;code>HORTA_DATA_BUCKETS=&amp;quot;janelia-mouselight-imagery,janelia-mouselight-demo&amp;quot;&lt;/code>. Currently it is set to Janelia&amp;rsquo;s open data MouseLight bucket only. Every bucket specified in the &amp;lsquo;HORTA_DATA_BUCKETS&amp;rsquo; list will be available in the workstation as &lt;code>/&amp;lt;s3BucketName&amp;gt;&lt;/code> directory.&lt;/p>
