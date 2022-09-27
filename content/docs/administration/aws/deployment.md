@@ -75,7 +75,7 @@ For `HORTA_WS_INSTANCE_TYPE` set to any `stream.graphics.g4dn.*` instances:
 * `stream.graphics.g4dn.12xlarge`
 * `stream.graphics.g4dn.16xlarge`
 
-use: `HORTA_WS_IMAGE_NAME=AppStream-Graphics-G4dn-WinServer2019-07-19-2021` image.
+use: `HORTA_WS_IMAGE_NAME=AppStream-Graphics-G4dn-WinServer2019-09-01-2022` image.
 
 For `HORTA_WS_INSTANCE_TYPE` set to any `stream.graphics-pro.*` instances:
 
@@ -83,7 +83,9 @@ For `HORTA_WS_INSTANCE_TYPE` set to any `stream.graphics-pro.*` instances:
 * `stream.graphics-pro.8xlarge`
 * `stream.graphics-pro.16xlarge`
 
-use `HORTA_WS_IMAGE_NAME=AppStream-Graphics-Pro-WinServer2019-10-08-2021` image
+use `HORTA_WS_IMAGE_NAME=AppStream-Graphics-Pro-WinServer2019-09-01-2022` image
+
+Note: AWS deprecates the AppStream images relatively frequently so please make sure you use an AppStream-Graphics image that is available on AWS. You can see the available images from the AWS console if you select the "AppStream 2.0" service and then search "Images > Image Registry"
 
 ## Configure AWS account
 
