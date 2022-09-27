@@ -161,14 +161,15 @@ For &lt;code>HORTA_WS_INSTANCE_TYPE&lt;/code> set to any &lt;code>stream.graphic
 &lt;li>&lt;code>stream.graphics.g4dn.12xlarge&lt;/code>&lt;/li>
 &lt;li>&lt;code>stream.graphics.g4dn.16xlarge&lt;/code>&lt;/li>
 &lt;/ul>
-&lt;p>use: &lt;code>HORTA_WS_IMAGE_NAME=AppStream-Graphics-G4dn-WinServer2019-07-19-2021&lt;/code> image.&lt;/p>
+&lt;p>use: &lt;code>HORTA_WS_IMAGE_NAME=AppStream-Graphics-G4dn-WinServer2019-09-01-2022&lt;/code> image.&lt;/p>
 &lt;p>For &lt;code>HORTA_WS_INSTANCE_TYPE&lt;/code> set to any &lt;code>stream.graphics-pro.*&lt;/code> instances:&lt;/p>
 &lt;ul>
 &lt;li>&lt;code>stream.graphics-pro.4xlarge&lt;/code>&lt;/li>
 &lt;li>&lt;code>stream.graphics-pro.8xlarge&lt;/code>&lt;/li>
 &lt;li>&lt;code>stream.graphics-pro.16xlarge&lt;/code>&lt;/li>
 &lt;/ul>
-&lt;p>use &lt;code>HORTA_WS_IMAGE_NAME=AppStream-Graphics-Pro-WinServer2019-10-08-2021&lt;/code> image&lt;/p>
+&lt;p>use &lt;code>HORTA_WS_IMAGE_NAME=AppStream-Graphics-Pro-WinServer2019-09-01-2022&lt;/code> image&lt;/p>
+&lt;p>Note: AWS deprecates the AppStream images relatively frequently so please make sure you use an AppStream-Graphics image that is available on AWS. You can see the available images from the AWS console if you select the &amp;ldquo;AppStream 2.0&amp;rdquo; service and then search &amp;ldquo;Images &amp;gt; Image Registry&amp;rdquo;&lt;/p>
 &lt;h2 id="configure-aws-account">Configure AWS account&lt;/h2>
 &lt;h3 id="iam-required-roles">IAM Required Roles&lt;/h3>
 &lt;p>In order to create an AppStream Image Builder, which is needed to create the Workstation Image, you need to have all &lt;a href="https://docs.aws.amazon.com/appstream2/latest/developerguide/roles-required-for-appstream.html">roles required by AppStream&lt;/a>. Check that by simply connecting to the AWS console and check if the Roles are available in the IAM Service - select &amp;ldquo;Services&amp;rdquo; &amp;gt; &amp;ldquo;Security, Identity, Compliance&amp;rdquo; &amp;gt; &amp;ldquo;IAM&amp;rdquo; then verify that the required roles are present:&lt;/p>
