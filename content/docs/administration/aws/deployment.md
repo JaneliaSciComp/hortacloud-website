@@ -63,7 +63,7 @@ openssl rand -hex 32
 
 We prefer this procedure because these values will be handled during the installation using the `sed` command and it is preferable that they not contain any characters that require escaping in a sed command.
 
-If you already have data on some S3 buckets you can add them to `HORTA_DATA_BUCKETS` as a comma separated list. For example, if you want to use Janelia's Open Data bucket but in addition you also have your data on a private bucket ('janelia-mouseligh-demo' in this example) you need to set `HORTA_DATA_BUCKETS="janelia-mouselight-imagery,janelia-mouselight-demo"`. Currently it is set to Janelia's open data MouseLight bucket only. Every bucket specified in the 'HORTA_DATA_BUCKETS' list will be available in the workstation as `/<s3BucketName>` directory.
+If you already have data on some S3 buckets you can add them to `HORTA_DATA_BUCKETS` as a comma separated list. For example, if you want to use Janelia's Open Data bucket but in addition you also have your data on a private bucket ('janelia-mouselight-demo' in this example) you need to set `HORTA_DATA_BUCKETS="janelia-mouselight-imagery,janelia-mouselight-demo"`. By default, only the MouseLight Open Data bucket is mounted. Every bucket specified in the 'HORTA_DATA_BUCKETS' list will be available in Horta as `/s3data/<s3BucketName>` directory.
 
 If you want to change the setting for `HORTA_WS_INSTANCE_TYPE`, keep in mind that you may have to change `HORTA_WS_IMAGE_NAME`
 For `HORTA_WS_INSTANCE_TYPE` set to any `stream.graphics.g4dn.*` instances:
@@ -125,15 +125,15 @@ with some manual intervention for **AppStream builder** step (third step outline
 
 2) **Deploy the back-end stacks** - this includes the AppStream builder. At the back end deployment the installation process will also create the admin user configured in `ADMIN_USER_EMAIL`.
 
-3) **Connect to AppStream builder and install the workstation application** - This is a semiautomated step that involves copying and running two PowerShell scripts onto the AppStream builder instance.
+3) **Connect to AppStream builder and install the Horta application** - This is a semiautomated step that involves copying and running two PowerShell scripts onto the AppStream builder instance.
 
 4) **Deploy the administration stack.**
 
-### Workstation app installation
+### Install the Horta desktop application
 
 For client installation start and connect to the AppStream builder instance then copy the following scripts from this repo to the AppStream instance:
 
-* [installcmd.ps1](https://github.com/JaneliaSciComp/hortacloud/blob/main/vpc_stack/src/asbuilder/installcmd.ps1) - installs JDK and the workstation
+* [installcmd.ps1](https://github.com/JaneliaSciComp/hortacloud/blob/main/vpc_stack/src/asbuilder/installcmd.ps1) - installs JDK and the Horta application
 * [createappimage.ps1](https://github.com/JaneliaSciComp/hortacloud/blob/main/vpc_stack/src/asbuilder/createappimage.ps1) - creates the AppStream image
 
 After you copied or created the scripts:
@@ -152,23 +152,23 @@ After you copied or created the scripts:
 cd 'C:\Users\ImagebuilderAdmin\My Files\Temporary Files'
 ```
 
-* Run the installcmd script to install the workstation. &lt;serverName&gt; is the name of the backend EC2 instance, typically it looks like `ip-<ip4 with dashes instead of dots>.ec2.internal`. Instructions for locating this are provided as output from the installer script. The workstation client certificate is signed using the ec2 internal name so do not use the actual IP for the &lt;serverName&gt; parameter, because user logins will fail with a certificate error.
+* Run the installcmd script to install Horta. &lt;serverName&gt; is the name of the backend EC2 instance, typically it looks like `ip-<ip4 with dashes instead of dots>.ec2.internal`. Instructions for locating this are provided as output from the installer script. The Horta client certificate is signed using the ec2 internal name so do not use the actual IP for the &lt;serverName&gt; parameter, because user logins will fail with a certificate error.
 
 ```powershell
 installcmd.ps1 <serverName>
 ```
 
-  This will install the JDK and the workstation. The installer will run silently and it will install the workstation under the `C:\apps` folder. If it prompts you for the install directory, select `C:\apps` as the JaneliaWorkstation location.
+  This will install the JDK and Horta. The installer will run silently and it will install the Horta application under the `C:\apps` folder. If it prompts you for the install directory, select `C:\apps` as the JaneliaWorkstation location.
 
-* *Optional* - To start the workstation for testing, run:
+* *Optional* - To start Horta for testing, run:
 
 ```powershell
 c:\apps\runJaneliaWorkstation.ps1
 ```
 
 * when prompted, login as the admin user you set in ADMIN_USER_EMAIL (leave the password empty)
-* Navigate through the menus to make sure the workstation is working. *Do not create any user accounts at this time as they will get created from the Admin web application.*
-* When testing is finished, close down the workstation.
+* Navigate through the menus to make sure Horta is working. *Do not create any user accounts at this time as they will get created from the Admin web application.*
+* When testing is finished, close down Horta.
 
 * Finalize the creation of the AppStream image, run:
 
