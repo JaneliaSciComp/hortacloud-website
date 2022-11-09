@@ -12,10 +12,10 @@ Light microscopes of various kinds can now image an entire fly or mouse brain (e
 
 - size: generally limited by disk space (local or cloud)
 - channels: two channels are supported and tested; three channels are supported but not well tested; four or more channels are possible but would require more development
-- location: the data will be on a storage system accessible to the image server 
-    + (HortaCloud) AWS S3 bucket
-    + (desktop) local or networked storage available to the workstation servers
-    + the file path to the data should be known to the user if they will be creating samples manually 
+- location: the data will be on a storage system accessible to the image server
+  - (HortaCloud) AWS S3 bucket
+  - (desktop) local or networked storage available to the workstation servers
+  - the file path to the data should be known to the user if they will be creating samples manually
 - arrangement: the 2D and 3D images are arranged in multi-resolution octrees; details are covered in the reference section, but the user doesn't need to know them
 
 ## Software & tasks
@@ -39,20 +39,19 @@ The basic tools can be used to implement a variety of workflows. For example, a 
 
 ## Jargon
 
-- basic objects in Horta: 
-    + `sample`: the data; specifically, the object in the workstation that represents a particular image dataset; it's independent of user, and it's all you need if you are only viewing the data 
-    + `workspace`: the object in the workstation that collects a set of annotations (traced neurons and text annotations); it is owned by a user or group, and it contains neurons 
-    + `neuron`: the object that holds the traced neuron skeletons; a neuron usually contains one or more neurites 
-    + `neurite`: a single skeleton or tree; a group of annotations with parent-child relationships, all tracing back to a single root without a parent 
-    + `annotation`: a single point that may have zero or one parent and zero or more children; annotations are sometimes called anchors 
-    + `tag`: a word or phrase attached to a neuron; it may be used in filtering the neuron list or in controlling neuron appearance 
-    + `owner`: a username or group that owns the neuron; if a neuron is owned by a user, only they may change it; if a neuron is owned by a group, any member of the group may take sole ownership of the neuron (and then change it) 
-- data and data formats: 
-    + `tiles` or `octree`: the files holding the 2D data 
-    + `ktx tiles`: the files holding the 3D data 
-    + `SWC file`: a common multi-column text file format for storing neuron skeletons 
-    + `JSON file`: a common structured text file format used to import/export text annotations
-- tracing methods & workflows: 
-    + `manual`: a tracer clicks along the signal in the data to create a neuron skeleton 
-    + `semi-automated`: a computer program partially traces the signal in a dataset; the fragments are imported into the workstation; a tracer connects and/or extends fragments as needed to produce the skeleton
- 
+- basic objects in Horta:
+  - `sample`: the data; specifically, the object in the workstation that represents a particular image dataset; it's independent of user, and it's all you need if you are only viewing the data
+  - `workspace`: the object in the workstation that collects a set of annotations (traced neurons and text annotations); it is owned by a user or group, and it contains neurons
+  - `neuron`: the object that holds the traced neuron skeletons; a neuron usually contains one or more neurites
+  - `neurite`: a single skeleton or tree; a group of annotations with parent-child relationships, all tracing back to a single root without a parent
+  - `annotation`: a single point that may have zero or one parent and zero or more children; annotations are sometimes called anchors
+  - `tag`: a word or phrase attached to a neuron; it may be used in filtering the neuron list or in controlling neuron appearance
+  - `owner`: a username or group that owns the neuron; if a neuron is owned by a user, only they may change it; if a neuron is owned by a group, any member of the group may take sole ownership of the neuron (and then change it)
+- data and data formats:
+  - `tiles` or `octree`: the files holding the 2D data
+  - `ktx tiles`: the files holding the 3D data
+  - `SWC file`: a common multi-column text file format for storing neuron skeletons
+  - `JSON file`: a common structured text file format used to import/export text annotations
+- tracing methods & workflows:
+  - `manual`: a tracer clicks along the signal in the data to create a neuron skeleton
+  - `semi-automated`: a computer program partially traces the signal in a dataset; the fragments are imported into the workstation; a tracer connects and/or extends fragments as needed to produce the skeleton
