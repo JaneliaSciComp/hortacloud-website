@@ -131,7 +131,7 @@ alt="AppStream toolbar"/>
 In HortaCloud, samples are usually already created automatically by the system.
 &lt;/div>
 &lt;ul>
-&lt;li>File menu &amp;gt; New &amp;gt; Tiled Microscope Sample&lt;/li>
+&lt;li>File menu &amp;gt; New &amp;gt; Horta Sample&lt;/li>
 &lt;li>In &amp;ldquo;Sample Name&amp;rdquo;, enter a name for the sample&lt;/li>
 &lt;li>In &amp;ldquo;Path To Render Folder&amp;rdquo;, enter the path that the image server will use to locate the images. This should be a Linux-style path.
 &lt;ul>
@@ -956,10 +956,8 @@ Since the desktop version of Horta uses the full 2D octree, prolonged browsing i
 &lt;h3 id="rendered-2d-images">Rendered 2D images&lt;/h3>
 &lt;p>The raw microscope data is transformed and stitched together into a contiguous rendered whole. It&amp;rsquo;s also stored in tiff stacks, rendered at multiple resolutions and arranged in an octree. For HortaCloud, this data likely only has the a single low-resolution image for each channel.&lt;/p>
 &lt;p>Details of the files and their organization will be added later.&lt;/p>
-&lt;h3 id="horta-3d-images-ktx-files">Horta 3D images (ktx files)&lt;/h3>
-&lt;p>Horta&amp;rsquo;s 3D images are optimized for fast loading into the Horta viewer. The ktx file format is designed to load directly into graphics cards. In order to keep the files both small enough to load rapidly and small enough to economically store, the rendered data is transformed and down-sampled before ktx tile creation. These files are also arranged in an octree, although currently Horta only uses the highest resolution images.&lt;/p>
-&lt;p>The file format is managed by the Khronos Group and is described &lt;a href="https://www.khronos.org/api/index_2017/ktx">here&lt;/a>.&lt;/p>
-&lt;p>Horta-specific details will be added later.&lt;/p>
+&lt;h3 id="hortaktx-3d-volumes">HortaKTX 3D volumes&lt;/h3>
+&lt;p>Horta&amp;rsquo;s 3D images are optimized for fast loading into the Horta viewer. The HortaKTX format is based on the &lt;a href="https://registry.khronos.org/KTX/specs/1.0/ktxspec_v1.html">KTX file format&lt;/a> which is designed to load directly into graphics cards. In order to keep the files both small enough to load rapidly and small enough to economically store, the rendered data is transformed and down-sampled before KTX tile creation. These files are also arranged in a multiscale octree for full volume viewing.&lt;/p>
 &lt;h2 id="a-algorithm-for-automatically-traced-paths">A* algorithm for automatically traced paths&lt;/h2>
 &lt;p>The algorithm for computing the path is:&lt;/p>
 &lt;ul>
@@ -988,7 +986,25 @@ console.LVVHorta.activetracersgroup=group:mouselight_tracers
 &lt;li>The &amp;ldquo;activetracersgroup&amp;rdquo; variable should be set to a group containing only people who are tracing. The members of this group will be listed in some neuron ownership change dialogs for convenience.&lt;/li>
 &lt;li>If either group does not exist in the workstation database, the corresponding features will be disabled.&lt;/li>
 &lt;li>&lt;strong>Note&lt;/strong>: This scheme assumes that all tracers are members of one group that shares data freely. If you need to support multiple groups that will not be sharing data, you should currently deploy separate infrastructure (servers, etc) to support each group.&lt;/li>
-&lt;/ul></description></item><item><title>Docs: Reporting issues</title><link>https://hortacloud.janelia.org/docs/user_manual/issues/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/issues/</guid><description>
+&lt;/ul></description></item><item><title>Docs: Synchronized Folders</title><link>https://hortacloud.janelia.org/docs/user_manual/synchronized_folders/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/synchronized_folders/</guid><description>
+&lt;h2 id="what-are-synchronized-folders">What are Synchronized Folders&lt;/h2>
+&lt;p>If you are incrementally adding a lot of data to the system, using the &lt;strong>File&lt;/strong> → &lt;strong>New&lt;/strong> → &lt;strong>Horta Sample&lt;/strong> menu option can become tedious. If you create a Synchronized Folder, your data will be discovered as it is placed in storage, and Horta Samples will be automatically generated. The new Horta Samples can be made available to you or a group of users of your choice.&lt;/p>
+&lt;p>Synchronized Folders also load traced neurons, when those tracings are made available in a specific format. The &lt;a href="https://registry.opendata.aws/janelia-mouselight/">MouseLight Open Data&lt;/a> contains traced neurons alongside the imagery. If you use a Synchronized Folder to bring that data into Horta, you&amp;rsquo;ll also get Workspaces containing the published neurons that were traced on each sample.&lt;/p>
+&lt;h2 id="creating-a-synchronized-folder">Creating a Synchronized Folder&lt;/h2>
+&lt;p>You can find Synchronized Folders near the top of the Data Explorer:&lt;/p>
+&lt;p>&lt;img src="../synchronized_folders.png" alt="Synchronized folders">&lt;/p>
+&lt;p>To add a new Synchronized Folder, right-click the &amp;ldquo;Synchronized Folders&amp;rdquo; node and choose &amp;ldquo;Add Synchronized Folder&amp;hellip;&amp;rdquo;&lt;/p>
+&lt;p>&lt;img src="../add_sync_folder.png" alt="Adding synchronized folder">&lt;/p>
+&lt;p>You can fill out the form as follows:&lt;/p>
+&lt;ul>
+&lt;li>The &lt;strong>path&lt;/strong> you want to synchronize needs to be mounted and accessible through the back-end. Typically, S3 buckets are mounted as &lt;code>/s3data/&amp;lt;bucket name&amp;gt;&lt;/code>. If you don&amp;rsquo;t know the path to use, talk to your system administrator.&lt;/li>
+&lt;li>You can choose any &lt;strong>name&lt;/strong> (i.e. label) for your synchronized folder. This is the name that will appear in the Data Explorer. It can include spaces and special characters if you wish.&lt;/li>
+&lt;li>The &lt;strong>depth&lt;/strong> is the depth of the hierarchy to traverse before reaching data to discover. In the example above we specify a depth of 1, since we are searching in the images subfolder. If we wanted to search the entire bucket (i.e. at the parent folder level), we would need to specify a depth of 2 to find the same Horta Samples.&lt;/li>
+&lt;li>The &lt;strong>owner&lt;/strong> is the user or group that will &amp;ldquo;own&amp;rdquo; the objects in the Workstation. This primarily affects who can see the objects in the Data Explorer. For example, if you choose a group here then everyone in the group will see the samples you discover.&lt;/li>
+&lt;li>Finally, you should choose the data types that should be discovered while synchronizing with the file system. Typically, you&amp;rsquo;ll want to select &lt;strong>Horta Samples&lt;/strong> here, but you can also discover other data types such as &lt;strong>Zarr Containers&lt;/strong>, which can be viewed in 2D with the BigDataViewer modules.&lt;/li>
+&lt;/ul>
+&lt;p>Once you click &amp;ldquo;Save and Synchronized&amp;rdquo;, the backend will try to explore the path you provided and create objects corresponding to any data it finds. You can watch the progress in the &amp;ldquo;Background Tasks&amp;rdquo; panel (typically found on the right side of the screen, it can also be accessed via the &lt;strong>Window&lt;/strong> → &lt;strong>Core&lt;/strong> menu). Synchronization can take a while when there are a lot of traced neurons, such as with the MouseLight Open Data. Once the process is complete, you can click the Refresh button in the Data Explorer to see what was discovered.&lt;/p>
+&lt;p>Currently, synchronization is done only on-demand. If you add data later, make sure to right-click your Synchronized Folder and choose &amp;ldquo;Refresh Synchronized Folder&amp;rdquo;.&lt;/p></description></item><item><title>Docs: Reporting issues</title><link>https://hortacloud.janelia.org/docs/user_manual/issues/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/issues/</guid><description>
 &lt;p>If you encounter an issue while running Horta, or if you have comments, questions, or suggestions, there are multiple ways you can contact the Horta development team.&lt;/p>
 &lt;h2 id="inside-horta">Inside Horta&lt;/h2>
 &lt;p>(desktop) You may report a bug at any time within Horta. Simply choose &amp;ldquo;Report a bug&amp;rdquo; from the Help menu. Provide a description of what you were doing at the time of the issue! Sometimes Horta will encounter problems and display a dialog box with an ugly-looking error message. At the bottom of this dialog box, you&amp;rsquo;ll also see a &amp;ldquo;Report&amp;rdquo; button. Again, please let us know what you were doing at the time of the issue if you choose to report an issue at this time.&lt;/p>

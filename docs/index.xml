@@ -150,7 +150,7 @@ alt="cloud architecture diagram"/>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The api keys and secrets have been randomly generated during the setup step, but you can generate new ones with the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>openssl rand -hex &lt;span style="color:#0000cf;font-weight:bold">32&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>We prefer this procedure because these values will be handled during the installation using the &lt;code>sed&lt;/code> command and it is preferable that they not contain any characters that require escaping in a sed command.&lt;/p>
-&lt;p>If you already have data on some S3 buckets you can add them to &lt;code>HORTA_DATA_BUCKETS&lt;/code> as a comma separated list. For example, if you want to use Janelia&amp;rsquo;s Open Data bucket but in addition you also have your data on a private bucket (&amp;lsquo;janelia-mouseligh-demo&amp;rsquo; in this example) you need to set &lt;code>HORTA_DATA_BUCKETS=&amp;quot;janelia-mouselight-imagery,janelia-mouselight-demo&amp;quot;&lt;/code>. Currently it is set to Janelia&amp;rsquo;s open data MouseLight bucket only. Every bucket specified in the &amp;lsquo;HORTA_DATA_BUCKETS&amp;rsquo; list will be available in the workstation as &lt;code>/&amp;lt;s3BucketName&amp;gt;&lt;/code> directory.&lt;/p>
+&lt;p>If you already have data on some S3 buckets you can add them to &lt;code>HORTA_DATA_BUCKETS&lt;/code> as a comma separated list. For example, if you want to use Janelia&amp;rsquo;s Open Data bucket but in addition you also have your data on a private bucket (&amp;lsquo;janelia-mouselight-demo&amp;rsquo; in this example) you need to set &lt;code>HORTA_DATA_BUCKETS=&amp;quot;janelia-mouselight-imagery,janelia-mouselight-demo&amp;quot;&lt;/code>. By default, only the MouseLight Open Data bucket is mounted. Every bucket specified in the &amp;lsquo;HORTA_DATA_BUCKETS&amp;rsquo; list will be available in Horta as &lt;code>/s3data/&amp;lt;s3BucketName&amp;gt;&lt;/code> directory.&lt;/p>
 &lt;p>If you want to change the setting for &lt;code>HORTA_WS_INSTANCE_TYPE&lt;/code>, keep in mind that you may have to change &lt;code>HORTA_WS_IMAGE_NAME&lt;/code>
 For &lt;code>HORTA_WS_INSTANCE_TYPE&lt;/code> set to any &lt;code>stream.graphics.g4dn.*&lt;/code> instances:&lt;/p>
 &lt;ul>
@@ -196,16 +196,16 @@ with some manual intervention for &lt;strong>AppStream builder&lt;/strong> step 
 &lt;p>&lt;strong>Deploy the back-end stacks&lt;/strong> - this includes the AppStream builder. At the back end deployment the installation process will also create the admin user configured in &lt;code>ADMIN_USER_EMAIL&lt;/code>.&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>&lt;strong>Connect to AppStream builder and install the workstation application&lt;/strong> - This is a semiautomated step that involves copying and running two PowerShell scripts onto the AppStream builder instance.&lt;/p>
+&lt;p>&lt;strong>Connect to AppStream builder and install the Horta application&lt;/strong> - This is a semiautomated step that involves copying and running two PowerShell scripts onto the AppStream builder instance.&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>&lt;strong>Deploy the administration stack.&lt;/strong>&lt;/p>
 &lt;/li>
 &lt;/ol>
-&lt;h3 id="workstation-app-installation">Workstation app installation&lt;/h3>
+&lt;h3 id="install-the-horta-desktop-application">Install the Horta desktop application&lt;/h3>
 &lt;p>For client installation start and connect to the AppStream builder instance then copy the following scripts from this repo to the AppStream instance:&lt;/p>
 &lt;ul>
-&lt;li>&lt;a href="https://github.com/JaneliaSciComp/hortacloud/blob/main/vpc_stack/src/asbuilder/installcmd.ps1">installcmd.ps1&lt;/a> - installs JDK and the workstation&lt;/li>
+&lt;li>&lt;a href="https://github.com/JaneliaSciComp/hortacloud/blob/main/vpc_stack/src/asbuilder/installcmd.ps1">installcmd.ps1&lt;/a> - installs JDK and the Horta application&lt;/li>
 &lt;li>&lt;a href="https://github.com/JaneliaSciComp/hortacloud/blob/main/vpc_stack/src/asbuilder/createappimage.ps1">createappimage.ps1&lt;/a> - creates the AppStream image&lt;/li>
 &lt;/ul>
 &lt;p>After you copied or created the scripts:&lt;/p>
@@ -225,12 +225,12 @@ with some manual intervention for &lt;strong>AppStream builder&lt;/strong> step 
 &lt;/ul>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">cd &lt;/span>&lt;span style="color:#4e9a06">&amp;#39;C:\Users\ImagebuilderAdmin\My Files\Temporary Files&amp;#39;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>Run the installcmd script to install the workstation. &amp;lt;serverName&amp;gt; is the name of the backend EC2 instance, typically it looks like &lt;code>ip-&amp;lt;ip4 with dashes instead of dots&amp;gt;.ec2.internal&lt;/code>. Instructions for locating this are provided as output from the installer script. The workstation client certificate is signed using the ec2 internal name so do not use the actual IP for the &amp;lt;serverName&amp;gt; parameter, because user logins will fail with a certificate error.&lt;/li>
+&lt;li>Run the installcmd script to install Horta. &amp;lt;serverName&amp;gt; is the name of the backend EC2 instance, typically it looks like &lt;code>ip-&amp;lt;ip4 with dashes instead of dots&amp;gt;.ec2.internal&lt;/code>. Instructions for locating this are provided as output from the installer script. The Horta client certificate is signed using the ec2 internal name so do not use the actual IP for the &amp;lt;serverName&amp;gt; parameter, because user logins will fail with a certificate error.&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">installcmd&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">ps1&lt;/span> &lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#000">serverName&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will install the JDK and the workstation. The installer will run silently and it will install the workstation under the &lt;code>C:\apps&lt;/code> folder. If it prompts you for the install directory, select &lt;code>C:\apps&lt;/code> as the JaneliaWorkstation location.&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will install the JDK and Horta. The installer will run silently and it will install the Horta application under the &lt;code>C:\apps&lt;/code> folder. If it prompts you for the install directory, select &lt;code>C:\apps&lt;/code> as the JaneliaWorkstation location.&lt;/p>
 &lt;ul>
-&lt;li>&lt;em>Optional&lt;/em> - To start the workstation for testing, run:&lt;/li>
+&lt;li>&lt;em>Optional&lt;/em> - To start Horta for testing, run:&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-powershell" data-lang="powershell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">c:&lt;/span>&lt;span style="color:#000;font-weight:bold">\&lt;/span>&lt;span style="color:#000">apps&lt;/span>&lt;span style="color:#000;font-weight:bold">\&lt;/span>&lt;span style="color:#000">runJaneliaWorkstation&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">ps1&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
@@ -238,10 +238,10 @@ with some manual intervention for &lt;strong>AppStream builder&lt;/strong> step 
 &lt;p>when prompted, login as the admin user you set in ADMIN_USER_EMAIL (leave the password empty)&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>Navigate through the menus to make sure the workstation is working. &lt;em>Do not create any user accounts at this time as they will get created from the Admin web application.&lt;/em>&lt;/p>
+&lt;p>Navigate through the menus to make sure Horta is working. &lt;em>Do not create any user accounts at this time as they will get created from the Admin web application.&lt;/em>&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>When testing is finished, close down the workstation.&lt;/p>
+&lt;p>When testing is finished, close down Horta.&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>Finalize the creation of the AppStream image, run:&lt;/p>
@@ -505,7 +505,7 @@ alt="two-server deployment diagram"/>
 In HortaCloud, samples are usually already created automatically by the system.
 &lt;/div>
 &lt;ul>
-&lt;li>File menu &amp;gt; New &amp;gt; Tiled Microscope Sample&lt;/li>
+&lt;li>File menu &amp;gt; New &amp;gt; Horta Sample&lt;/li>
 &lt;li>In &amp;ldquo;Sample Name&amp;rdquo;, enter a name for the sample&lt;/li>
 &lt;li>In &amp;ldquo;Path To Render Folder&amp;rdquo;, enter the path that the image server will use to locate the images. This should be a Linux-style path.
 &lt;ul>
@@ -1400,7 +1400,16 @@ sudo git checkout &amp;lt;version&amp;gt;
 &lt;pre tabindex="0">&lt;code>npm run deploy -- --skip-vpc
 &lt;/code>&lt;/pre>&lt;p>If no changes were made to the code AWS CDK will only update the missing stacks, leaving JACS stack as it was since it practically has not been changed from AWS&amp;rsquo; perspective&lt;/p>
 &lt;/li>
-&lt;/ul></description></item><item><title>Docs: Deploying JACS</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/swarmdeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/swarmdeployment/</guid><description>
+&lt;/ul></description></item><item><title>Docs: Data Import</title><link>https://hortacloud.janelia.org/docs/administration/aws/data/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/aws/data/</guid><description>
+&lt;h3 id="adding-the-mouselight-open-data">Adding the MouseLight Open Data&lt;/h3>
+&lt;p>The MouseLight project at Janelia has made available the complete imagery and neuron tracing annotations for its published data sets on the &lt;a href="https://registry.opendata.aws/janelia-mouselight/">AWS Open Data Registry&lt;/a>.&lt;/p>
+&lt;p>You can easily make these available in your own HortaCloud instance by &lt;a href="https://hortacloud.janelia.org/docs/user_manual/synchronized_folders/">creating a Synchronized Folder&lt;/a> which points to &lt;code>/s3data/janelia-mouselight-data&lt;/code>.&lt;/p>
+&lt;h3 id="adding-a-single-volume">Adding a single volume&lt;/h3>
+&lt;p>A Horta Sample is an object representing a single 3D volume that can be visualized and traced with Horta.&lt;/p>
+&lt;p>If you already have the HortaKTX format data in your mounted S3 buckets, select &lt;strong>File&lt;/strong> → &lt;strong>New&lt;/strong> → &lt;strong>Horta Sample&lt;/strong>, and then set &amp;ldquo;Sample Name&amp;rdquo; to &lt;code>&amp;lt;sampleDirectoryName&amp;gt;&lt;/code> and &amp;ldquo;Path to Render Folder&amp;rdquo; as &lt;code>/s3data/&amp;lt;bucketName&amp;gt;/&amp;lt;sampleDirectoryName&amp;gt;&lt;/code>.&lt;/p>
+&lt;p>Open the Data Explorer (&lt;strong>Window&lt;/strong> → &lt;strong>Core&lt;/strong> → &lt;strong>Data Explorer&lt;/strong>) and navigate to Home, then &amp;ldquo;3D RawTile Microscope Samples&amp;rdquo;, and your sample name. Right-click the sample and choose &amp;ldquo;Open in Horta&amp;rdquo;. This will open the Horta Panel and then from the Horta Panel you have options to create a workspace or to open the 2D or the 3D volume viewer.&lt;/p>
+&lt;h3 id="converting-your-data">Converting your data&lt;/h3>
+&lt;p>If your data has not been converted into HortaKTX format, you can use the &lt;a href="https://github.com/JaneliaSciComp/hortacloud-importer">HortaCloud Data Importer&lt;/a> to convert it. This tool supports many common image formats, and can be easily extended in Python to support your favorite format.&lt;/p></description></item><item><title>Docs: Deploying JACS</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/swarmdeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/swarmdeployment/</guid><description>
 &lt;p>This document assumes that you have downloaded and configured the installer according to one of the deployment guides.&lt;/p>
 &lt;p>The following steps are common to all Docker Swarm deployments of the Workstation.&lt;/p>
 &lt;h2 id="initialize-filesystems">Initialize Filesystems&lt;/h2>
@@ -1571,13 +1580,7 @@ src="../../AppStream-toolbar.png"
 class="rounded mx-auto"
 style="max-width: 761px;"
 alt="AppStream toolbar"/>
-&lt;/a></description></item><item><title>Docs: Operation</title><link>https://hortacloud.janelia.org/docs/administration/aws/operation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/aws/operation/</guid><description>
-&lt;h2 id="importing-imagery">Importing imagery&lt;/h2>
-&lt;h3 id="single-sample-import">Single Sample Import&lt;/h3>
-&lt;p>If you already have the data on the S3 buckets in the Workstation, select &lt;strong>File&lt;/strong> → &lt;strong>New&lt;/strong> → &lt;strong>Tiled Microscope Sample&lt;/strong>, and then set &amp;ldquo;Sample Name&amp;rdquo; to &lt;code>&amp;lt;sampleDirectoryName&amp;gt;&lt;/code> and &amp;ldquo;Path to Render Folder&amp;rdquo; as &lt;code>/&amp;lt;bucketName&amp;gt;/&amp;lt;sampleDirectoryName&amp;gt;&lt;/code>.&lt;/p>
-&lt;p>Open the Data Explorer (&lt;strong>Window&lt;/strong> → &lt;strong>Core&lt;/strong> → &lt;strong>Data Explorer&lt;/strong>) and navigate to Home, then &amp;ldquo;3D RawTile Microscope Samples&amp;rdquo;, and your sample name. Right-click the sample and choose &amp;ldquo;Open in Horta&amp;rdquo;. This will open the Horta Panel and then from the Horta Panel you have options to create a workspace or to open the 2D or the 3D volume viewer.&lt;/p>
-&lt;h3 id="batch-sample-import">Batch Sample Import&lt;/h3>
-&lt;p>The workstation offers an option to import all your samples from an S3 Bucket mapped on the backend into the workstation. This can be done from the Workstation, select &lt;strong>Services&lt;/strong> → &lt;strong>Load Horta Data&lt;/strong>. This opens a &lt;a href="docs/images/horta_data_import.png">dialog box&lt;/a> that allows you to enter the location of your samples and the data owner. The location of your data can be entered like &lt;code>&amp;lt;s3_bucket_name&amp;gt;/&amp;lt;full_moouselight_data_prefix&amp;gt;&lt;/code>, e.g. &lt;code>janelia-mouselight-imagery/images&lt;/code>. For sample owner typically select &lt;code>Mouselight Users (mouselight)&lt;/code> from the drop down selection. Once you click OK the system will start a background task that will try to create new samples from all folders at the specified location and you will start seeing new samples under &lt;code>Home (mouselight)/3D Tile Microscope Samples&lt;/code> as they are imported.&lt;/p></description></item><item><title>Docs: Reference</title><link>https://hortacloud.janelia.org/docs/user_manual/reference/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/reference/</guid><description>
+&lt;/a></description></item><item><title>Docs: Reference</title><link>https://hortacloud.janelia.org/docs/user_manual/reference/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/reference/</guid><description>
 &lt;h2 id="importexport-file-formats">Import/export file formats&lt;/h2>
 &lt;h3 id="swc">SWC&lt;/h3>
 &lt;p>The swc file format is a standard format for recording neuron skeletons. Unfortunately, while the basic format is widely used, there is no single standard for defining the format, and as a result, there are differences in implementation among various swc writers and readers. The basic spec can be seen &lt;a href="http://www.neuronland.org/NLMorphologyConverter/MorphologyFormats/SWC/Spec.html">here&lt;/a>.&lt;/p>
@@ -1689,10 +1692,8 @@ alt="AppStream toolbar"/>
 &lt;h3 id="rendered-2d-images">Rendered 2D images&lt;/h3>
 &lt;p>The raw microscope data is transformed and stitched together into a contiguous rendered whole. It&amp;rsquo;s also stored in tiff stacks, rendered at multiple resolutions and arranged in an octree. For HortaCloud, this data likely only has the a single low-resolution image for each channel.&lt;/p>
 &lt;p>Details of the files and their organization will be added later.&lt;/p>
-&lt;h3 id="horta-3d-images-ktx-files">Horta 3D images (ktx files)&lt;/h3>
-&lt;p>Horta&amp;rsquo;s 3D images are optimized for fast loading into the Horta viewer. The ktx file format is designed to load directly into graphics cards. In order to keep the files both small enough to load rapidly and small enough to economically store, the rendered data is transformed and down-sampled before ktx tile creation. These files are also arranged in an octree, although currently Horta only uses the highest resolution images.&lt;/p>
-&lt;p>The file format is managed by the Khronos Group and is described &lt;a href="https://www.khronos.org/api/index_2017/ktx">here&lt;/a>.&lt;/p>
-&lt;p>Horta-specific details will be added later.&lt;/p>
+&lt;h3 id="hortaktx-3d-volumes">HortaKTX 3D volumes&lt;/h3>
+&lt;p>Horta&amp;rsquo;s 3D images are optimized for fast loading into the Horta viewer. The HortaKTX format is based on the &lt;a href="https://registry.khronos.org/KTX/specs/1.0/ktxspec_v1.html">KTX file format&lt;/a> which is designed to load directly into graphics cards. In order to keep the files both small enough to load rapidly and small enough to economically store, the rendered data is transformed and down-sampled before KTX tile creation. These files are also arranged in a multiscale octree for full volume viewing.&lt;/p>
 &lt;h2 id="a-algorithm-for-automatically-traced-paths">A* algorithm for automatically traced paths&lt;/h2>
 &lt;p>The algorithm for computing the path is:&lt;/p>
 &lt;ul>
@@ -1721,7 +1722,25 @@ console.LVVHorta.activetracersgroup=group:mouselight_tracers
 &lt;li>The &amp;ldquo;activetracersgroup&amp;rdquo; variable should be set to a group containing only people who are tracing. The members of this group will be listed in some neuron ownership change dialogs for convenience.&lt;/li>
 &lt;li>If either group does not exist in the workstation database, the corresponding features will be disabled.&lt;/li>
 &lt;li>&lt;strong>Note&lt;/strong>: This scheme assumes that all tracers are members of one group that shares data freely. If you need to support multiple groups that will not be sharing data, you should currently deploy separate infrastructure (servers, etc) to support each group.&lt;/li>
-&lt;/ul></description></item><item><title>Docs: Deploying ELK</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/elkdeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/elkdeployment/</guid><description>
+&lt;/ul></description></item><item><title>Docs: Synchronized Folders</title><link>https://hortacloud.janelia.org/docs/user_manual/synchronized_folders/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/synchronized_folders/</guid><description>
+&lt;h2 id="what-are-synchronized-folders">What are Synchronized Folders&lt;/h2>
+&lt;p>If you are incrementally adding a lot of data to the system, using the &lt;strong>File&lt;/strong> → &lt;strong>New&lt;/strong> → &lt;strong>Horta Sample&lt;/strong> menu option can become tedious. If you create a Synchronized Folder, your data will be discovered as it is placed in storage, and Horta Samples will be automatically generated. The new Horta Samples can be made available to you or a group of users of your choice.&lt;/p>
+&lt;p>Synchronized Folders also load traced neurons, when those tracings are made available in a specific format. The &lt;a href="https://registry.opendata.aws/janelia-mouselight/">MouseLight Open Data&lt;/a> contains traced neurons alongside the imagery. If you use a Synchronized Folder to bring that data into Horta, you&amp;rsquo;ll also get Workspaces containing the published neurons that were traced on each sample.&lt;/p>
+&lt;h2 id="creating-a-synchronized-folder">Creating a Synchronized Folder&lt;/h2>
+&lt;p>You can find Synchronized Folders near the top of the Data Explorer:&lt;/p>
+&lt;p>&lt;img src="../synchronized_folders.png" alt="Synchronized folders">&lt;/p>
+&lt;p>To add a new Synchronized Folder, right-click the &amp;ldquo;Synchronized Folders&amp;rdquo; node and choose &amp;ldquo;Add Synchronized Folder&amp;hellip;&amp;rdquo;&lt;/p>
+&lt;p>&lt;img src="../add_sync_folder.png" alt="Adding synchronized folder">&lt;/p>
+&lt;p>You can fill out the form as follows:&lt;/p>
+&lt;ul>
+&lt;li>The &lt;strong>path&lt;/strong> you want to synchronize needs to be mounted and accessible through the back-end. Typically, S3 buckets are mounted as &lt;code>/s3data/&amp;lt;bucket name&amp;gt;&lt;/code>. If you don&amp;rsquo;t know the path to use, talk to your system administrator.&lt;/li>
+&lt;li>You can choose any &lt;strong>name&lt;/strong> (i.e. label) for your synchronized folder. This is the name that will appear in the Data Explorer. It can include spaces and special characters if you wish.&lt;/li>
+&lt;li>The &lt;strong>depth&lt;/strong> is the depth of the hierarchy to traverse before reaching data to discover. In the example above we specify a depth of 1, since we are searching in the images subfolder. If we wanted to search the entire bucket (i.e. at the parent folder level), we would need to specify a depth of 2 to find the same Horta Samples.&lt;/li>
+&lt;li>The &lt;strong>owner&lt;/strong> is the user or group that will &amp;ldquo;own&amp;rdquo; the objects in the Workstation. This primarily affects who can see the objects in the Data Explorer. For example, if you choose a group here then everyone in the group will see the samples you discover.&lt;/li>
+&lt;li>Finally, you should choose the data types that should be discovered while synchronizing with the file system. Typically, you&amp;rsquo;ll want to select &lt;strong>Horta Samples&lt;/strong> here, but you can also discover other data types such as &lt;strong>Zarr Containers&lt;/strong>, which can be viewed in 2D with the BigDataViewer modules.&lt;/li>
+&lt;/ul>
+&lt;p>Once you click &amp;ldquo;Save and Synchronized&amp;rdquo;, the backend will try to explore the path you provided and create objects corresponding to any data it finds. You can watch the progress in the &amp;ldquo;Background Tasks&amp;rdquo; panel (typically found on the right side of the screen, it can also be accessed via the &lt;strong>Window&lt;/strong> → &lt;strong>Core&lt;/strong> menu). Synchronization can take a while when there are a lot of traced neurons, such as with the MouseLight Open Data. Once the process is complete, you can click the Refresh button in the Data Explorer to see what was discovered.&lt;/p>
+&lt;p>Currently, synchronization is done only on-demand. If you add data later, make sure to right-click your Synchronized Folder and choose &amp;ldquo;Refresh Synchronized Folder&amp;rdquo;.&lt;/p></description></item><item><title>Docs: Deploying ELK</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/elkdeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/elkdeployment/</guid><description>
 &lt;p>Currently ELK is only available in a swarm deployment because of how the ELK stack is configured.&lt;/p>
 &lt;p>Most of the set up necessary for ELK - configuration files and/or data directories - is already done as part of filesystem initialization performed while executing:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>./manage.sh init-filesystems
