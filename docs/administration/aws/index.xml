@@ -53,8 +53,8 @@ alt="cloud architecture diagram"/>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>openssl rand -hex &lt;span style="color:#0000cf;font-weight:bold">32&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>We prefer this procedure because these values will be handled during the installation using the &lt;code>sed&lt;/code> command and it is preferable that they not contain any characters that require escaping in a sed command.&lt;/p>
 &lt;p>If you already have data on some S3 buckets you can add them to &lt;code>HORTA_DATA_BUCKETS&lt;/code> as a comma separated list. For example, if you want to use Janelia&amp;rsquo;s Open Data bucket but in addition you also have your data on a private bucket (&amp;lsquo;janelia-mouselight-demo&amp;rsquo; in this example) you need to set &lt;code>HORTA_DATA_BUCKETS=&amp;quot;janelia-mouselight-imagery,janelia-mouselight-demo&amp;quot;&lt;/code>. By default, only the MouseLight Open Data bucket is mounted. Every bucket specified in the &amp;lsquo;HORTA_DATA_BUCKETS&amp;rsquo; list will be available in Horta as &lt;code>/s3data/&amp;lt;s3BucketName&amp;gt;&lt;/code> directory.&lt;/p>
-&lt;p>If you want to change the setting for &lt;code>HORTA_WS_INSTANCE_TYPE&lt;/code>, keep in mind that you may have to change &lt;code>HORTA_WS_IMAGE_NAME&lt;/code>
-For &lt;code>HORTA_WS_INSTANCE_TYPE&lt;/code> set to any &lt;code>stream.graphics.g4dn.*&lt;/code> instances:&lt;/p>
+&lt;p>If you want to change the setting for &lt;code>HORTA_WS_INSTANCE_TYPE&lt;/code>, keep in mind that you may have to change &lt;code>HORTA_WS_IMAGE_NAME&lt;/code> and the &lt;code>HORTA_WS_MEM&lt;/code>.&lt;/p>
+&lt;p>For &lt;code>HORTA_WS_INSTANCE_TYPE&lt;/code> set to any &lt;code>stream.graphics.g4dn.*&lt;/code> instances:&lt;/p>
 &lt;ul>
 &lt;li>&lt;code>stream.graphics.g4dn.xlarge&lt;/code>&lt;/li>
 &lt;li>&lt;code>stream.graphics.g4dn.2xlarge&lt;/code>&lt;/li>
@@ -71,6 +71,7 @@ For &lt;code>HORTA_WS_INSTANCE_TYPE&lt;/code> set to any &lt;code>stream.graphic
 &lt;li>&lt;code>stream.graphics-pro.16xlarge&lt;/code>&lt;/li>
 &lt;/ul>
 &lt;p>use &lt;code>HORTA_WS_IMAGE_NAME=AppStream-Graphics-Pro-WinServer2019-09-01-2022&lt;/code> image&lt;/p>
+&lt;p>The maximum memory (&lt;code>HORTA_WS_MEM&lt;/code>) available to the workstation also depends on the instance type. You can get the available memory by instance type from &lt;a href="https://aws.amazon.com/appstream2/pricing/">AWS&lt;/a>&lt;/p>
 &lt;p>Note: AWS deprecates the AppStream images relatively frequently so please make sure you use an AppStream-Graphics image that is available on AWS. You can see the available images from the AWS console if you select the &amp;ldquo;AppStream 2.0&amp;rdquo; service and then search &amp;ldquo;Images &amp;gt; Image Registry&amp;rdquo;&lt;/p>
 &lt;h2 id="configure-aws-account">Configure AWS account&lt;/h2>
 &lt;h3 id="iam-required-roles">IAM Required Roles&lt;/h3>
