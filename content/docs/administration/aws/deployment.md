@@ -65,7 +65,7 @@ We prefer this procedure because these values will be handled during the install
 
 If you already have data on some S3 buckets you can add them to `HORTA_DATA_BUCKETS` as a comma separated list. For example, if you want to use Janelia's Open Data bucket but in addition you also have your data on a private bucket ('janelia-mouselight-demo' in this example) you need to set `HORTA_DATA_BUCKETS="janelia-mouselight-imagery,janelia-mouselight-demo"`. By default, only the MouseLight Open Data bucket is mounted. Every bucket specified in the 'HORTA_DATA_BUCKETS' list will be available in Horta as `/s3data/<s3BucketName>` directory.
 
-If you want to change the setting for `HORTA_WS_INSTANCE_TYPE`, keep in mind that you may have to change `HORTA_WS_IMAGE_NAME` and the `HORTA_WS_MEM`.
+If you want to change the setting for `HORTA_WS_INSTANCE_TYPE`, keep in mind that you may have to change `HORTA_WS_IMAGE_NAME`.
 
 For `HORTA_WS_INSTANCE_TYPE` set to any `stream.graphics.g4dn.*` instances:
 
@@ -85,8 +85,6 @@ For `HORTA_WS_INSTANCE_TYPE` set to any `stream.graphics-pro.*` instances:
 * `stream.graphics-pro.16xlarge`
 
 use `HORTA_WS_IMAGE_NAME=AppStream-Graphics-Pro-WinServer2019-09-01-2022` image
-
-The maximum memory (`HORTA_WS_MEM`) available to the workstation also depends on the instance type. You can get the available memory by instance type from [AWS](https://aws.amazon.com/appstream2/pricing/)
 
 Note: AWS deprecates the AppStream images relatively frequently so please make sure you use an AppStream-Graphics image that is available on AWS. You can see the available images from the AWS console if you select the "AppStream 2.0" service and then search "Images > Image Registry"
 
