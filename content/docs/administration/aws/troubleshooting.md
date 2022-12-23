@@ -10,7 +10,7 @@ description: >
 
 We have seen this behavior if the "/data" volume ran out of space. You can check this by connecting to the EC2 instance running the JACS stack and running `df -h /data`. 
 
-If the disk is full you, you can try to find anything that could be removed but if the limit was reached because the size your data you really have to resize the volume. To resize the volume follow the instructions from AWS to [increase the size of the volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/requesting-ebs-volume-modifications.html) and then the [instructions to make the entire new volume available](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html)
+If the disk is full you, you can try to find anything that could be removed but if the limit was reached because the size your data you really have to resize the volume. To resize the volume follow the instructions from AWS to [increase the size of the volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/requesting-ebs-volume-modifications.html) and then the instructions [to make the entire new volume available to the instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html)
 
 If users still cannot use the workstation after the `/data` volume was resized and they see errors like:
 ```
