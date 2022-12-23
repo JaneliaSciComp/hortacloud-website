@@ -1,7 +1,7 @@
 ---
 title: "Troubleshooting"
 linkTitle: "Troubleshooting"
-weight: 40
+weight: 60
 description: >
   Troubleshooting HortaCloud services
 ---
