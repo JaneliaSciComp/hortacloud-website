@@ -838,7 +838,11 @@ Since the desktop version of Horta uses the full 2D octree, prolonged browsing i
 &lt;li>Camera Control: provides another way to control the camera in Horta 3D
 &lt;ul>
 &lt;li>Center focus, rotation, and zoom: replicate mouse commands&lt;/li>
-&lt;li>View Slab: adjusts how thick the visible slab of data is; the default preset II shows a nice chunk of data; preset I shows a very thin slab, closely resembling the 2D view&lt;/li>
+&lt;li>View Slab: adjusts how thick the visible slab of data is; the default preset II shows a nice chunk of data; preset I shows a very thin slab, closely resembling the 2D view
+&lt;ul>
+&lt;li>In this pseudo-2D view, hotkeys (shift-A and shift-Z by default) move the camera along the axis into the screen, mimicking scrolling through a z-stack in a 2D view.&lt;/li>
+&lt;/ul>
+&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;li>Color Sliders: used to adjust the color settings for the image data channels and the tracing channel (as described in Horta Basic operation&lt;/li>
