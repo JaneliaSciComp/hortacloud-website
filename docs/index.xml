@@ -183,7 +183,7 @@ alt="cloud architecture diagram"/>
 If your application does not see Google Drive and/or OneDrive for uploading or saving files, the storage must be added directly from the AppStream toolbar using the following steps (The procedure is well documented in the &lt;a href="https://docs.aws.amazon.com/appstream2/latest/developerguide/google-drive-end-user.html%5D">AWS Docs&lt;/a>:&lt;/p>
 &lt;ul>
 &lt;li>
-&lt;p>Select &lt;strong>My Files&lt;/strong> icon from the toolbar &lt;img src="https://hortacloud.janelia.org/images/MyFiles.png" width="25px">&lt;/p>
+&lt;p>Select &lt;strong>My Files&lt;/strong> icon from the toolbar: &lt;img src="https://hortacloud.janelia.org/images/MyFiles.png" width="25px">&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>In the &lt;strong>My File&lt;/strong> dialog click on &lt;em>Add Storage&lt;/em> on the top right of the &lt;strong>My Files&lt;/strong> dialog
@@ -200,11 +200,11 @@ If your application does not see Google Drive and/or OneDrive for uploading or s
 &lt;/li>
 &lt;li>
 &lt;p>Once you authorized access to your storage, it will appear in the &lt;strong>My Files&lt;/strong> dialog, and the &lt;strong>Add Storage&lt;/strong> button will no longer be available
-&lt;img src="https://hortacloud.janelia.org/images/MyFiles_AllStorageAdded.png" alt="My Files">&lt;/p>
+&lt;img src="https://hortacloud.janelia.org/images/MyFiles_AllStorageAdded.png" alt="All storage added">&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>In the applications the new added storage options will look like this:
-&lt;img src="https://hortacloud.janelia.org/images/AppStorageOptions.png" alt="App Files">&lt;/p>
+&lt;img src="https://hortacloud.janelia.org/images/AppStorageOptions.png" alt="App Open Files">&lt;/p>
 &lt;/li>
 &lt;/ul>
 &lt;h3 id="aws-limits">AWS Limits&lt;/h3>
