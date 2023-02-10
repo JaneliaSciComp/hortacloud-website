@@ -106,15 +106,15 @@ If your application does not see Google Drive and/or OneDrive for uploading or s
 * In the **My File** dialog click on *Add Storage* on the top right of the **My Files** dialog
 ![Add Storage](/images/MyFiles_AddStorageDlg.png)
 * Then select the Drive and the account you want to use.
-![Select Storage](../../../images/MyFiles_StorageOptions.png)
+![Select Storage](/images/MyFiles_StorageOptions.png)
 
 * At this point if AppStream has not yet been authorized to access the selected storage, Google Drive or OneDrive may ask you to authorize AppStream to access the storage.
-![OneDrive Auth](../../../images/OneDrive_AuthRequest.png)
-![Google Auth](../../../images/GoogleDrive_AuthRequest.png)
+![OneDrive Auth](/images/OneDrive_AuthRequest.png)
+![Google Auth](/images/GoogleDrive_AuthRequest.png)
 * Once you authorized access to your storage, it will appear in the **My Files** dialog, and the **Add Storage** button will no longer be available
-![My Files](../../../images/MyFiles_AllStorageAdded.png)
+![My Files](/images/MyFiles_AllStorageAdded.png)
 * In the applications the new added storage options will look like this:
-![App Files](../../../images/AppStorageOptions.png)
+![App Files](/images/AppStorageOptions.png)
 
 ### AWS Limits
 
