@@ -98,6 +98,20 @@ In order to create an AppStream Image Builder, which is needed to create the Wor
 * ApplicationAutoScalingForAmazonAppStreamAccess
 * AWSServiceRoleForApplicationAutoScaling_AppStreamFleet
 
+### Enable Google Drive and/or OneDrive for Horta Cloud Workstation
+
+Data access from Google Drive or OneDrive can be enabled at deployment time by simply setting the corresponding enterprise domains in `HORTA_GOOGLE_DOMAINS` or `HORTA_ONE_DRIVE_DOMAINS`. This can also be done after deployment directly from the AWS Console while the stack is running. Check [AWS Appstream docs](https://docs.aws.amazon.com/appstream2/latest/developerguide/persistent-storage.html) how to enable these options directly from the AWS Console. 
+If your application does not see Google Drive and/or OneDrive for uploading or saving files, the storage must be added directly from the AppStream toolbar using the following steps (The procedure is well documented in the [AWS Docs](https://docs.aws.amazon.com/appstream2/latest/developerguide/google-drive-end-user.html]):
+* Select **My Files** icon from the toolbar
+* In the **My File** dialog click on *Add Storage* on the top right of the **My Files** dialog
+![My Files](../../../images/MyFiles_AddStorageDlg.png)
+* Then select the Drive and the account you want to use.
+* At this point if AppStream has not yet been authorized to access the selected storage, Google Drive or OneDrive may ask you to authorize AppStream to access the storage.
+* Once you authorized access to your storage, it will appear in the **My Files** dialog, and the **Add Storage** button will no longer be available
+![My Files](../../../images/MyFiles_AllStorageAdded.png)
+* In the applications the new added storage options will look like this:
+![App Files](../../../images/AppStorageOptions.png)
+
 ### AWS Limits
 
 Most AWS services allow you to setup restrictions on the number of active instances. The default limits, especially for some AppStream resources, such as "Maximum ImageBuilders" for some graphics instances - "stream.graphics.g4dn.xlarge" may be really low (0 in some cases). Connect to AWS console "Service Quotas" service and increase the limit for in case you see a `limit was exceeded` error. Typically take a look at the limits setup for your account for EC2, VPC, AppStream, S3. Keep in mind that limits may be different from instance type to instance type for AppStream service, so you may have to adjust the limits based on the AppStream instance type selection.
