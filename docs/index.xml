@@ -191,20 +191,20 @@ If your application does not see Google Drive and/or OneDrive for uploading or s
 &lt;/li>
 &lt;li>
 &lt;p>Then select the Drive and the account you want to use.
-&lt;img src="../../../images/MyFiles_StorageOptions.png" alt="Select Storage">&lt;/p>
+&lt;img src="https://hortacloud.janelia.org/images/MyFiles_StorageOptions.png" alt="Select Storage">&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>At this point if AppStream has not yet been authorized to access the selected storage, Google Drive or OneDrive may ask you to authorize AppStream to access the storage.
-&lt;img src="../../../images/OneDrive_AuthRequest.png" alt="OneDrive Auth">
-&lt;img src="../../../images/GoogleDrive_AuthRequest.png" alt="Google Auth">&lt;/p>
+&lt;img src="https://hortacloud.janelia.org/images/OneDrive_AuthRequest.png" alt="OneDrive Auth">
+&lt;img src="https://hortacloud.janelia.org/images/GoogleDrive_AuthRequest.png" alt="Google Auth">&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>Once you authorized access to your storage, it will appear in the &lt;strong>My Files&lt;/strong> dialog, and the &lt;strong>Add Storage&lt;/strong> button will no longer be available
-&lt;img src="../../../images/MyFiles_AllStorageAdded.png" alt="My Files">&lt;/p>
+&lt;img src="https://hortacloud.janelia.org/images/MyFiles_AllStorageAdded.png" alt="My Files">&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>In the applications the new added storage options will look like this:
-&lt;img src="../../../images/AppStorageOptions.png" alt="App Files">&lt;/p>
+&lt;img src="https://hortacloud.janelia.org/images/AppStorageOptions.png" alt="App Files">&lt;/p>
 &lt;/li>
 &lt;/ul>
 &lt;h3 id="aws-limits">AWS Limits&lt;/h3>
