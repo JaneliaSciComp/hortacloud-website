@@ -102,7 +102,7 @@ In order to create an AppStream Image Builder, which is needed to create the Wor
 
 Data access from Google Drive or OneDrive can be enabled at deployment time by simply setting the corresponding enterprise domains in `HORTA_GOOGLE_DOMAINS` or `HORTA_ONE_DRIVE_DOMAINS`. This can also be done after deployment directly from the AWS Console while the stack is running. Check [AWS Appstream docs](https://docs.aws.amazon.com/appstream2/latest/developerguide/persistent-storage.html) how to enable these options directly from the AWS Console. 
 If your application does not see Google Drive and/or OneDrive for uploading or saving files, the storage must be added directly from the AppStream toolbar using the following steps (The procedure is well documented in the [AWS Docs](https://docs.aws.amazon.com/appstream2/latest/developerguide/google-drive-end-user.html]):
-* Select **My Files** icon from the toolbar <img src="/images/MyFiles.png" width="25px">
+* Select **My Files** icon from the toolbar: <img src="/images/MyFiles.png" width="25px">
 * In the **My File** dialog click on *Add Storage* on the top right of the **My Files** dialog
 ![Add Storage](/images/MyFiles_AddStorageDlg.png)
 * Then select the Drive and the account you want to use.
@@ -112,9 +112,9 @@ If your application does not see Google Drive and/or OneDrive for uploading or s
 ![OneDrive Auth](/images/OneDrive_AuthRequest.png)
 ![Google Auth](/images/GoogleDrive_AuthRequest.png)
 * Once you authorized access to your storage, it will appear in the **My Files** dialog, and the **Add Storage** button will no longer be available
-![My Files](/images/MyFiles_AllStorageAdded.png)
+![All storage added](/images/MyFiles_AllStorageAdded.png)
 * In the applications the new added storage options will look like this:
-![App Files](/images/AppStorageOptions.png)
+![App Open Files](/images/AppStorageOptions.png)
 
 ### AWS Limits
 
