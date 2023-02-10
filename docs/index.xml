@@ -183,15 +183,15 @@ alt="cloud architecture diagram"/>
 If your application does not see Google Drive and/or OneDrive for uploading or saving files, the storage must be added directly from the AppStream toolbar using the following steps (The procedure is well documented in the &lt;a href="https://docs.aws.amazon.com/appstream2/latest/developerguide/google-drive-end-user.html%5D">AWS Docs&lt;/a>:&lt;/p>
 &lt;ul>
 &lt;li>
-&lt;p>Select &lt;strong>My Files&lt;/strong> icon from the toolbar &lt;img src="../../../images/MyFiles.png" width="25px">&lt;/p>
+&lt;p>Select &lt;strong>My Files&lt;/strong> icon from the toolbar &lt;img src="https://hortacloud.janelia.org/images/MyFiles.png" width="25px">&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>In the &lt;strong>My File&lt;/strong> dialog click on &lt;em>Add Storage&lt;/em> on the top right of the &lt;strong>My Files&lt;/strong> dialog
-&lt;img src="../../../images/MyFiles_AddStorageDlg.png" alt="My Files">&lt;/p>
+&lt;img src="https://hortacloud.janelia.org/images/MyFiles_AddStorageDlg.png" alt="Add Storage">&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>Then select the Drive and the account you want to use.
-&lt;img src="../../../images/MyFiles_StorageOptions.png" alt="My Files">&lt;/p>
+&lt;img src="../../../images/MyFiles_StorageOptions.png" alt="Select Storage">&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>At this point if AppStream has not yet been authorized to access the selected storage, Google Drive or OneDrive may ask you to authorize AppStream to access the storage.
