@@ -182,15 +182,30 @@ alt="cloud architecture diagram"/>
 &lt;p>Data access from Google Drive or OneDrive can be enabled at deployment time by simply setting the corresponding enterprise domains in &lt;code>HORTA_GOOGLE_DOMAINS&lt;/code> or &lt;code>HORTA_ONE_DRIVE_DOMAINS&lt;/code>. This can also be done after deployment directly from the AWS Console while the stack is running. Check &lt;a href="https://docs.aws.amazon.com/appstream2/latest/developerguide/persistent-storage.html">AWS Appstream docs&lt;/a> how to enable these options directly from the AWS Console.
 If your application does not see Google Drive and/or OneDrive for uploading or saving files, the storage must be added directly from the AppStream toolbar using the following steps (The procedure is well documented in the &lt;a href="https://docs.aws.amazon.com/appstream2/latest/developerguide/google-drive-end-user.html%5D">AWS Docs&lt;/a>:&lt;/p>
 &lt;ul>
-&lt;li>Select &lt;strong>My Files&lt;/strong> icon from the toolbar&lt;/li>
-&lt;li>In the &lt;strong>My File&lt;/strong> dialog click on &lt;em>Add Storage&lt;/em> on the top right of the &lt;strong>My Files&lt;/strong> dialog
-&lt;img src="../../../images/MyFiles_AddStorageDlg.png" alt="My Files">&lt;/li>
-&lt;li>Then select the Drive and the account you want to use.&lt;/li>
-&lt;li>At this point if AppStream has not yet been authorized to access the selected storage, Google Drive or OneDrive may ask you to authorize AppStream to access the storage.&lt;/li>
-&lt;li>Once you authorized access to your storage, it will appear in the &lt;strong>My Files&lt;/strong> dialog, and the &lt;strong>Add Storage&lt;/strong> button will no longer be available
-&lt;img src="../../../images/MyFiles_AllStorageAdded.png" alt="My Files">&lt;/li>
-&lt;li>In the applications the new added storage options will look like this:
-&lt;img src="../../../images/AppStorageOptions.png" alt="App Files">&lt;/li>
+&lt;li>
+&lt;p>Select &lt;strong>My Files&lt;/strong> icon from the toolbar &lt;img src="../../../images/MyFiles.png" width="25px">&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>In the &lt;strong>My File&lt;/strong> dialog click on &lt;em>Add Storage&lt;/em> on the top right of the &lt;strong>My Files&lt;/strong> dialog
+&lt;img src="../../../images/MyFiles_AddStorageDlg.png" alt="My Files">&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Then select the Drive and the account you want to use.
+&lt;img src="../../../images/MyFiles_StorageOptions.png" alt="My Files">&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>At this point if AppStream has not yet been authorized to access the selected storage, Google Drive or OneDrive may ask you to authorize AppStream to access the storage.
+&lt;img src="../../../images/OneDrive_AuthRequest.png" alt="OneDrive Auth">
+&lt;img src="../../../images/GoogleDrive_AuthRequest.png" alt="Google Auth">&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Once you authorized access to your storage, it will appear in the &lt;strong>My Files&lt;/strong> dialog, and the &lt;strong>Add Storage&lt;/strong> button will no longer be available
+&lt;img src="../../../images/MyFiles_AllStorageAdded.png" alt="My Files">&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>In the applications the new added storage options will look like this:
+&lt;img src="../../../images/AppStorageOptions.png" alt="App Files">&lt;/p>
+&lt;/li>
 &lt;/ul>
 &lt;h3 id="aws-limits">AWS Limits&lt;/h3>
 &lt;p>Most AWS services allow you to setup restrictions on the number of active instances. The default limits, especially for some AppStream resources, such as &amp;ldquo;Maximum ImageBuilders&amp;rdquo; for some graphics instances - &amp;ldquo;stream.graphics.g4dn.xlarge&amp;rdquo; may be really low (0 in some cases). Connect to AWS console &amp;ldquo;Service Quotas&amp;rdquo; service and increase the limit for in case you see a &lt;code>limit was exceeded&lt;/code> error. Typically take a look at the limits setup for your account for EC2, VPC, AppStream, S3. Keep in mind that limits may be different from instance type to instance type for AppStream service, so you may have to adjust the limits based on the AppStream instance type selection.&lt;/p>
