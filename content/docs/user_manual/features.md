@@ -153,6 +153,10 @@ When a workspace has a large number of neuron fragments, such as those created b
     + Selection: fragments will be loaded if they are close to the last selected annotation. 
 - Distance: in either strategy, this controls how close fragments need to be to the target neuron(s) or point in order to be loaded.
 
+The three numbers next to the `Neurons` title of the neuron list tell you the current state of the filtering. If the display reads `Neurons (12/34/56)`, it indicates that there are 56 neurons in the workspace total, of which 34 are loaded into memory due to spatial filtering, and of which 12 are displayed in the neuron list due to text filtering.
+
+**Note**: If there are more than 100 neurons that are owned by the tracer group (`mouselight` in the Janelia instance) in a workspace, the spatial filter will be enabled automatically when the workspace is loaded. This can results in unexpectedly not seeing any neurons, or far fewer neurons, than expected, as they will be filtered out of the neuron list and the view. 
+
 ### Task workflow & Neuron Cam
 
 This feature is still being developed and will be documented later.
