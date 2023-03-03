@@ -1168,6 +1168,8 @@ If you&amp;rsquo;re running Windows, choose Tools &amp;gt; Options if you&amp;rs
 &lt;/li>
 &lt;li>Distance: in either strategy, this controls how close fragments need to be to the target neuron(s) or point in order to be loaded.&lt;/li>
 &lt;/ul>
+&lt;p>The three numbers next to the &lt;code>Neurons&lt;/code> title of the neuron list tell you the current state of the filtering. If the display reads &lt;code>Neurons (12/34/56)&lt;/code>, it indicates that there are 56 neurons in the workspace total, of which 34 are loaded into memory due to spatial filtering, and of which 12 are displayed in the neuron list due to text filtering.&lt;/p>
+&lt;p>&lt;strong>Note&lt;/strong>: If there are more than 100 neurons that are owned by the tracer group (&lt;code>mouselight&lt;/code> in the Janelia instance) in a workspace, the spatial filter will be enabled automatically when the workspace is loaded. This can results in unexpectedly not seeing any neurons, or far fewer neurons, than expected, as they will be filtered out of the neuron list and the view.&lt;/p>
 &lt;h3 id="task-workflow--neuron-cam">Task workflow &amp;amp; Neuron Cam&lt;/h3>
 &lt;p>This feature is still being developed and will be documented later.&lt;/p>
 &lt;h3 id="movie-maker-and-scene-editor">Movie Maker and Scene Editor&lt;/h3>
