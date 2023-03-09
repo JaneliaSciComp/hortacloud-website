@@ -117,7 +117,7 @@ Each brain image is referred to as a "sample". You should place each sample in `
 
 As a side note if you use 'lvDataImport' service to generate the imagery, the service does not use JADE to persist the data. So if you need the data to be on a storage that is only accessible on certain hosts, JACS must run on that host in order to be able to write the data to the corresponding location. If that is not an option you can generate the data to a temporary location then move it to the intended sample directory.
 
-In the Workstation, select **File** → **New** → **Tiled Microscope Sample**, and then set "Sample Name" to `<sampleDirectoryName>` and "Path to Render Folder" as `/jade1/<sampleDirectoryName>`.
+In the Workstation, select **File** → **New** → **Horta Sample**, and then set "Sample Name" to `<sampleDirectoryName>` and "Path to Render Folder" as `/jade1/<sampleDirectoryName>`.
 
 Open the Data Explorer (**Window** → **Core** → **Data Explorer**) and navigate to Home, then "3D RawTile Microscope Samples", and your sample name. Right-click the sample and choose "Open in Large Volume Viewer". The 2D imagery should load into the middle panel. You should be able to right-click anywhere on the image and select "Navigate to This Location in Horta (channel 1)", to load the 3D imagery.
 
