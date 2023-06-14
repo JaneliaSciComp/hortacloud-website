@@ -141,9 +141,10 @@ alt="three-server deployment diagram"/>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>At minimum, you must customize the following:&lt;/p>
 &lt;ol>
 &lt;li>Ensure that &lt;code>REDUNDANT_STORAGE&lt;/code> and &lt;code>NON_REDUNDANT_STORAGE&lt;/code> point to the disk mounts available on the local systems. Alternatively, you can make symbolic links so that the default paths point to your mounted disks.&lt;/li>
-&lt;li>Set &lt;code>HOST1&lt;/code>, &lt;code>HOST2&lt;/code>, and &lt;code>HOST3&lt;/code> to the servers you are deploying on. Use fully-qualified hostnames here &amp;ndash; they should match the SSL certificate you intend to use.&lt;/li>
+&lt;li>Set &lt;code>HOST1&lt;/code>, &lt;code>HOST2&lt;/code>, and &lt;code>HOST3&lt;/code> to the servers you are deploying on. Use fully-qualified hostnames here &amp;ndash; they should match the SSL certificate you intend to use. Do not use localhost or the loopback address (&lt;code>127.0.0.1&lt;/code>). If you don&amp;rsquo;t have a DNS name for the hosts, use the host&amp;rsquo;s IP address.&lt;/li>
 &lt;li>Fill in all the unset passwords with &amp;gt;8 character passwords. You should only use alphanumeric characters, special characters are not currently supported.&lt;/li>
-&lt;li>Generate 32-byte secret keys for JWT_SECRET_KEY and MONGODB_SECRET_KEY.&lt;/li>
+&lt;li>Generate 32-byte secret keys for JWT_SECRET_KEY, MONGODB_SECRET_KEY and JADE_API_KEY. If JADE_API_KEY is not set jacs-sync service will not be able to register any Mouselight samples.&lt;/li>
+&lt;li>Set &lt;code>JADE_AGENT_VOLUMES&lt;/code> to the volumes that you want to be created when you start the system - typically &lt;code>jade1,jade2&lt;/code>, but these really depend on the volumes that you you setup in your jade service configuration.&lt;/li>
 &lt;/ol>
 &lt;h2 id="enable-databases-optional">Enable Databases (optional)&lt;/h2>
 &lt;p>Currently, Janelia runs MongoDB outside of the Swarm, so they are commented out in the deployment. If you&amp;rsquo;d like to run the databases as part of the swarm, edit the yaml files under ./deployments/jacs/ and uncomment the databases.&lt;/p>
