@@ -1,0 +1,70 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>HortaCloud – System Overview</title><link>https://hortacloud.janelia.org/docs/development/systemoverview/</link><description>Recent content in System Overview on HortaCloud</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="https://hortacloud.janelia.org/docs/development/systemoverview/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Persistence</title><link>https://hortacloud.janelia.org/docs/development/systemoverview/persistence/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/systemoverview/persistence/</guid><description>
+&lt;p>This section covers a basic overview of how Horta persists neurons, workspaces, samples and preferences.&lt;/p>
+&lt;h1 id="asynchronous-vs-synchronous-saving">Asynchronous vs synchronous saving&lt;/h1>
+&lt;p>The final persistence store for Horta is in MongoDB, a document database, whether or not the data being saved is asynchronous or synchronous. Most Horta data is saved synchronously; the purpose of the asynchronous saving is to:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>Ease the burden on the annotator to constantly save their work&lt;/code>&lt;/li>
+&lt;li>&lt;code>Share annotations in realtime with other annotators or machine algorithms working in the same workspace&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;h1 id="persistence-flow">Persistence flow&lt;/h1>
+&lt;p>All access to MongoDB is wrapped by a RESTful API, jacs-sync, with a number of endpoints for CRUD operations for TmWorkspace, TmSample, and TmNeuronMetadata. The basic class/component diagram is shown below. When a workspace is first loaded, it relies on NeuronModelAdapter to stream in parallel all the neuron annotations for that workspace into the client app. The following initialization steps are performed with the annotation data:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>Concurrent map in NeuronModel is populated&lt;/code>:&lt;/li>
+&lt;li>&lt;code>LoadWorkspace/Sample events are fired to notify relevant GUI panels to update&lt;/code>&lt;/li>
+&lt;li>&lt;code>Spatial Filters are initialized with vertices (TmGeoAnnotations) from the neurons for snapping and general neighborhood convenience methods&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;div class="pb-3">
+&lt;a href="../horta_persistence.png">
+&lt;img
+src="../horta_persistence.png"
+class="rounded mx-auto"
+style="max-width: 700px;"
+alt="persistence flow diagram"/>
+&lt;/a>
+&lt;/div>
+&lt;p>Once the workspace is initialized and the annotator makes a change to a neuron, the entire neuron is serialized into an AMQP message and sent through the NeuronModelAdapter using RabbitMQ. When a client first starts up, it creates a temperorary queue that both publishes to a RabbitMQ topic exchange (ModelUpdates). Another service, jacs-messaging, listens to this exchange using the UpdateProcessor queue, and consumes messages of the exchange. It determines how to process these messages and if it requires persisting the neuron to the db, connects over the REST API to the jacs-sync service to perform the operation.&lt;/p>
+&lt;p>Once the operation is complete, an acknowledgement/update message is posted on the RabbitMQ fanout exchange, ModelRefresh. If there are any errors, they get posted on the ModelError exchange. All the clients are subscribed the ModelRefresh exchange, so they get notifications on any neuron changes. These are processed as multi-threaded callbacks in RefreshHandler, which filters based off the current workspace and fires update events if the message is relevant.&lt;/p>
+&lt;div class="pb-3">
+&lt;a href="../shared_workspace_1.png">
+&lt;img
+src="../shared_workspace_1.png"
+class="rounded mx-auto"
+style="max-width: 700px;"
+alt="Shared Workspace Scenario"/>
+&lt;/a>
+&lt;/div></description></item><item><title>Docs: Tiled Imagery</title><link>https://hortacloud.janelia.org/docs/development/systemoverview/tileimagery/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/systemoverview/tileimagery/</guid><description>
+&lt;h2 id="horta-2d">Horta 2D&lt;/h2>
+&lt;p>Horta&amp;rsquo;s 2D and 3D viewer were originally 2 separate visualization packages, so the way that they load tile imagery is quite different. Horta2D was called LVV (Large Volume Viewer) and exclusively loads many 2D slices from a TIFF Octree at a specific resolution to produce a mosaic that fills the window. These 2D slices are retrieved from the jacs-sync REST API based off the current focus on the window.&lt;/p>
+&lt;div class="pb-3">
+&lt;a href="../LVV_Graphics.png">
+&lt;img
+src="../LVV_Graphics.png"
+class="rounded mx-auto"
+style="max-width: 700px;"
+alt="Horta2D Class Diagram"/>
+&lt;/a>
+&lt;/div>
+&lt;p>In the LVV Object Diagram above, the key classes to examine when dealing specifically with the UI are QuadViewUI, TraceMode, AnnotationPanel, SkeletonActorModel, and AnnotationManager. QuadViewUI is the main Swing container for LVV, wrapping the 3D viewer and AnnotationPanel. The AnnotationPanel is the Swing panel on the right of the layout that has all the menu options, neuron filter options and annotation lists for each neuron. TraceMode is the main User EventManager, handling all key presses and mouse clicks. The SkeletonActorModel is the Controller for all the Neuron tracing (anchors/vertexes and directed paths between them).&lt;/p>
+&lt;p>Horta2D has a different tile-loading mechanism, but shares all other data with Horta3D through TmModelManager, including the current focus location, selection, resolution, voxel-micrometer mapping, etc.&lt;/p>
+&lt;h2 id="horta-3d">Horta 3D&lt;/h2>
+&lt;p>Horta3D loads 3D tiles as 3D texture-mapped chunks of the type of imagery (KTX, TIFF, MJ2, Zarr) associated with the current workspace/sample. These chunks all inherit from GL3Actor (TetVolumeActor, BrickActor), and are all loaded into a collection that is rendered by NeuronMPRenderer in its VolumeRenderPass. The main JOGL OpenGL window is SceneWindow.&lt;/p>
+&lt;p>When Horta3D is first loaded, the focus location is initialized from the sample bounding box and center information that is calculated on scene/workspace loading. The top component of Horta3D, NeuronTracerTopComponent, then delegates to the NeuronTileLoader to find the appropriate 3D chunks for that view. The BrickSource objects are used to load 3D voxel data and convert it into a 3D object that can be rendered in the SceneWindow.&lt;/p>
+&lt;p>In the case of KTX, the TetVolumeActor and KTXBlockLoadRunner work together to queue up a number of 3D chunks for multi-threaded loading based off the zoom resolution and current focus in the SceneWindow. The intent is to load as many chunks are necessary to fill up the viewport.&lt;/p>
+&lt;div class="pb-3">
+&lt;a href="../horta3d_tile_loading.png">
+&lt;img
+src="../horta3d_tile_loading.png"
+class="rounded mx-auto"
+style="max-width: 700px;"
+alt="Horta3D Tile Loading Diagram"/>
+&lt;/a>
+&lt;/div></description></item><item><title>Docs: Event Handling/Communication</title><link>https://hortacloud.janelia.org/docs/development/systemoverview/eventhandling/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/systemoverview/eventhandling/</guid><description>
+&lt;p>This section briefly covers how information is shared throughout the GUI in Horta&lt;/p>
+&lt;h3 id="eventbus">EventBus&lt;/h3>
+&lt;p>To preserve code independence between different modules in Horta, an EventBus from Google is used. This acts likes an internal publish/subscribe framework within the client, allowing methods to listen for certain events to happen. Events are sent asynchronously on the EventBus, so they are managed in a separate thread than the main AWT thread.&lt;/p>
+&lt;p>In Horta, the EventBus is mainly used to communicate events that concern multiple GUI components. Events that are mostly concerned with communication within a GUI component are still managed using Listeners.&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>ViewerEventBus is the main wrapper around the eventbus for Horta, and is managed by TmViewerManager.&lt;/code>&lt;/li>
+&lt;li>`Each main component has a Controller class that is the main hub for incoming eventbus messages (eg, PanelController for the Horta Command Center). Messages are then appropriately routed to local GUI components from the controller.&lt;/li>
+&lt;/ul>
+&lt;p>All the eventbus events are listed in the org.janelia.workstation.controller.eventbus package and include events such as SampleCreateEvent, WorkflowEvent, etc. Because events can have inheritance, methods can listen to the super Event class and get notifications on the whole stack of events that inherit from the super class.&lt;/p></description></item></channel></rss>
