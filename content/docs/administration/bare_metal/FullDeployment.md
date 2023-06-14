@@ -85,9 +85,10 @@ vi .env.config
 At minimum, you must customize the following:
 
 1. Ensure that `REDUNDANT_STORAGE` and `NON_REDUNDANT_STORAGE` point to the disk mounts available on the local systems. Alternatively, you can make symbolic links so that the default paths point to your mounted disks.
-2. Set `HOST1`, `HOST2`, and `HOST3` to the servers you are deploying on. Use fully-qualified hostnames here -- they should match the SSL certificate you intend to use.
+2. Set `HOST1`, `HOST2`, and `HOST3` to the servers you are deploying on. Use fully-qualified hostnames here -- they should match the SSL certificate you intend to use. Do not use localhost or the loopback address (`127.0.0.1`). If you don't have a DNS name for the hosts, use the host's IP address.
 3. Fill in all the unset passwords with >8 character passwords. You should only use alphanumeric characters, special characters are not currently supported.
-4. Generate 32-byte secret keys for JWT_SECRET_KEY and MONGODB_SECRET_KEY.
+4. Generate 32-byte secret keys for JWT_SECRET_KEY, MONGODB_SECRET_KEY and JADE_API_KEY. If JADE_API_KEY is not set jacs-sync service will not be able to register any Mouselight samples.
+5. Set `JADE_AGENT_VOLUMES` to the volumes that you want to be created when you start the system - typically `jade1,jade2`, but these really depend on the volumes that you you setup in your jade service configuration.
 
 ## Enable Databases (optional)
 
