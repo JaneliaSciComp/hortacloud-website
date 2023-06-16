@@ -281,6 +281,12 @@ _Persistent_: Neurons can be toggled between visible and invisible (shown or hid
 - Right-click the neuron name in the neuron list and choose one of the hide/show neurons options (show all, hide all, or hide all except the clicked neuron).
 - On the gear menu below the neuron list, choose one of the hide/show neurons options (show all, hide all, or hide all except the currently selected neuron). This will apply to all neurons currently displayed in the list
 
+**Note:** The difference between the hide/show options on the right-click menu on each neuron in the neuron list, and the gear menu below the neuron list, can be subtle. The right-click options operate on all neurons, regardless of any text filters. "Hide others" and "Show others" act globally on all neurons.
+
+The gear menu options work only on the neurons showing in the list. If there is no text filter active, that means all neurons. So "Hide" and "Show" work on all neurons, but "Hide others" and "Show others" do nothing, because there are no "other" neurons that are not visible in the neuron list (ie, there are no neurons that are filtered out).
+
+When a text filter is active, though, the behavior of the gear menu commands only affects the neurons on the list, or acts relative to the neurons on the list. The "Show neurons" and "Hide neurons" options will only toggle visibility for neurons showing on the list, and likewise the "Show others" and "Hide others" operations only affect neurons not on the list (ie, the neurons that are filtered out).
+
 ### Filtering neurons
 
 The neuron list usually displays all neurons in the workspace, but its contents can be filtered to a subset of neurons, which is especially useful when the list is long.
