@@ -170,7 +170,7 @@ The Horta Movie Maker is designed to created fly-through movies, typically for p
 
 ### Right-click operations
 
-Horta 2D has a number of operations on its right-click menu. Many of them are described elsewhere, especially in the [Horta Basic Operations]({{< ref "/docs/user_manual/basic_operations" >}}) section. We will quickly summarize most of the operations here. Operations that are not documented below fall into two categories. First, some of them are redundant with other parts of the UI and are likely to be removed from the menu. For example, "Begin new neurite here" is unnecessary on the right-click menu. That operation is also documented in the Horta Basic operation section. Second, if an operation is not documented anywhere, it is deprecated and likely to be removed entirely, not just from this menu. Some of these will be noted explicitly.
+Horta 2D has a number of operations on its right-click menu. Many of them are described elsewhere, especially in the [Horta Basic Operations]({{< ref "/docs/user_manual/basic_operations" >}}) section. We will quickly summarize most of the operations here. 
 
 #### Right-click in empty space
 
