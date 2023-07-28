@@ -185,7 +185,7 @@ style="max-width: 800px;"
 alt="cloud architecture diagram"/>
 &lt;/a>
 &lt;h2 id="install-prerequisites">Install prerequisites&lt;/h2>
-&lt;p>You should have &lt;strong>node v14&lt;/strong> installed on your local machine. We recommend using &lt;a href="https://github.com/nvm-sh/nvm">nvm&lt;/a> to install and activate this version of node.&lt;/p>
+&lt;p>You should have &lt;strong>node &amp;gt; v16&lt;/strong> installed on your local machine. We recommend using &lt;a href="https://github.com/nvm-sh/nvm">nvm&lt;/a> to install and activate this version of node.&lt;/p>
 &lt;ul>
 &lt;li>Install AWS CLI
 &lt;ul>
