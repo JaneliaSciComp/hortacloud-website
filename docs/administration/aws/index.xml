@@ -112,10 +112,13 @@ If your application does not see Google Drive and/or OneDrive for uploading or s
 &lt;h3 id="aws-limits">AWS Limits&lt;/h3>
 &lt;p>Most AWS services allow you to setup restrictions on the number of active instances. The default limits, especially for some AppStream resources, such as &amp;ldquo;Maximum ImageBuilders&amp;rdquo; for some graphics instances - &amp;ldquo;stream.graphics.g4dn.xlarge&amp;rdquo; may be really low (0 in some cases). Connect to AWS console &amp;ldquo;Service Quotas&amp;rdquo; service and increase the limit for in case you see a &lt;code>limit was exceeded&lt;/code> error. Typically take a look at the limits setup for your account for EC2, VPC, AppStream, S3. Keep in mind that limits may be different from instance type to instance type for AppStream service, so you may have to adjust the limits based on the AppStream instance type selection.&lt;/p>
 &lt;h2 id="deploy-hortacloud-services">Deploy HortaCloud services&lt;/h2>
-&lt;p>After the setup is complete, deploy the application by running:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm run deploy
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>First time the application is deployed we also need to create user login pool and this must be explicitly specified using &amp;lsquo;-u&amp;rsquo; flag [See &lt;strong>Deploy the user login stack&lt;/strong> section below]:&lt;/p>
+&lt;p>If this is the first time the application is deployed you will need to create a user login pool. This must be explicitly specified using &amp;lsquo;-u&amp;rsquo; flag [See &lt;strong>Deploy the user login stack&lt;/strong> section below]:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm run deploy -- -u
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;blockquote>
+&lt;p>&lt;span style="background:#842029;color:#ea868f;padding:0.3em;"> ⚠️ &lt;strong>The user pool should only be created once.&lt;/strong>:&lt;/span> including the &amp;lsquo;-u&amp;rsquo; flag on a future update or deployment will replace all your users accounts!&lt;/p>
+&lt;/blockquote>
+&lt;p>After the setup is complete, subsequent deployments and updates to the application can be done by running:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>npm run deploy
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>There are a few steps during the deployment that require manual intervention. The deploy script will indicate when these steps should be taken with a ⚠️ warning message.&lt;/p>
 &lt;p>The full deployment of the application is done in 3, or 4 steps - if user login stack is deployed too, that run automatically one after the other,
 with some manual intervention for &lt;strong>AppStream builder&lt;/strong> step (third step outlined below):&lt;/p>
