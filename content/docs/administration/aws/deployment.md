@@ -122,16 +122,17 @@ Most AWS services allow you to setup restrictions on the number of active instan
 
 ## Deploy HortaCloud services
 
-After the setup is complete, deploy the application by running:
-
-```bash
-npm run deploy
-```
-
-First time the application is deployed we also need to create user login pool and this must be explicitly specified using '-u' flag [See **Deploy the user login stack** section below]:
+If this is the first time the application is deployed you will need to create a user login pool. This must be explicitly specified using '-u' flag [See **Deploy the user login stack** section below]:
 
 ```bash
 npm run deploy -- -u
+```
+> <span style="background:#842029;color:#ea868f;padding:0.3em;"> ⚠️  **The user pool should only be created once.**:</span> including the '-u' flag on a future update or deployment will replace all your users accounts!
+
+After the setup is complete, subsequent deployments and updates to the application can be done by running:
+
+```bash
+npm run deploy
 ```
 
 There are a few steps during the deployment that require manual intervention. The deploy script will indicate when these steps should be taken with a ⚠️  warning message.
