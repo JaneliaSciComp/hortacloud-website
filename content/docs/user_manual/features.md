@@ -307,7 +307,7 @@ Horta 3D has a number of panels containing a variety of supplemental controls. T
     + Center focus, rotation, and zoom: replicate mouse commands 
     + View Slab: adjusts how thick the visible slab of data is; the default preset II shows a nice chunk of data; preset I shows a very thin slab, closely resembling the 2D view 
         * In this pseudo-2D view, hotkeys (shift-A and shift-Z by default) move the camera along the axis into the screen, mimicking scrolling through a z-stack in a 2D view.
-- Color Sliders: used to adjust the color settings for the image data channels and the tracing channel (as described in Horta Basic operation 
+- Color Sliders: used to adjust the color settings for the image data channels and the tracing channel (as described in Horta Basic operation)
 - Movie Maker and Scene Editor: not supported or documented
 - Graphics Speed: used for debugging; displays some graphics performance data
 
