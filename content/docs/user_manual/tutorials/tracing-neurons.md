@@ -50,16 +50,16 @@ A workspace, by contrast, contains the neurons that a user has traced. The works
 To create a workspace:
 
 1. Open a sample in Horta (as done in the previous step); this is the dataset that the neuron tracing will be associated with
-2. In the Horta Control Center at right, near the top, just under the "Open 2d" checkbox, click the button with the "+" on it.
+2. In the Horta Control Center at right, in the "WORKSPACE" section, click the button labeled "New workspace...".
 3. By default, the dialog box that pops up provides a template for naming the workspace. For this tutorial, however, click the "Manual override" button to name the workspace without using the template. You can use the default name "new workspace" or enter another name, perhaps "tutorial workspace". For this tutorial, leave "Assign neurons" unchecked.
 4. Click "OK"
 
 {{< imglink src="../images-tracing/workspace-naming-dialog.png" link="../images-tracing/workspace-naming-dialog.png" alt="naming a new workspace" >}}
 
-The system will work for a moment, then it will reload the images, this time loading the workspace instead of the sample. You will notice that at the top of the Horta Control Center, the name you gave the workspace will appear just above the sample name now.
+The system will work for a moment, then it will reload the images, this time loading the workspace instead of the sample. You will notice that in the "WORKSPACE" section of the Horta Control Center, the name you gave the workspace will appear just above the sample name now.
 
 
-{{< imglink src="../images-tracing/new-workspace-hcc.png" link="../images-tracing/new-workspace-hcc.png" alt="new workspace in the Horta Control Center" >}}
+{{< imglink src="../images-tracing/new-workspace-hcc.png" link="../images-tracing/new-workspace-hcc.png" alt="new workspace in the Horta Control Center" width="373px" >}}
 
 In the Data Explorer, this workspace will be located in your "Home" folder (the one with your username next to it in gold), within the "Workspaces" subfolder. You may need to click the refresh button (upper left corner, two arrows in a circle) in the Data Explorer before it shows up. 
 
@@ -87,13 +87,13 @@ Now, deep in the third tutorial, we are _finally_ ready to trace a neuron!
 
 In Horta, tracing neurons is done by placing a series of connected point annotations along the neuron signal in the images. These points form one or more trees of points, with each point having one parent point and zero, one, or more child points.
 
-The Horta Control Center contains, below the "Workspace" area, a list of neurons and controls for interacting with neurons.
+The Horta Control Center contains, below the "WORKSPACE" and "VIEWS" sections, a "NEURONS" section that contains a list of neurons and controls for interacting with neurons.
 
-To create a neuron, click the "+" button below the neuron list, just below the "Spatial filter" label. The default name is "Neuron 1", where the number will be incremented to be larger than existing neurons. You may also give the neuron any name you like, with some restrictions (ie, the `*` and `?` characters can't be used). You can rename the neuron at any time by right-clicking its name in the neuron list and choosing "Rename". Once the neuron is created, the name will appear in the neuron list, and the neuron will be selected (highlighted).
+To create a neuron, click the "Add..." button below the neuron list. The default name is "Neuron 1", where the number will be incremented to be larger than existing neurons. You may also give the neuron any name you like, with some restrictions (eg, the `*` and `?` characters can't be used). You can rename the neuron at any time by right-clicking its name in the neuron list and choosing "Rename". Once the neuron is created, the name will appear in the neuron list, and the neuron will be selected (highlighted).
 
 The initial color is randomly chosen from a palette of about twenty. If you'd like to change the color of the neuron, click the color swatch to the right of the neuron's name in the list and choose a new color from the dialog box. 
 
-{{< imglink src="../images-tracing/new-neuron.png" link="../images-tracing/new-neuron.png" alt="new neuron in the neuron list" >}}
+{{< imglink src="../images-tracing/new-neuron.png" link="../images-tracing/new-neuron.png" alt="new neuron in the neuron list" width="373px" >}}
 
 
 ### Add points
@@ -103,7 +103,7 @@ Let's find a neuron to trace. You can find any neuron you like (especially if yo
 To find the sample neuron:
 
 - Right-click in the 3D view and choose "Reset Horta Rotation" so you are oriented in the default direction
-- Click the "Go to..." button in the Horta Control Center (described in more detail in the previous tutorial)
+- Click the "Go to location..." button in the "VIEWS" section of the Horta Control Center (described in more detail in the previous tutorial)
 - Enter the following coordinates and click OK: `[74130,18910,35035]`
     + Remember, if you copy and paste these coordinates, you'll need to choose the middle icon on the AppStream toolbar and choose "Past to remote session" to transfer the coordinates from your local computer's clipboard to the AppStream clipboard; once it's there, you can use control-V to paste as usual
     + See "AppStream Basics" for more information on copying and pasting to and from AppStream
@@ -130,9 +130,9 @@ How densely should you place points? That depends on your intended scientific an
 
 ### The annotation list and more navigation
 
-The annotations list now contains a summary of the points you've placed. Not every point is listed--that would quickly get unwieldy--but the "interesting" points are. By default, the list includes every root point, endpoint, and branch point. It does not include points along a linear chain. But it also includes points that have some kind of user annotation attached to them (discussed elsewhere in the documentation). If you're following closely, there will only be two points in the annotation list at this time, the root point and the endpoint.
+The annotations list, in the "ANNOTATIONS" section, now contains a summary of the points you've placed. Not every point is listed--that would quickly get unwieldy--but the "interesting" points are. By default, the list includes every root point, endpoint, and branch point. It does not include points along a linear chain. But it also includes points that have some kind of user annotation attached to them (discussed elsewhere in the documentation). If you're following closely, there will only be two points in the annotation list at this time, the root point and the endpoint.
 
-{{< imglink src="../images-tracing/annotation-list.png" link="../images-tracing/annotation-list.png" alt="annotation list with two entries" >}}
+{{< imglink src="../images-tracing/annotation-list.png" link="../images-tracing/annotation-list.png" alt="annotation list with two entries" width="373px" >}}
 
 
 Both the annotation list and the neuron list can be used for navigation.
@@ -169,7 +169,7 @@ At this point, the next parent icon ("P") should be on the branch. Choose one ar
 
 The annotation list now shows the root point, the branch point, and two endpoints.
 
-{{< imglink src="../images-tracing/annotation-list-branch.png" link="../images-tracing/annotation-list-branch.png" alt="branched neuron" >}}
+{{< imglink src="../images-tracing/annotation-list-branch.png" link="../images-tracing/annotation-list-branch.png" alt="branched neuron" width="373px" >}}
 
 There are workflows that help you manage the task of tracing a branched structure. See, for example, "Simple workflow with notes and filters" in the "Features" section
 

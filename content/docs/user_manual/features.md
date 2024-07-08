@@ -125,18 +125,13 @@ Tags can be used to control a few useful toggle behaviors. This feature is calle
     + Crosscheck: this is the same as "background" and "radius" together; it's designed to have a neuron visible but unobtrusive and unchangeable 
 - Note that this feature has been buggy in the past; sometimes you need to save repeatedly before the setting holds.
 
-### Shared workspaces & the Neuron Broker: updates
+### Shared workspaces
 
-When multiple users open and work in the same workspace, the Neuron Broker on the server acts as the intermediary for all changes to the database.
+When multiple users open and work in the same workspace, the server acts as the intermediary for all changes to the database.
 
 - It ensures that changes occur one at a time, in order. 
 - It prevents users from changing neurons they do not own. 
 - It broadcasts the results of changes to all users, so users in the same workspace can see changes made by other users.
-
-There are two elements of the UI that relate to the operation of the Neuron Broker.
-
-- First, if "Shared Updates" is unchecked in the UI (in the right side panel of the Horta 2D view), then changes in the workspace will not be displayed until the "Refresh" button is clicked (same panel). This can be useful in the rare occasions that so many updates are arriving that it affects local performance. Normally, this should be left on. 
-- Second, if the name of a neuron in the neuron list becomes italicized, that is an indication that the data in the workstation has become unsynchronized with the data in the database for that neuron. If you hover the mouse over the neuron name, it will tell you how many changes are not synced. Generally, if this occurs and does not clear after a minute or two, you should reopen the workspace. The unsynced changes will be lost, but the workspace will then be fully in sync with the database.
 
 See also "Changing neuron ownership" in the Horta Features section.
 

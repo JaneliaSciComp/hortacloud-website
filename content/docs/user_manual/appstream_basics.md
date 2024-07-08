@@ -9,11 +9,19 @@ description: >
 
 ## The AppStream environment
 
-In general, the AppStream environment behaves like a Windows desktop computer running a single application, Horta. Because it's running in a browser, though, there are some important differences. Many of them are managed via the AppStream toolbar at the top of the screen.
+In general, the AppStream environment behaves like a Windows desktop computer running a single application, Horta. Because it's running in a browser, though, there are some important differences. Many of them are managed via the AppStream toolbar at the top of the screen.  
 
-{{< imglink src="../AppStream-toolbar.png" link="../AppStream-toolbar.png" alt="AppStream toolbar" width="761px" >}}
+Older AppStream toolbar:
+
+{{< imglink src="../AppStream-toolbar.png" link="../AppStream-toolbar.png" alt="AppStream 1 toolbar" width="761px" >}}
+
+Newer AppStream toolbar:
+
+{{< imglink src="../AppStream2-toolbar.png" link="../AppStream2-toolbar.png" alt="AppStream 2 toolbar" width="1076px" >}}
 
 ### Data import and export: file system and clipboard
+
+**Note**: The AppStream toolbar may differ slightly; the icon positions referred to below are for the older AppStream version. 
 
 Web browsers are constrained with respect to how they read and write data on a computer, and applications running in virtual machines displayed in a browser, even more so.
 
@@ -42,15 +50,6 @@ Volatile data:
 - information on the clipboard
 
 All other data (sample data, workspace data, annotations, notes, etc.) is stored in the database and is not lost when a session ends.
-
-{{% alert title="Data safety during development" color="warn" %}}
-HortaCloud is still under development! 
-
-- some settings and preference data will be lost when sessions end
-    + this includes things like preferred font size and window and panel positions
-    + this will be moved into the database in a future release
-
-{{% /alert %}}
 
 
 ### Reconnecting

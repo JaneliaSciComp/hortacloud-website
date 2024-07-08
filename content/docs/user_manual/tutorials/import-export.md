@@ -40,11 +40,7 @@ To export a traced neuron:
 5. For HortaCloud users, you now need to download your file(s) from the "Temporary Files" location on AppStream. The AppStream toolbar appears at the top of the browser's content window, above the top of the Horta main window. Click the third icon from left, which has a tooltip of "My Files".
 6. In the new dialog box that opens, click "Temporary Files". This is a web view into the folder where you exported your neuron. At the right end of the row for each file in this directory is a downward facing chevron. Click it and choose "Download" from the drop-down menu. Depending on your browser, you may be prompted to choose a location, or the file may be downloaded to your default downloads location. Also depending on your browser, you may need to authorize or confirm the download from the AppStream site.
 
-{{< imglink src="../images-import-export/temporary-files-download.png" link="../images-import-export/temporary-files-download.png" alt="download from temporary files" >}}
-
-{{% alert title="Safari" color="primary" %}}
-File downloads seem not to work in Safari. Use Firefox or Chrome on Mac if you need to download from "Temporary Files". (Strangely, uploading files to the same location _does_ work in Safari.)
-{{% /alert %}}
+{{< imglink src="../images-import-export/temporary-files-download.png" link="../images-import-export/temporary-files-download.png" alt="download from temporary files" width="1200px" >}}
 
 {{% alert title="Temporary means temporary!" color="primary" %}}
 The name "Temporary Files" is accurate! The files in this location will be deleted when your session ends. You _must_ download any exported neurons to your local computer in the same session in which you exported them.
@@ -62,13 +58,13 @@ To import a traced neuron:
 
 1. Open a workspace that corresponds to the same sample the neuron was exported from. In other words, the exported neuron's SWC file must be using the same coordinate system and same scale as the target sample. If not, the imported neuron will not lie on top of the neuron signal in the images. In many cases, it will be imported somewhere in space far from the brain imagery.
 2. (HortaCloud only) Upload the SWC file to AppStream. Click the "My Files" icon on the AppStream toolbar (third from left). Click "Temporary Files". You can drag files directly to this dialog box, and they will be uploaded. Alternately, click "Upload files" and choose the files from the file dialog that opens.
-3. In Horta, click the gear menu under the workspace information area, above the neuron list. Choose "Import SWC file as separate neurons".
+3. In Horta, click the gear menu in the "WORKSPACE" section. Choose "Import SWC file as separate neurons".
 4. Desktop users may choose any neuron on their hard disk at this point. HortaCloud users should again navigate to the "Temporary Files" area by using the drop-down menu called "Look in" at the top. Either way, choose a neuron SWC file and then click "Open".
 5. The "Background Tasks" window will again open, and the neuron will appear in the neurons list, and in the 2D or 3D views, if you have them open.
 
 Once the neuron has loaded, it will be visible in the 3D view, the 2D view (if it's open), and the neuron list. If you select the test neuron in the neuron list, you'll see a large number of branch points and endpoints in the annotation list.
 
-{{< imglink src="../images-import-export/test-neuron-import.png" link="../images-import-export/test-neuron-import.png" alt="imported test neuron" >}}
+{{< imglink src="../images-import-export/test-neuron-import.png" link="../images-import-export/test-neuron-import.png" alt="imported test neuron" width="1200px" >}}
 
 
 

@@ -27,7 +27,3 @@ The major user-visible differences between the two versions are:
 - the desktop Janelia Workstation contains tools for viewing, annotating, and managing other unrelated Janelia datasets
 
 
-{{% pageinfo color="info" %}}
-This is a work in progress! 
-
-The original documentation for the desktop version of Horta and the Janelia Workstation are being adapted for HortaCloud, and this website. If something doesn't make sense for HortaCloud, it probably only applies to the desktop version and hasn't been revised yet. {{% /pageinfo %}}

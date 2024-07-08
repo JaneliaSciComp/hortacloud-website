@@ -72,11 +72,11 @@ If, for any reason, the images for a sample change location or change name, you 
 - Right-click the sample and choose "Open in Horta".
 - This option loads both samples and workspaces.
 - The sample will open the Horta Control Center, which is typically docked at the right-hand side of the main window. When you open a sample (rather than a workspace), very little information will appear in the Horta Control Center.
-- To view the images in the sample, click the checkbox next to "Open 2D" or "Open 3D" near the top of the Horta Control Center (see screenshot below).
+- To view the images in the sample, click the checkbox next to "Open 2D" or "Open 3D" in the "VIEWS" section of the Horta Control Center (see screenshot below).
 - The viewer (2D or 3D) will open in the center panel. Depending on the data volume, network speed, and disk speed, the data may take anywhere from a few seconds to a few minute to open. The status bar at the bottom of the application will indicate some of the loading steps.
 - The 2D and 3D viewers each have their own tab, and you can switch between them freely.
 
-{{< imglink src="../workspace-panel-1.png" link="../workspace-panel-1.png" alt="workspace panel screenshot" width="419px" >}}
+{{< imglink src="../workspace-panel-1.png" link="../workspace-panel-1.png" alt="workspace panel screenshot" width="450px" >}}
 
 After you've created a workspace (see below), use the same procedure to open the workspace.
 
@@ -97,7 +97,7 @@ The toolbar at the top of Horta 2D (screenshot above) indicates the current mous
 - To change planes, do any of: drag the slider under the image, click the arrows in the plane number indicator under the image, or scroll the mouse wheel when it is in plane change mode. Note that when you are zoomed out, each click of the mouse wheel will traverse more than one plane.
   - Note that holding down the shift key will put the mouse scroll wheel into zoom mode, and releasing the shift key will place the mouse scroll wheel into plane change mode, regardless of the mode the mouse scroll wheel was in when the shift key was depressed.
 - The "Reset View" button will recenter the image in x, y, and z and zoom out.
-- In the Horta Control Center, the "Go to..." button allows you to enter an x, y or x, y, z location, and the view will move to center itself at that point. If you don't enter z, the plane doesn't change. Commas are optional. Square brackets around the coordinates are ignored.
+- In the Horta Control Center, the "Go to location..." button allows you to enter an x, y or x, y, z location, and the view will move to center itself at that point. If you don't enter z, the plane doesn't change. Commas are optional. Square brackets around the coordinates are ignored.
 
 ### Adjusting colors in Horta 2D
 
@@ -128,7 +128,7 @@ To move around the volume:
 - Middle-click and drag: rotate the volume
 - Scroll wheel: change the zoom level
 - Right-click anywhere and choose "Reset Horta rotation" if you would like to return to the original image orientation.
-- In the Horta Control Center panel, the "Go to..." button just above the neuron list allows you to enter an x, y or x, y, z location, and the view will move to center itself at that point. If you don't enter z, the plane doesn't change. Commas are optional. Square brackets around the coordinates are ignored.
+- In the Horta Control Center panel, the "Go to location..." button in the "VIEWS" section allows you to enter an x, y or x, y, z location, and the view will move to center itself at that point. If you don't enter z, the plane doesn't change. Commas are optional. Square brackets around the coordinates are ignored.
 
 ### Horta 2D and Horta 3D view synchronization
 
@@ -173,39 +173,39 @@ In general, only one tracer should be working on any given neuron at the same ti
 
 ### Creating a workspace
 
-{{< imglink src="../workspace-panel-2.png" link="../workspace-panel-2.png" alt="workspace panel screenshot" width="257px" >}}
+{{< imglink src="../workspace-panel-2.png" link="../workspace-panel-2.png" alt="workspace panel screenshot" width="450px" >}}
 
 To create a workspace:
 
 - Open a sample from the Data Explorer; it will appear in the Horta Control Center.
-- In the workspace controls at the top of the editor panel at right (see screenshot above), click the "+" button.
+- In the "WORKSPACE" section at the top of the editor panel at right (see screenshot above), click the "+" button.
 - Fill in the desired name for the workspace. By default, it has a structured name based on the date and other data. You may optionally click "Manual override" to name the workspace whatever you would like.
   - (Note that "Assign neurons" has no effect for this method of creating a workspace.)
-- The workspace will be created, and it will automatically immediately load in the Horta Control Center. The workspace name and sample name will appear in the workspace controls area. The workspace will also appear in the Data Explorer under "Workspaces" in your home directory (you may need to refresh the explorer).
+- The workspace will be created, and it will automatically immediately load in the Horta Control Center. The workspace name and sample name will appear in the "WORKSPACE" section. The workspace will also appear in the Data Explorer under "Workspaces" in your home directory (you may need to refresh the explorer).
 - Once the workspace has been created, you can open it again just like you'd open a sample, by right-clicking the workspace in the Data Explorer and choosing "Open in Horta".
 
 ### Operations on workspaces
 
 You can perform a number of operations on the workspace. Some of these operations are common to all data in the workstation; these operations can be performed from the Data Explorer, typically by right-clicking on the workspace. These operations include moving, sharing, renaming, deleting the workspace.
 
-Other operations are specific to Horta. These operations can be accessed by clicking the gear icon in the Horta Control Center, in the workspace information panel just above the neuron list. Most of these will be discussed in other sections.
+Other operations are specific to Horta. These operations can be accessed by clicking the gear icon in the Horta Control Center, in the "WORKSPACE" section. Most of these will be discussed in other sections.
 
 **Save as**: If you need to make a copy of the workstation and all the annotations within it, choose "Save as..." from the workspace gear menu. You will be prompted for a new name just as if you were creating the workspace from scratch.
 
 ### Creating or deleting a neuron
 
-Annotations are contained within neurons. Typically a neuron in Horta represents one biological neuron. Usually its root annotation is placed on the neuron's soma. Neurons may contain more than one annotation tree, however. For example, it can be convenient to trace large arbors individually and link them later. Neuron controls and the neuron list are located below the workspace controls in the Horta Control Center (screenshot below).
+Annotations are contained within neurons. Typically a neuron in Horta represents one biological neuron. Usually its root annotation is placed on the neuron's soma. Neurons may contain more than one annotation tree, however. For example, it can be convenient to trace large arbors individually and link them later. Neuron controls and the neuron list are located in the "NEURONS" section of the Horta Control Center (screenshot below).
 
-{{< imglink src="../neuron-panel.png" link="../neuron-panel.png" alt="neuron panel screenshot" width="419px" >}}
+{{< imglink src="../neuron-panel.png" link="../neuron-panel.png" alt="neuron panel screenshot" width="450px" >}}
 
 To create a neuron:
 
 - Open a workspace.
-- Click the "+" button below the neuron list.
+- Click the "Add..." button below the neuron list.
 - Type in a name for the neuron and click "OK".
 - The new neuron will appear in the neuron list, selected.
 
-To delete a neuron, select a neuron in the list, then click the "-" button below the neuron list. You will be shown a dialog box to confirm your decision.
+To delete a neuron, select a neuron in the list, then click the "Remove" button below the neuron list. You will be shown a dialog box to confirm your decision.
 
 ### Annotating in Horta 2D
 
@@ -306,7 +306,7 @@ The sort order of the neurons can be changed by choosing "Sort" from the neuron 
 
 ### Filtering annotations
 
-The annotation list is located below the neuron list in the right-hand panel. By default, it displays annotations that are "interesting": roots, branch points, end points, and any annotation with notes (see below). Note that the "geo" column is meant to suggest the neuron's geometry (see below). They are ordered by last update time (newest at the bottom). Only annotations from the currently selected neuron are shown.
+The "ANNOTATIONS" section is located below the "NEURONS" section in the right-hand panel. By default, the list displays annotations that are "interesting": roots, branch points, end points, and any annotation with notes (see below). Note that the "geo" column is meant to suggest the neuron's geometry (see below). They are ordered by last update time (newest at the bottom). Only annotations from the currently selected neuron are shown.
 
 | symbol | geometry |
 | --- | --- |
@@ -358,15 +358,15 @@ This will be an icon or an empty space. From the dialog box, choose a new owner 
 
 Admins in the system may change any neuron's owner at any time.
 
-The workspace gear menu contains the very dangerous "Temp ownership admin" checkbox which gives the user the ability to change neuron ownership as if they were an admin (but grants no other admin privileges). Use this sparingly! It's intended for use by a trusted and professional group to circumvent situations where a neuron owner is, eg, on vacation, and no admin is available to change it.
+The gear menu in the "WORKSPCE" section contains the very dangerous "Temp ownership admin" checkbox which gives the user the ability to change neuron ownership as if they were an admin (but grants no other admin privileges). Use this sparingly! It's intended for use by a trusted and professional group to circumvent situations where a neuron owner is, eg, on vacation, and no admin is available to change it.
 
 ## Exporting data
 
 Horta use the SWC file format for importing and exporting neuron data. It's a multi-column text file that records the position and connectivity of the neurons and not much else. Note that an SWC file may contain more than one neuron or neuron fragment.
 
-- To export all of the neurons in a workspace, choose "Export SWC file" from the gear menu in the workspace information area.
+- To export all of the neurons in a workspace, choose "Export SWC file" from the gear menu in the "WORKSPACE" section.
 - To export one specific neuron, right-click on the neuron name in the neuron list and choose "Export SWC file...".
-- To export all neurons in the neuron list (potentially filtered), from the gear menu under the neuron list, choose "Export neurons...".
+- To export all neurons in the neuron list (potentially filtered), from the gear menu in the "NEURONS" section, choose "Export neurons...".
 
 **Output files**: In all cases, you will be prompted to choose an output location for the exported neuron(s).
 
@@ -388,7 +388,7 @@ SWC files may be imported into Horta either interactively or in the background. 
 
 ### Interactive
 
-Because an SWC file may store one or more than one neuron per file, and in Horta, you may have multiple neuron fragments per neuron, there are two ways to handle the import. Both of these options are found on the gear menu under the workspace information area.
+Because an SWC file may store one or more than one neuron per file, and in Horta, you may have multiple neuron fragments per neuron, there are two ways to handle the import. Both of these options are found on the gear menu in the "WORKSPACE" section.
 
 - **Import SWC file as one neuron**: This option reads all neurons in the SWC file(s), creates a single neuron, and places all neurons in the file in the newly created neuron (as what Horta calls neurites).
 - **Import SWC file as separate neurons**: This option reads all neurons in the SWC file(s) and creates one neuron per root in the file(s).
