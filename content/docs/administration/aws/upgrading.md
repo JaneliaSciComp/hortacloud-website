@@ -81,7 +81,7 @@ The steps for the incremental approach are the following:
     ```
     cd /opt/jacs/deploy
     ./manage.sh compose down
-    sudo git pull origin stable
+    sudo git pull origin master
     sudo git checkout <version>
     ./manage.sh compose up -d
     ```
