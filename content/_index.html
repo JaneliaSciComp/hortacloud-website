@@ -3,7 +3,7 @@ title = "HortaCloud"
 linkTitle = "HortaCloud"
 +++
 
-{{< blocks/cover title="HORTACLOUD" image_anchor="top" height="full" color="orange" >}}
+{{< blocks/cover title="HORTACLOUD" image_anchor="top" height="full" color="dark" >}}
 <div class="mx-auto">
 	<p class="lead display-4 mb-5">Collaborative neuron annotation in the cloud</p>
 	<a class="btn btn-lg btn-primary mr-3 mb-4" href="{{< relref "/docs" >}}">
@@ -20,7 +20,7 @@ linkTitle = "HortaCloud"
 {{% blocks/lead color="primary" %}}
 
 <div class="mx-auto">
-<video autoplay="true" loop="true" class="embed-responsive" style="padding: 0pt 20pt 10pt 0pt;">
+<video autoplay="true" loop="true" class="embed-responsive" style="padding: 0pt 20pt 10pt 0pt; max-width:100%">
 	<source src="vnc-movie.mp4" type="video/mp4">
 	Your browser does not support the video tag.
 </video> 
@@ -29,7 +29,7 @@ linkTitle = "HortaCloud"
 HortaCloud software provides an efficient production environment for collaborative and accurate reconstruction of long range projection neurons in light microscopy data. This software, originally developed for Janelia's MouseLight Team Project, has allowed annotators to efficiently reconstruct entire axonal arbors of individual neurons from whole-brain light microscopy data. 
 {{% /blocks/lead %}}
 
-{{< blocks/section color="dark" >}}
+{{< blocks/section color="dark" type="row" >}}
 {{% blocks/feature icon="fas fa-cloud-upload-alt" title="Automated deployment" url1="/docs/deployment" %}}
 Using the AWS CDK, you or your system administrator can <a href="docs/administration/deployment/aws_cloud/">easily deploy</a> the entire software stack to an AWS Account with a single installation script.
 {{% /blocks/feature %}}
@@ -43,7 +43,6 @@ Mouse brain data as large as 30 TB has been successfully traced by our annotator
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
-
 
 
 {{< blocks/section >}}
@@ -98,7 +97,7 @@ Horta also provides other useful features, including:
 {{< /blocks/section >}}
 
 
-{{< blocks/section >}}
+{{< blocks/section type="row" >}}
 
 {{% blocks/feature icon="fas fa-microscope" title="Open Science" url="/community/" %}}
 In support of Open Science, Janelia's MouseLight project has shared all of their code and data with the scientific community. We have started the <a href="/community/">HortaCloud community</a> as a way to share this software platform and allow others to leverage and extend it. 
