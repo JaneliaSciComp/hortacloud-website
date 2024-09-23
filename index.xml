@@ -1,55 +1,306 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>HortaCloud</title><link>https://hortacloud.janelia.org/</link><description>Recent content on HortaCloud</description><generator>Hugo</generator><language>en</language><atom:link href="https://hortacloud.janelia.org/index.xml" rel="self" type="application/rss+xml"/><item><title>Persistence</title><link>https://hortacloud.janelia.org/docs/development/systemoverview/persistence/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/systemoverview/persistence/</guid><description>This section covers a basic overview of how Horta persists neurons, workspaces, samples and preferences.
-Asynchronous vs synchronous saving The final persistence store for Horta is in MongoDB, a document database, whether or not the data being saved is asynchronous or synchronous. Most Horta data is saved synchronously; the purpose of the asynchronous saving is to:
-Ease the burden on the annotator to constantly save their work Share annotations in realtime with other annotators or machine algorithms working in the same workspace Persistence flow All access to MongoDB is wrapped by a RESTful API, jacs-sync, with a number of endpoints for CRUD operations for TmWorkspace, TmSample, and TmNeuronMetadata.</description></item><item><title>Tiled Imagery</title><link>https://hortacloud.janelia.org/docs/development/systemoverview/tileimagery/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/systemoverview/tileimagery/</guid><description>Horta 2D Horta&amp;rsquo;s 2D and 3D viewer were originally 2 separate visualization packages, so the way that they load tile imagery is quite different. Horta2D was called LVV (Large Volume Viewer) and exclusively loads many 2D slices from a TIFF Octree at a specific resolution to produce a mosaic that fills the window. These 2D slices are retrieved from the jacs-sync REST API based off the current focus on the window.</description></item><item><title>Event Handling/Communication</title><link>https://hortacloud.janelia.org/docs/development/systemoverview/eventhandling/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/systemoverview/eventhandling/</guid><description>This section briefly covers how information is shared throughout the GUI in Horta
-EventBus To preserve code independence between different modules in Horta, an EventBus from Google is used. This acts likes an internal publish/subscribe framework within the client, allowing methods to listen for certain events to happen. Events are sent asynchronously on the EventBus, so they are managed in a separate thread than the main AWT thread.
-In Horta, the EventBus is mainly used to communicate events that concern multiple GUI components.</description></item><item><title>Concepts</title><link>https://hortacloud.janelia.org/docs/user_manual/concepts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/concepts/</guid><description>Data Light microscopes of various kinds can now image an entire fly or mouse brain (eg, resonant scanning two photon with integrated vibrotome or Bessel light sheet). Horta is capable of displaying and annotating the resulting multi-terabyte datasets. The details of how the data should be prepared for use in Horta is covered in the Horta Reference section. In general, though, the data will have these properties:
-size: generally limited by disk space (local or cloud) channels: two channels are supported and tested; three channels are supported but not well tested; four or more channels are possible but would require more development location: the data will be on a storage system accessible to the image server (HortaCloud) AWS S3 bucket (desktop) local or networked storage available to the workstation servers the file path to the data should be known to the user if they will be creating samples manually arrangement: the 2D and 3D images are arranged in multi-resolution octrees; details are covered in the reference section, but the user doesn&amp;rsquo;t need to know them Software &amp;amp; tasks Horta includes the Horta 2D viewer, which is the 2D, plane-by-plane, viewing and annotation tool, and the Horta 3D viewer, which supports viewing and annotating the data in three dimensions.</description></item><item><title>Costs</title><link>https://hortacloud.janelia.org/docs/administration/aws/costs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/aws/costs/</guid><description>Deploying this system on Amazon Web Services (AWS) incurs a monthly cost for AWS service usage.
-In particular, the cost breakdown is roughly:
-$382/mo - Per user costs for running the Horta client on AppStream $277/mo - Back-end services running on EC2 (with Savings Plan) $76/mo - Storage (3 TB) for one sample image on S3 $34/mo - Virtual Private Cloud (VPC) Therefore, the minimum total cost per month for a single user would be about $770 ($9,237/year).</description></item><item><title>Getting started</title><link>https://hortacloud.janelia.org/docs/development/gettingstarted/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/gettingstarted/</guid><description/></item><item><title>AppStream Basics</title><link>https://hortacloud.janelia.org/docs/user_manual/appstream_basics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/appstream_basics/</guid><description>The AppStream environment In general, the AppStream environment behaves like a Windows desktop computer running a single application, Horta. Because it&amp;rsquo;s running in a browser, though, there are some important differences. Many of them are managed via the AppStream toolbar at the top of the screen.
-Older AppStream toolbar:
-Newer AppStream toolbar:
-Data import and export: file system and clipboard Note: The AppStream toolbar may differ slightly; the icon positions referred to below are for the older AppStream version.</description></item><item><title>Deployment</title><link>https://hortacloud.janelia.org/docs/administration/aws/deployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/aws/deployment/</guid><description>The deployment uses AWS CDK to create AWS resources on your AWS account as shown in the diagram below. All services run in a secured Virtual Private Cloud (VPC).
-Install prerequisites You should have node &amp;gt; v16 installed on your local machine. We recommend using nvm to install and activate this version of node.
-Install AWS CLI AWS CDK requires AWS CLI to be installed and configured on the computer from which one runs the deployment procedure.</description></item><item><title>Single server deployment</title><link>https://hortacloud.janelia.org/docs/development/composedeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/composedeployment/</guid><description>This document describes a Janelia Workstation deployment intended for setting up a personal development environment. Unlike the canonical distributed deployments which use Docker Swarm, this deployment uses Docker Compose to orchestrate the services on a single server.
-Note that this deployment does not build and serve the Workstation client installers, although that could certainly be added in cases where those pieces need to be developed and tested. In most cases, however, it is expected that this server-side deployment be paired with a development client built and run directly from IntelliJ or NetBeans.</description></item><item><title>Two-server deployment</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/twoserverdeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/twoserverdeployment/</guid><description>This document describes the canonical two-server Janelia Workstation deployment for supporting neuron tracing for the MouseLight project at the Janelia Research Campus and other research institutions. This deployment uses Docker Swarm to orchestrate prebuilt containers available on Docker Hub.
-Deployment Diagram Hardware Setup The JACS backend consists of several services which need to be deployed on server hardware. We have tested the following configuration:
-Two Dell PowerEdge R740XD Servers Each server has 40 cores (e.</description></item><item><title>Backup &amp; Restore</title><link>https://hortacloud.janelia.org/docs/administration/aws/backups/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/aws/backups/</guid><description>System backup The system can be configured to take nightly backups. All it is needed is to specify a writeable bucket (HORTA_BACKUP_BUCKET) that will hold the backups. You can also specify the base prefix for the backups using HORTA_BACKUP_FOLDER. If this is not specified the prefix will default to &amp;ldquo;/hortacloud/backups&amp;rdquo;.
-Currently the backup contains the Cognito users and the Mongo database (user-generated metadata and tracing data). Each backup will be stored in a timestamp (with format &amp;ldquo;yyyyMMddHHmmss&amp;rdquo;) folder under the base backup prefix.</description></item><item><title>Basic Operations</title><link>https://hortacloud.janelia.org/docs/user_manual/basic_operations/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/basic_operations/</guid><description>This section will walk you through the process of tracing a neuron and some other tasks. It&amp;rsquo;s meant to introduce you to the basic operations of Horta. Not all features or details of features are discussed. You can find those details in the appropriate Feature section.
-Assumptions Before you get started with Horta, it is assumed:
-The data is available in the proper format. If a sample hasn&amp;rsquo;t been created, you know the file path to the data.</description></item><item><title>Three-server deployment</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/fulldeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/fulldeployment/</guid><description>This document describes the full three-server Janelia Workstation deployment for supporting both FlyLight and MouseLight at Janelia Research Campus. This deployment uses Docker Swarm to orchestrate containers available on Docker Hub.
-Multiple environments are supported with this deployment:
-prod dev Deployment Diagram Hardware Setup This guide assumes that you have three high-end servers which can be dedicated to running Docker Swarm. We use 40-core servers with at least 192 GB of RAM.</description></item><item><title>Features</title><link>https://hortacloud.janelia.org/docs/user_manual/features/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/features/</guid><description>This section discusses Horta features. It contains both details of basic operations that are covering in the previous section as well as descriptions of features that haven&amp;rsquo;t yet been discussed.
-Global Preferences/settings There are a number of customization options for Horta.
-HortaCloud In HortaCloud, choose Tools &amp;gt; Options. Desktop If you&amp;rsquo;re running Windows, choose Tools &amp;gt; Options if you&amp;rsquo;re running Windows. On a Mac, the settings are called &amp;ldquo;Preferences&amp;rdquo; and are in the traditional place under the application menu at top right.</description></item><item><title>Installing Docker</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/installingdocker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/installingdocker/</guid><description>To install Docker on a server running Oracle Linux 8, some special configuration is needed. Much of this comes from the official documentation.
-Prerequisites First, make sure that Docker isn’t already installed:
-yum list installed | grep docker Remove any existing installations before proceeding.
-Ensure that /opt (or whatever disk is to be used for Docker data) is formatted with the d_type option. You can find out like this:
-$ xfs_info /opt meta-data=/dev/mapper/vg0-lv_opt isize=512 agcount=4, agsize=5701632 blks = sectsz=4096 attr=2, projid32bit=1 = crc=1 finobt=0 spinodes=0 data = bsize=4096 blocks=22806528, imaxpct=25 = sunit=0 swidth=0 blks naming =version 2 bsize=4096 ascii-ci=0 ftype=1 log =internal bsize=4096 blocks=11136, version=2 = sectsz=4096 sunit=1 blks, lazy-count=1 realtime =none extsz=4096 blocks=0, rtextents=0 If the above says ftype=0, then the filesystem will need to be recreated (reference).</description></item><item><title>Upgrading</title><link>https://hortacloud.janelia.org/docs/administration/aws/upgrading/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/aws/upgrading/</guid><description>There are two ways to upgrade to a new version of the code: Full Upgrade and Incremental Upgrade.
-Full Upgrade This method backs up all of the data, removes the existing HortaCloud stack, installs a new version from scratch, and restores the data. This is currently the most automated way to upgrade, and requires the least amount of effort.
-Backup your data First, ensure that you have a recent data backup.</description></item><item><title>Data Import</title><link>https://hortacloud.janelia.org/docs/administration/aws/data/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/aws/data/</guid><description>Adding the MouseLight Open Data The MouseLight project at Janelia has made available the complete imagery and neuron tracing annotations for its published data sets on the AWS Open Data Registry.
-You can easily make these available in your own HortaCloud instance by creating a Synchronized Folder which points to /s3data/janelia-mouselight-data.
-Adding a single volume A Horta Sample is an object representing a single 3D volume that can be visualized and traced with Horta.</description></item><item><title>Deploying JACS</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/swarmdeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/swarmdeployment/</guid><description>This document assumes that you have downloaded and configured the installer according to one of the deployment guides.
-The following steps are common to all Docker Swarm deployments of the Workstation.
-Initialize Filesystems The first step is to initialize the filesystems on all your Swarm systems. On each server, ensure that your REDUNDANT_STORAGE (default: /opt/jacs), NON_REDUNDANT_STORAGE (default: /data) directories exist and can be written to by your UNAME:GNAME user (default: docker-nobody).</description></item><item><title>Logging in</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/logging-in/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/logging-in/</guid><description>In this tutorial, we&amp;rsquo;ll go over the steps needed to log into HortaCloud and start the Horta application.
-HortaCloud only This tutorial applies to HortaCloud only. Prerequisites You should know the URL for the HortaCloud instance that you will be using. The administrator of the instance should have created an account for you. You should know the username and password for that account. The screenshots below were taken from the Janelia instance in June 2022.</description></item><item><title>Reference</title><link>https://hortacloud.janelia.org/docs/user_manual/reference/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/reference/</guid><description>Import/export file formats SWC The swc file format is a standard format for recording neuron skeletons. Unfortunately, while the basic format is widely used, there is no single standard for defining the format, and as a result, there are differences in implementation among various swc writers and readers. The basic spec can be seen here.
-In summary, an SWC file:
-is a text file contains a number of header lines, each beginning with a &amp;lsquo;#&amp;rsquo; character followed by a list of points, one per line, with parents preceding children Each line consists of seven numbers separated by whitespace in the following order: id type x y z radius parent, with:</description></item><item><title>Synchronized Folders</title><link>https://hortacloud.janelia.org/docs/user_manual/synchronized_folders/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/synchronized_folders/</guid><description>What are Synchronized Folders If you are incrementally adding a lot of data to the system, using the File → New → Horta Sample menu option can become tedious. If you create a Synchronized Folder, your data will be discovered as it is placed in storage, and Horta Samples will be automatically generated. The new Horta Samples can be made available to you or a group of users of your choice.</description></item><item><title>Deploying ELK</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/elkdeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/elkdeployment/</guid><description>Currently ELK is only available in a swarm deployment because of how the ELK stack is configured.
-Most of the set up necessary for ELK - configuration files and/or data directories - is already done as part of filesystem initialization performed while executing:
-./manage.sh init-filesystems The current ELK data directories are created on /data/ directory so this directory must exist.
-One manual step is to set the vm.max_map_count value required for running elasticsearch.</description></item><item><title>Reporting issues</title><link>https://hortacloud.janelia.org/docs/user_manual/issues/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/issues/</guid><description>If you encounter an issue while running Horta, or if you have comments, questions, or suggestions, there are multiple ways you can contact the Horta development team.
-Inside Horta (desktop) You may report a bug at any time within Horta. Simply choose &amp;ldquo;Report a bug&amp;rdquo; from the Help menu. Provide a description of what you were doing at the time of the issue! Sometimes Horta will encounter problems and display a dialog box with an ugly-looking error message.</description></item><item><title>Troubleshooting</title><link>https://hortacloud.janelia.org/docs/administration/aws/troubleshooting/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/aws/troubleshooting/</guid><description>No user can login to the workstation We have seen this behavior if the &amp;ldquo;/data&amp;rdquo; volume ran out of space. You can check this by connecting to the EC2 instance running the JACS stack and running df -h /data.
-If the disk is full you, you can try to find anything that could be removed but if the limit was reached because the size your data you really have to resize the volume.</description></item><item><title>Self-signed Certificates</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/selfsignedcerts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/selfsignedcerts/</guid><description>A self-signed certificate is automatically generated during the init-filesystem step of a jacs-cm installation. For production use, it is recommended that you replace this certificate with a real one. The self-signed certificate is less secure, and it requires some extra steps to get working.
-In order to connect to https://HOST1, you need to accept the certificate in the browser. This differs by browser.
-Then, in order to allow the Workstation to accept the certificate, it needs to be added to Java&amp;rsquo;s keystore.</description></item><item><title>Contribution guidelines</title><link>https://hortacloud.janelia.org/docs/development/contributing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/contributing/</guid><description/></item><item><title>Storage volumes</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/storagevolumes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/storagevolumes/</guid><description>The Workstation/JACS system relies on JADE for its storage API.
-Adding a new Storage Volume Add bootstrap to the JADE configuration
-On HOST1, edit /opt/jacs/config/jade/config.properties and add a block for your new volume, for example:
-StorageVolume.s3data.RootDir=/s3data StorageVolume.s3data.VirtualPath=/s3jade StorageVolume.s3data.Shared=true StorageVolume.s3data.Tags=aws,cloud StorageVolume.s3data.VolumePermissions=READ,WRITE,DELETE The properties configure the volume as follows:
-RootDir: defines the actual path to the data on disk VirtualPath: optionally defines a virtual path which is mapped to the actual path Shared: true if the volume should be accessible to all volumes Tags: tags used by applications to find appropriate volumes VolumePermissions: list of operations that JADE can execute (READ,WRITE,DELETE) Also add your volume to StorageAgent.</description></item><item><title>Viewing images</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/viewing-images/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/viewing-images/</guid><description>In this tutorial, we&amp;rsquo;ll go over the steps needed to load images in Horta and view them.
-HortaCloud-focused This tutorial is focused on HortaCloud. However, most of it applies to the desktop version of Horta as well. If you can launch Horta on the desktop, and you see data in the Data Explorer, you should be able to follow most of the other steps of the tutorial. Prerequisites You should be able to log into HortaCloud and launch the Horta application, as detailed in the previous tutorial.</description></item><item><title>Data import</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/dataimport/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/dataimport/</guid><description>In principle, any 3d volumetric data can be imported into the MouseLight Workstation. At this moment we only provide some very basic tools for converting only TIFF format images into the expected format on disk. Another limitation of the current tools is that the entire volume must be in a single tiff file (per channel)
-The imagery for MouseLight Workstation is a directory containing TIFF and KTX images organized into octrees.</description></item><item><title>Tracing neurons</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/tracing-neurons/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/tracing-neurons/</guid><description>In this tutorial, we&amp;rsquo;ll go over the steps needed to begin tracing a neuron in Horta in the 3D view.
-HortaCloud-focused This tutorial is focused on HortaCloud. However, most of it applies to the desktop version of Horta as well. If you can launch Horta on the desktop, and you see data in the Data Explorer, you should be able to follow most of the other steps of the tutorial. 3D-focused This tutorial doesn&amp;rsquo;t cover tracing in 2D in detail.</description></item><item><title>Exporting and importing neurons</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/import-export/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/import-export/</guid><description>In this tutorial, we&amp;rsquo;ll go over how to export and import traced neurons from/to Horta.
-Prerequisites You should be able to log into HortaCloud and launch the Horta application, as detailed in the first tutorial. You should be able to open a workspace in 3D and navigate the data, as detailed in the second tutorial. You should be able to create and add points to a neuron, as detailed in the third tutorial.</description></item><item><title>Troubleshooting</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/troubleshooting/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/troubleshooting/</guid><description>Docker These are some useful commands for troubleshooting Docker:
-View logs for Docker daemon
-sudo journalctl -fu docker Restart the Docker daemon
-sudo systemctl restart docker Remove all Docker objects, including unused containers/networks/etc.
-sudo docker system prune -a Swarm GUI If you would like to see the Swarm&amp;rsquo;s status in a web-based GUI, we recommend installing Swarmpit. It&amp;rsquo;s a single command to deploy, and it works well with the JACS stack.</description></item><item><title>Search Results</title><link>https://hortacloud.janelia.org/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/search/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>HortaCloud</title><link>https://hortacloud.janelia.org/</link><description>Recent content on HortaCloud</description><generator>Hugo</generator><language>en</language><atom:link href="https://hortacloud.janelia.org/index.xml" rel="self" type="application/rss+xml"/><item><title>Persistence</title><link>https://hortacloud.janelia.org/docs/development/systemoverview/persistence/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/systemoverview/persistence/</guid><description>&lt;p>This section covers a basic overview of how Horta persists neurons, workspaces, samples and preferences.&lt;/p>
+&lt;h1 id="asynchronous-vs-synchronous-saving">Asynchronous vs synchronous saving&lt;/h1>
+&lt;p>The final persistence store for Horta is in MongoDB, a document database, whether or not the data being saved is asynchronous or synchronous. Most Horta data is saved synchronously; the purpose of the asynchronous saving is to:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>Ease the burden on the annotator to constantly save their work&lt;/code>&lt;/li>
+&lt;li>&lt;code>Share annotations in realtime with other annotators or machine algorithms working in the same workspace&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;h1 id="persistence-flow">Persistence flow&lt;/h1>
+&lt;p>All access to MongoDB is wrapped by a RESTful API, jacs-sync, with a number of endpoints for CRUD operations for TmWorkspace, TmSample, and TmNeuronMetadata. The basic class/component diagram is shown below. When a workspace is first loaded, it relies on NeuronModelAdapter to stream in parallel all the neuron annotations for that workspace into the client app. The following initialization steps are performed with the annotation data:&lt;/p></description></item><item><title>Tiled Imagery</title><link>https://hortacloud.janelia.org/docs/development/systemoverview/tileimagery/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/systemoverview/tileimagery/</guid><description>&lt;h2 id="horta-2d">Horta 2D&lt;/h2>
+&lt;p>Horta&amp;rsquo;s 2D and 3D viewer were originally 2 separate visualization packages, so the way that they load tile imagery is quite different. Horta2D was called LVV (Large Volume Viewer) and exclusively loads many 2D slices from a TIFF Octree at a specific resolution to produce a mosaic that fills the window. These 2D slices are retrieved from the jacs-sync REST API based off the current focus on the window.&lt;/p></description></item><item><title>Event Handling/Communication</title><link>https://hortacloud.janelia.org/docs/development/systemoverview/eventhandling/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/systemoverview/eventhandling/</guid><description>&lt;p>This section briefly covers how information is shared throughout the GUI in Horta&lt;/p>
+&lt;h3 id="eventbus">EventBus&lt;/h3>
+&lt;p>To preserve code independence between different modules in Horta, an EventBus from Google is used. This acts likes an internal publish/subscribe framework within the client, allowing methods to listen for certain events to happen. Events are sent asynchronously on the EventBus, so they are managed in a separate thread than the main AWT thread.&lt;/p>
+&lt;p>In Horta, the EventBus is mainly used to communicate events that concern multiple GUI components. Events that are mostly concerned with communication within a GUI component are still managed using Listeners.&lt;/p></description></item><item><title>Concepts</title><link>https://hortacloud.janelia.org/docs/user_manual/concepts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/concepts/</guid><description>&lt;h2 id="data">Data&lt;/h2>
+&lt;p>Light microscopes of various kinds can now image an entire fly or mouse brain (eg, resonant scanning two photon with integrated vibrotome or Bessel light sheet). Horta is capable of displaying and annotating the resulting multi-terabyte datasets. The details of how the data should be prepared for use in Horta is covered in the &lt;a href="https://hortacloud.janelia.org/docs/user_manual/reference/">Horta Reference&lt;/a> section. In general, though, the data will have these properties:&lt;/p>
+&lt;ul>
+&lt;li>size: generally limited by disk space (local or cloud)&lt;/li>
+&lt;li>channels: two channels are supported and tested; three channels are supported but not well tested; four or more channels are possible but would require more development&lt;/li>
+&lt;li>location: the data will be on a storage system accessible to the image server
+&lt;ul>
+&lt;li>(HortaCloud) AWS S3 bucket&lt;/li>
+&lt;li>(desktop) local or networked storage available to the workstation servers&lt;/li>
+&lt;li>the file path to the data should be known to the user if they will be creating samples manually&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>arrangement: the 2D and 3D images are arranged in multi-resolution octrees; details are covered in the reference section, but the user doesn&amp;rsquo;t need to know them&lt;/li>
+&lt;/ul>
+&lt;h2 id="software--tasks">Software &amp;amp; tasks&lt;/h2>
+&lt;p>Horta includes the Horta 2D viewer, which is the 2D, plane-by-plane, viewing and annotation tool, and the Horta 3D viewer, which supports viewing and annotating the data in three dimensions. The two viewers connect to common data editing and storage functions, many of which can be viewed in the Horta Control Center.&lt;/p></description></item><item><title>Costs</title><link>https://hortacloud.janelia.org/docs/administration/aws/costs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/aws/costs/</guid><description>&lt;p>Deploying this system on Amazon Web Services (AWS) incurs a monthly cost for AWS service usage.&lt;/p>
+&lt;p>In particular, the cost breakdown is roughly:&lt;/p>
+&lt;ul>
+&lt;li>$382/mo - Per user costs for running the Horta client on AppStream&lt;/li>
+&lt;li>$277/mo - Back-end services running on EC2 (with Savings Plan)&lt;/li>
+&lt;li>$76/mo - Storage (3 TB) for one sample image on S3&lt;/li>
+&lt;li>$34/mo - Virtual Private Cloud (VPC)&lt;/li>
+&lt;/ul>
+&lt;p>Therefore, the minimum total cost per month for a single user would be about $770 ($9,237/year). For 2 users, the monthly cost would be $1130 ($13,570/year), etc. The full estimate can be &lt;a href="https://calculator.aws/#/estimate?id=ecbba8c6713281bc419c70de414d8a1db19dd345">found here&lt;/a>.&lt;/p></description></item><item><title>Getting started</title><link>https://hortacloud.janelia.org/docs/development/gettingstarted/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/gettingstarted/</guid><description/></item><item><title>AppStream Basics</title><link>https://hortacloud.janelia.org/docs/user_manual/appstream_basics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/appstream_basics/</guid><description>&lt;h2 id="the-appstream-environment">The AppStream environment&lt;/h2>
+&lt;p>In general, the AppStream environment behaves like a Windows desktop computer running a single application, Horta. Because it&amp;rsquo;s running in a browser, though, there are some important differences. Many of them are managed via the AppStream toolbar at the top of the screen.&lt;/p>
+&lt;p>Older AppStream toolbar:&lt;/p>
+
+&lt;a href="../AppStream-toolbar.png">
+ &lt;img 
+ src="../AppStream-toolbar.png"
+ class="rounded mx-auto"
+ style="max-width: 761px;" 
+ 
+ alt="AppStream 1 toolbar"/>
+&lt;/a>
+&lt;p>Newer AppStream toolbar:&lt;/p>
+
+&lt;a href="../AppStream2-toolbar.png">
+ &lt;img 
+ src="../AppStream2-toolbar.png"
+ class="rounded mx-auto"
+ style="max-width: 1076px;" 
+ 
+ alt="AppStream 2 toolbar"/>
+&lt;/a>
+&lt;h3 id="data-import-and-export-file-system-and-clipboard">Data import and export: file system and clipboard&lt;/h3>
+&lt;p>&lt;strong>Note&lt;/strong>: The AppStream toolbar may differ slightly; the icon positions referred to below are for the older AppStream version.&lt;/p></description></item><item><title>Deployment</title><link>https://hortacloud.janelia.org/docs/administration/aws/deployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/aws/deployment/</guid><description>&lt;p>The deployment uses AWS CDK to create AWS resources on your AWS account as shown in the diagram below. All services run in a secured Virtual Private Cloud (VPC).&lt;/p>
+
+&lt;a href="../cloud_architecture.png">
+ &lt;img 
+ src="../cloud_architecture.png"
+ class="rounded mx-auto"
+ style="max-width: 800px;" 
+ 
+ alt="cloud architecture diagram"/>
+&lt;/a>
+&lt;h2 id="install-prerequisites">Install prerequisites&lt;/h2>
+&lt;p>You should have &lt;strong>node &amp;gt; v16&lt;/strong> installed on your local machine. We recommend using &lt;a href="https://github.com/nvm-sh/nvm">nvm&lt;/a> to install and activate this version of node.&lt;/p>
+&lt;ul>
+&lt;li>Install AWS CLI
+&lt;ul>
+&lt;li>AWS CDK requires AWS CLI to be installed and configured on the computer from which one runs the deployment procedure. &lt;a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html">Installation&lt;/a> &amp;amp; &lt;a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html">configuration&lt;/a> instructions can be found in the AWS documentation.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="get-the-deployment-scripts">Get the deployment scripts&lt;/h2>
+&lt;p>Clone the &lt;a href="https://github.com/JaneliaSciComp/hortacloud">HortaCloud GitHib repository&lt;/a> containing the deployment scripts:&lt;/p></description></item><item><title>Single server deployment</title><link>https://hortacloud.janelia.org/docs/development/composedeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/composedeployment/</guid><description>&lt;div class="pb-3">
+
+&lt;a href="single_server.png">
+ &lt;img 
+ src="../single_server.png"
+ class="rounded mx-auto"
+ style="max-width: 700px;" 
+ 
+ alt="single sever deployment diagram"/>
+&lt;/a>
+&lt;/div>
+&lt;p>This document describes a Janelia Workstation deployment intended for setting up a personal development environment. Unlike the canonical distributed deployments which use Docker Swarm, this deployment uses Docker Compose to orchestrate the services on a single server.&lt;/p>
+&lt;p>Note that this deployment does not build and serve the Workstation client installers, although that could certainly be added in cases where those pieces need to be developed and tested. In most cases, however, it is expected that this server-side deployment be paired with a development client built and run directly from IntelliJ or NetBeans.&lt;/p></description></item><item><title>Two-server deployment</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/twoserverdeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/twoserverdeployment/</guid><description>&lt;p>This document describes the canonical two-server Janelia Workstation deployment for supporting neuron tracing for the &lt;a href="https://www.janelia.org/project-team/mouselight">MouseLight project&lt;/a> at the Janelia Research Campus and other research institutions. This deployment uses Docker Swarm to orchestrate prebuilt containers available on Docker Hub.&lt;/p>
+&lt;h2 id="deployment-diagram">Deployment Diagram&lt;/h2>
+
+&lt;a href="../TwoServerDeployment.png">
+ &lt;img 
+ src="../TwoServerDeployment.png"
+ class="rounded mx-auto"
+ style="max-width: 700px;" 
+ 
+ alt="two-server deployment diagram"/>
+&lt;/a>
+&lt;h2 id="hardware-setup">Hardware Setup&lt;/h2>
+&lt;p>The JACS backend consists of several services which need to be deployed on server hardware. We have tested the following configuration:&lt;/p>
+&lt;ul>
+&lt;li>Two Dell PowerEdge R740XD Servers
+&lt;ul>
+&lt;li>Each server has 40 cores (e.g. Intel Xeon Gold 6148 2.4G)&lt;/li>
+&lt;li>Each server has 192 GB of memory&lt;/li>
+&lt;li>The hard drives are configured as follows:
+&lt;ul>
+&lt;li>2 x 200GB SSD in RAID1 - Operating system (/)&lt;/li>
+&lt;li>2 x 960GB SSD in RAID1 - Databases, user preferences, etc. (/opt)&lt;/li>
+&lt;li>12 x 10TB in RAID6 - Image files (/data)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>The rest of this guide assumes that you have two server hosts dedicated to deploying this system, which are configured as listed above. They will be referred to as &lt;strong>HOST1&lt;/strong> and &lt;strong>HOST2&lt;/strong>.&lt;/p></description></item><item><title>Backup &amp; Restore</title><link>https://hortacloud.janelia.org/docs/administration/aws/backups/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/aws/backups/</guid><description>&lt;h2 id="system-backup">System backup&lt;/h2>
+&lt;p>The system can be configured to take nightly backups. All it is needed is to specify a writeable bucket (&lt;code>HORTA_BACKUP_BUCKET&lt;/code>) that will hold the backups. You can also specify the base prefix for the backups using &lt;code>HORTA_BACKUP_FOLDER&lt;/code>. If this is not specified the prefix will default to &amp;ldquo;/hortacloud/backups&amp;rdquo;.&lt;/p>
+&lt;p>Currently the backup contains the Cognito users and the Mongo database (user-generated metadata and tracing data). Each backup will be stored in a timestamp (with format &amp;ldquo;yyyyMMddHHmmss&amp;rdquo;) folder under the base backup prefix. The location of the backups will be &lt;code>s3://&amp;lt;backup_bucket&amp;gt;/&amp;lt;backup_folder_prefix&amp;gt;/&amp;lt;timestamp&amp;gt;/jacs&lt;/code> for the database and &lt;code>s3://&amp;lt;backup_bucket&amp;gt;/&amp;lt;backup_folder_prefix&amp;gt;/&amp;lt;timestamp&amp;gt;/cognito&lt;/code> for cognito users.&lt;/p></description></item><item><title>Basic Operations</title><link>https://hortacloud.janelia.org/docs/user_manual/basic_operations/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/basic_operations/</guid><description>&lt;p>This section will walk you through the process of tracing a neuron and some other tasks. It&amp;rsquo;s meant to introduce you to the basic operations of Horta. Not all features or details of features are discussed. You can find those details in the appropriate &lt;a href="https://hortacloud.janelia.org/docs/user_manual/features/">Feature&lt;/a> section.&lt;/p>
+&lt;h2 id="assumptions">Assumptions&lt;/h2>
+&lt;p>Before you get started with Horta, it is assumed:&lt;/p>
+&lt;ul>
+&lt;li>The data is available in the proper format.&lt;/li>
+&lt;li>If a sample hasn&amp;rsquo;t been created, you know the file path to the data.&lt;/li>
+&lt;li>(HortaCloud) You have a HortaCloud username and password.&lt;/li>
+&lt;li>(desktop) The Janelia Workstation is installed, you have a username and password, and you have logged in after launching the workstation. You have set the memory used by the workstation to a large number, preferably 40G or more.&lt;/li>
+&lt;li>You&amp;rsquo;ve read the &lt;a href="https://hortacloud.janelia.org/docs/user_manual/concepts/">Concepts&lt;/a> section of this documentation.&lt;/li>
+&lt;/ul>
+&lt;p>You should contact whomever prepared your data if you don&amp;rsquo;t know the answers to the above questions.&lt;/p></description></item><item><title>Three-server deployment</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/fulldeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/fulldeployment/</guid><description>&lt;p>This document describes the full three-server Janelia Workstation deployment for supporting both FlyLight and MouseLight at Janelia Research Campus. This deployment uses Docker Swarm to orchestrate containers available on Docker Hub.&lt;/p>
+&lt;p>Multiple &lt;em>environments&lt;/em> are supported with this deployment:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>prod&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>dev&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h2 id="deployment-diagram">Deployment Diagram&lt;/h2>
+
+&lt;a href="../FullDeployment.png">
+ &lt;img 
+ src="../FullDeployment.png"
+ class="rounded mx-auto"
+ style="max-width: 700px;" 
+ 
+ alt="three-server deployment diagram"/>
+&lt;/a>
+&lt;h2 id="hardware-setup">Hardware Setup&lt;/h2>
+&lt;p>This guide assumes that you have three high-end servers which can be dedicated to running Docker Swarm. We use 40-core servers with at least 192 GB of RAM. YMMV.&lt;/p></description></item><item><title>Features</title><link>https://hortacloud.janelia.org/docs/user_manual/features/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/features/</guid><description>&lt;p>This section discusses Horta features. It contains both details of basic operations that are covering in the &lt;a href="https://hortacloud.janelia.org/docs/user_manual/basic_operations/">previous section&lt;/a> as well as descriptions of features that haven&amp;rsquo;t yet been discussed.&lt;/p>
+&lt;h2 id="global">Global&lt;/h2>
+&lt;h3 id="preferencessettings">Preferences/settings&lt;/h3>
+&lt;p>There are a number of customization options for Horta.&lt;/p>
+
+
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">HortaCloud&lt;/h4>
+
+ In HortaCloud, choose Tools &amp;gt; Options.
+
+&lt;/div>
+
+
+
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Desktop&lt;/h4>
+
+ If you&amp;rsquo;re running Windows, choose Tools &amp;gt; Options if you&amp;rsquo;re running Windows. On a Mac, the settings are called &amp;ldquo;Preferences&amp;rdquo; and are in the traditional place under the application menu at top right.
+
+&lt;/div>
+
+&lt;p>Here are some settings of interest:&lt;/p></description></item><item><title>Installing Docker</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/installingdocker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/installingdocker/</guid><description>&lt;p>To install Docker on a server running Oracle Linux 8, some special configuration is needed. Much of this comes from the &lt;a href="https://docs.docker.com/install/linux/docker-ce/centos/">official documentation&lt;/a>.&lt;/p>
+&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
+&lt;p>First, make sure that Docker isn’t already installed:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>yum list installed &lt;span style="color:#000;font-weight:bold">|&lt;/span> grep docker
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Remove any existing installations before proceeding.&lt;/p>
+&lt;p>Ensure that /opt (or whatever disk is to be used for Docker data) is formatted with the d_type option. You can find out like this:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ xfs_info /opt
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>meta-data&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>/dev/mapper/vg0-lv_opt &lt;span style="color:#000">isize&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">512&lt;/span> &lt;span style="color:#000">agcount&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>4, &lt;span style="color:#000">agsize&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">5701632&lt;/span> &lt;span style="color:#000">blks&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">sectsz&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">4096&lt;/span> &lt;span style="color:#000">attr&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>2, &lt;span style="color:#000">projid32bit&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">crc&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span> &lt;span style="color:#000">finobt&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">0&lt;/span> &lt;span style="color:#000">spinodes&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">data&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">bsize&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">4096&lt;/span> &lt;span style="color:#000">blocks&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>22806528, &lt;span style="color:#000">imaxpct&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">25&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">sunit&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">0&lt;/span> &lt;span style="color:#000">swidth&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">0&lt;/span> blks
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">naming&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>version &lt;span style="color:#0000cf;font-weight:bold">2&lt;/span> &lt;span style="color:#000">bsize&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">4096&lt;/span> ascii-ci&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">0&lt;/span> &lt;span style="color:#000">ftype&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">log&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>internal &lt;span style="color:#000">bsize&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">4096&lt;/span> &lt;span style="color:#000">blocks&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>11136, &lt;span style="color:#000">version&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">sectsz&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">4096&lt;/span> &lt;span style="color:#000">sunit&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span> blks, lazy-count&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">realtime&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>none &lt;span style="color:#000">extsz&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">4096&lt;/span> &lt;span style="color:#000">blocks&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>0, &lt;span style="color:#000">rtextents&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If the above says ftype=0, then the filesystem will need to be recreated (&lt;a href="https://linuxer.pro/2017/03/what-is-d_type-and-why-docker-overlayfs-need-it/">reference&lt;/a>).&lt;/p></description></item><item><title>Upgrading</title><link>https://hortacloud.janelia.org/docs/administration/aws/upgrading/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/aws/upgrading/</guid><description>&lt;p>There are two ways to upgrade to a new version of the code: &lt;a href="#full-upgrade">Full Upgrade&lt;/a> and &lt;a href="#incremental-upgrade">Incremental Upgrade&lt;/a>.&lt;/p>
+&lt;h2 id="full-upgrade">Full Upgrade&lt;/h2>
+&lt;p>This method backs up all of the data, removes the existing HortaCloud stack, installs a new version from scratch, and restores the data. This is currently the most automated way to upgrade, and requires the least amount of effort.&lt;/p>
+&lt;h3 id="backup-your-data">Backup your data&lt;/h3>
+&lt;p>First, ensure that you have a recent data backup. If you have not &lt;a href="../backups">configured backups&lt;/a>, do that first. For most upgrades, you only need to check if a backup for the JACS Mongo database exists. Typically this is located at &lt;code>s3://&amp;lt;HORTA_BACKUP_BUCKET value&amp;gt;/&amp;lt;HORTA_BACKUP_FOLDER value&amp;gt;/&amp;lt;timestamp&amp;gt;/jacs&lt;/code>&lt;/p></description></item><item><title>Data Import</title><link>https://hortacloud.janelia.org/docs/administration/aws/data/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/aws/data/</guid><description>&lt;h3 id="adding-the-mouselight-open-data">Adding the MouseLight Open Data&lt;/h3>
+&lt;p>The MouseLight project at Janelia has made available the complete imagery and neuron tracing annotations for its published data sets on the &lt;a href="https://registry.opendata.aws/janelia-mouselight/">AWS Open Data Registry&lt;/a>.&lt;/p>
+&lt;p>You can easily make these available in your own HortaCloud instance by &lt;a href="https://hortacloud.janelia.org/docs/user_manual/synchronized_folders/">creating a Synchronized Folder&lt;/a> which points to &lt;code>/s3data/janelia-mouselight-data&lt;/code>.&lt;/p>
+&lt;h3 id="adding-a-single-volume">Adding a single volume&lt;/h3>
+&lt;p>A Horta Sample is an object representing a single 3D volume that can be visualized and traced with Horta.&lt;/p></description></item><item><title>Deploying JACS</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/swarmdeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/swarmdeployment/</guid><description>&lt;p>This document assumes that you have downloaded and configured the installer according to one of the deployment guides.&lt;/p>
+&lt;p>The following steps are common to all Docker Swarm deployments of the Workstation.&lt;/p>
+&lt;h2 id="initialize-filesystems">Initialize Filesystems&lt;/h2>
+&lt;p>The first step is to initialize the filesystems on all your Swarm systems. On each server, ensure that your &lt;code>REDUNDANT_STORAGE&lt;/code> (default: /opt/jacs), &lt;code>NON_REDUNDANT_STORAGE&lt;/code> (default: /data) directories exist and can be written to by your UNAME:GNAME user (default: docker-nobody).&lt;/p></description></item><item><title>Logging in</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/logging-in/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/logging-in/</guid><description>&lt;p>In this tutorial, we&amp;rsquo;ll go over the steps needed to log into HortaCloud and start the Horta application.&lt;/p>
+
+
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">HortaCloud only&lt;/h4>
+
+ This tutorial applies to HortaCloud only.
+
+&lt;/div>
+
+&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
+&lt;ul>
+&lt;li>You should know the URL for the HortaCloud instance that you will be using.&lt;/li>
+&lt;li>The administrator of the instance should have created an account for you.&lt;/li>
+&lt;li>You should know the username and password for that account.&lt;/li>
+&lt;/ul>
+&lt;p>The screenshots below were taken from the Janelia instance in June 2022.&lt;/p></description></item><item><title>Reference</title><link>https://hortacloud.janelia.org/docs/user_manual/reference/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/reference/</guid><description>&lt;h2 id="importexport-file-formats">Import/export file formats&lt;/h2>
+&lt;h3 id="swc">SWC&lt;/h3>
+&lt;p>The swc file format is a standard format for recording neuron skeletons. Unfortunately, while the basic format is widely used, there is no single standard for defining the format, and as a result, there are differences in implementation among various swc writers and readers. The basic spec can be seen &lt;a href="http://www.neuronland.org/NLMorphologyConverter/MorphologyFormats/SWC/Spec.html">here&lt;/a>.&lt;/p>
+&lt;p>In summary, an SWC file:&lt;/p>
+&lt;ul>
+&lt;li>is a text file&lt;/li>
+&lt;li>contains a number of header lines, each beginning with a &amp;lsquo;#&amp;rsquo; character&lt;/li>
+&lt;li>followed by a list of points, one per line, with parents preceding children&lt;/li>
+&lt;/ul>
+&lt;p>Each line consists of seven numbers separated by whitespace in the following order: &lt;code>id type x y z radius parent&lt;/code>, with:&lt;/p></description></item><item><title>Synchronized Folders</title><link>https://hortacloud.janelia.org/docs/user_manual/synchronized_folders/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/synchronized_folders/</guid><description>&lt;h2 id="what-are-synchronized-folders">What are Synchronized Folders&lt;/h2>
+&lt;p>If you are incrementally adding a lot of data to the system, using the &lt;strong>File&lt;/strong> → &lt;strong>New&lt;/strong> → &lt;strong>Horta Sample&lt;/strong> menu option can become tedious. If you create a Synchronized Folder, your data will be discovered as it is placed in storage, and Horta Samples will be automatically generated. The new Horta Samples can be made available to you or a group of users of your choice.&lt;/p></description></item><item><title>Deploying ELK</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/elkdeployment/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/elkdeployment/</guid><description>&lt;p>Currently ELK is only available in a swarm deployment because of how the ELK stack is configured.&lt;/p>
+&lt;p>Most of the set up necessary for ELK - configuration files and/or data directories - is already done as part of filesystem initialization performed while executing:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>./manage.sh init-filesystems
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The current ELK data directories are created on &lt;code>/data/&lt;/code> directory so this directory must exist.&lt;/p>
+&lt;p>One manual step is to set the &lt;code>vm.max_map_count&lt;/code> value required for running elasticsearch. This is done by adding &lt;code>vm.max_map_count=262144&lt;/code> line to &lt;code>/etc/sysctl.conf&lt;/code> and then run &lt;code>sysctl -p&lt;/code> (typically this must be done as root)&lt;/p></description></item><item><title>Reporting issues</title><link>https://hortacloud.janelia.org/docs/user_manual/issues/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/issues/</guid><description>&lt;p>If you encounter an issue while running Horta, or if you have comments, questions, or suggestions, there are multiple ways you can contact the Horta development team.&lt;/p>
+&lt;h2 id="inside-horta">Inside Horta&lt;/h2>
+&lt;p>(desktop) You may report a bug at any time within Horta. Simply choose &amp;ldquo;Report a bug&amp;rdquo; from the Help menu. Provide a description of what you were doing at the time of the issue! Sometimes Horta will encounter problems and display a dialog box with an ugly-looking error message. At the bottom of this dialog box, you&amp;rsquo;ll also see a &amp;ldquo;Report&amp;rdquo; button. Again, please let us know what you were doing at the time of the issue if you choose to report an issue at this time.&lt;/p></description></item><item><title>Troubleshooting</title><link>https://hortacloud.janelia.org/docs/administration/aws/troubleshooting/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/aws/troubleshooting/</guid><description>&lt;h2 id="no-user-can-login-to-the-workstation">No user can login to the workstation&lt;/h2>
+&lt;p>We have seen this behavior if the &amp;ldquo;/data&amp;rdquo; volume ran out of space. You can check this by connecting to the EC2 instance running the JACS stack and running &lt;code>df -h /data&lt;/code>.&lt;/p>
+&lt;p>If the disk is full you, you can try to find anything that could be removed but if the limit was reached because the size your data you really have to resize the volume. The steps to resize an EBS volume can be found in the AWS documentation. First run &lt;a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/requesting-ebs-volume-modifications.html">the instructions to increase the size of and EBS volume&lt;/a> and then &lt;a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html">the instructions that make the entire new disk space available to the EC2 instance&lt;/a>&lt;/p></description></item><item><title>Self-signed Certificates</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/selfsignedcerts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/selfsignedcerts/</guid><description>&lt;p>A self-signed certificate is automatically generated during the &lt;code>init-filesystem&lt;/code> step of a jacs-cm installation. For production use, it is recommended that you replace this certificate with a real one. The self-signed certificate is less secure, and it requires some extra steps to get working.&lt;/p>
+&lt;p>In order to connect to &lt;a href="https://HOST1">https://HOST1&lt;/a>, you need to accept the certificate in the browser. This differs by browser.&lt;/p>
+&lt;p>Then, in order to allow the Workstation to accept the certificate, it needs to be added to Java&amp;rsquo;s keystore. For this, you will need the certificate on the desktop computer where you are running the Workstation. You can either export it from the browser, or copy it over from the server. On the server, it is located in &lt;code>$CONFIG_DIR/certs/cert.crt&lt;/code>. Once you have the certificate, you can import it using Java&amp;rsquo;s keytool.&lt;/p></description></item><item><title>Contribution guidelines</title><link>https://hortacloud.janelia.org/docs/development/contributing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/development/contributing/</guid><description/></item><item><title>Storage volumes</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/storagevolumes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/storagevolumes/</guid><description>&lt;p>The Workstation/JACS system relies on JADE for its storage API.&lt;/p>
+&lt;h2 id="adding-a-new-storage-volume">Adding a new Storage Volume&lt;/h2>
+&lt;p>&lt;strong>Add bootstrap to the JADE configuration&lt;/strong>&lt;/p>
+&lt;p>On HOST1, edit /opt/jacs/config/jade/config.properties and add a block for your new volume, for example:&lt;/p>
+&lt;pre tabindex="0">&lt;code>StorageVolume.s3data.RootDir=/s3data
+StorageVolume.s3data.VirtualPath=/s3jade
+StorageVolume.s3data.Shared=true
+StorageVolume.s3data.Tags=aws,cloud
+StorageVolume.s3data.VolumePermissions=READ,WRITE,DELETE
+&lt;/code>&lt;/pre>&lt;p>The properties configure the volume as follows:&lt;/p>
+&lt;ul>
+&lt;li>RootDir: defines the actual path to the data on disk&lt;/li>
+&lt;li>VirtualPath: optionally defines a virtual path which is mapped to the actual path&lt;/li>
+&lt;li>Shared: true if the volume should be accessible to all volumes&lt;/li>
+&lt;li>Tags: tags used by applications to find appropriate volumes&lt;/li>
+&lt;li>VolumePermissions: list of operations that JADE can execute (READ,WRITE,DELETE)&lt;/li>
+&lt;/ul>
+&lt;p>Also add your volume to StorageAgent.BootstrappedVolumes, so that it will be created the next time the service is restarted.&lt;/p></description></item><item><title>Viewing images</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/viewing-images/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/viewing-images/</guid><description>&lt;p>In this tutorial, we&amp;rsquo;ll go over the steps needed to load images in Horta and view them.&lt;/p>
+
+
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">HortaCloud-focused&lt;/h4>
+
+ This tutorial is focused on HortaCloud. However, most of it applies to the desktop version of Horta as well. If you can launch Horta on the desktop, and you see data in the Data Explorer, you should be able to follow most of the other steps of the tutorial.
+
+&lt;/div>
+
+&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
+&lt;ul>
+&lt;li>You should be able to log into HortaCloud and launch the Horta application, as detailed in the previous tutorial.&lt;/li>
+&lt;li>Your HortaCloud instance should have access to the Janelia MouseLight data on Amazon AWS S3.
+&lt;ul>
+&lt;li>If not, you should have access to some similar data in your HortaCloud instance.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="steps">Steps&lt;/h2>
+&lt;h3 id="start-the-horta-application">Start the Horta Application&lt;/h3>
+&lt;p>Launch the Horta application. See the previous tutorial &amp;ldquo;Logging in&amp;rdquo; for more detail.&lt;/p></description></item><item><title>Data import</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/dataimport/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/dataimport/</guid><description>&lt;p>In principle, any 3d volumetric data can be imported into the MouseLight Workstation.
+At this moment we only provide some very basic tools for converting only TIFF format images into the expected format on disk. Another limitation of the current tools is that the entire volume must be in a single tiff file (per channel)&lt;/p>
+&lt;p>The imagery for MouseLight Workstation is a directory containing TIFF and KTX images organized into octrees. JACS compute includes a a service that can generate the octree data from a single volume TIFF file. If there is more than 1 channel, the channels are numbered 0 .. n-1 and each channel is expected to be in its own file. For example if you have 2 channels you would have two tiff files:&lt;/p></description></item><item><title>Tracing neurons</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/tracing-neurons/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/tracing-neurons/</guid><description>&lt;p>In this tutorial, we&amp;rsquo;ll go over the steps needed to begin tracing a neuron in Horta in the 3D view.&lt;/p>
+
+
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">HortaCloud-focused&lt;/h4>
+
+ This tutorial is focused on HortaCloud. However, most of it applies to the desktop version of Horta as well. If you can launch Horta on the desktop, and you see data in the Data Explorer, you should be able to follow most of the other steps of the tutorial.
+
+&lt;/div>
+
+
+
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">3D-focused&lt;/h4>
+
+ &lt;p>This tutorial doesn&amp;rsquo;t cover tracing in 2D in detail. Most of it is the same (creating workspaces, neurons, shift-click to add points), but there are some slight differences. See the &amp;ldquo;Basic Operations&amp;rdquo; section for details on 2D tracing.&lt;/p></description></item><item><title>Exporting and importing neurons</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/import-export/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/import-export/</guid><description>&lt;p>In this tutorial, we&amp;rsquo;ll go over how to export and import traced neurons from/to Horta.&lt;/p>
+&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
+&lt;ul>
+&lt;li>You should be able to log into HortaCloud and launch the Horta application, as detailed in the first tutorial.&lt;/li>
+&lt;li>You should be able to open a workspace in 3D and navigate the data, as detailed in the second tutorial.&lt;/li>
+&lt;li>You should be able to create and add points to a neuron, as detailed in the third tutorial.&lt;/li>
+&lt;/ul>
+&lt;h2 id="steps">Steps&lt;/h2>
+&lt;h3 id="open-the-workspace">Open the workspace&lt;/h3>
+&lt;p>Launch HortaCloud and open the workspace created in the previous tutorial, or any other workspace that you can trace in.&lt;/p></description></item><item><title>Troubleshooting</title><link>https://hortacloud.janelia.org/docs/administration/bare_metal/troubleshooting/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/administration/bare_metal/troubleshooting/</guid><description>&lt;h2 id="docker">Docker&lt;/h2>
+&lt;p>These are some useful commands for troubleshooting Docker:&lt;/p>
+&lt;p>View logs for Docker daemon&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo journalctl -fu docker
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Restart the Docker daemon&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo systemctl restart docker
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Remove all Docker objects, including unused containers/networks/etc.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo docker system prune -a
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="swarm-gui">Swarm GUI&lt;/h2>
+&lt;p>If you would like to see the Swarm&amp;rsquo;s status in a web-based GUI, we recommend installing &lt;a href="https://swarmpit.io">Swarmpit&lt;/a>. It&amp;rsquo;s a single command to deploy, and it works well with the JACS stack.&lt;/p></description></item><item><title>Search Results</title><link>https://hortacloud.janelia.org/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/search/</guid><description/></item></channel></rss>

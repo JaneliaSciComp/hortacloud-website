@@ -1,12 +1,83 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>User manual on HortaCloud</title><link>https://hortacloud.janelia.org/docs/user_manual/</link><description>Recent content in User manual on HortaCloud</description><generator>Hugo</generator><language>en</language><atom:link href="https://hortacloud.janelia.org/docs/user_manual/index.xml" rel="self" type="application/rss+xml"/><item><title>Concepts</title><link>https://hortacloud.janelia.org/docs/user_manual/concepts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/concepts/</guid><description>Data Light microscopes of various kinds can now image an entire fly or mouse brain (eg, resonant scanning two photon with integrated vibrotome or Bessel light sheet). Horta is capable of displaying and annotating the resulting multi-terabyte datasets. The details of how the data should be prepared for use in Horta is covered in the Horta Reference section. In general, though, the data will have these properties:
-size: generally limited by disk space (local or cloud) channels: two channels are supported and tested; three channels are supported but not well tested; four or more channels are possible but would require more development location: the data will be on a storage system accessible to the image server (HortaCloud) AWS S3 bucket (desktop) local or networked storage available to the workstation servers the file path to the data should be known to the user if they will be creating samples manually arrangement: the 2D and 3D images are arranged in multi-resolution octrees; details are covered in the reference section, but the user doesn&amp;rsquo;t need to know them Software &amp;amp; tasks Horta includes the Horta 2D viewer, which is the 2D, plane-by-plane, viewing and annotation tool, and the Horta 3D viewer, which supports viewing and annotating the data in three dimensions.</description></item><item><title>AppStream Basics</title><link>https://hortacloud.janelia.org/docs/user_manual/appstream_basics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/appstream_basics/</guid><description>The AppStream environment In general, the AppStream environment behaves like a Windows desktop computer running a single application, Horta. Because it&amp;rsquo;s running in a browser, though, there are some important differences. Many of them are managed via the AppStream toolbar at the top of the screen.
-Older AppStream toolbar:
-Newer AppStream toolbar:
-Data import and export: file system and clipboard Note: The AppStream toolbar may differ slightly; the icon positions referred to below are for the older AppStream version.</description></item><item><title>Basic Operations</title><link>https://hortacloud.janelia.org/docs/user_manual/basic_operations/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/basic_operations/</guid><description>This section will walk you through the process of tracing a neuron and some other tasks. It&amp;rsquo;s meant to introduce you to the basic operations of Horta. Not all features or details of features are discussed. You can find those details in the appropriate Feature section.
-Assumptions Before you get started with Horta, it is assumed:
-The data is available in the proper format. If a sample hasn&amp;rsquo;t been created, you know the file path to the data.</description></item><item><title>Features</title><link>https://hortacloud.janelia.org/docs/user_manual/features/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/features/</guid><description>This section discusses Horta features. It contains both details of basic operations that are covering in the previous section as well as descriptions of features that haven&amp;rsquo;t yet been discussed.
-Global Preferences/settings There are a number of customization options for Horta.
-HortaCloud In HortaCloud, choose Tools &amp;gt; Options. Desktop If you&amp;rsquo;re running Windows, choose Tools &amp;gt; Options if you&amp;rsquo;re running Windows. On a Mac, the settings are called &amp;ldquo;Preferences&amp;rdquo; and are in the traditional place under the application menu at top right.</description></item><item><title>Reference</title><link>https://hortacloud.janelia.org/docs/user_manual/reference/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/reference/</guid><description>Import/export file formats SWC The swc file format is a standard format for recording neuron skeletons. Unfortunately, while the basic format is widely used, there is no single standard for defining the format, and as a result, there are differences in implementation among various swc writers and readers. The basic spec can be seen here.
-In summary, an SWC file:
-is a text file contains a number of header lines, each beginning with a &amp;lsquo;#&amp;rsquo; character followed by a list of points, one per line, with parents preceding children Each line consists of seven numbers separated by whitespace in the following order: id type x y z radius parent, with:</description></item><item><title>Synchronized Folders</title><link>https://hortacloud.janelia.org/docs/user_manual/synchronized_folders/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/synchronized_folders/</guid><description>What are Synchronized Folders If you are incrementally adding a lot of data to the system, using the File → New → Horta Sample menu option can become tedious. If you create a Synchronized Folder, your data will be discovered as it is placed in storage, and Horta Samples will be automatically generated. The new Horta Samples can be made available to you or a group of users of your choice.</description></item><item><title>Reporting issues</title><link>https://hortacloud.janelia.org/docs/user_manual/issues/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/issues/</guid><description>If you encounter an issue while running Horta, or if you have comments, questions, or suggestions, there are multiple ways you can contact the Horta development team.
-Inside Horta (desktop) You may report a bug at any time within Horta. Simply choose &amp;ldquo;Report a bug&amp;rdquo; from the Help menu. Provide a description of what you were doing at the time of the issue! Sometimes Horta will encounter problems and display a dialog box with an ugly-looking error message.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>User manual on HortaCloud</title><link>https://hortacloud.janelia.org/docs/user_manual/</link><description>Recent content in User manual on HortaCloud</description><generator>Hugo</generator><language>en</language><atom:link href="https://hortacloud.janelia.org/docs/user_manual/index.xml" rel="self" type="application/rss+xml"/><item><title>Concepts</title><link>https://hortacloud.janelia.org/docs/user_manual/concepts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/concepts/</guid><description>&lt;h2 id="data">Data&lt;/h2>
+&lt;p>Light microscopes of various kinds can now image an entire fly or mouse brain (eg, resonant scanning two photon with integrated vibrotome or Bessel light sheet). Horta is capable of displaying and annotating the resulting multi-terabyte datasets. The details of how the data should be prepared for use in Horta is covered in the &lt;a href="https://hortacloud.janelia.org/docs/user_manual/reference/">Horta Reference&lt;/a> section. In general, though, the data will have these properties:&lt;/p>
+&lt;ul>
+&lt;li>size: generally limited by disk space (local or cloud)&lt;/li>
+&lt;li>channels: two channels are supported and tested; three channels are supported but not well tested; four or more channels are possible but would require more development&lt;/li>
+&lt;li>location: the data will be on a storage system accessible to the image server
+&lt;ul>
+&lt;li>(HortaCloud) AWS S3 bucket&lt;/li>
+&lt;li>(desktop) local or networked storage available to the workstation servers&lt;/li>
+&lt;li>the file path to the data should be known to the user if they will be creating samples manually&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>arrangement: the 2D and 3D images are arranged in multi-resolution octrees; details are covered in the reference section, but the user doesn&amp;rsquo;t need to know them&lt;/li>
+&lt;/ul>
+&lt;h2 id="software--tasks">Software &amp;amp; tasks&lt;/h2>
+&lt;p>Horta includes the Horta 2D viewer, which is the 2D, plane-by-plane, viewing and annotation tool, and the Horta 3D viewer, which supports viewing and annotating the data in three dimensions. The two viewers connect to common data editing and storage functions, many of which can be viewed in the Horta Control Center.&lt;/p></description></item><item><title>AppStream Basics</title><link>https://hortacloud.janelia.org/docs/user_manual/appstream_basics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/appstream_basics/</guid><description>&lt;h2 id="the-appstream-environment">The AppStream environment&lt;/h2>
+&lt;p>In general, the AppStream environment behaves like a Windows desktop computer running a single application, Horta. Because it&amp;rsquo;s running in a browser, though, there are some important differences. Many of them are managed via the AppStream toolbar at the top of the screen.&lt;/p>
+&lt;p>Older AppStream toolbar:&lt;/p>
+
+&lt;a href="../AppStream-toolbar.png">
+ &lt;img 
+ src="../AppStream-toolbar.png"
+ class="rounded mx-auto"
+ style="max-width: 761px;" 
+ 
+ alt="AppStream 1 toolbar"/>
+&lt;/a>
+&lt;p>Newer AppStream toolbar:&lt;/p>
+
+&lt;a href="../AppStream2-toolbar.png">
+ &lt;img 
+ src="../AppStream2-toolbar.png"
+ class="rounded mx-auto"
+ style="max-width: 1076px;" 
+ 
+ alt="AppStream 2 toolbar"/>
+&lt;/a>
+&lt;h3 id="data-import-and-export-file-system-and-clipboard">Data import and export: file system and clipboard&lt;/h3>
+&lt;p>&lt;strong>Note&lt;/strong>: The AppStream toolbar may differ slightly; the icon positions referred to below are for the older AppStream version.&lt;/p></description></item><item><title>Basic Operations</title><link>https://hortacloud.janelia.org/docs/user_manual/basic_operations/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/basic_operations/</guid><description>&lt;p>This section will walk you through the process of tracing a neuron and some other tasks. It&amp;rsquo;s meant to introduce you to the basic operations of Horta. Not all features or details of features are discussed. You can find those details in the appropriate &lt;a href="https://hortacloud.janelia.org/docs/user_manual/features/">Feature&lt;/a> section.&lt;/p>
+&lt;h2 id="assumptions">Assumptions&lt;/h2>
+&lt;p>Before you get started with Horta, it is assumed:&lt;/p>
+&lt;ul>
+&lt;li>The data is available in the proper format.&lt;/li>
+&lt;li>If a sample hasn&amp;rsquo;t been created, you know the file path to the data.&lt;/li>
+&lt;li>(HortaCloud) You have a HortaCloud username and password.&lt;/li>
+&lt;li>(desktop) The Janelia Workstation is installed, you have a username and password, and you have logged in after launching the workstation. You have set the memory used by the workstation to a large number, preferably 40G or more.&lt;/li>
+&lt;li>You&amp;rsquo;ve read the &lt;a href="https://hortacloud.janelia.org/docs/user_manual/concepts/">Concepts&lt;/a> section of this documentation.&lt;/li>
+&lt;/ul>
+&lt;p>You should contact whomever prepared your data if you don&amp;rsquo;t know the answers to the above questions.&lt;/p></description></item><item><title>Features</title><link>https://hortacloud.janelia.org/docs/user_manual/features/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/features/</guid><description>&lt;p>This section discusses Horta features. It contains both details of basic operations that are covering in the &lt;a href="https://hortacloud.janelia.org/docs/user_manual/basic_operations/">previous section&lt;/a> as well as descriptions of features that haven&amp;rsquo;t yet been discussed.&lt;/p>
+&lt;h2 id="global">Global&lt;/h2>
+&lt;h3 id="preferencessettings">Preferences/settings&lt;/h3>
+&lt;p>There are a number of customization options for Horta.&lt;/p>
+
+
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">HortaCloud&lt;/h4>
+
+ In HortaCloud, choose Tools &amp;gt; Options.
+
+&lt;/div>
+
+
+
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Desktop&lt;/h4>
+
+ If you&amp;rsquo;re running Windows, choose Tools &amp;gt; Options if you&amp;rsquo;re running Windows. On a Mac, the settings are called &amp;ldquo;Preferences&amp;rdquo; and are in the traditional place under the application menu at top right.
+
+&lt;/div>
+
+&lt;p>Here are some settings of interest:&lt;/p></description></item><item><title>Reference</title><link>https://hortacloud.janelia.org/docs/user_manual/reference/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/reference/</guid><description>&lt;h2 id="importexport-file-formats">Import/export file formats&lt;/h2>
+&lt;h3 id="swc">SWC&lt;/h3>
+&lt;p>The swc file format is a standard format for recording neuron skeletons. Unfortunately, while the basic format is widely used, there is no single standard for defining the format, and as a result, there are differences in implementation among various swc writers and readers. The basic spec can be seen &lt;a href="http://www.neuronland.org/NLMorphologyConverter/MorphologyFormats/SWC/Spec.html">here&lt;/a>.&lt;/p>
+&lt;p>In summary, an SWC file:&lt;/p>
+&lt;ul>
+&lt;li>is a text file&lt;/li>
+&lt;li>contains a number of header lines, each beginning with a &amp;lsquo;#&amp;rsquo; character&lt;/li>
+&lt;li>followed by a list of points, one per line, with parents preceding children&lt;/li>
+&lt;/ul>
+&lt;p>Each line consists of seven numbers separated by whitespace in the following order: &lt;code>id type x y z radius parent&lt;/code>, with:&lt;/p></description></item><item><title>Synchronized Folders</title><link>https://hortacloud.janelia.org/docs/user_manual/synchronized_folders/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/synchronized_folders/</guid><description>&lt;h2 id="what-are-synchronized-folders">What are Synchronized Folders&lt;/h2>
+&lt;p>If you are incrementally adding a lot of data to the system, using the &lt;strong>File&lt;/strong> → &lt;strong>New&lt;/strong> → &lt;strong>Horta Sample&lt;/strong> menu option can become tedious. If you create a Synchronized Folder, your data will be discovered as it is placed in storage, and Horta Samples will be automatically generated. The new Horta Samples can be made available to you or a group of users of your choice.&lt;/p></description></item><item><title>Reporting issues</title><link>https://hortacloud.janelia.org/docs/user_manual/issues/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/issues/</guid><description>&lt;p>If you encounter an issue while running Horta, or if you have comments, questions, or suggestions, there are multiple ways you can contact the Horta development team.&lt;/p>
+&lt;h2 id="inside-horta">Inside Horta&lt;/h2>
+&lt;p>(desktop) You may report a bug at any time within Horta. Simply choose &amp;ldquo;Report a bug&amp;rdquo; from the Help menu. Provide a description of what you were doing at the time of the issue! Sometimes Horta will encounter problems and display a dialog box with an ugly-looking error message. At the bottom of this dialog box, you&amp;rsquo;ll also see a &amp;ldquo;Report&amp;rdquo; button. Again, please let us know what you were doing at the time of the issue if you choose to report an issue at this time.&lt;/p></description></item></channel></rss>

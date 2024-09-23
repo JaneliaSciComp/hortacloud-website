@@ -1,5 +1,62 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tutorials on HortaCloud</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/</link><description>Recent content in Tutorials on HortaCloud</description><generator>Hugo</generator><language>en</language><atom:link href="https://hortacloud.janelia.org/docs/user_manual/tutorials/index.xml" rel="self" type="application/rss+xml"/><item><title>Logging in</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/logging-in/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/logging-in/</guid><description>In this tutorial, we&amp;rsquo;ll go over the steps needed to log into HortaCloud and start the Horta application.
-HortaCloud only This tutorial applies to HortaCloud only. Prerequisites You should know the URL for the HortaCloud instance that you will be using. The administrator of the instance should have created an account for you. You should know the username and password for that account. The screenshots below were taken from the Janelia instance in June 2022.</description></item><item><title>Viewing images</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/viewing-images/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/viewing-images/</guid><description>In this tutorial, we&amp;rsquo;ll go over the steps needed to load images in Horta and view them.
-HortaCloud-focused This tutorial is focused on HortaCloud. However, most of it applies to the desktop version of Horta as well. If you can launch Horta on the desktop, and you see data in the Data Explorer, you should be able to follow most of the other steps of the tutorial. Prerequisites You should be able to log into HortaCloud and launch the Horta application, as detailed in the previous tutorial.</description></item><item><title>Tracing neurons</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/tracing-neurons/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/tracing-neurons/</guid><description>In this tutorial, we&amp;rsquo;ll go over the steps needed to begin tracing a neuron in Horta in the 3D view.
-HortaCloud-focused This tutorial is focused on HortaCloud. However, most of it applies to the desktop version of Horta as well. If you can launch Horta on the desktop, and you see data in the Data Explorer, you should be able to follow most of the other steps of the tutorial. 3D-focused This tutorial doesn&amp;rsquo;t cover tracing in 2D in detail.</description></item><item><title>Exporting and importing neurons</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/import-export/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/import-export/</guid><description>In this tutorial, we&amp;rsquo;ll go over how to export and import traced neurons from/to Horta.
-Prerequisites You should be able to log into HortaCloud and launch the Horta application, as detailed in the first tutorial. You should be able to open a workspace in 3D and navigate the data, as detailed in the second tutorial. You should be able to create and add points to a neuron, as detailed in the third tutorial.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tutorials on HortaCloud</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/</link><description>Recent content in Tutorials on HortaCloud</description><generator>Hugo</generator><language>en</language><atom:link href="https://hortacloud.janelia.org/docs/user_manual/tutorials/index.xml" rel="self" type="application/rss+xml"/><item><title>Logging in</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/logging-in/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/logging-in/</guid><description>&lt;p>In this tutorial, we&amp;rsquo;ll go over the steps needed to log into HortaCloud and start the Horta application.&lt;/p>
+
+
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">HortaCloud only&lt;/h4>
+
+ This tutorial applies to HortaCloud only.
+
+&lt;/div>
+
+&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
+&lt;ul>
+&lt;li>You should know the URL for the HortaCloud instance that you will be using.&lt;/li>
+&lt;li>The administrator of the instance should have created an account for you.&lt;/li>
+&lt;li>You should know the username and password for that account.&lt;/li>
+&lt;/ul>
+&lt;p>The screenshots below were taken from the Janelia instance in June 2022.&lt;/p></description></item><item><title>Viewing images</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/viewing-images/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/viewing-images/</guid><description>&lt;p>In this tutorial, we&amp;rsquo;ll go over the steps needed to load images in Horta and view them.&lt;/p>
+
+
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">HortaCloud-focused&lt;/h4>
+
+ This tutorial is focused on HortaCloud. However, most of it applies to the desktop version of Horta as well. If you can launch Horta on the desktop, and you see data in the Data Explorer, you should be able to follow most of the other steps of the tutorial.
+
+&lt;/div>
+
+&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
+&lt;ul>
+&lt;li>You should be able to log into HortaCloud and launch the Horta application, as detailed in the previous tutorial.&lt;/li>
+&lt;li>Your HortaCloud instance should have access to the Janelia MouseLight data on Amazon AWS S3.
+&lt;ul>
+&lt;li>If not, you should have access to some similar data in your HortaCloud instance.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="steps">Steps&lt;/h2>
+&lt;h3 id="start-the-horta-application">Start the Horta Application&lt;/h3>
+&lt;p>Launch the Horta application. See the previous tutorial &amp;ldquo;Logging in&amp;rdquo; for more detail.&lt;/p></description></item><item><title>Tracing neurons</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/tracing-neurons/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/tracing-neurons/</guid><description>&lt;p>In this tutorial, we&amp;rsquo;ll go over the steps needed to begin tracing a neuron in Horta in the 3D view.&lt;/p>
+
+
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">HortaCloud-focused&lt;/h4>
+
+ This tutorial is focused on HortaCloud. However, most of it applies to the desktop version of Horta as well. If you can launch Horta on the desktop, and you see data in the Data Explorer, you should be able to follow most of the other steps of the tutorial.
+
+&lt;/div>
+
+
+
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">3D-focused&lt;/h4>
+
+ &lt;p>This tutorial doesn&amp;rsquo;t cover tracing in 2D in detail. Most of it is the same (creating workspaces, neurons, shift-click to add points), but there are some slight differences. See the &amp;ldquo;Basic Operations&amp;rdquo; section for details on 2D tracing.&lt;/p></description></item><item><title>Exporting and importing neurons</title><link>https://hortacloud.janelia.org/docs/user_manual/tutorials/import-export/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/tutorials/import-export/</guid><description>&lt;p>In this tutorial, we&amp;rsquo;ll go over how to export and import traced neurons from/to Horta.&lt;/p>
+&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
+&lt;ul>
+&lt;li>You should be able to log into HortaCloud and launch the Horta application, as detailed in the first tutorial.&lt;/li>
+&lt;li>You should be able to open a workspace in 3D and navigate the data, as detailed in the second tutorial.&lt;/li>
+&lt;li>You should be able to create and add points to a neuron, as detailed in the third tutorial.&lt;/li>
+&lt;/ul>
+&lt;h2 id="steps">Steps&lt;/h2>
+&lt;h3 id="open-the-workspace">Open the workspace&lt;/h3>
+&lt;p>Launch HortaCloud and open the workspace created in the previous tutorial, or any other workspace that you can trace in.&lt;/p></description></item></channel></rss>
