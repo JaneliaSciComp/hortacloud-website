@@ -43,11 +43,14 @@ git checkout <version>
 In order to restore the database from an existing backup make sure the following properties are set:
 
 ```
+NEW_HORTA_ENVIRONMENT=false
 HORTA_RESTORE_BUCKET=<backup bucket name>
 HORTA_RESTORE_FOLDER="/hortacloud/backups/latest"
 ```
 
 HORTA_RESTORE_BUCKET is the name of the backup bucket and HORTA_RESTORE_FOLDER must reference the parent prefix containing the 'jacs' folder - the location of the actual mongo backup. Typically the backup job creates a "softlink"  - "/hortacloud/backups/latest" so if you simply set the restore folder to that it should pick up the latest backup. If the backup was a manual backup or you need to restore to a previous date set the restore folder to that folder. For example setting `HORTA_RESTORE_FOLDER=/hortacloud/backups/20220609030001` will restore the database to the content saved on Jun 9, 2022.
+
+NEW_HORTA_ENVIRONMENT must be set to false so that we don't try to create another admin user which may clash with the one restored from the backup.
 
 After setting these properties you can proceed with the actual deploy procedure which will only install the backend and the frontend stack (skipping any Cognito installation):
 

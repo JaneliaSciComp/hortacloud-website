@@ -53,6 +53,8 @@ RABBITMQ_PASSWD=<rabbitmq password>
 JACS_API_KEY=<jacs api key>
 JADE_API_KEY=<jade api key>
 HORTA_DATA_BUCKETS=<s3 buckets that hold MouseLight data>
+
+NEW_HORTA_ENVIRONMENT=true
 ```
 
 The api keys and secrets have been randomly generated during the setup step, but you can generate new ones with the following command:
@@ -64,6 +66,8 @@ openssl rand -hex 32
 We prefer this procedure because these values will be handled during the installation using the `sed` command and it is preferable that they not contain any characters that require escaping in a sed command.
 
 If you already have data on some S3 buckets you can add them to `HORTA_DATA_BUCKETS` as a comma separated list. For example, if you want to use Janelia's Open Data bucket but in addition you also have your data on a private bucket ('janelia-mouselight-demo' in this example) you need to set `HORTA_DATA_BUCKETS="janelia-mouselight-imagery,janelia-mouselight-demo"`. By default, only the MouseLight Open Data bucket is mounted. Every bucket specified in the 'HORTA_DATA_BUCKETS' list will be available in Horta as `/s3data/<s3BucketName>` directory.
+
+If this is the first installation of HortaCloud and no restore from an existing backup is done, ensure that `NEW_HORTA_ENVIRONMENT=true` - this is needed to create the default admin user. For environments that are restored from an existing backup the flag must be set to `NEW_HORTA_ENVIRONMENT=false`.
 
 If you want to change the setting for `HORTA_WS_INSTANCE_TYPE`, keep in mind that you may have to change `HORTA_WS_IMAGE_NAME`.
 
