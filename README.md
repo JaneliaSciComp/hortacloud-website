@@ -10,16 +10,6 @@ It is built using the [Hugo](https://gohugo.io) static site generator, and uses 
 
 First, [install Hugo](https://gohugo.io/getting-started/installing). On Mac, this is just `brew install hugo`.
 
-To compile this site locally, you must fetch submodules recursively.
-
-Clone the repository like this:
-
-    git clone --recurse-submodules --depth 1 git@github.com:JaneliaSciComp/hortacloud-website.git
-
-Or if you already cloned, do this:
-
-    git submodule update --init --recursive
-
 Then install dependencies:
 
     npm install
