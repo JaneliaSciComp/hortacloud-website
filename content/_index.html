@@ -67,27 +67,22 @@ or run our distributed data import tool to convert your data.
 	<a href="screenshot-horta.png"><img src="screenshot-horta.png" class="img-fluid" style="float: left; width: 800px; padding: 0pt 20pt 20pt 0pt;"></a>
 </p>
 
-<p>
+<h2>Features</h2>
+<p class="text-horta-secondary3">
 HortaCloud combines state-of-the-art volumetric visualization, advanced features for 3D neuronal annotation, and real-time multi-user collaboration 
-
 with a set of enterprise-grade backend microservices for moving and processing large amounts of data rapidly and securely. 
-
 Users can load multi-terabyte image volumes with up to three signal channels, and visualize them in 3D with multiscale volume rendering.
-
 An optimized workflow allows annotators to efficiently trace long range projection neurons in light microscopy data, including easy merging/splitting of skeletal reconstructions. 
-
 Collaboration features allow a team of annotators to work together to annotate different neurons in a single volume, or build consensus by annotating the same neurons. 
 </p>
 
-<p>
+<p class="text-horta-secondary3">
 Horta also provides other useful features, including:
 <div  style="display: inline-block">
 <ul class="padding-left: 20pt;">
-	<li class="">Movie scripting and rendering</li>
-	<li class="">Import/export in SWC format</li>
-	<li class="">Text annotations</li>
-	<li class="">Color adjustments</li>
-	<li class="">Shared workspaces</li>
+	<li class="text-horta-secondary3">Movie scripting and rendering</li>
+	<li class="text-horta-secondary3">Import/export in SWC format</li>
+	<li class="text-horta-secondary3">Shared workspaces</li>
 </ul>
 </div>
 </p>
@@ -97,7 +92,7 @@ Horta also provides other useful features, including:
 </p>
 
 <h2>Software architecture</h2>
-<p>
+<p class="text-horta-secondary3">
 	This software is built on the Janelia Workstation platform, leveraging Java NetBeans to provide modularity and extensibility. 
 	The backend consists of Java-based microservices that scale to handle large volumes of data. 
 	Metadata is stored in MongoDB and real-time event handling is implemented using RabbitMQ. 
@@ -105,7 +100,7 @@ Horta also provides other useful features, including:
 	We deploy both the client and backend services to the AWS Cloud, leveraging AWS AppStream to process the 3D rendering and virtualize the desktop infrastructure. 
 </p>
 
-<p>
+<p class="text-horta-secondary3">
 	Image data is stored on AWS S3, and we provide many open data sets on AWS Open Data registry that are immediately accessible in the application.
 </p>
 

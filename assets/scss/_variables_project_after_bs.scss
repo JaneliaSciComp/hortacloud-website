@@ -2,12 +2,14 @@ $horta-primary: #3e406a;
 $horta-dark: #2a2c4c;
 $horta-secondary: #bfac4f;
 $horta-secondary2: #f6e793;
+$horta-secondary3: #b3b5df;
 
 $custom-colors: (
     'horta-primary': $horta-primary,
     'horta-dark': $horta-dark,
     'horta-secondary': $horta-secondary,
-    'horta-secondary2': $horta-secondary2
+    'horta-secondary2': $horta-secondary2,
+    'horta-secondary3': $horta-secondary3
 );
 
 $theme-colors: map-merge($theme-colors, $custom-colors);

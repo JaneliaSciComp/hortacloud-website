@@ -22,3 +22,15 @@
     display: block;
     margin: 0 auto;
 }
+
+.publication-list {
+    list-style-type: none;
+}
+
+.publication-list li {
+    margin-bottom: 10pt;
+}
+
+.text-horta-secondary3 {
+    color: $horta-secondary3;
+}
