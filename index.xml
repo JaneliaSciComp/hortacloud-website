@@ -334,10 +334,21 @@ At this moment we only provide some very basic tools for converting only TIFF fo
 
 
 
-&lt;div style="background-color: #f0f8ff; padding: 15pt 10pt 5pt 10pt; margin-bottom: 20pt; text-align: center;">
- &lt;p>
- The following content is reprinted with permission from our &lt;a href="https://aws.amazon.com/blogs/desktop-and-application-streaming/collaborative-neuron-tracing-on-aws/">Collaborative Neuron Tracing on AWS&lt;/a> blog post.
- &lt;/p></description></item><item><title>Publications</title><link>https://hortacloud.janelia.org/publications/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/publications/</guid><description>&lt;div>&lt;a id="td-block-0" class="td-offset-anchor">&lt;/a>&lt;/div>
+
+
+&lt;div class="alert alert-info" role="alert">
+
+
+ 
+The following content is reprinted from our &lt;a href="https://aws.amazon.com/blogs/desktop-and-application-streaming/collaborative-neuron-tracing-on-aws/">Collaborative Neuron Tracing on AWS&lt;/a> blog post with permission.
+
+
+&lt;/div>
+
+
+&lt;div class="container">
+ &lt;h2>Introduction&lt;/h2> 
+ &lt;p>To study how the brain works, researchers often begin with neural anatomy: how do neurons traverse the brain and how do they form circuits? To answer these questions, a brain can be imaged in 3D using light microscopy and the neurons in the image volumes can be traced out to form a map of the brain’s neural network. Software tools for visualization and annotation of the image volumes enable annotators to follow the neurons through-out the brain and reconstruct their structures. However, tracing neurons in large image volumes relies on direct volume rendering requiring terabytes of data to be moved from storage to a graphics processing unit (GPU). In addition, moving the data across the internet to collaborating institutions can take weeks. To address these issues, we moved the large brain image volumes to AWS and brought the users to the data using &lt;a href="https://aws.amazon.com/appstream2/">Amazon AppStream 2.0&lt;/a>. The cloud-based architecture enables our application to perform 3D visualization of this complex scientific data completely within the cloud, streaming interactive scientific visualizations to users around the world.&lt;/p></description></item><item><title>Publications</title><link>https://hortacloud.janelia.org/publications/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/publications/</guid><description>&lt;div>&lt;a id="td-block-0" class="td-offset-anchor">&lt;/a>&lt;/div>
 &lt;section class="row td-box td-box--horta-dark td-box--height-auto">
 &lt;div class="col">
 &lt;div class="container">
