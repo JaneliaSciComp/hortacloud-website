@@ -303,4 +303,110 @@ At this moment we only provide some very basic tools for converting only TIFF fo
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Remove all Docker objects, including unused containers/networks/etc.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo docker system prune -a
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="swarm-gui">Swarm GUI&lt;/h2>
-&lt;p>If you would like to see the Swarm&amp;rsquo;s status in a web-based GUI, we recommend installing &lt;a href="https://swarmpit.io">Swarmpit&lt;/a>. It&amp;rsquo;s a single command to deploy, and it works well with the JACS stack.&lt;/p></description></item><item><title>Search Results</title><link>https://hortacloud.janelia.org/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/search/</guid><description/></item></channel></rss>
+&lt;p>If you would like to see the Swarm&amp;rsquo;s status in a web-based GUI, we recommend installing &lt;a href="https://swarmpit.io">Swarmpit&lt;/a>. It&amp;rsquo;s a single command to deploy, and it works well with the JACS stack.&lt;/p></description></item><item><title>Publications</title><link>https://hortacloud.janelia.org/_publications/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/_publications/</guid><description>&lt;div>&lt;a id="td-block-0" class="td-offset-anchor">&lt;/a>&lt;/div>
+&lt;section class="row td-box td-box--horta-dark td-box--height-auto">
+&lt;div class="col">
+&lt;div class="container">
+
+
+
+&lt;h2>Publications&lt;/h2>
+
+&lt;p>
+If you use HortaCloud in your work, please cite the following publications:
+&lt;/p>
+
+&lt;li>
+Winnubst J, Bas E, Ferreira TA, Wu Z, Economo MN, Edson P, Arthur BJ, Bruns C, Rokicki K, Schauder D, Olbris DJ, Murphy SD, Ackerman DG, Arshadi C, Baldwin P, Blake R, Elsayed A, Hasan M, Ramirez D, Dos Santos B, 
+Weldon M, Zafar A, Dudman JT, Gerfen CR, Hantman AW, Korff W, Sternson SM, Spruston N, Svoboda K, Chandrashekar J. 
+&lt;u>Reconstruction of 1,000 Projection Neurons Reveals New Cell Types and Organization of Long-Range Connectivity in the Mouse Brain&lt;/u>. Cell. 2019 Sep 19;179(1):268-281.e13. 
+doi: &lt;a href="https://doi.org/10.1016/j.cell.2019.07.042">10.1016/j.cell.2019.07.042&lt;/a>
+&lt;/li>
+
+&lt;/div>
+&lt;/div>
+&lt;/section></description></item><item><title>Search Results</title><link>https://hortacloud.janelia.org/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/search/</guid><description/></item><item><title>Team</title><link>https://hortacloud.janelia.org/_team/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/_team/</guid><description>&lt;div>&lt;a id="td-block-0" class="td-offset-anchor">&lt;/a>&lt;/div>
+&lt;section class="row td-box td-box--horta-dark td-box--height-auto">
+&lt;div class="col">
+&lt;div class="container">
+
+
+
+
+&lt;h2 style="text-align: center;">Advisors&lt;/h2>
+
+&lt;div class="row">
+
+ &lt;div class="col-md-4 col-sm-6 mb-4">
+ &lt;div class="person card-body">
+ &lt;h5 class="card-title">Jayaram Chandrashekar&lt;/h5>
+ &lt;p class="card-text">Scientific Advisor&lt;/p>
+ &lt;/div>
+ &lt;/div>
+
+ &lt;div class="col-md-4 col-sm-6 mb-4">
+ &lt;div class="person card-body">
+ &lt;h5 class="card-title">Joshua T. Dudman&lt;/h5>
+ &lt;p class="card-text">Scientific Advisor&lt;/p>
+ &lt;/div>
+ &lt;/div>
+
+ &lt;div class="col-md-4 col-sm-6 mb-4">
+ &lt;div class="person card-body">
+ &lt;h5 class="card-title">David Feng&lt;/h5>
+ &lt;p class="card-text">Technical Advisor&lt;/p>
+ &lt;/div>
+ &lt;/div>
+
+ &lt;div class="col-md-4 col-sm-6 mb-4 col-md-offset-2">
+ &lt;div class="person card-body">
+ &lt;h5 class="card-title">Tiago Ferreira&lt;/h5>
+ &lt;p class="card-text">Scientific Advisor&lt;/p>
+ &lt;/div>
+ &lt;/div>
+
+ &lt;div class="col-md-4 col-sm-6 mb-4 col-md-offset-2">
+ &lt;div class="person card-body">
+ &lt;h5 class="card-title">Wyatt Korff&lt;/h5>
+ &lt;p class="card-text">Scientific Advisor&lt;/p>
+ &lt;/div>
+ &lt;/div>
+
+ &lt;div class="col-md-4 col-sm-6 mb-4 col-md-offset-2">
+ &lt;div class="person card-body">
+ &lt;h5 class="card-title">Nelson Spruston&lt;/h5>
+ &lt;p class="card-text">Scientific Advisor&lt;/p>
+ &lt;/div>
+ &lt;/div>
+
+&lt;/div>
+
+&lt;h2 style="text-align: center;">Core Development Team&lt;/h2>
+
+&lt;div class="row">
+
+ &lt;div class="col-md-4 col-sm-6 mb-4 col-md-offset-2">
+ &lt;div class="person card-body">
+ &lt;h5 class="card-title">Jody Clements&lt;/h5>
+ &lt;p class="card-text">Software Engineer&lt;/p>
+ &lt;/div>
+ &lt;/div>
+
+ &lt;div class="col-md-4 col-sm-6 mb-4">
+ &lt;div class="person card-body">
+ &lt;h5 class="card-title">Cristian Goina&lt;/h5>
+ &lt;p class="card-text">Software Engineer&lt;/p>
+ &lt;/div>
+ &lt;/div>
+
+ &lt;div class="col-md-4 col-sm-6 mb-4">
+ &lt;div class="person card-body">
+ &lt;h5 class="card-title">Donald Olbris&lt;/h5>
+ &lt;p class="card-text">Software Engineer&lt;/p>
+ &lt;/div>
+ &lt;/div>
+
+ &lt;div class="col-md-4 col-sm-6 mb-4">
+ &lt;div class="person card-body">
+ &lt;h5 class="card-title">Konrad Rokicki&lt;/h5>
+ &lt;p class="card-text">Software Engineering Manager&lt;/p></description></item></channel></rss>
