@@ -8,122 +8,69 @@ menu:
 ---
 
 
-{{< blocks/cover title="About HortaCloud" image_anchor="bottom" height="min" >}}
+{{< blocks/lead color="primary" title="About HortaCloud" image_anchor="bottom" height="min" >}}
 
-<p class="lead"> 
-<b>Fun fact</b>: the name "Horta" comes from the name of a tunneling silicon based lifeform from the Star Trek original series episode 25 <a href="http://en.wikipedia.org/wiki/The_Devil_in_the_Dark">"The Devil in the Dark"</a>. Neuron traces in 3D resemble the tunnels such a creature might make in the ground. 
-It can also be conveniently backronymed as "How Outstanding Researchers Trace Axons".
+<h2>About HortaCloud</h2>
+
+<p style="padding-top: 20pt"> 
+  <b>Fun fact</b>: the name "Horta" comes from the name of a tunneling silicon based lifeform from the Star Trek Original Series episode  
+  "<a href="http://en.wikipedia.org/wiki/The_Devil_in_the_Dark">The Devil in the Dark</a>". 
+  Neuron traces in 3D resemble the tunnels such a creature might make in the ground. 
+  It can also be conveniently backronymed as "How Outstanding Researchers Trace Axons".
 </p>
 
-{{< /blocks/cover >}}
+{{< /blocks/lead >}}
 
-{{% blocks/lead %}}
+{{< blocks/section color="white" >}}
 
-This software is based on the Janelia Workstation and was originally developed for and in collaboration with the [MouseLight Team Project](https://www.janelia.org/project-team/mouselight) at Janelia Research Campus. 
-
-Ongoing development and maintenance is funded by Janelia's [Open Science Software Initiative](https://www.janelia.org/open-science/overview/open-science-software-initiative-ossi).
-
-
-{{% /blocks/lead %}}
-
-
-{{< blocks/section >}}
-<div class="col-12">
-
-<h1 class="text-center pt-3">Scientific Advisors</h1>
-
-<div class="container">
-  <div class="card-deck text-dark align-items-center">
-      
-    <div class="person">
-      <div class="card-body">
-        <h5 class="card-title">Jayaram Chandrashekar</h5>
-        <p class="card-text">Scientific Advisor</p>
-      </div>
-    </div>
-
-    <div class="person">
-      <div class="card-body">
-        <h5 class="card-title">Tiago Ferreira</h5>
-        <p class="card-text">Scientific Advisor</p>
-      </div>
-    </div>
-
-    <div class="person">
-      <div class="card-body">
-        <h5 class="card-title">Wyatt Korff</h5>
-        <p class="card-text">Scientific Advisor</p>
-      </div>
-    </div>
-      
-    <div class="person">
-      <div class="card-body">
-        <h5 class="card-title">Nelson Spruston</h5>
-        <p class="card-text">Scientific Advisor</p>
-      </div>
-    </div>
-      
-  </div>
+<div style="background-color: #f0f8ff; padding: 15pt 10pt 5pt 10pt; margin-bottom: 20pt; text-align: center;">
+    <p>
+        The following content is reprinted with permission from our <a href="https://aws.amazon.com/blogs/desktop-and-application-streaming/collaborative-neuron-tracing-on-aws/">Collaborative Neuron Tracing on AWS</a> blog post.
+    </p>
 </div>
 
-<h1 class="text-center">Software Developers</h1>
-
 <div class="container">
-  <div class="card-deck text-dark align-items-center">
-      
-    <div class="person">
-      <div class="card-body">
-        <h5 class="card-title">Jody Clements</h5>
-        <p class="card-text">Software Engineer</p>
-      </div>
-    </div>
-
-    <div class="person">
-      <div class="card-body">
-        <h5 class="card-title">Cristian Goina</h5>
-        <p class="card-text">Software Engineer</p>
-      </div>
-    </div>
-
-    <div class="person">
-      <div class="card-body">
-        <h5 class="card-title">Takashi Kawase</h5>
-        <p class="card-text">Software Engineer</p>
-      </div>
-    </div>
-
-    <div class="person">
-      <div class="card-body">
-        <h5 class="card-title">Donald Olbris</h5>
-        <p class="card-text">Software Engineer</p>
-      </div>
-    </div>
-
-    <div class="person">
-      <div class="card-body">
-        <h5 class="card-title">Konrad Rokicki</h5>
-        <p class="card-text">Software Engineering Manager</p>
-      </div>
-    </div>
-  
-    <div class="person">
-      <div class="card-body">
-        <h5 class="card-title">David Schauder</h5>
-        <p class="card-text">Software Engineer</p>
-      </div>
-    </div>
-
-    <div class="person">
-      <div class="card-body">
-        <h5 class="card-title">Rob Svirskas</h5>
-        <p class="card-text">Software Engineer</p>
-      </div>
-    </div>
-
-  </div>
-</div>
-
+      <h2>Introduction</h2> 
+       <p>To study how the brain works, researchers often begin with neural anatomy: how do neurons traverse the brain and how do they form circuits? To answer these questions, a brain can be imaged in 3D using light microscopy and the neurons in the image volumes can be traced out to form a map of the brain’s neural network. Software tools for visualization and annotation of the image volumes enable annotators to follow the neurons through-out the brain and reconstruct their structures. However, tracing neurons in large image volumes relies on direct volume rendering requiring terabytes of data to be moved from storage to a graphics processing unit (GPU). In addition, moving the data across the internet to collaborating institutions can take weeks. To address these issues, we moved the large brain image volumes to AWS and brought the users to the data using <a href="https://aws.amazon.com/appstream2/">Amazon AppStream 2.0</a>. The cloud-based architecture enables our application to perform 3D visualization of this complex scientific data completely within the cloud, streaming interactive scientific visualizations to users around the world.</p> 
+       <p><img class="aligncenter" src="https://d2908q01vomqb2.cloudfront.net/artifacts/DesktopAppStreaming/eucblog-263/HortaCloudAnimation.gif" alt="HortaCloud Animation"></p> 
+       <h5 style="text-align: center">Figure 1: Neurons in a mouse brain labeled with fluorescent markers with overlaid annotations<br> (data collected and annotated by the MouseLight Project Team, Janelia Research Campus)</h5> 
+       <h2>Tracing 85 meters of neurons</h2> 
+       <p>Advances in light microscopy are producing larger images at finer resolution. Bioimaging techniques such as serial two-photon tomography and light sheet microscopy can produce image volumes that not only capture large sections of tissue such as whole mouse brains, but do so at multiple wavelengths, resulting in several fluorescent signals for each spatial voxel. These volumes are often imaged and reviewed slice-by-slice, but are ultimately reconstructed into complete 3-dimensional (3D) volumes, often many terabytes in size.</p> 
+       <p>Light microscopy imaging typically produces relatively sparse image volumes, which can therefore be visualized using direct volume rendering. With this type of visualization you can view through the entirety of the data volume, not only a surface rendering (Figure 1). However, it requires the entire volume to be loaded into GPU memory at once, demanding powerful hardware, and fast access to large data sets.</p> 
+       <p>The <a href="http://mouselight.janelia.org/">MouseLight</a> team project at <a href="https://www.janelia.org/">Janelia Research Campus</a> built the Horta desktop application to provide visualization and collaborative annotation of large (~30 TB) mouse brain volumes. Using this software, annotators on the team worked together to reconstruct long-range axonal projections of <a href="https://www.hhmi.org/news/mouselight-project-maps-1000-neurons-and-counting-in-the-mouse-brain">more than 1000 neurons</a>, many traversing the entire mouse brain from end-to-end. The Horta application was built using Java and OpenGL, with a feature-rich thick client that relies on a set of backend microservices for data access and persistence. We initially deployed this application on-premises for internal users. It worked well but required extensive DevOps expertise to deploy and manage – expertise that is not common in biology labs. In the spirit of <a href="https://www.janelia.org/open-science/overview">Open Science</a>, we asked ourselves, “how can we make these powerful tools available to other research groups for software reuse and cross-institute collaboration?”</p> 
+       <h2>Moving users to data with HortaCloud</h2> 
+       <p>Moving these tools into AWS was the logical next step for the following reasons:</p> 
+       <ol> 
+        <li>Large data sets take a long time to transfer — in some cases, shipping hard drives was faster than waiting on a data transfer that could take months. They also consume large amounts of disk space, especially when duplicated in multiple places. Rather than copying the data, it makes more sense to host the data in the cloud and bring the users to the data.</li> 
+        <li>We can avoid data transfer costs by doing all of the data visualization in the cloud. Our terabytes of image data do not have to leave the AWS network.</li> 
+        <li>Supporting client/server software systems on arbitrary hardware configurations complicates deployment and increases the cost of maintenance. In the cloud, deployment and operation of the system is predictable and manageable. We have complete control of the instance types, GPU cards, storage devices, and other infrastructure.</li> 
+        <li>Many potential users don’t want to invest in the expensive hardware necessary to run the software. In the cloud, they can lease as much hardware they need for as long as they need it. With Amazon AppStream 2.0, they can access the application from any modern web browser, without the need for any software installation.</li> 
+        <li>Under the <a href="https://aws.amazon.com/opendata/open-data-sponsorship-program/">Open Data Sponsorship Program</a>, AWS covers the cost of storing the MouseLight’s brain image data sets on Amazon S3. These data sets are an extremely valuable resource for the neuroscience community and contain extensive information that has yet to be extracted.</li> 
+        <li>AWS storage services provide a high level of data durability and scale automatically with our data size. This lets us focus our efforts on scientific use cases, instead of worrying about infrastructure.</li> 
+       </ol> 
+       <p>With these motivations in mind, we built <a href="https://hortacloud.janelia.org/">HortaCloud</a>, an AWS based deployment of the Horta application for collaborative neuron tracing.</p> 
+       <p><img loading="lazy" class="wp-image-5568 aligncenter" src="https://d2908q01vomqb2.cloudfront.net/827bfc458708f0b442009c9c9836f7e4b65557fb/2023/03/31/HortaCloud-architecture-1-1024x957.png" alt="" width="780" height="729"></p> 
+       <h5 style="text-align: center">Figure 2: HortaCloud architecture</h5> 
+       <h2>Deployment architecture</h2> 
+       <p>HortaCloud relies on <a href="https://aws.amazon.com/appstream2/">Amazon AppStream 2.0</a>’s GPU capability to render interactive scientific visualizations. The Horta client renders the 3D volumes into a 2D representation, and then AppStream 2.0 streams the 2D representation to a user working in a web browser. This approach allows us to keep large data in the cloud where it can be moved quickly and efficiently.</p> 
+       <p>Let’s take a closer look at how the architecture works (Figure 2). The 3D volume data lives on <a href="https://aws.amazon.com/s3/">Amazon S3</a>, mostly in Open Data buckets. The image volumes are served through our backend services running on one or more <a href="https://aws.amazon.com/ec2/">Amazon EC2</a> instances. Importantly, the EC2 instances are deployed on a private subnet inside of an <a href="https://aws.amazon.com/vpc/">Amazon Virtual Private Cloud</a> (VPC). With this configuration, our backend services are secure and not accessible to the internet, yet they are able to access S3 through an S3 VPC Endpoint. These backend services implement the state management of our system, including a Mongo database for storing user annotations and RabbitMQ instance for asynchronous messaging between users. The backend services are orchestrated using Docker Swarm, and can be scaled across multiple EC2 instances.</p> 
+       <p>We deploy the Horta client application on Amazon AppStream 2.0 (Figure 3). AppStream 2.0 auto-scales GPU instances based on usage, so that we pay only for GPUs we use. To run the Horta client, we use a “stream.graphics-pro.4xlarge” instance, which gives us both a GPU and the extra RAM required to cache images for a more responsive user experience. The AppStream 2.0 instances are deployed in the same private subnet as the services. The instances have internet access through a NAT gateway so that files can be moved to and from the instance using OneDrive integration.</p> 
+       <p>In order to provide our scientific end users with a seamless experience, we also integrated <a href="https://aws.amazon.com/cognito/">Amazon Cognito</a> authentication with our underlying system. We built a React-based website where users log in to the system via Amazon Cognito. By using <a href="https://aws.amazon.com/lambda/">AWS Lambda</a> to automate creation of the streaming URL based on the Cognito credentials, we were able to give users the ability to launch an AppStream 2.0 instance running Horta with one button click. The website also has pages for administrators so that they can easily manage users’ access to the system. These admin pages call AWS Lambda functions to synchronize user state between Cognito and our Mongo database.</p> 
+       <p>This entire infrastructure is automatically provisioned and configured using the <a href="https://aws.amazon.com/cdk/">AWS CDK</a>. We used the CDK to build a command line deployment tool using TypeScript that creates the entire infrastructure on AWS and automatically deploys our software. This approach simplifies deployment for anyone who wants to run their own HortaCloud instance. It’s much easier than deploying the software on bare metal, because we’re able to control the deployment environment to keep things consistent.</p> 
+       <p><img loading="lazy" class="wp-image-5574 aligncenter" src="https://d2908q01vomqb2.cloudfront.net/827bfc458708f0b442009c9c9836f7e4b65557fb/2023/03/31/HortaCloud-screenshot-1-1024x685.png" alt="" width="800" height="535"></p> 
+       <blockquote> 
+        <h5 style="text-align: center">Figure 3: Screenshot of HortaCloud running in a web browser using AppStream 2.0</h5> 
+       </blockquote> 
+       <h2>Conclusion</h2> 
+       <p>Data volumes will continue to grow as microscopy technology evolves, continuously yielding higher resolution and larger sample sizes. Moving large image volumes is fundamentally impractical, and becomes effectively impossible as data sizes climb into petabyte territory. Enabling efficient visualization and analysis of large image volumes requires moving users to the data, rather than moving data to the users. Our new HortaCloud architecture, enabled by AWS, demonstrates one effective way to move users to large data sets hosted in the cloud. It paves the way for future scientific applications with large data requirements.</p> 
+       <p>We would like to express our thanks to AWS Solutions Architect Scott Glasser, and to Tiago Ferreira for their valuable input in producing this write-up. Special thanks to Emily Tenshaw for creating the animated visualization.</p> 
+       <h3>Source Code</h3> 
+       <p>All of the application code described in this article is open source and licensed for reuse:</p> 
+       <ul> 
+        <li><a href="https://hortacloud.janelia.org/">HortaCloud documentation</a></li> 
+        <li><a href="https://github.com/JaneliaSciComp/hortacloud">HortaCloud AWS CDK deployment</a></li> 
+       </ul> 
+       <p>The data and imagery are shared publicly on the <a href="https://registry.opendata.aws/janelia-mouselight/">Registry of Open Data on AWS</a>.</p>
 </div>
 
 {{< /blocks/section >}}
-

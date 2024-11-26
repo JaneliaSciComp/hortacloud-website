@@ -1,0 +1,24 @@
+
+.person {
+    @extend .rounded;
+    background-color: $horta-secondary2;
+    color: black;
+    padding: 10pt;
+    margin: 20pt; // Increased margin to ensure no overlap
+    width: 22rem;
+}
+
+.person .card-title {
+    font-weight: bold;
+}
+
+// Controlling the overlay color on the cover image
+.td-overlay--dark::after {
+    background-color: #131317;
+    opacity: 0.2;
+}
+
+.aligncenter {
+    display: block;
+    margin: 0 auto;
+}

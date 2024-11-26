@@ -29,9 +29,9 @@ GitHub is where the HortaCloud and Janelia Workstation source code is stored. If
 
 
 
-## Twitter
+## X
 
-The HortaCoud Twitter address is [HortaCloud](https://twitter.com/HortaCloud).
+The HortaCoud X address is [HortaCloud](https://twitter.com/HortaCloud).
 
 
 ## Google groups

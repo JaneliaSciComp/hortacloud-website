@@ -1,5 +1,5 @@
 ---
-title: "Documentation"
+title: "HortaCloud Documentation"
 linkTitle: "Documentation"
 weight: 20
 menu:

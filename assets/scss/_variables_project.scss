@@ -4,8 +4,11 @@ Add styles or override variables from the theme here.
 
 */
 
-$primary: #5A8185;
-$secondary: #848145;
+$primary: #3e406a;
+$secondary: #bfac4f;
+$light: #78b3a8;
+
+// $body-bg: #131317;
 
 $enable-gradients: true;
 $enable-rounded: true;  
@@ -27,7 +30,6 @@ $display-font-sizes: (
 );
 
 $display-font-weight: 100;
-//$display-line-height: $headings-line-height;
 
 .display-1 {
     font-size: 56px !important; 
@@ -45,16 +47,3 @@ $font-weight-light: 300;
 $font-weight-normal: 400;
 $font-weight-bold: 300; 
 $headings-font-weight: 300;
-
-.person  {
-    @extend .rounded;
-    background-color: white;
-    padding: 1pt;
-    margin: 10pt;
-    width: 22rem;
-}
-
-.person card-body {
-    min-width: 300px;
-    color: red;
-}

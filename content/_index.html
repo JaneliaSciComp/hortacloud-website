@@ -3,13 +3,16 @@ title = "HortaCloud"
 linkTitle = "HortaCloud"
 +++
 
-{{< blocks/cover title="HORTACLOUD" image_anchor="top" height="full" color="dark" >}}
+{{< blocks/cover image_anchor="top" height="full" color="dark" >}}
 <div class="mx-auto">
+
+	<img src="hortacloud_logo.png" style="padding: 0pt 20pt 20pt 0pt;">
+
 	<p class="lead display-4 mb-5">Collaborative neuron annotation in the cloud</p>
-	<a class="btn btn-lg btn-primary mr-3 mb-4" href="{{< relref "/docs" >}}">
+	<a class="btn btn-lg btn-secondary me-3 mb-4" href="{{< relref "/docs" >}}">
 		Documentation
 	</a>
-	<a class="btn btn-lg btn-secondary mr-3 mb-4" href="https://hortacloud-portal.janelia.org">
+	<a class="btn btn-lg btn-primary me-3 mb-4" href="https://hortacloud-portal.janelia.org">
 		Login to HortaCloud-Janelia <i class="fas fa-sign-in-alt ml-1"></i>
 	</a>
 	<p></p>
@@ -26,26 +29,37 @@ linkTitle = "HortaCloud"
 </video>
 </div>
 
-HortaCloud software provides an efficient production environment for collaborative and accurate reconstruction of long range projection neurons in light microscopy data. This software, originally developed for Janelia's MouseLight Team Project, has allowed annotators to efficiently reconstruct entire axonal arbors of individual neurons from whole-brain light microscopy data. 
 {{% /blocks/lead %}}
 
-{{< blocks/section color="dark" type="row" >}}
+{{< blocks/section color="light" type="row" >}}
+
+<p style="padding-bottom: 20pt">
+HortaCloud provides an efficient production environment for collaborative and accurate reconstruction of long range projection neurons in light microscopy data. 
+This software, originally developed for Janelia's MouseLight Team Project, has allowed annotators to efficiently reconstruct entire axonal arbors of individual neurons 
+from whole-brain light microscopy data. HortaCloud automates the deployment of the software stack to AWS, and provides a web browser-based interface for annotation with 
+3D-accelerated volume rendering.
+</p>
+
 {{% blocks/feature icon="fas fa-cloud-upload-alt" title="Automated deployment" url1="/docs/deployment" %}}
-Using the AWS CDK, you or your system administrator can <a href="docs/administration/deployment/aws_cloud/">easily deploy</a> the entire software stack to an AWS Account with a single installation script.
+Using the AWS CDK, you or your system administrator can <a href="docs/administration/deployment/aws_cloud/">easily deploy</a> the entire software stack to 
+an AWS Account with a single installation script.
 {{% /blocks/feature %}}
 
 {{% blocks/feature icon="fab fa-chrome" title="Browser-based access" url1="https://github.com/JaneliaSciComp/hortacloud" %}}
-We use a virtual desktop environment (VDI) called AWS AppStream to run the 3D rendering in the cloud, so you users don't need to install any software or have access to a powerful workstation.
+We use a virtual desktop environment (VDI) called AWS AppStream to process 3D volume rendering in the cloud, so users don't need to install any software 
+and don't need a powerful workstation. You can even trace neurons on your iPad (but using a mouse is highly recommended.)
 {{% /blocks/feature %}}
 
-{{% blocks/feature icon="fas fa-brain" title="Big brains, big data" url1="https://twitter.com/docsydocs" %}}
-Mouse brain data as large as 30 TB has been successfully traced by our annotators. You can run a distributed data import tool to bring your data to HortaCloud. 
+{{% blocks/feature icon="fas fa-brain" title="Big brains, big data" url1="https://github.com/JaneliaSciComp/hortacloud" %}}
+Mouse brain data as large as 30 TB has been successfully traced by our annotators. You can load standard 
+<a href="https://ngff.openmicroscopy.org/latest/">OME-Zarr</a> compliant images 
+or run our distributed data import tool to convert your data. 
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
 
 
-{{< blocks/section >}}
+{{< blocks/section color="horta-dark" >}}
 <div class="col">
 <h1 class="text-center pb-4">The Next-Generation Platform for Neuron Tracing</h1>
 
@@ -54,7 +68,9 @@ Mouse brain data as large as 30 TB has been successfully traced by our annotator
 </p>
 
 <p>
-HortaCloud combines state-of-the-art volumetric visualization, advanced features for 3D neuronal annotation, and real-time multi-user collaboration with a set of enterprise-grade backend microservices for moving and processing large amounts of data rapidly and securely. 
+HortaCloud combines state-of-the-art volumetric visualization, advanced features for 3D neuronal annotation, and real-time multi-user collaboration 
+
+with a set of enterprise-grade backend microservices for moving and processing large amounts of data rapidly and securely. 
 
 Users can load multi-terabyte image volumes with up to three signal channels, and visualize them in 3D with multiscale volume rendering.
 
@@ -93,23 +109,27 @@ Horta also provides other useful features, including:
 	Image data is stored on AWS S3, and we provide many open data sets on AWS Open Data registry that are immediately accessible in the application.
 </p>
 
+<a class="btn btn-lg btn-secondary me-3 mb-4" href="{{< relref "/about" >}}">
+	Learn more about HortaCloud
+</a>
+
+
 </div>
 {{< /blocks/section >}}
 
-
-{{< blocks/section type="row" >}}
+{{< blocks/section color="light" type="row" >}}
 
 {{% blocks/feature icon="fas fa-microscope" title="Open Science" url="/community/" %}}
 In support of Open Science, Janelia's MouseLight project has shared all of their code and data with the scientific community. We have started the <a href="/community/">HortaCloud community</a> as a way to share this software platform and allow others to leverage and extend it. 
 {{% /blocks/feature %}}
 
-{{% blocks/feature icon="fab fa-github" title="Contributions welcome" url="https://github.com/JaneliaSciComp/hortacloud" %}}
+{{% blocks/feature icon="fab fa-github" title="Contributions welcome" url="https://github.com/JaneliaSciComp/hortacloud/blob/main/CONTRIBUTING.md" %}}
 As an open source community project, we greatly welcome contributions and Pull Requests. 
 The current project status can be viewed on our <a href="https://github.com/orgs/JaneliaSciComp/projects/3">Kanban board</a>. 
 <br>Let us know if you would like to collaborate!
 {{% /blocks/feature %}}
 
-{{% blocks/feature icon="fab fa-twitter" title="Follow us on Twitter!" url="https://twitter.com/HortaCloud" %}}
+{{% blocks/feature icon="fab fa-twitter" title="Follow us on X!" url="https://twitter.com/HortaCloud" %}}
 For announcement of latest features and other developments.
 {{% /blocks/feature %}}
 
