@@ -303,7 +303,41 @@ At this moment we only provide some very basic tools for converting only TIFF fo
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Remove all Docker objects, including unused containers/networks/etc.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo docker system prune -a
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="swarm-gui">Swarm GUI&lt;/h2>
-&lt;p>If you would like to see the Swarm&amp;rsquo;s status in a web-based GUI, we recommend installing &lt;a href="https://swarmpit.io">Swarmpit&lt;/a>. It&amp;rsquo;s a single command to deploy, and it works well with the JACS stack.&lt;/p></description></item><item><title>Publications</title><link>https://hortacloud.janelia.org/_publications/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/_publications/</guid><description>&lt;div>&lt;a id="td-block-0" class="td-offset-anchor">&lt;/a>&lt;/div>
+&lt;p>If you would like to see the Swarm&amp;rsquo;s status in a web-based GUI, we recommend installing &lt;a href="https://swarmpit.io">Swarmpit&lt;/a>. It&amp;rsquo;s a single command to deploy, and it works well with the JACS stack.&lt;/p></description></item><item><title>About HortaCloud</title><link>https://hortacloud.janelia.org/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/about/</guid><description>&lt;div>&lt;a id="td-block-0" class="td-offset-anchor">&lt;/a>&lt;/div>
+&lt;section class="row td-box td-box--primary position-relative td-box--height-min">
+&lt;div class="col-12">
+&lt;div class="container text-center td-arrow-down">
+&lt;div class="h4 mb-0">
+
+
+
+&lt;h2>About HortaCloud&lt;/h2>
+
+&lt;p style="padding-top: 20pt"> 
+ &lt;b>Fun fact&lt;/b>: the name "Horta" comes from the name of a tunneling silicon based lifeform from the Star Trek Original Series episode 
+ "&lt;a href="http://en.wikipedia.org/wiki/The_Devil_in_the_Dark">The Devil in the Dark&lt;/a>". 
+ Neuron traces in 3D resemble the tunnels such a creature might make in the ground. 
+ It can also be conveniently backronymed as "How Outstanding Researchers Trace Axons".
+&lt;/p>
+
+
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/section>
+
+
+&lt;div>&lt;a id="td-block-1" class="td-offset-anchor">&lt;/a>&lt;/div>
+&lt;section class="row td-box td-box--white td-box--height-auto">
+&lt;div class="col">
+&lt;div class="container">
+
+
+
+&lt;div style="background-color: #f0f8ff; padding: 15pt 10pt 5pt 10pt; margin-bottom: 20pt; text-align: center;">
+ &lt;p>
+ The following content is reprinted with permission from our &lt;a href="https://aws.amazon.com/blogs/desktop-and-application-streaming/collaborative-neuron-tracing-on-aws/">Collaborative Neuron Tracing on AWS&lt;/a> blog post.
+ &lt;/p></description></item><item><title>Publications</title><link>https://hortacloud.janelia.org/publications/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/publications/</guid><description>&lt;div>&lt;a id="td-block-0" class="td-offset-anchor">&lt;/a>&lt;/div>
 &lt;section class="row td-box td-box--horta-dark td-box--height-auto">
 &lt;div class="col">
 &lt;div class="container">
@@ -325,7 +359,7 @@ doi: &lt;a href="https://doi.org/10.1016/j.cell.2019.07.042">10.1016/j.cell.2019
 
 &lt;/div>
 &lt;/div>
-&lt;/section></description></item><item><title>Search Results</title><link>https://hortacloud.janelia.org/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/search/</guid><description/></item><item><title>Team</title><link>https://hortacloud.janelia.org/_team/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/_team/</guid><description>&lt;div>&lt;a id="td-block-0" class="td-offset-anchor">&lt;/a>&lt;/div>
+&lt;/section></description></item><item><title>Search Results</title><link>https://hortacloud.janelia.org/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/search/</guid><description/></item><item><title>Team</title><link>https://hortacloud.janelia.org/team/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/team/</guid><description>&lt;div>&lt;a id="td-block-0" class="td-offset-anchor">&lt;/a>&lt;/div>
 &lt;section class="row td-box td-box--horta-dark td-box--height-auto">
 &lt;div class="col">
 &lt;div class="container">
