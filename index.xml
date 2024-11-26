@@ -357,16 +357,45 @@ The following content is reprinted from our &lt;a href="https://aws.amazon.com/b
 
 &lt;h2>Publications&lt;/h2>
 
-&lt;p>
+&lt;p class="text-horta-secondary3" style="margin-top: 18pt;">
 If you use HortaCloud in your work, please cite the following publications:
 &lt;/p>
 
-&lt;li>
-Winnubst J, Bas E, Ferreira TA, Wu Z, Economo MN, Edson P, Arthur BJ, Bruns C, Rokicki K, Schauder D, Olbris DJ, Murphy SD, Ackerman DG, Arshadi C, Baldwin P, Blake R, Elsayed A, Hasan M, Ramirez D, Dos Santos B, 
-Weldon M, Zafar A, Dudman JT, Gerfen CR, Hantman AW, Korff W, Sternson SM, Spruston N, Svoboda K, Chandrashekar J. 
-&lt;u>Reconstruction of 1,000 Projection Neurons Reveals New Cell Types and Organization of Long-Range Connectivity in the Mouse Brain&lt;/u>. Cell. 2019 Sep 19;179(1):268-281.e13. 
-doi: &lt;a href="https://doi.org/10.1016/j.cell.2019.07.042">10.1016/j.cell.2019.07.042&lt;/a>
-&lt;/li>
+&lt;ul class="publication-list">
+ &lt;li>
+ HortaCloud paper (in prep)
+ &lt;/li>
+&lt;/ul>
+
+&lt;p class="text-horta-secondary3" style="margin-top: 18pt;">
+HortaCloud has been featured in the following publications:
+&lt;/p>
+
+&lt;ul class="publication-list">
+ &lt;!--
+ &lt;li>(morphoFISH citation) (To be added)&lt;/li>
+
+ &lt;li>Emily Tenshaw, Mary Lay, Alyssa Stark, Monet Weldon, Cameron Arshadi, Ahmad Elsayed, Daniel Ramirez, Bruno Dos Santos, Amina Zafar, Mashtura Hasan, 
+ Regina Blake, Jayaram Chandrashekar, Tiago A Ferreira . Reconstructing Complete Neurons in Whole Brains Using HortaCloud. 
+ Protocol exchange https://protocols.io/view/reconstructing-complete-neurons-in-whole-brains-us-c9vkz64w
+ &lt;/li>
+ -->
+
+ &lt;li>
+ Winnubst J, Bas E, Ferreira TA, Wu Z, Economo MN, Edson P, Arthur BJ, Bruns C, Rokicki K, Schauder D, Olbris DJ, Murphy SD, Ackerman DG, Arshadi C, Baldwin P, Blake R, Elsayed A, Hasan M, Ramirez D, Dos Santos B, 
+ Weldon M, Zafar A, Dudman JT, Gerfen CR, Hantman AW, Korff W, Sternson SM, Spruston N, Svoboda K, Chandrashekar J. 
+ &lt;u>Reconstruction of 1,000 Projection Neurons Reveals New Cell Types and Organization of Long-Range Connectivity in the Mouse Brain&lt;/u>. Cell. 2019 Sep 19;179(1):268-281.e13. 
+ doi: &lt;a href="https://doi.org/10.1016/j.cell.2019.07.042">10.1016/j.cell.2019.07.042&lt;/a>
+ &lt;/li>
+
+ &lt;li>
+ Economo MN, Clack NG, Lavis LD, Gerfen CR, Svoboda K, Myers EW, Chandrashekar J. &lt;u>A platform for brain-wide imaging and reconstruction of individual neurons&lt;/u>. 
+ Elife. 2016 Jan 20;5:e10566. doi: &lt;a href="https://doi.org/10.7554/eLife.10566">10.7554/eLife.10566&lt;/a> 
+ &lt;/li>
+&lt;/ul>
+
+ 
+
 
 &lt;/div>
 &lt;/div>
@@ -377,6 +406,11 @@ doi: &lt;a href="https://doi.org/10.1016/j.cell.2019.07.042">10.1016/j.cell.2019
 
 
 
+&lt;div class="text-horta-secondary3" style="margin-bottom: 15pt; text-align: center;">
+HortaCloud was primarily developed by Scientific Computing Software at Janelia Research Campus in collaboration with the Janelia MouseLight project team.
+&lt;br>
+Contributors are listed in alphabetical order. Special thanks to Brie Yarbrough for creating the HortaCloud logo.
+&lt;/div>
 
 &lt;h2 style="text-align: center;">Advisors&lt;/h2>
 
@@ -406,52 +440,4 @@ doi: &lt;a href="https://doi.org/10.1016/j.cell.2019.07.042">10.1016/j.cell.2019
  &lt;div class="col-md-4 col-sm-6 mb-4 col-md-offset-2">
  &lt;div class="person card-body">
  &lt;h5 class="card-title">Tiago Ferreira&lt;/h5>
- &lt;p class="card-text">Scientific Advisor&lt;/p>
- &lt;/div>
- &lt;/div>
-
- &lt;div class="col-md-4 col-sm-6 mb-4 col-md-offset-2">
- &lt;div class="person card-body">
- &lt;h5 class="card-title">Wyatt Korff&lt;/h5>
- &lt;p class="card-text">Scientific Advisor&lt;/p>
- &lt;/div>
- &lt;/div>
-
- &lt;div class="col-md-4 col-sm-6 mb-4 col-md-offset-2">
- &lt;div class="person card-body">
- &lt;h5 class="card-title">Nelson Spruston&lt;/h5>
- &lt;p class="card-text">Scientific Advisor&lt;/p>
- &lt;/div>
- &lt;/div>
-
-&lt;/div>
-
-&lt;h2 style="text-align: center;">Core Development Team&lt;/h2>
-
-&lt;div class="row">
-
- &lt;div class="col-md-4 col-sm-6 mb-4 col-md-offset-2">
- &lt;div class="person card-body">
- &lt;h5 class="card-title">Jody Clements&lt;/h5>
- &lt;p class="card-text">Software Engineer&lt;/p>
- &lt;/div>
- &lt;/div>
-
- &lt;div class="col-md-4 col-sm-6 mb-4">
- &lt;div class="person card-body">
- &lt;h5 class="card-title">Cristian Goina&lt;/h5>
- &lt;p class="card-text">Software Engineer&lt;/p>
- &lt;/div>
- &lt;/div>
-
- &lt;div class="col-md-4 col-sm-6 mb-4">
- &lt;div class="person card-body">
- &lt;h5 class="card-title">Donald Olbris&lt;/h5>
- &lt;p class="card-text">Software Engineer&lt;/p>
- &lt;/div>
- &lt;/div>
-
- &lt;div class="col-md-4 col-sm-6 mb-4">
- &lt;div class="person card-body">
- &lt;h5 class="card-title">Konrad Rokicki&lt;/h5>
- &lt;p class="card-text">Software Engineering Manager&lt;/p></description></item></channel></rss>
+ &lt;p class="card-text">Scientific Advisor&lt;/p></description></item></channel></rss>
