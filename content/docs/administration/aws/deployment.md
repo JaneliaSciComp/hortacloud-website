@@ -105,7 +105,7 @@ In order to create an AppStream Image Builder, which is needed to create the Wor
 ### Enable Google Drive and/or OneDrive for Horta Cloud Workstation
 
 Data access from Google Drive or OneDrive can be enabled at deployment time by simply setting the corresponding enterprise domains in `HORTA_GOOGLE_DOMAINS` or `HORTA_ONE_DRIVE_DOMAINS`. This can also be done after deployment directly from the AWS Console while the stack is running. Check [AWS Appstream docs](https://docs.aws.amazon.com/appstream2/latest/developerguide/persistent-storage.html) how to enable these options directly from the AWS Console. 
-If your application does not see Google Drive and/or OneDrive for uploading or saving files, the storage must be added directly from the AppStream toolbar using the following steps (The procedure is well documented in the [AWS Docs](https://docs.aws.amazon.com/appstream2/latest/developerguide/google-drive-end-user.html]):
+If your application does not see Google Drive and/or OneDrive for uploading or saving files, the storage must be added directly from the AppStream toolbar using the following steps (this procedure is fully documented in the [AWS Docs](https://docs.aws.amazon.com/appstream2/latest/developerguide/google-drive-end-user.html)):
 * Select **My Files** icon from the toolbar: <img src="/images/MyFiles.png" width="25px">
 * In the **My File** dialog click on *Add Storage* on the top right of the **My Files** dialog
 ![Add Storage](/images/MyFiles_AddStorageDlg.png)
@@ -210,7 +210,7 @@ createappimage.ps1
 ## Customizing the portal URL
 
 By default the application will have a very long url that is not easy to remember, something like:
-<http://janelia-hortacloudwebapp-janeliahortacloudwebadmi-yefcny29t8n6.s3-website-us-east-1.amazonaws.com/>. Follow these instructions to create a shorter domain for use with your installation.
+```http://janelia-hortacloudwebapp-janeliahortacloudwebadmi-yefcny29t8n6.s3-website-us-east-1.amazonaws.com/```. Follow these instructions to create a shorter domain for use with your installation.
 
 * Register a domain with Route53 or your domain provider.
   * The Route53 page in the AWS console has a "Register domain" form.
