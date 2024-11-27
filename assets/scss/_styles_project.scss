@@ -4,12 +4,11 @@
     background-color: $horta-secondary2;
     color: black;
     padding: 10pt;
-    margin: 20pt; // Increased margin to ensure no overlap
-    width: 22rem;
 }
 
 .person .card-title {
     font-weight: bold;
+    padding-bottom: 3pt;
 }
 
 // Controlling the overlay color on the cover image
