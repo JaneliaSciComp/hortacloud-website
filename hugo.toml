@@ -1,4 +1,4 @@
-baseURL = "https://hortacloud.janelia.org"
+baseURL = "https://hortacloud.org"
 title = "HortaCloud"
 
 # Language settings
@@ -81,7 +81,7 @@ privacy_policy = "https://www.hhmi.org/privacy-policy"
 description = "HortaCloud: collaborative neuron annotation in the cloud"
 
 # First one is picked as the Twitter card image if not set on page.
-# images = ["images/project-illustration.png"]
+images = ["hortacloud_logo.png"]
 
 # Menu title if your navbar has a versions selector to access old versions of your site.
 # This menu appears only if you have at least one [params.versions] set.
