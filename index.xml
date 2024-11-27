@@ -369,7 +369,7 @@ Each instance can host any number of virtual desktops for authorized users.
  &lt;p>Try HortaCloud without an account!&lt;/p>
  &lt;p>AWS region: us-east-1&lt;/p>
  
- &lt;a class="btn btn-lg btn-primary disabled">
+ &lt;a class="btn btn-lg btn-secondary disabled">
  Coming soon
  &lt;/a>
 
