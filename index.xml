@@ -439,7 +439,7 @@ HortaCloud has been featured in the following publications:
 
 &lt;div class="text-horta-secondary3" style="margin-bottom: 15pt; text-align: center;">
 HortaCloud was developed by Scientific Computing Software at Janelia Research Campus in collaboration with the Janelia MouseLight project team,&lt;br>
-as well as the Allen Institute for Neural Dynamics. Contributors are listed in alphabetical order. Special thanks to Brie Yarbrough for creating the HortaCloud logo.
+as well as the Allen Institute for Neural Dynamics. Contributors are listed in alphabetical order. 
 &lt;/div>
 
 &lt;h2 style="text-align: center;">Advisors&lt;/h2>
@@ -456,4 +456,11 @@ as well as the Allen Institute for Neural Dynamics. Contributors are listed in a
  &lt;div class="col-md-4 col-sm-6 mb-4">
  &lt;div class="person card-body">
  &lt;h5 class="card-title">Joshua T. Dudman&lt;/h5>
- &lt;p class="card-text">HHMI Janelia Research Campus&lt;br>Scientific Advisor&lt;/p></description></item></channel></rss>
+ &lt;p class="card-text">HHMI Janelia Research Campus&lt;br>Scientific Advisor&lt;/p>
+ &lt;/div>
+ &lt;/div>
+
+ &lt;div class="col-md-4 col-sm-6 mb-4">
+ &lt;div class="person card-body">
+ &lt;h5 class="card-title">David Feng&lt;/h5>
+ &lt;p class="card-text">Allen Institute for Neural Dynamics&lt;br>Technical Advisor&lt;/p></description></item></channel></rss>
