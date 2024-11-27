@@ -348,7 +348,41 @@ The following content is reprinted from our &lt;a href="https://aws.amazon.com/b
 
 &lt;div class="container">
  &lt;h2>Introduction&lt;/h2> 
- &lt;p>To study how the brain works, researchers often begin with neural anatomy: how do neurons traverse the brain and how do they form circuits? To answer these questions, a brain can be imaged in 3D using light microscopy and the neurons in the image volumes can be traced out to form a map of the brain’s neural network. Software tools for visualization and annotation of the image volumes enable annotators to follow the neurons through-out the brain and reconstruct their structures. However, tracing neurons in large image volumes relies on direct volume rendering requiring terabytes of data to be moved from storage to a graphics processing unit (GPU). In addition, moving the data across the internet to collaborating institutions can take weeks. To address these issues, we moved the large brain image volumes to AWS and brought the users to the data using &lt;a href="https://aws.amazon.com/appstream2/">Amazon AppStream 2.0&lt;/a>. The cloud-based architecture enables our application to perform 3D visualization of this complex scientific data completely within the cloud, streaming interactive scientific visualizations to users around the world.&lt;/p></description></item><item><title>Publications</title><link>https://hortacloud.janelia.org/publications/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/publications/</guid><description>&lt;div>&lt;a id="td-block-0" class="td-offset-anchor">&lt;/a>&lt;/div>
+ &lt;p>To study how the brain works, researchers often begin with neural anatomy: how do neurons traverse the brain and how do they form circuits? To answer these questions, a brain can be imaged in 3D using light microscopy and the neurons in the image volumes can be traced out to form a map of the brain’s neural network. Software tools for visualization and annotation of the image volumes enable annotators to follow the neurons through-out the brain and reconstruct their structures. However, tracing neurons in large image volumes relies on direct volume rendering requiring terabytes of data to be moved from storage to a graphics processing unit (GPU). In addition, moving the data across the internet to collaborating institutions can take weeks. To address these issues, we moved the large brain image volumes to AWS and brought the users to the data using &lt;a href="https://aws.amazon.com/appstream2/">Amazon AppStream 2.0&lt;/a>. The cloud-based architecture enables our application to perform 3D visualization of this complex scientific data completely within the cloud, streaming interactive scientific visualizations to users around the world.&lt;/p></description></item><item><title>HortaCloud Instances</title><link>https://hortacloud.janelia.org/instances/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/instances/</guid><description>&lt;div>&lt;a id="td-block-0" class="td-offset-anchor">&lt;/a>&lt;/div>
+&lt;section class="row td-box td-box--horta-dark2 td-box--height-auto">
+&lt;div class="col">
+&lt;div class="container">
+
+
+
+&lt;h2>Available HortaCloud Instances&lt;/h2>
+
+&lt;p class="text-horta-secondary3">
+A HortaCloud instance is a private cloud environment &lt;a href="https://hortacloud.janelia.org/docs/administration/aws/">deployed to AWS&lt;/a> by an institution or organization. 
+Each instance can host any number of virtual desktops for authorized users.
+&lt;/p>
+
+&lt;div class="mt-4">
+	&lt;h3>&lt;i class="fa-solid fa-cloud">&lt;/i> Demo instance (session time limited)&lt;/h3>
+ &lt;div class="ps-4 parabox">
+ 
+ &lt;p>Try HortaCloud without an account!&lt;/p>
+ &lt;p>AWS region: us-east-1&lt;/p>
+ 
+ &lt;a class="btn btn-lg btn-primary disabled">
+ Coming soon
+ &lt;/a>
+
+ &lt;/div>
+
+&lt;/div>
+
+&lt;div class="mt-5">
+ &lt;h3>&lt;i class="fa-solid fa-cloud">&lt;/i> Janelia Research Campus&lt;/h3>
+ &lt;div class="ps-4 parabox">
+ 
+ &lt;p>Private instance for Janelia researchers and collaborators&lt;/p>
+ &lt;p>AWS region: us-east-1&lt;/p></description></item><item><title>Publications</title><link>https://hortacloud.janelia.org/publications/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/publications/</guid><description>&lt;div>&lt;a id="td-block-0" class="td-offset-anchor">&lt;/a>&lt;/div>
 &lt;section class="row td-box td-box--horta-dark td-box--height-auto">
 &lt;div class="col">
 &lt;div class="container">
@@ -393,9 +427,6 @@ HortaCloud has been featured in the following publications:
  Elife. 2016 Jan 20;5:e10566. doi: &lt;a href="https://doi.org/10.7554/eLife.10566">10.7554/eLife.10566&lt;/a> 
  &lt;/li>
 &lt;/ul>
-
- 
-
 
 &lt;/div>
 &lt;/div>
