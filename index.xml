@@ -360,6 +360,7 @@ The following content is reprinted from our &lt;a href="https://aws.amazon.com/b
 &lt;p class="text-horta-secondary3">
 A HortaCloud instance is a private cloud environment &lt;a href="https://hortacloud.janelia.org/docs/administration/aws/">deployed to AWS&lt;/a> by an institution or organization. 
 Each instance can host any number of virtual desktops for authorized users.
+All instances allow access to the images used to create the reconstructions available in the &lt;a hreef="https://ml-neuronbrowser.janelia.org">Mouselight Neuron Browser&lt;/a>.
 &lt;/p>
 
 &lt;div class="mt-4">
@@ -381,8 +382,7 @@ Each instance can host any number of virtual desktops for authorized users.
  &lt;h3>&lt;i class="fa-solid fa-cloud">&lt;/i> Janelia Research Campus&lt;/h3>
  &lt;div class="ps-4 parabox">
  
- &lt;p>Private instance for Janelia researchers and collaborators&lt;/p>
- &lt;p>AWS region: us-east-1&lt;/p></description></item><item><title>Publications</title><link>https://hortacloud.janelia.org/publications/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/publications/</guid><description>&lt;div>&lt;a id="td-block-0" class="td-offset-anchor">&lt;/a>&lt;/div>
+ &lt;p>Instance used by Janelia researchers and collaborators&lt;/p></description></item><item><title>Publications</title><link>https://hortacloud.janelia.org/publications/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/publications/</guid><description>&lt;div>&lt;a id="td-block-0" class="td-offset-anchor">&lt;/a>&lt;/div>
 &lt;section class="row td-box td-box--horta-dark td-box--height-auto">
 &lt;div class="col">
 &lt;div class="container">
