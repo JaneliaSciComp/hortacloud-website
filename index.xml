@@ -360,7 +360,7 @@ The following content is reprinted from our &lt;a href="https://aws.amazon.com/b
 &lt;p class="text-horta-secondary3">
 A HortaCloud instance is a private cloud environment &lt;a href="https://hortacloud.janelia.org/docs/administration/aws/">deployed to AWS&lt;/a> by an institution or organization. 
 Each instance can host any number of virtual desktops for authorized users.
-All instances allow access to the images used to create the reconstructions available in the &lt;a hreef="https://ml-neuronbrowser.janelia.org">Mouselight Neuron Browser&lt;/a>.
+All instances allow access to the images used to create the reconstructions available in the &lt;a href="https://ml-neuronbrowser.janelia.org">Mouselight Neuron Browser&lt;/a>.
 &lt;/p>
 
 &lt;div class="mt-4">
