@@ -14,7 +14,10 @@ This method backs up all of the data, removes the existing HortaCloud stack, ins
 
 ### Backup your data
 
-First, ensure that you have a recent data backup. If you have not [configured backups](../backups), do that first. For most upgrades, you only need to check if a backup for the JACS Mongo database exists. Typically this is located at `s3://<HORTA_BACKUP_BUCKET value>/<HORTA_BACKUP_FOLDER value>/<timestamp>/jacs`
+First, ensure that you have a recent data backup. If you have not [configured backups](../backups), do that first. For most upgrades, you only need to check if a backup for the JACS Mongo database exists. Typically this is located at `s3://<HORTA_BACKUP_BUCKET value>/<HORTA_BACKUP_FOLDER value>/<timestamp>/jacs`.  If your data is large, you may experience issues with the automatic restore that is performed during the full upgrade.  In this case you can perform a manual restore of your data, which is detailed below.  To perform a manual backup, you can run the following utility script that will perform a backup.
+* <deployment directory, something like /opt/deploy/jacs>/local/run-backup.sh.  This script will perform a backup of the database as well as your cognito authentication pool.
+* If this script isn't present, you can run the manage.sh script (usually located in the deployment directory), which will only backup the mongo database
+  * ./manage.sh mongo-backup <location of mongo jacs backup folder eg., /s3data/backups-bucket/hortacloud/backups/jacs>
 
 ### Remove HortaCloud environment
 
@@ -114,3 +117,9 @@ The steps for the incremental approach are the following:
     ```
 
   If no changes were made to the code AWS CDK will only update the missing stacks, leaving JACS stack as it was since it practically has not been changed from AWS' perspective
+
+## Restore Your data
+If there is a problem with the automatic restoration of your data, you can restore manually using the following process.  Be aware that the restoration process can take a long time for large database restoration.
+* <deployment directory/local/run-restore.sh.  This script will perform a restoration of the database as well as your cognito authentication pool.
+* If this script isn't present, you can run the manage.sh script (usually located in the deployment directory), which will only restore the mongo database
+  * ./manage.sh mongo-restore <location of mongo jacs backup folder eg., /s3data/backups-bucket/hortacloud/backups/jacs>
