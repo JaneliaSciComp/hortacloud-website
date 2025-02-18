@@ -367,22 +367,8 @@ All instances allow access to the images used to create the reconstructions avai
 	&lt;h3>&lt;i class="fa-solid fa-cloud">&lt;/i> Demo instance (session time limited)&lt;/h3>
  &lt;div class="ps-4 parabox">
  
- &lt;p>Try HortaCloud without an account!&lt;/p>
- &lt;p>AWS region: us-east-1&lt;/p>
- 
- &lt;a class="btn btn-lg btn-secondary disabled">
- Coming soon
- &lt;/a>
-
- &lt;/div>
-
-&lt;/div>
-
-&lt;div class="mt-5">
- &lt;h3>&lt;i class="fa-solid fa-cloud">&lt;/i> Janelia Research Campus&lt;/h3>
- &lt;div class="ps-4 parabox">
- 
- &lt;p>Instance used by Janelia researchers and collaborators&lt;/p></description></item><item><title>Publications</title><link>https://hortacloud.janelia.org/publications/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/publications/</guid><description>&lt;div>&lt;a id="td-block-0" class="td-offset-anchor">&lt;/a>&lt;/div>
+ &lt;p>You can try HortaCloud with this demo instance which we provide free of charge to the community. 
+ &lt;br>The session time is limited to 1 hour to avoid strain on our resources.&lt;/p></description></item><item><title>Publications</title><link>https://hortacloud.janelia.org/publications/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/publications/</guid><description>&lt;div>&lt;a id="td-block-0" class="td-offset-anchor">&lt;/a>&lt;/div>
 &lt;section class="row td-box td-box--horta-dark td-box--height-auto">
 &lt;div class="col">
 &lt;div class="container">
@@ -406,11 +392,16 @@ HortaCloud has been featured in the following publications:
 &lt;/p>
 
 &lt;ul class="publication-list">
- &lt;!--
- &lt;li>(morphoFISH citation) (To be added)&lt;/li>
 
+ &lt;li>Tiago A. Ferreira, Mark Eddison, Monique Copeland, Mary Lay, Emily Tenshaw, Monet Weldon, David Schauder, Donald J. Olbris, 
+ Konrad Rokicki, Nelson Spruston, Paul W. Tillberg, Wyatt Korff, Joshua T. Dudman, The MouseLight Project Team. 
+ &lt;u>Discovery of neuronal cell types by pairing whole cell reconstructions with RNA expression profiles.&lt;/u> bioRxiv preprint. 
+ doi: &lt;a href="https://doi.org/10.1101/2024.12.30.630829">10.1101/2024.12.30.630829&lt;/a>
+ &lt;/li>
+
+ &lt;!--
  &lt;li>Emily Tenshaw, Mary Lay, Alyssa Stark, Monet Weldon, Cameron Arshadi, Ahmad Elsayed, Daniel Ramirez, Bruno Dos Santos, Amina Zafar, Mashtura Hasan, 
- Regina Blake, Jayaram Chandrashekar, Tiago A Ferreira . Reconstructing Complete Neurons in Whole Brains Using HortaCloud. 
+ Regina Blake, Jayaram Chandrashekar, Tiago A Ferreira. Reconstructing Complete Neurons in Whole Brains Using HortaCloud. 
  Protocol exchange https://protocols.io/view/reconstructing-complete-neurons-in-whole-brains-us-c9vkz64w
  &lt;/li>
  -->
