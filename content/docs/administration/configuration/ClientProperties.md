@@ -30,7 +30,7 @@ The Janelia Workstation is configured by a set of properties which define the be
     * `console.FromEmail` - Sender email on error reports
     * `console.HelpEmail` - Destination email for error reports
 * GitHub-based error reporting
-    * `console.GitHubErrorProjectURL` - HTTPS URL for the project receiving the reported issues
+    * `console.GitHubErrorProjectURL` - HTTPS URL for the GitHub project receiving the reported issues
     * `console.GitHubErrorProjectAccessToken` - GitHub [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) (string beginning with `github_pat_`)
 
 Additional properties are described in the files linked below.
