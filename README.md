@@ -10,6 +10,8 @@ It is built using the [Hugo](https://gohugo.io) static site generator, and uses 
 
 First, [install Hugo](https://gohugo.io/getting-started/installing). On Mac, this is just `brew install hugo`.
 
+You should also have Node 18 (or greater) installed. We recommend using [NVM](https://github.com/nvm-sh/nvm) to install it.
+
 Then install dependencies:
 
     npm install
