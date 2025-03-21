@@ -1,8 +1,8 @@
 ---
-title: "Miscellaneous configuration"
-linkTitle: "Miscellaneous configuration"
+title: "Configuration"
+linkTitle: "Configuration"
 weight: 30
 simple_list: true
 description: >
-  Miscellaneous configuration
+  Configuring the system for all users
 ---
