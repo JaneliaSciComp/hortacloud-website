@@ -25,18 +25,6 @@ For these reasons, any issue tracker receiving error reports from HortaCloud sho
 {{% /alert %}}
 
 
-## Base configuration
-
-The base configurations are set directly in either `console.properties` or `client.properties`.
-
-- `console.ErrorReportingMethod=github`
-    + valid values: `email`, `github`
-- `console.AutoSendExceptions=true`
-    + valid values: `true`, `false`
-    + if set to `true`, uncaught exception will automatically send an error report without user action or knowledge, if the error is silent
-    + if set to `false`, only error reports initiated by the user will be sent
-
-
 ## Error report format
 
 The reported errors have the following format. The examples are edited excerpts from real reports.
@@ -72,52 +60,55 @@ Due to this repetition, it's useful to keep these automated and user issue repor
 
 # Configuration
 
-In the HortaCloud environment, environment variables such as those listed below are controlled through an `.env.config` file (derived from `.env.template`). See the deployment documentation for details.
+The default configurations are set in the client properties and can be modified directly in your server-side `client.properties` file. See the [client properties](../clientproperties) documentation for more information on how to configure the properties directly. However, if you are using HortaCloud, keep reading.
 
-Note that if `console.ErrorReportingMethod` is not set, the behavior will default to "email" for backward compatibility.
+## HortaCloud Configuration
 
+In HortaCloud, the properties are conveniently exposed as environment variables in your `.env.config`:
 
-# Email configuration
+- `AUTO_SEND_EXCEPTIONS`
+    + valid values: `true`, `false` (default: `false`)
+    + if set to `true`, uncaught exception will automatically send an error report without user action or knowledge, if the error is silent
+    + if set to `false`, only error reports initiated by the user will be sent
+- `ERROR_REPORTING_METHOD`
+    + valid values: `email`, `github` (default: `email`)
 
-The following environment variables must be populated with information about your email server:
+### Email-based error reporting
 
-- `MAIL_SERVER`
-- `MAIL_SENDER`
-- `MAIL_USER`
-- `MAIL_PASSWORD` 
-        * `MAIL_USER` and `MAIL_PASSWORD` are often for a service account
-- `MAIL_RECEIVER`
-    + this is the address to which email is sent; your issue tracker will access this account
+Your .env.config will contain the following line:
 
-Note that the email values are Janelia-specific and should be changed.
+    ERROR_REPORTING_METHOD=email
 
-Set `console.ErrorReportingMethod=email`.
+You must configure access to a mail server and configure the email address in your issue tracker (e.g. JIRA).
 
+    - `MAIL_SERVER` - Hostname and port for the mail server
+    - `MAIL_USER` - Username for the mail server (may be empty for anonymous)
+    - `MAIL_PASSWORD`  - Password for the mail server (may be empty for anonymous)
+            * `MAIL_USER` and `MAIL_PASSWORD` are often for a service account
+    - `MAIL_SENDER` - Sender email on error reports
+    - `MAIL_RECEIVER` - Destination email for error reports
+        + this is the address to which email is sent; your issue tracker will access this account
 
+### GitHub-based error reporting
 
-# GitHub configuration
+Your .env.config will contain the following line:
 
-This section assumes some familiarity with GitHub and git.
+    ERROR_REPORTING_METHOD=github
 
-A GitHub repository is a convenient place to hold issues even if it doesn't contain code. The free tier of repository is more than enough for this task. HortaCloud uses GitHub's REST API to create issues instead of email.
+This section assumes some familiarity with GitHub and git. A GitHub repository is a convenient place to hold issues even if it doesn't contain code. The free tier of repository is more than enough for this task. HortaCloud uses GitHub's REST API to create issues instead of email.
 
 First, create a new private repository. The repository need not contain any files, though a `README.md` file explaining the purpose of the repository will be helpful.
 
 Second, create a branch named `issues`. While the issues are created in the repository, the stack traces are uploaded as files to this branch, in a directory named `attachments`. GitHub issues are limited in size and are not large enough to contain our log files if included in-line in the issue.
 
-Last, create a fine-grained personal access token (PAT) from the GitHub website. The PAT should have permissions only for this repository, and should have read and write access to code, issues, and pull requests. Set the expiration date for the token to whatever you are comfortable with. 
+Next, create a fine-grained personal access token (PAT) from the GitHub website. The PAT should have permissions only for this repository, and should have read and write access to code, issues, and pull requests. Set the expiration date for the token to whatever you are comfortable with. Issues will be created by this user's identity, not the identity of the user reported the issue. This user and any developer responsible for handling issue can then adjust their GitHub notifications for this repository to the level they choose. 
 
-Issues will be created by this user's identity, not the identity of the user reported the issue. This user and any developer responsible for handling issue can then adjust their GitHub notifications for this repository to the level they choose. 
+Finally, transfer the token and the repository's API URL to the following environment variables:
 
-Then transfer the token and the repository's API URL to the following environment variables:
-
-- `GITHUB_URL`: URL will look like this: https://api.github.com/repos/username/repository-name
+- `GITHUB_REPORTING_PROJECT_URL` - HTTPS URL for the GitHub project receiving the reported issues
+    + URL will look like this: https://api.github.com/repos/username/repository-name
     + note the inital `www` is replaced by `api` for this URL
-- `GITHUB_TOKEN`: this is a long string beginning with `github_pat_`
-
-Set `console.ErrorReportingMethod=github`
-
-
+- `GITHUB_REPORTING_TOKEN` - GitHub [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) (string beginning with `github_pat_`)
 
 
 
