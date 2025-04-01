@@ -1,6 +1,6 @@
 ---
-title: "Deployment"
-linkTitle: "Deployment"
+title: "Deployment Steps"
+linkTitle: "Deployment Steps"
 weight: 20
 description: >
   How to deploy HortaCloud to your own AWS account

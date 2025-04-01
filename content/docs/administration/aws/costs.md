@@ -1,9 +1,9 @@
 ---
-title: "Costs"
-linkTitle: "Costs"
+title: "Estimated Costs"
+linkTitle: "Estimated Costs"
 weight: 10
 description: >
-  Costs of running the system in the cloud
+  Cost estimates for running the system in the cloud using AWS services
 ---
 
 Deploying this system on Amazon Web Services (AWS) incurs a monthly cost for AWS service usage.
