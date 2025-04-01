@@ -1,1 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>HortaCloud Documentation on HortaCloud</title><link>https://hortacloud.janelia.org/docs/</link><description>Recent content in HortaCloud Documentation on HortaCloud</description><generator>Hugo</generator><language>en</language><atom:link href="https://hortacloud.janelia.org/docs/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>HortaCloud Documentation on HortaCloud</title><link>https://hortacloud.janelia.org/docs/</link><description>Recent content in HortaCloud Documentation on HortaCloud</description><generator>Hugo</generator><language>en</language><atom:link href="https://hortacloud.janelia.org/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Overview</title><link>https://hortacloud.janelia.org/docs/overview/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/overview/</guid><description>&lt;p>HortaCloud is a streaming 3D annotation platform for large microscopy data that runs entirely in the cloud. It is a free, open source research software tool, developed by Janelia Research Campus.&lt;/p>
+&lt;p>It combines state-of-the-art volumetric visualization, advanced features for 3D neuronal annotation, and real-time multi-user collaboration with a set of enterprise-grade backend microservices for moving and processing large amounts of data rapidly and securely. HortaCloud takes advantage of cloud-based Virtual Desktop Infrastructure (VDI) to perform all 3D rendering in cloud-leased GPUs which are data-adjacent, and only transfer a high-fidelity interactive video stream to each annotator’s local compute platform through a web browser.&lt;/p></description></item><item><title>Support</title><link>https://hortacloud.janelia.org/docs/support/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/support/</guid><description>&lt;p>Janelia Scientific Computing supports HortaCloud as part of our &lt;a href="https://ossi.janelia.org/">Open Science Software Initiative&lt;/a>. As part of the HortaCloud Community Project, we aim to:&lt;/p>
+&lt;ul>
+&lt;li>Maintain the code base to ensure long-term stability and usability.&lt;/li>
+&lt;li>Serve as the open-source project lead for coordinating and integrating code contributions.&lt;/li>
+&lt;li>Create and release new versions of the software as appropriate.&lt;/li>
+&lt;li>Receive feedback through direct communication and GitHub Issues, which we try to address as soon as possible. However, we are limited by the amount of funding available through the Open Science Software Initiative as well as potential internal projects with higher priority.&lt;/li>
+&lt;li>Host periodic community meetings to discuss user experiences and development updates.&lt;/li>
+&lt;li>Provide guidance and advice to users and developers working with HortaCloud.&lt;/li>
+&lt;li>Continue to update the documentation as questions are addressed.&lt;/li>
+&lt;/ul>
+&lt;p>To ensure sustainable support and foster a collaborative community, there are certain types of assistance we are not able to provide.&lt;/p></description></item><item><title>Editing the documentation</title><link>https://hortacloud.janelia.org/docs/contribution_guidelines/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/contribution_guidelines/</guid><description>&lt;p>We use &lt;a href="https://gohugo.io/">Hugo&lt;/a> to format and generate our website, the
+&lt;a href="https://github.com/google/docsy">Docsy&lt;/a> theme for styling and site structure,
+and &lt;a href="https://pages.github.com/">GitHub Pages&lt;/a> to manage the deployment of the site.&lt;/p>
+&lt;p>Hugo is an open-source static site generator that provides us with templates,
+content organization in a standard directory structure, and a website generation
+engine. You write the pages in Markdown (or HTML if you want), and Hugo wraps them up into a website.&lt;/p>
+&lt;p>All submissions, including submissions by project members, require review. We
+use GitHub pull requests for this purpose. Consult
+&lt;a href="https://help.github.com/articles/about-pull-requests/">GitHub Help&lt;/a> for more
+information on using pull requests.&lt;/p></description></item></channel></rss>
