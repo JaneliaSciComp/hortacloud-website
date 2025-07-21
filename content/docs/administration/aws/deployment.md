@@ -67,7 +67,7 @@ We prefer this procedure because these values will be handled during the install
 
 If you already have data on some S3 buckets you can add them to `HORTA_DATA_BUCKETS` as a comma separated list. For example, if you want to use Janelia's Open Data bucket but in addition you also have your data on a private bucket ('janelia-mouselight-demo' in this example) you need to set `HORTA_DATA_BUCKETS="janelia-mouselight-imagery,janelia-mouselight-demo"`. By default, only the MouseLight Open Data bucket is mounted. Every bucket specified in the 'HORTA_DATA_BUCKETS' list will be available in Horta as `/s3data/<s3BucketName>` directory.
 
-If this is the first installation of HortaCloud and no restore from an existing backup is done, ensure that `NEW_HORTA_ENVIRONMENT=true` - this is needed to create the default admin user. For environments that are restored from an existing backup the flag must be set to `NEW_HORTA_ENVIRONMENT=false`.
+If this is the first installation of HortaCloud and no restore from an existing backup is done, ensure that `NEW_HORTA_ENVIRONMENT=true` - this is needed to create the default admin user. For environments that are restored from an existing backup the flag must be set to `NEW_HORTA_ENVIRONMENT=false` since the admin user will be imported from the backup.
 
 If you want to change the setting for `HORTA_WS_INSTANCE_TYPE`, keep in mind that you may have to change `HORTA_WS_IMAGE_NAME`.
 
