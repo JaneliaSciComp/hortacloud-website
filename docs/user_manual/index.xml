@@ -35,7 +35,7 @@
  
  alt="AppStream 2 toolbar"/>
 &lt;/a>
-&lt;h3 id="data-import-and-export-file-system-and-clipboard">Data import and export: file system and clipboard&lt;/h3>
+&lt;h3 id="data-import-and-export-file-system-cloud-storage-and-clipboard">Data import and export: file system, cloud storage, and clipboard&lt;/h3>
 &lt;p>&lt;strong>Note&lt;/strong>: The AppStream toolbar may differ slightly; the icon positions referred to below are for the older AppStream version.&lt;/p></description></item><item><title>Basic Operations</title><link>https://hortacloud.janelia.org/docs/user_manual/basic_operations/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hortacloud.janelia.org/docs/user_manual/basic_operations/</guid><description>&lt;p>This section will walk you through the process of tracing a neuron and some other tasks. It&amp;rsquo;s meant to introduce you to the basic operations of Horta. Not all features or details of features are discussed. You can find those details in the appropriate &lt;a href="https://hortacloud.janelia.org/docs/user_manual/features/">Feature&lt;/a> section.&lt;/p>
 &lt;h2 id="assumptions">Assumptions&lt;/h2>
 &lt;p>Before you get started with Horta, it is assumed:&lt;/p>
