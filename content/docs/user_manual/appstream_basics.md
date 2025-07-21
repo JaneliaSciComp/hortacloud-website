@@ -19,15 +19,17 @@ Newer AppStream toolbar:
 
 {{< imglink src="../AppStream2-toolbar.png" link="../AppStream2-toolbar.png" alt="AppStream 2 toolbar" width="1076px" >}}
 
-### Data import and export: file system and clipboard
+### Data import and export: file system, cloud storage, and clipboard
 
 **Note**: The AppStream toolbar may differ slightly; the icon positions referred to below are for the older AppStream version. 
 
 Web browsers are constrained with respect to how they read and write data on a computer, and applications running in virtual machines displayed in a browser, even more so.
 
-File system access: the third icon from the left opens a dialog showing "My Files", and within it, a "Temporary Files" location. This is a file location on the remote computer running Horta and Horta can read and write to. You can then transfer files from that location to your local computer via the "My Files" dialog box. See "Importing Data" and "Exporting Data" in the "Basic Operations" section for more details.
+- File system access: The third icon from the left opens a dialog showing "My Files", and within it, a "Temporary Files" location. This is a file location on the remote computer running Horta and Horta can read and write to. You can then transfer files from that location to your local computer via the "My Files" dialog box. See "Importing Data" and "Exporting Data" in the "Basic Operations" section for more details.
 
-Clipboard access: if you copy anything in Horta to the clipboard, it's only accessible on the remote computer. The fourth icon from left on the toolbar will transfer the remote clipboard's contents to the local clipboard.
+- Cloud storage: Files can also be transferred to cloud storage. The exact services available will depend on your local deployment. To connect to a cloud storage provider, click the "My Files" icon on the tool boar, then click the "Add Storage" button to connect to an available synchronized folder. Contact your local administrator for details on what cloud storage is available in your instance.
+
+- Clipboard access: If you copy anything in Horta to the clipboard, it's only accessible on the remote computer. The fourth icon from left on the toolbar will transfer the remote clipboard's contents to the local clipboard.
 
 ### Windows and screens
 
@@ -50,6 +52,8 @@ Volatile data:
 - information on the clipboard
 
 All other data (sample data, workspace data, annotations, notes, etc.) is stored in the database and is not lost when a session ends.
+
+Any data you wish to preserve (e.g., exported neuron SWC files) should be moved from "My Files" to either local storage or cloud storage before you end the session.
 
 
 ### Reconnecting
