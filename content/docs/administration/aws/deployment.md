@@ -82,6 +82,9 @@ For `HORTA_WS_INSTANCE_TYPE` set to any `stream.graphics.g4dn.*` instances:
 
 use: `HORTA_WS_IMAGE_NAME=AppStream-Graphics-G4dn-WinServer2019-09-01-2022` image.
 
+To enable a demo instance of HortaCloud with self-registration allowed, set in your environment
+`ENABLE_SELF_REGISTRATION=true` 
+
 For `HORTA_WS_INSTANCE_TYPE` set to any `stream.graphics-pro.*` instances:
 
 * `stream.graphics-pro.4xlarge`
@@ -225,6 +228,14 @@ By default the application will have a very long url that is not easy to remembe
     * "Viewer protocol policy" - Change this to "Redirect HTTP to HTTPS"
     * "Custom SSL certificate" - Select the certificate that you registered with AWS Certificate Manager
   * Finally, click the "Create distribution" button.
+
+## Configuring demonstration Hortacloud site
+To finish setting up self-registration for a demo Hortacloud site, run the post-deployment script to 
+add a post-confirmation trigger to Cognito to synchronize the self-registered user with the HortaCloud database
+
+```bash
+npm run post-deploy
+```
 
 ## Uninstalling HortaCloud services
 

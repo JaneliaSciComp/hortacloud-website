@@ -64,6 +64,7 @@ An administrator within the Horta or Janelia Workstation system has a lot of pow
 
 - see all data and assign permissions for all data
 - set privileges for all users and groups
+- Download logs of user activity tracking (Enabled in Tools->Options->Horta->Log activity in database)
 - use Tools > Admin > Run as... to connect as any user (usually used for debugging purposes)
 
 You should limit the number of people with admin privileges.
