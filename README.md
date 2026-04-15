@@ -1,6 +1,5 @@
 # HortaCloud Website
 
-[![DOI](https://zenodo.org/badge/481740552.svg)](https://zenodo.org/badge/latestdoi/481740552)
 
 This is the website for [HortaCloud](https://github.com/JaneliaSciComp/hortacloud), including the user manual and deployment documentation.
 
@@ -27,4 +26,3 @@ When you push to the main branch, the code will automatically be built and deplo
 Try [this fix](https://wowchemy.com/docs/hugo-tutorials/troubleshooting/#error-failed-to-resolve-output-format), if you see this error:
 
     Error: from config: failed to resolve output format "print" from site config
-
